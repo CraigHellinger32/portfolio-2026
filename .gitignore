@@ -58,3 +58,8 @@ app/public/local-xdebuginfo.php
 # Note: If you wish to whitelist themes,
 # uncomment the next line
 #/wp-content/themes
+
+# Front end
+frontend/node_modules/
+frontend/.next/
+frontend/.env.local
