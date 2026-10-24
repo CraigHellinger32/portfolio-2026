@@ -1,11 +1,55 @@
 .caseStudyGrid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 230px));
+	grid-template-columns: repeat(2, minmax(0, 1fr));
 	justify-content: center;
-	gap: 10px;
+	gap: 0;
+	width: min(100%, 184px);
 	margin: 0;
 	padding: 0;
 	list-style: none;
+}
+
+.clientGrid,
+.skillGrid {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	justify-content: center;
+	gap: 0;
+	margin: 0 auto;
+	padding: 0;
+	list-style: none;
+}
+
+.clientGrid {
+	width: min(100%, 160px);
+}
+
+.skillGrid {
+	width: min(100%, 184px);
+}
+
+.page {
+	width: 100%;
+	max-width: 414px;
+	margin: 0 auto;
+	padding: 12px 20px 0;
+}
+
+.sectionTitle {
+	margin: 0;
+	font-family: var(--font-kedebideri);
+}
+
+.section {
+	margin: 0 0 22px;
+}
+
+.sectionTitle {
+	margin-bottom: 10px;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 1;
+	text-align: center;
 }
 
 .card {
@@ -16,11 +60,12 @@
 	flex-direction: column;
 	justify-content: space-between;
 	overflow: hidden;
-	border: 2px solid #231f20;
-	padding: 12px;
+	border: 1px solid #777;
+	padding: 5px;
 	background: #fff;
 	color: #231f20;
 	text-decoration: none;
+	font-family: var(--font-kedebideri);
 }
 
 .card:focus-visible {
@@ -51,7 +96,7 @@
 	display: block;
 	max-width: 155px;
 	max-height: 27px;
-	font-family: Arial, sans-serif;
+	font-family: var(--font-share);
 	font-size: 12px;
 	font-weight: 700;
 }
@@ -65,8 +110,8 @@
 }
 
 .number {
-	font-family: Arial, sans-serif;
-	font-size: 28px;
+	font-family: var(--font-kedebideri);
+	font-size: 16px;
 	line-height: 1;
 }
 
@@ -80,23 +125,23 @@
 
 .symbol {
 	width: 100%;
-	font-family: Arial, sans-serif;
-	font-size: 92px;
+	font-family: var(--font-share);
+	font-size: 38px;
 	font-weight: 700;
 	line-height: 0.9;
 }
 
 .title {
 	width: 100%;
-	font-family: Arial, sans-serif;
-	font-size: 30px;
+	font-family: var(--font-kedebideri);
+	font-size: 16px;
 	line-height: 1;
 }
 
 .excerpt {
 	width: 100%;
-	font-family: Arial, sans-serif;
-	font-size: 20px;
+	font-family: var(--font-kedebideri);
+	font-size: 14px;
 	font-weight: 400;
 	line-height: 1;
 }
@@ -142,6 +187,99 @@
 .card[data-selected="true"][data-accent="dark"] {
 	background: #231f20;
 	color: #fff;
+}
+
+.card[data-size="client"],
+.card[data-size="skill"] {
+	padding: 2px;
+}
+
+.card[data-size="client"] .topRow,
+.card[data-size="skill"] .topRow {
+	min-height: 8px;
+	gap: 1px;
+}
+
+.card[data-size="client"] .brand {
+	max-width: 24px;
+	max-height: 8px;
+	font-size: 5px;
+}
+
+.card[data-size="client"] .brand img {
+	max-height: 8px;
+}
+
+.card[data-size="client"] .number,
+.card[data-size="skill"] .number {
+	font-size: 8px;
+}
+
+.card[data-size="client"] .symbol {
+	font-size: 15px;
+}
+
+.card[data-size="client"] .title {
+	font-size: 6px;
+}
+
+.card[data-size="client"] .excerpt {
+	font-size: 5px;
+}
+
+.card[data-size="skill"] .symbol {
+	font-size: 19px;
+}
+
+.card[data-size="skill"] .title {
+	font-size: 6px;
+}
+
+.card[data-size="skill"] .excerpt {
+	display: none;
+}
+
+.card[data-size="client"] .content,
+.card[data-size="skill"] .content {
+	word-break: break-word;
+}
+
+@media (min-width: 700px) {
+	.page {
+		max-width: 1080px;
+		padding: 24px 32px 0;
+	}
+
+	.section {
+		margin-bottom: 52px;
+	}
+
+	.caseStudyGrid {
+		grid-template-columns: repeat(auto-fit, 230px);
+		width: auto;
+		gap: 10px;
+	}
+
+	.card[data-size="case-study"] {
+		border-width: 2px;
+		padding: 12px;
+	}
+
+	.card[data-size="case-study"] .number {
+		font-size: 28px;
+	}
+
+	.card[data-size="case-study"] .symbol {
+		font-size: 92px;
+	}
+
+	.card[data-size="case-study"] .title {
+		font-size: 30px;
+	}
+
+	.card[data-size="case-study"] .excerpt {
+		font-size: 20px;
+	}
 }
 
 @media (prefers-reduced-motion: reduce) {

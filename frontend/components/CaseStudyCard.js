@@ -13,24 +13,27 @@ function getSymbol(title) {
 }
 
 export default function CaseStudyCard({
-	caseStudy,
+	entry,
 	number,
 	symbol,
 	brandLogo,
 	brandLogoAlt = "",
 	brandName,
+	size = "case-study",
+	showExcerpt = true,
 	selected = false,
 	accent = "cyan",
 }) {
-	const image = caseStudy.featuredImage?.node?.sourceUrl;
-	const title = caseStudy.title || "Untitled case study";
+	const image = size === "case-study" ? entry.featuredImage?.node?.sourceUrl : null;
+	const title = entry.title || "Untitled case study";
 
 	return (
 		<Link
 			className={styles.card}
 			data-accent={accent}
+			data-size={size}
 			data-selected={selected}
-			href={caseStudy.uri}
+			href={entry.uri || "#"}
 		>
 			{image && (
 				<Image
@@ -68,10 +71,10 @@ export default function CaseStudyCard({
 					{symbol || getSymbol(title)}
 				</span>
 				<span className={styles.title}>{title}</span>
-				{caseStudy.excerpt && (
+				{showExcerpt && entry.excerpt && (
 					<span
 						className={styles.excerpt}
-						dangerouslySetInnerHTML={{ __html: caseStudy.excerpt }}
+						dangerouslySetInnerHTML={{ __html: entry.excerpt }}
 					/>
 				)}
 			</span>
