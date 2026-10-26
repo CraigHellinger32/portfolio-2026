@@ -257,7 +257,6 @@
 	.caseStudyGrid {
 		grid-template-columns: repeat(auto-fit, 230px);
 		width: auto;
-		gap: 10px;
 	}
 
 	.card[data-size="case-study"] {
