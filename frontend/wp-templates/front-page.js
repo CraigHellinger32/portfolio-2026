@@ -6,7 +6,9 @@ export default function FrontPageTemplate(props) {
 	const { title, description } = props.data.generalSettings;
 	const caseStudies = props.data.caseStudies.nodes;
 	const visibleCaseStudies = caseStudies.slice(0, 4);
-	const clients = props.data.clients.nodes;
+	const clients = props.data.clients.nodes.filter(
+		(client) => client.clients?.hideOnFrontPage !== true
+	);
 	const skills = props.data.skills.nodes;
 	const clientNumberStart = visibleCaseStudies.length + 1;
 	const skillNumberStart = clientNumberStart + clients.length;
@@ -80,7 +82,7 @@ FrontPageTemplate.query = gql`
 			title
 			description
 		}
-		caseStudies(first: 20) {
+		caseStudies(first: 4) {
 			nodes {
 				id
 				title
@@ -88,6 +90,19 @@ FrontPageTemplate.query = gql`
 				caseStudies {
 					subtitle
 					chemicalSymbol: chemicalsymbol
+					client {
+						nodes {
+							... on Client {
+								title
+								featuredImage {
+									node {
+										sourceUrl
+										altText
+									}
+								}
+							}
+						}
+					}
 				}
 				featuredImage {
 					node {
@@ -107,6 +122,9 @@ FrontPageTemplate.query = gql`
 						sourceUrl
 						altText
 					}
+				}
+				clients {
+					hideOnFrontPage
 				}
 			}
 		}

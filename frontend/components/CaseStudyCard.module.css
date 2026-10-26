@@ -92,6 +92,7 @@
 	align-items: flex-start;
 	justify-content: space-between;
 	gap: 8px;
+	transition: opacity 600ms ease;
 }
 
 .brand {
@@ -157,7 +158,7 @@
 
 .card:hover .topRow,
 .card:focus-visible .topRow {
-	visibility: hidden;
+	opacity: 0;
 }
 
 .card:hover .content,
@@ -223,6 +224,7 @@
 
 .card[data-size="client"] .symbol {
 	font-size: 15px;
+    margin-left: -1px;
 }
 
 .card[data-size="client"] .title {
@@ -263,6 +265,47 @@
 		background: #231f20;
 	}
 
+	.clientGrid {
+		grid-template-columns: repeat(4, 169px);
+		width: fit-content;
+	}
+
+	.card[data-size="client"] {
+		border-width: 1.5px;
+		padding: 9px;
+	}
+
+	.card[data-size="client"] .topRow {
+		min-height: 20px;
+		gap: 3px;
+	}
+
+	.card[data-size="client"] .brand {
+		max-width: 75px;
+		max-height: 20px;
+		font-size: 10px;
+	}
+
+	.card[data-size="client"] .brand img {
+		max-height: 20px;
+	}
+
+	.card[data-size="client"] .number {
+		font-size: 37.575px;
+	}
+
+	.card[data-size="client"] .symbol {
+		font-size: 67.589px;
+	}
+
+	.card[data-size="client"] .title {
+		font-size: 22.043px;
+	}
+
+	.card[data-size="client"] .subtitle {
+		font-size: 14.696px;
+	}
+
 	.card[data-size="case-study"] {
 		border: 0;
 		padding: 12px;
@@ -273,7 +316,8 @@
 	}
 
 	.card[data-size="case-study"] .symbol {
-		font-size: 92px;
+		font-size: 46px;
+        margin-left: -2px;
 	}
 
 	.card[data-size="case-study"] .title {
@@ -282,6 +326,20 @@
 
 	.card[data-size="case-study"] .subtitle {
 		font-size: 20px;
+	}
+}
+
+@media (min-width: 860px) {
+    .card[data-size="case-study"] .symbol {
+		font-size: 70px;
+        margin-left: -3px;
+	}
+}
+
+@media (min-width: 980px) {
+    .card[data-size="case-study"] .symbol {
+		font-size: 92px;
+        margin-left: -4px;
 	}
 }
 
@@ -302,6 +360,7 @@
 
 @media (prefers-reduced-motion: reduce) {
 	.image,
+	.topRow,
 	.content,
 	.symbol {
 		transition: none;

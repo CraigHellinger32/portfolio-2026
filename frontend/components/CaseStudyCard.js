@@ -25,6 +25,10 @@ export default function CaseStudyCard({
 	accent = "cyan",
 }) {
 	const image = size === "case-study" ? entry.featuredImage?.node?.sourceUrl : null;
+	const linkedClient = size === "case-study" ? entry.caseStudies?.client?.nodes?.[0] : null;
+	const resolvedBrandLogo = brandLogo || linkedClient?.featuredImage?.node?.sourceUrl;
+	const resolvedBrandLogoAlt = brandLogoAlt || linkedClient?.featuredImage?.node?.altText || "";
+	const resolvedBrandName = brandName || linkedClient?.title;
 	const title = entry.title || "Untitled case study";
 
 	return (
@@ -49,16 +53,16 @@ export default function CaseStudyCard({
 
 			<span className={styles.topRow}>
 				<span className={styles.brand}>
-					{brandLogo ? (
+					{resolvedBrandLogo ? (
 						<Image
-							src={brandLogo}
-							alt={brandLogoAlt}
+							src={resolvedBrandLogo}
+							alt={resolvedBrandLogoAlt}
 							width={102}
 							height={27}
 							unoptimized
 						/>
 					) : (
-						brandName
+						resolvedBrandName
 					)}
 				</span>
 				<span className={styles.number} aria-hidden="true">
