@@ -36,26 +36,28 @@
 }
 
 .sectionTitle {
-	margin: 0;
-	font-family: var(--font-kedebideri);
-}
-
-.section {
-	margin: 0 0 22px;
-}
-
-.sectionTitle {
-	margin-bottom: 10px;
-	font-size: 20px;
+	margin: 0 0 10px;
+	font-family: var(--font-share);
+	font-size: 37px;
 	font-weight: 700;
 	line-height: 1;
 	text-align: center;
+}
+
+.section {
+	display: flex;
+	width: fit-content;
+	max-width: 100%;
+	flex-direction: column;
+	align-items: center;
+	margin: 0 auto 22px;
 }
 
 .card {
 	position: relative;
 	display: flex;
 	width: 100%;
+	box-sizing: border-box;
 	aspect-ratio: 1;
 	flex-direction: column;
 	justify-content: space-between;
@@ -80,7 +82,7 @@
 	height: 100%;
 	object-fit: cover;
 	opacity: 0;
-	transition: opacity 180ms ease;
+	transition: opacity 600ms ease;
 }
 
 .topRow {
@@ -121,6 +123,7 @@
 	width: 100%;
 	flex-direction: column;
 	align-items: flex-start;
+	transition: color 600ms ease, text-shadow 600ms ease;
 }
 
 .symbol {
@@ -129,6 +132,7 @@
 	font-size: 38px;
 	font-weight: 700;
 	line-height: 0.9;
+	transition: color 600ms ease, text-shadow 600ms ease;
 }
 
 .title {
@@ -138,16 +142,12 @@
 	line-height: 1;
 }
 
-.excerpt {
+.subtitle {
 	width: 100%;
 	font-family: var(--font-kedebideri);
 	font-size: 14px;
 	font-weight: 400;
 	line-height: 1;
-}
-
-.excerpt :global(p) {
-	margin: 0;
 }
 
 .card:hover .image,
@@ -164,6 +164,12 @@
 .card:focus-visible .content {
 	color: #fff;
 	text-shadow: 0 1px 4px #231f20;
+}
+
+.card:hover .symbol,
+.card:focus-visible .symbol {
+	color: #231f20;
+	text-shadow: 0 0 4px #fff;
 }
 
 .card[data-selected="true"] .image {
@@ -223,10 +229,6 @@
 	font-size: 6px;
 }
 
-.card[data-size="client"] .excerpt {
-	font-size: 5px;
-}
-
 .card[data-size="skill"] .symbol {
 	font-size: 19px;
 }
@@ -235,18 +237,14 @@
 	font-size: 6px;
 }
 
-.card[data-size="skill"] .excerpt {
-	display: none;
-}
-
 .card[data-size="client"] .content,
 .card[data-size="skill"] .content {
 	word-break: break-word;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 768px) {
 	.page {
-		max-width: 1080px;
+		max-width: 1440px;
 		padding: 24px 32px 0;
 	}
 
@@ -255,12 +253,18 @@
 	}
 
 	.caseStudyGrid {
-		grid-template-columns: repeat(auto-fit, 230px);
-		width: auto;
+		grid-template-columns: repeat(var(--case-study-columns, 4), minmax(0, 230px));
+		width: fit-content;
+		max-width: 100%;
+		margin-inline: auto;
+		gap: 2px;
+		box-sizing: border-box;
+		padding: 2px;
+		background: #231f20;
 	}
 
 	.card[data-size="case-study"] {
-		border-width: 2px;
+		border: 0;
 		padding: 12px;
 	}
 
@@ -276,13 +280,30 @@
 		font-size: 30px;
 	}
 
-	.card[data-size="case-study"] .excerpt {
+	.card[data-size="case-study"] .subtitle {
 		font-size: 20px;
 	}
 }
 
+@media (min-width: 1366px) {
+	.section {
+		flex-direction: row;
+		justify-content: center;
+		align-items: flex-start;
+		gap: 32px;
+	}
+
+	.sectionTitle {
+		flex: 0 0 210px;
+		margin: 0;
+		text-align: left;
+	}
+}
+
 @media (prefers-reduced-motion: reduce) {
-	.image {
+	.image,
+	.content,
+	.symbol {
 		transition: none;
 	}
 }

@@ -5,9 +5,10 @@ import styles from "../components/CaseStudyCard.module.css";
 export default function FrontPageTemplate(props) {
 	const { title, description } = props.data.generalSettings;
 	const caseStudies = props.data.caseStudies.nodes;
+	const visibleCaseStudies = caseStudies.slice(0, 4);
 	const clients = props.data.clients.nodes;
 	const skills = props.data.skills.nodes;
-	const clientNumberStart = caseStudies.length + 1;
+	const clientNumberStart = visibleCaseStudies.length + 1;
 	const skillNumberStart = clientNumberStart + clients.length;
 
 	return (
@@ -19,10 +20,19 @@ export default function FrontPageTemplate(props) {
 
 			<section className={styles.section}>
 				<h2 className={styles.sectionTitle}>Case studies</h2>
-				<ul className={styles.caseStudyGrid}>
-					{caseStudies.map((entry, index) => (
+				<ul
+					className={styles.caseStudyGrid}
+					style={{
+						"--case-study-columns": String(Math.max(visibleCaseStudies.length, 1)),
+					}}
+				>
+					{visibleCaseStudies.map((entry, index) => (
 						<li key={entry.id}>
-							<CaseStudyCard entry={entry} number={index + 1} />
+							<CaseStudyCard
+								entry={entry}
+								number={index + 1}
+								symbol={entry.caseStudies?.chemicalSymbol}
+							/>
 						</li>
 					))}
 				</ul>
@@ -55,7 +65,6 @@ export default function FrontPageTemplate(props) {
 								entry={entry}
 								number={skillNumberStart + index}
 								size="skill"
-								showExcerpt={false}
 							/>
 						</li>
 					))}
@@ -76,7 +85,10 @@ FrontPageTemplate.query = gql`
 				id
 				title
 				uri
-				excerpt
+				caseStudies {
+					subtitle
+					chemicalSymbol: chemicalsymbol
+				}
 				featuredImage {
 					node {
 						sourceUrl

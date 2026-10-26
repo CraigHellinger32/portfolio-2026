@@ -20,7 +20,7 @@ export default function CaseStudyCard({
 	brandLogoAlt = "",
 	brandName,
 	size = "case-study",
-	showExcerpt = true,
+	showSubtitle = size === "case-study",
 	selected = false,
 	accent = "cyan",
 }) {
@@ -71,11 +71,8 @@ export default function CaseStudyCard({
 					{symbol || getSymbol(title)}
 				</span>
 				<span className={styles.title}>{title}</span>
-				{showExcerpt && entry.excerpt && (
-					<span
-						className={styles.excerpt}
-						dangerouslySetInnerHTML={{ __html: entry.excerpt }}
-					/>
+				{showSubtitle && entry.caseStudies?.subtitle && (
+					<span className={styles.subtitle}>{entry.caseStudies.subtitle}</span>
 				)}
 			</span>
 		</Link>
