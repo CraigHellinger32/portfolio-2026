@@ -1,6 +1,7 @@
 import { gql } from "@apollo/client";
-import CaseStudyCard from "../components/CaseStudyCard";
-import styles from "../components/CaseStudyCard.module.css";
+import CaseStudyCard from "../components/CaseStudyCard/CaseStudyCard";
+import PageFooter from "../components/PageFooter/PageFooter";
+import styles from "../components/CaseStudyCard/CaseStudyCard.module.css";
 
 export default function FrontPageTemplate(props) {
 	const { title, description } = props.data.generalSettings;
@@ -14,7 +15,8 @@ export default function FrontPageTemplate(props) {
 	const skillNumberStart = clientNumberStart + clients.length;
 
 	return (
-		<main className={styles.page}>
+		<>
+			<main className={styles.page}>
 			<header className="site-header">
 				<h1 className="site-title">{title}</h1>
 				<p className="site-description">{description}</p>
@@ -72,7 +74,12 @@ export default function FrontPageTemplate(props) {
 					))}
 				</ul>
 			</section>
-		</main>
+			</main>
+			<PageFooter 
+				email="mail@craighellinger.co.uk" 
+				linkedInUrl="https://www.linkedin.com/in/craig-hellinger/"
+			/>
+		</>
 	);
 }
 
