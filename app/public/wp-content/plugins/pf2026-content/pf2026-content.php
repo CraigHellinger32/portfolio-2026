@@ -128,6 +128,22 @@ add_action( 'acf/include_fields', function () {
 		'graphql_field_name' => 'clientBranding',
 		'fields'             => [
 			[
+				'key'                => 'field_pf2026_client_logo_size',
+				'label'              => 'Logo size',
+				'name'               => 'logo_size',
+				'type'               => 'select',
+				'instructions'       => 'Choose the optical logo size. Wide suits long wordmarks; Compact suits smaller marks. Applies to both original and light logos.',
+				'choices'            => [
+					'compact'  => 'Compact',
+					'standard' => 'Standard',
+					'wide'     => 'Wide',
+				],
+				'default_value'      => 'standard',
+				'return_format'      => 'value',
+				'show_in_graphql'    => true,
+				'graphql_field_name' => 'logoSize',
+			],
+			[
 				'key'                => 'field_pf2026_client_light_logo',
 				'label'              => 'Light logo',
 				'name'               => 'light_logo',

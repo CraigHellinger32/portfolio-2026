@@ -30,6 +30,9 @@ export default function CaseStudyCard({
 	const linkedClient = size === "case-study" ? entry.caseStudies?.client?.nodes?.[0] : null;
 	const resolvedBrandLogo = brandLogo || linkedClient?.featuredImage?.node?.sourceUrl;
 	const resolvedBrandLogoAlt = brandLogoAlt || linkedClient?.featuredImage?.node?.altText || "";
+	const configuredLogoSize = (linkedClient || entry).clientBranding?.logoSize;
+	const logoSizeValue = Array.isArray(configuredLogoSize) ? configuredLogoSize[0] : configuredLogoSize;
+	const logoSize = ["compact", "standard", "wide"].includes(logoSizeValue) ? logoSizeValue : "standard";
 	const lightLogo = linkedClient?.clientBranding?.lightLogo?.node;
 	const useLightLogo = size === "case-study" && selected && accent !== "yellow";
 	const displayedLogo = useLightLogo && lightLogo?.sourceUrl ? lightLogo.sourceUrl : resolvedBrandLogo;
@@ -43,6 +46,7 @@ export default function CaseStudyCard({
 			className={styles.card}
 			data-accent={accent}
 			data-size={size}
+			data-logo-size={logoSize}
 			data-selected={selected}
 			{...(onClick
 				? { type: "button", onClick, "aria-expanded": selected, "aria-controls": panelId }

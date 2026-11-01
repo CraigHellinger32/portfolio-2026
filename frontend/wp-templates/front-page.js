@@ -135,6 +135,7 @@ FrontPageTemplate.query = gql`
 							... on Client {
 								title
 								clientBranding {
+									logoSize
 									lightLogo {
 										node {
 											sourceUrl
@@ -165,6 +166,9 @@ FrontPageTemplate.query = gql`
 				title
 				uri
 				excerpt
+				clientBranding {
+					logoSize
+				}
 				featuredImage {
 					node {
 						sourceUrl
