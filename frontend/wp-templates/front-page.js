@@ -1,17 +1,24 @@
 import { gql } from "@apollo/client";
 import { useState } from "react";
+import { useRouter } from "next/router";
 import CaseStudyCard from "../components/CaseStudyCard/CaseStudyCard";
 import CaseStudyPanel from "../components/CaseStudyPanel/CaseStudyPanel";
 import PageFooter from "../components/PageFooter/PageFooter";
 import styles from "../components/CaseStudyCard/CaseStudyCard.module.css";
 
 export default function FrontPageTemplate(props) {
-	const [activeIndex, setActiveIndex] = useState(0);
-	const [panelOpen, setPanelOpen] = useState(false);
+	const router = useRouter();
+	const [lastIndex, setLastIndex] = useState(0);
 	const accents = ["cyan", "magenta", "yellow", "dark"];
 	const { title, description } = props.data.generalSettings;
 	const caseStudies = props.data.caseStudies.nodes;
 	const visibleCaseStudies = caseStudies.slice(0, 4);
+	const selectedPath = router.asPath.split(/[?#]/)[0].replace(/\/$/, "");
+	const selectedIndex = visibleCaseStudies.findIndex(
+		(entry) => entry.uri?.replace(/\/$/, "") === selectedPath
+	);
+	const panelOpen = selectedIndex !== -1;
+	const activeIndex = panelOpen ? selectedIndex : lastIndex;
 	const clients = props.data.clients.nodes.filter(
 		(client) => client.clients?.hideOnFrontPage !== true
 	);
@@ -46,8 +53,13 @@ export default function FrontPageTemplate(props) {
 								selected={panelOpen && activeIndex === index}
 								panelId="case-study-panel"
 								onClick={() => {
-									setActiveIndex(index);
-									setPanelOpen(activeIndex === index ? !panelOpen : true);
+									setLastIndex(index);
+									const path = panelOpen && activeIndex === index ? "/" : entry.uri;
+									void router.push(
+										{ pathname: router.pathname, query: router.query },
+										path,
+										{ shallow: true, scroll: false }
+									);
 								}}
 							/>
 						</li>
@@ -113,6 +125,7 @@ FrontPageTemplate.query = gql`
 			nodes {
 				id
 				title
+				content
 				uri
 				caseStudies {
 					subtitle

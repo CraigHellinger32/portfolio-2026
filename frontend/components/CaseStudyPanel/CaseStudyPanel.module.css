@@ -1,17 +1,17 @@
 .panel {
-	display: grid;
-	grid-template-rows: 0fr;
+	height: 0;
 	min-height: 0;
 	width: 100%;
+	overflow: hidden;
 	color: #fff;
 	visibility: hidden;
 	transition: min-height 600ms cubic-bezier(0.22, 1, 0.36, 1),
-		grid-template-rows 600ms cubic-bezier(0.22, 1, 0.36, 1),
-		background-color 400ms ease, visibility 600ms;
+		height 600ms cubic-bezier(0.22, 1, 0.36, 1),
+		background-color 400ms ease, color 400ms ease, visibility 600ms;
 }
 
 .open {
-	grid-template-rows: 1fr;
+	height: var(--panel-height, 360px);
 	min-height: 360px;
 	visibility: visible;
 }

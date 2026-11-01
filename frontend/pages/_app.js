@@ -8,7 +8,7 @@ export default function App({ Component, pageProps }) {
 
 	return (
 		<FaustProvider pageProps={pageProps}>
-			<Component {...pageProps} key={router.asPath} />
+			<Component {...pageProps} key={pageProps.__SEED_NODE__?.uri || router.pathname} />
 		</FaustProvider>
 	);
 }

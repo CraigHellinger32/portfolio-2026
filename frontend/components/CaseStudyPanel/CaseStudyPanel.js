@@ -1,27 +1,60 @@
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import styles from "./CaseStudyPanel.module.css";
 
 export default function CaseStudyPanel({ entry, accent, open, id }) {
+	const panelRef = useRef(null);
+	const contentRef = useRef(null);
+	const [displayed, setDisplayed] = useState({ entry, accent });
+
+	useEffect(() => {
+		let cancelled = false;
+		const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+		const animation = contentRef.current.animate(
+			{ opacity: [1, 0] },
+			{ duration: reducedMotion ? 0 : 200, easing: "ease", fill: "forwards" }
+		);
+		animation.finished.then(() => {
+			if (!cancelled) setDisplayed({ entry, accent });
+		}).catch(() => {});
+		return () => {
+			cancelled = true;
+			animation.cancel();
+		};
+	}, [entry, accent]);
+
+	useEffect(() => {
+		const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+		const animation = contentRef.current.animate(
+			{ opacity: [0, 1] },
+			{ duration: reducedMotion ? 0 : 250, easing: "ease", fill: "forwards" }
+		);
+		return () => animation.cancel();
+	}, [displayed]);
+
+	useLayoutEffect(() => {
+		const content = contentRef.current;
+		const updateHeight = () => {
+			panelRef.current.style.setProperty("--panel-height", `${content.getBoundingClientRect().height}px`);
+		};
+		updateHeight();
+		const observer = new ResizeObserver(updateHeight);
+		observer.observe(content);
+		return () => observer.disconnect();
+	}, [displayed]);
+
 	return (
 		<section
+			ref={panelRef}
 			id={id}
-			className={`${styles.panel} ${styles[accent]} ${open ? styles.open : ""}`}
+			className={`${styles.panel} ${styles[displayed.accent]} ${open ? styles.open : ""}`}
 			aria-labelledby={`${id}-title`}
 			aria-hidden={!open}
 			inert={!open}
 		>
 			<div className={styles.clip}>
-				<div className={styles.inner}>
-					<h1 id={`${id}-title`}>{entry?.title}</h1>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-						vel lectus vitae erat tincidunt consequat. Nulla facilisi. Sed
-						vitae mauris quis erat consectetur dignissim.
-					</p>
-					<p>
-						Praesent commodo cursus magna, vel scelerisque nisl consectetur
-						et. Donec ullamcorper nulla non metus auctor fringilla. Aenean
-						lacinia bibendum nulla sed consectetur.
-					</p>
+				<div ref={contentRef} className={styles.inner}>
+					<h1 id={`${id}-title`}>{displayed.entry?.title}</h1>
+					<div dangerouslySetInnerHTML={{ __html: displayed.entry?.content || "" }} />
 				</div>
 			</div>
 		</section>
