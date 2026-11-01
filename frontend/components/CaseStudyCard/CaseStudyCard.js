@@ -23,6 +23,8 @@ export default function CaseStudyCard({
 	showSubtitle = size === "case-study",
 	selected = false,
 	accent = "cyan",
+	onClick,
+	panelId,
 }) {
 	const image = size === "case-study" ? entry.featuredImage?.node?.sourceUrl : null;
 	const linkedClient = size === "case-study" ? entry.caseStudies?.client?.nodes?.[0] : null;
@@ -30,14 +32,17 @@ export default function CaseStudyCard({
 	const resolvedBrandLogoAlt = brandLogoAlt || linkedClient?.featuredImage?.node?.altText || "";
 	const resolvedBrandName = brandName || linkedClient?.title;
 	const title = entry.title || "Untitled case study";
+	const Card = onClick ? "button" : Link;
 
 	return (
-		<Link
+		<Card
 			className={styles.card}
 			data-accent={accent}
 			data-size={size}
 			data-selected={selected}
-			href={entry.uri || "#"}
+			{...(onClick
+				? { type: "button", onClick, "aria-expanded": selected, "aria-controls": panelId }
+				: { href: entry.uri || "#" })}
 		>
 			{image && (
 				<Image
@@ -79,6 +84,6 @@ export default function CaseStudyCard({
 					<span className={styles.subtitle}>{entry.caseStudies.subtitle}</span>
 				)}
 			</span>
-		</Link>
+		</Card>
 	);
 }

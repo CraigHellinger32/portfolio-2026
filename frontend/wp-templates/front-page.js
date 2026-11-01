@@ -1,9 +1,14 @@
 import { gql } from "@apollo/client";
+import { useState } from "react";
 import CaseStudyCard from "../components/CaseStudyCard/CaseStudyCard";
+import CaseStudyPanel from "../components/CaseStudyPanel/CaseStudyPanel";
 import PageFooter from "../components/PageFooter/PageFooter";
 import styles from "../components/CaseStudyCard/CaseStudyCard.module.css";
 
 export default function FrontPageTemplate(props) {
+	const [activeIndex, setActiveIndex] = useState(0);
+	const [panelOpen, setPanelOpen] = useState(false);
+	const accents = ["cyan", "magenta", "yellow", "dark"];
 	const { title, description } = props.data.generalSettings;
 	const caseStudies = props.data.caseStudies.nodes;
 	const visibleCaseStudies = caseStudies.slice(0, 4);
@@ -22,6 +27,7 @@ export default function FrontPageTemplate(props) {
 				<p className="site-description">{description}</p>
 			</header>
 
+			<div className={styles.caseStudySection}>
 			<section className={styles.section}>
 				<h2 className={styles.sectionTitle}>Case studies</h2>
 				<ul
@@ -36,11 +42,25 @@ export default function FrontPageTemplate(props) {
 								entry={entry}
 								number={index + 1}
 								symbol={entry.caseStudies?.chemicalSymbol}
+								accent={accents[index]}
+								selected={panelOpen && activeIndex === index}
+								panelId="case-study-panel"
+								onClick={() => {
+									setActiveIndex(index);
+									setPanelOpen(activeIndex === index ? !panelOpen : true);
+								}}
 							/>
 						</li>
 					))}
 				</ul>
 			</section>
+			<CaseStudyPanel
+				id="case-study-panel"
+				entry={visibleCaseStudies[activeIndex]}
+				accent={accents[activeIndex]}
+				open={panelOpen}
+			/>
+			</div>
 
 			<section className={styles.section}>
 				<h2 className={styles.sectionTitle}>Clients</h2>
