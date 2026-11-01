@@ -34,24 +34,35 @@ export default function FrontPageTemplate(props) {
 				<p className="site-description">{description}</p>
 			</header>
 
-			<div className={styles.caseStudySection}>
+			<div
+				className={styles.caseStudySection}
+				style={{
+					"--case-study-columns": String(Math.max(visibleCaseStudies.length, 1)),
+				}}
+			>
 			<section className={styles.section}>
 				<h2 className={styles.sectionTitle}>Case studies</h2>
 				<ul
 					className={styles.caseStudyGrid}
-					style={{
-						"--case-study-columns": String(Math.max(visibleCaseStudies.length, 1)),
-					}}
+					role="list"
 				>
 					{visibleCaseStudies.map((entry, index) => (
-						<li key={entry.id}>
+						<li
+							key={entry.id}
+							className={styles.caseStudyItem}
+							style={{
+								"--mobile-column": index % 2 + 2,
+								"--mobile-row": Math.floor(index / 2) * 2 + 2,
+								"--desktop-column": index + 2,
+							}}
+						>
 							<CaseStudyCard
 								entry={entry}
 								number={index + 1}
 								symbol={entry.caseStudies?.chemicalSymbol}
 								accent={accents[index]}
 								selected={panelOpen && activeIndex === index}
-								panelId="case-study-panel"
+								panelId={`case-study-panel case-study-panel-row-${Math.floor(index / 2)}`}
 								onClick={() => {
 									setLastIndex(index);
 									const path = panelOpen && activeIndex === index ? "/" : entry.uri;
@@ -65,13 +76,34 @@ export default function FrontPageTemplate(props) {
 						</li>
 					))}
 				</ul>
-			</section>
+			<div className={styles.caseStudyPanelSlot}>
 			<CaseStudyPanel
 				id="case-study-panel"
 				entry={visibleCaseStudies[activeIndex]}
 				accent={accents[activeIndex]}
 				open={panelOpen}
 			/>
+			</div>
+			{[0, 1].map((row) => {
+				const rowActive = Math.floor(activeIndex / 2) === row;
+				const entryIndex = rowActive ? activeIndex : row * 2;
+				return (
+					<div
+						key={row}
+						className={styles.mobileCaseStudyPanelSlot}
+						style={{ gridRow: row * 2 + 3 }}
+					>
+						<CaseStudyPanel
+							id={`case-study-panel-row-${row}`}
+							entry={visibleCaseStudies[entryIndex]}
+							accent={accents[entryIndex]}
+							open={panelOpen && rowActive}
+							retainWhenClosed
+						/>
+					</div>
+				);
+			})}
+			</section>
 			</div>
 
 			<section className={styles.section}>
@@ -83,6 +115,7 @@ export default function FrontPageTemplate(props) {
 								entry={entry}
 								number={clientNumberStart + index}
 								size="client"
+								symbol={entry.clients?.chemicalSymbol}
 								brandLogo={entry.featuredImage?.node?.sourceUrl}
 								brandLogoAlt={entry.featuredImage?.node?.altText || ""}
 								brandName={entry.title}
@@ -101,6 +134,7 @@ export default function FrontPageTemplate(props) {
 								entry={entry}
 								number={skillNumberStart + index}
 								size="skill"
+								symbol={entry.skills?.chemicalSymbol}
 							/>
 						</li>
 					))}
@@ -177,6 +211,7 @@ FrontPageTemplate.query = gql`
 				}
 				clients {
 					hideOnFrontPage
+					chemicalSymbol: chemicalsymbol
 				}
 			}
 		}
@@ -186,6 +221,9 @@ FrontPageTemplate.query = gql`
 				title
 				uri
 				excerpt
+				skills {
+					chemicalSymbol
+				}
 			}
 		}
 	}

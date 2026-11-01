@@ -5,18 +5,38 @@
 }
 
 .caseStudySection > .section {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) repeat(2, minmax(0, 169px)) minmax(0, 1fr);
+	width: 100%;
+	gap: 0;
 	margin-bottom: 0;
 }
 
+.caseStudySection .sectionTitle {
+	grid-column: 1 / -1;
+	grid-row: 1;
+}
+
 .caseStudyGrid {
-	display: grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
-	justify-content: center;
-	gap: 0;
-	width: min(100%, 184px);
+	display: contents;
 	margin: 0;
 	padding: 0;
 	list-style: none;
+}
+
+.caseStudyItem {
+	grid-column: var(--mobile-column);
+	grid-row: var(--mobile-row);
+	min-width: 0;
+}
+
+.caseStudyPanelSlot {
+	display: none;
+}
+
+.mobileCaseStudyPanelSlot {
+	grid-column: 1 / -1;
+	min-width: 0;
 }
 
 .clientGrid,
@@ -31,11 +51,28 @@
 }
 
 .clientGrid {
-	width: min(100%, 160px);
+	grid-template-columns: repeat(3, 82px);
+	width: 250px;
+	max-width: 100%;
+	min-width: 0;
+	box-sizing: border-box;
+	gap: 1px;
+	padding: 1px;
+}
+
+.clientGrid > li {
+	min-width: 0;
+	box-shadow: 0 0 0 1px #231f20;
 }
 
 .skillGrid {
-	width: min(100%, 184px);
+	grid-template-columns: repeat(auto-fit, 82px);
+	width: min(100%, 328px);
+	min-width: 0;
+}
+
+.section:has(.skillGrid) {
+	width: 100%;
 }
 
 .page {
@@ -201,7 +238,16 @@
 .card:hover .symbol,
 .card:focus-visible .symbol {
 	color: #231f20;
-	text-shadow: 0 0 4px #fff;
+	text-shadow:
+		-1px -1px 0 #fff,
+		0 -1px 0 #fff,
+		1px -1px 0 #fff,
+		-1px 0 0 #fff,
+		1px 0 0 #fff,
+		-1px 1px 0 #fff,
+		0 1px 0 #fff,
+		1px 1px 0 #fff,
+		0 0 4px #fff;
 }
 
 .card[data-selected="true"] .image {
@@ -250,13 +296,34 @@
 	color: #fff;
 }
 
-.card[data-size="client"],
-.card[data-size="skill"] {
+.card[data-size="client"] {
+	border: 0;
 	padding: 2px;
 }
 
-.card[data-size="client"] .topRow,
+.card[data-size="skill"] {
+	width: 82px;
+	height: 82px;
+	border: 0.73px solid #231f20;
+	padding: 4.379px;
+}
+
 .card[data-size="skill"] .topRow {
+	min-height: 14.595px;
+	gap: 1px;
+}
+
+.card[data-size="skill"] .brand {
+	display: none;
+}
+
+.card[data-size="skill"] .number {
+	margin-left: auto;
+	font-size: 18.231px;
+	line-height: 14.595px;
+}
+
+.card[data-size="client"] .topRow {
 	min-height: 8px;
 	gap: 1px;
 }
@@ -267,8 +334,7 @@
 	font-size: 5px;
 }
 
-.card[data-size="client"] .number,
-.card[data-size="skill"] .number {
+.card[data-size="client"] .number {
 	font-size: 8px;
 }
 
@@ -282,16 +348,74 @@
 }
 
 .card[data-size="skill"] .symbol {
-	font-size: 19px;
+	font-size: 32.794px;
+	line-height: 29.19px;
 }
 
 .card[data-size="skill"] .title {
-	font-size: 6px;
+	padding-inline: 1.46px;
+	font-size: 10.922px;
+	line-height: normal;
 }
 
 .card[data-size="client"] .content,
 .card[data-size="skill"] .content {
 	word-break: break-word;
+}
+
+@media (max-width: 767px) {
+	.card[data-size="case-study"] {
+		--logo-width: 75.201px;
+		--logo-height: 20px;
+		padding: 9px;
+	}
+
+	.card[data-size="case-study"] .number {
+		font-size: 37.575px;
+	}
+
+	.card[data-size="case-study"] .symbol {
+		font-size: 67.589px;
+	}
+
+	.card[data-size="case-study"] .title {
+		font-size: 22.043px;
+	}
+
+	.card[data-size="case-study"] .subtitle {
+		font-size: 14.696px;
+	}
+
+	.card[data-size="client"] {
+		width: 82px;
+		height: 82px;
+		padding: 4.379px;
+	}
+
+	.card[data-size="client"] .topRow {
+		min-height: 14.595px;
+	}
+
+	.card[data-size="client"] .brand {
+		--logo-width: 36.488px;
+		--logo-height: 9.587px;
+	}
+
+	.card[data-size="client"] .number {
+		font-size: 18.231px;
+		line-height: 14.595px;
+	}
+
+	.card[data-size="client"] .symbol {
+		font-size: 32.794px;
+		line-height: 29.19px;
+	}
+
+	.card[data-size="client"] .title {
+		padding-inline: 1.46px;
+		font-size: 10.922px;
+		line-height: normal;
+	}
 }
 
 @media (min-width: 768px) {
@@ -304,24 +428,39 @@
 		margin-bottom: 52px;
 	}
 
-	.caseStudyGrid {
-		grid-template-columns: repeat(var(--case-study-columns, 4), minmax(0, 230px));
-		width: fit-content;
-		max-width: 100%;
-		margin-inline: auto;
-		gap: 2px;
-		box-sizing: border-box;
-		padding: 2px;
-		background: #231f20;
+	.caseStudySection > .section {
+		grid-template-columns: minmax(0, 1fr) repeat(var(--case-study-columns, 4), minmax(0, 230px)) minmax(0, 1fr);
+		column-gap: 2px;
+	}
+
+	.caseStudyItem {
+		grid-column: var(--desktop-column);
+		grid-row: 2;
+		box-shadow: 0 0 0 1px #231f20;
+	}
+
+	.caseStudyPanelSlot {
+		display: block;
+		grid-column: 1 / -1;
+		grid-row: 3;
+		min-width: 0;
+		margin-top: 2px;
+	}
+
+	.mobileCaseStudyPanelSlot {
+		display: none;
 	}
 
 	.clientGrid {
-		grid-template-columns: repeat(4, 169px);
-		width: fit-content;
+		grid-template-columns: repeat(4, minmax(0, 169px));
+		width: min(100%, 681px);
+	}
+
+	.skillGrid {
+		width: min(100%, 1230px);
 	}
 
 	.card[data-size="client"] {
-		border-width: 1.5px;
 		padding: 9px;
 	}
 
@@ -392,6 +531,19 @@
 }
 
 @media (min-width: 1366px) {
+	.caseStudySection .sectionTitle {
+		grid-column: 1;
+		grid-row: 2;
+		justify-self: end;
+		width: 210px;
+		margin-right: 30px;
+	}
+
+	.clientGrid {
+		grid-template-columns: repeat(7, minmax(0, 169px));
+		width: min(100%, 1191px);
+	}
+
 	.section {
 		flex-direction: row;
 		justify-content: center;

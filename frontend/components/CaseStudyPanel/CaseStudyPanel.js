@@ -1,12 +1,14 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import styles from "./CaseStudyPanel.module.css";
 
-export default function CaseStudyPanel({ entry, accent, open, id }) {
+export default function CaseStudyPanel({ entry, accent, open, id, retainWhenClosed = false }) {
 	const panelRef = useRef(null);
 	const contentRef = useRef(null);
 	const [displayed, setDisplayed] = useState({ entry, accent });
+	const updateContent = !retainWhenClosed || open;
 
 	useEffect(() => {
+		if (!updateContent) return;
 		let cancelled = false;
 		const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 		const animation = contentRef.current.animate(
@@ -20,7 +22,7 @@ export default function CaseStudyPanel({ entry, accent, open, id }) {
 			cancelled = true;
 			animation.cancel();
 		};
-	}, [entry, accent]);
+	}, [entry, accent, updateContent]);
 
 	useEffect(() => {
 		const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

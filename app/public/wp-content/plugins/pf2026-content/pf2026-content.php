@@ -122,6 +122,37 @@ add_action( 'acf/include_fields', function () {
 	] );
 
 	acf_add_local_field_group( [
+		'key'                => 'group_6ae7b11a76f72',
+		'title'              => 'Skills',
+		'active'             => true,
+		'show_in_rest'       => 0,
+		'show_in_graphql'    => 1,
+		'graphql_field_name' => 'skills',
+		'map_graphql_types_from_location_rules' => 0,
+		'graphql_types'      => '',
+		'fields'             => [
+			[
+				'key'                => 'field_6ae7b11a1b53a',
+				'label'              => 'Chemical symbol',
+				'name'               => 'chemical_symbol',
+				'type'               => 'text',
+				'required'           => 0,
+				'default_value'      => 'Aa',
+				'maxlength'          => 3,
+				'allow_in_bindings'  => 0,
+				'show_in_graphql'    => 1,
+				'graphql_field_name' => 'chemicalSymbol',
+				'graphql_non_null'   => 0,
+			],
+		],
+		'location'           => [
+			[
+				[ 'param' => 'post_type', 'operator' => '==', 'value' => 'skill' ],
+			],
+		],
+	] );
+
+	acf_add_local_field_group( [
 		'key'                => 'group_pf2026_client_branding',
 		'title'              => 'Client branding',
 		'show_in_graphql'    => true,
