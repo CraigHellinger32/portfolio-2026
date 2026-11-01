@@ -30,6 +30,10 @@ export default function CaseStudyCard({
 	const linkedClient = size === "case-study" ? entry.caseStudies?.client?.nodes?.[0] : null;
 	const resolvedBrandLogo = brandLogo || linkedClient?.featuredImage?.node?.sourceUrl;
 	const resolvedBrandLogoAlt = brandLogoAlt || linkedClient?.featuredImage?.node?.altText || "";
+	const lightLogo = linkedClient?.clientBranding?.lightLogo?.node;
+	const useLightLogo = size === "case-study" && selected && accent !== "yellow";
+	const displayedLogo = useLightLogo && lightLogo?.sourceUrl ? lightLogo.sourceUrl : resolvedBrandLogo;
+	const displayedLogoAlt = useLightLogo && lightLogo?.sourceUrl ? lightLogo.altText || resolvedBrandLogoAlt : resolvedBrandLogoAlt;
 	const resolvedBrandName = brandName || linkedClient?.title;
 	const title = entry.title || "Untitled case study";
 	const Card = onClick ? "button" : Link;
@@ -58,10 +62,11 @@ export default function CaseStudyCard({
 
 			<span className={styles.topRow}>
 				<span className={styles.brand}>
-					{resolvedBrandLogo ? (
+					{displayedLogo ? (
 						<Image
-							src={resolvedBrandLogo}
-							alt={resolvedBrandLogoAlt}
+							src={displayedLogo}
+							alt={displayedLogoAlt}
+							data-reversed={useLightLogo && !lightLogo?.sourceUrl}
 							width={102}
 							height={27}
 							unoptimized

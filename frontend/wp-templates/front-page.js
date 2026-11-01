@@ -134,6 +134,14 @@ FrontPageTemplate.query = gql`
 						nodes {
 							... on Client {
 								title
+								clientBranding {
+									lightLogo {
+										node {
+											sourceUrl
+											altText
+										}
+									}
+								}
 								featuredImage {
 									node {
 										sourceUrl

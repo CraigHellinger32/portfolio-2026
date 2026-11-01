@@ -130,6 +130,10 @@
 	line-height: 1;
 }
 
+.brand img[data-reversed="true"] {
+	filter: brightness(0) invert(1);
+}
+
 .content {
 	position: relative;
 	display: flex;
