@@ -7,13 +7,18 @@
 	visibility: hidden;
 	transition: min-height 600ms cubic-bezier(0.22, 1, 0.36, 1),
 		height 600ms cubic-bezier(0.22, 1, 0.36, 1),
-		background-color 400ms ease, color 400ms ease, visibility 600ms;
+		background-color 400ms ease 600ms, color 400ms ease, visibility 600ms;
 }
 
 .open {
 	height: var(--panel-height, 360px);
 	min-height: 360px;
 	visibility: visible;
+	transition-delay: 0s;
+}
+
+.panel:not(.open) {
+	background-color: #fff;
 }
 
 .cyan {
