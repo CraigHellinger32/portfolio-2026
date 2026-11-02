@@ -59,8 +59,7 @@ export default function CaseStudyCard({
 					alt=""
 					aria-hidden="true"
 					fill
-					sizes="230px"
-					unoptimized
+					sizes="(max-width: 767px) 169px, 230px"
 				/>
 			)}
 

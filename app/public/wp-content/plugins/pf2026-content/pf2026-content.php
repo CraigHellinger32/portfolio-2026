@@ -13,6 +13,50 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+add_action( 'after_setup_theme', function () {
+	add_image_size( 'pf2026-400', 400, 0, false );
+	add_image_size( 'pf2026-480', 480, 0, false );
+	add_image_size( 'pf2026-880', 880, 0, false );
+} );
+
+function pf2026_responsive_content_images( $html, $sidebar = false ) {
+	if ( ! is_string( $html ) || '' === $html || is_admin() ) {
+		return $html;
+	}
+
+	$has_sidebar = $sidebar || ( function_exists( 'get_field' ) && get_field( 'page-sidebar', get_the_ID(), false ) );
+	if ( $sidebar ) {
+		$sizes = '(max-width: 767px) calc(100vw - 40px), (max-width: 1319px) calc(35.6564vw - 30.665px), 440px';
+	} elseif ( $has_sidebar ) {
+		$sizes = '(max-width: 767px) calc(100vw - 40px), (max-width: 1319px) calc(64.3436vw - 55.335px), 794px';
+	} else {
+		$sizes = '(max-width: 1319px) calc(100vw - 40px), 1280px';
+	}
+
+	$tags = new WP_HTML_Tag_Processor( $html );
+	while ( $tags->next_tag( 'IMG' ) ) {
+		if ( 'sidebar' === $tags->get_attribute( 'data-pf2026-image-context' ) && ! $sidebar ) {
+			continue;
+		}
+		if ( $sidebar ) {
+			$tags->set_attribute( 'data-pf2026-image-context', 'sidebar' );
+		}
+		if ( $tags->get_attribute( 'srcset' ) ) {
+			$tags->set_attribute( 'sizes', ( 'lazy' === $tags->get_attribute( 'loading' ) ? 'auto, ' : '' ) . $sizes );
+		}
+	}
+
+	return apply_filters( 'eio_parse_page_html', $tags->get_updated_html() );
+}
+
+add_filter( 'the_content', function ( $html ) {
+	return 'case_study' === get_post_type() ? pf2026_responsive_content_images( $html ) : $html;
+}, 30 );
+
+add_filter( 'acf/format_value/key=field_6ae9084b81a9d', function ( $html ) {
+	return pf2026_responsive_content_images( $html, true );
+}, 30 );
+
 add_action( 'acf/include_fields', function () {
 	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 		return;

@@ -20,6 +20,53 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Image Delivery
+
+Case-study card photos use Next Image resizing and WebP output. Set
+`NEXT_PUBLIC_WORDPRESS_URL` to the production WordPress URL before building;
+the image allowlist is restricted to that host's `/wp-content/uploads/` path.
+The Next server must be able to fetch those URLs. SVG logos are served directly.
+Upload card photos at least 460px square for a 230px card on a 2x display;
+the current 230px originals cannot gain detail through optimization.
+
+Post content and ACF sidebar HTML retain WordPress `srcset`, native lazy loading,
+and layout-aware `sizes`. The content plugin registers uncropped 400px, 480px,
+and 880px variants. EWWW Image Optimizer supplies WebP `<picture>` sources with
+JPEG fallback through its `eio_parse_page_html` integration, so no Apache rewrite
+rules or client-side WebP rewriting are needed for the headless frontend.
+
+When migrating, copy the media files (including `.webp` siblings), database, and
+EWWW Image Optimizer plugin. For a fresh WordPress installation:
+
+```sh
+wp plugin install ewww-image-optimizer --activate
+```
+
+In EWWW settings, enable WebP conversion and Picture WebP rewriting, set WebP
+quality to 75, and leave Easy IO/CDN and additional lazy loading disabled.
+Keep JPG/PNG/GIF/SVG optimization disabled if originals must remain untouched;
+do not enable original deletion or format replacement. Local WebP encoding must
+be supported by the production host; no cloud API key is configured here.
+
+After activating the content plugin and saving EWWW settings, generate missing
+sizes and WebP copies for existing uploads:
+
+```sh
+wp media regenerate --only-missing --skip-delete --yes
+wp ewwwio optimize media --webp-only --noprompt
+```
+
+Regeneration can refresh existing thumbnails; full-resolution originals remain
+available. Take a media/database backup before production bulk operations.
+New uploads are processed automatically. Refresh or revalidate cached frontend
+pages after changing image variants or delivery settings.
+
+For browser verification, test mobile and desktop at both 1x and 2x pixel density.
+Open a case study, scroll its images into view, and inspect Network requests and
+each image's `currentSrc`, rendered width, and natural width. Check WebP delivery,
+appropriate candidate sizes, preserved image proportions, and 30px/40px spacing.
+Use a fresh browser context per density to avoid reuse of larger cached candidates.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

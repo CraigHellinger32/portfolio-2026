@@ -39,11 +39,19 @@
 	color: inherit;
 }
 
-.sidebar :is(p, h1, h2, h3, h4, h5, h6) img {
+.sidebar picture {
+	display: block;
+}
+
+.sidebar :is(p, h1, h2, h3, h4, h5, h6) :is(img, picture) {
 	margin-block: 40px;
 }
 
-.sidebar br:has(+ img),
-.sidebar img + br {
+.sidebar picture img {
+	margin: 0;
+}
+
+.sidebar br:has(+ :is(img, picture)),
+.sidebar :is(img, picture) + br {
 	display: none;
 }
