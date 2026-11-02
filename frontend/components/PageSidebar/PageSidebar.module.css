@@ -1,0 +1,49 @@
+.sidebar {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	min-width: 0;
+	color: inherit;
+	font-family: var(--font-share);
+	font-size: 36px;
+	font-weight: 700;
+	line-height: 32px;
+	overflow-wrap: anywhere;
+}
+
+.sidebar > * {
+	width: 100%;
+	margin: 0;
+}
+
+.sidebar p,
+.sidebar h1,
+.sidebar h2,
+.sidebar h3,
+.sidebar h4,
+.sidebar h5,
+.sidebar h6 {
+	font: inherit;
+	color: inherit;
+}
+
+.sidebar img,
+.sidebar video {
+	display: block;
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+}
+
+.sidebar a {
+	color: inherit;
+}
+
+.sidebar :is(p, h1, h2, h3, h4, h5, h6) img {
+	margin-block: 40px;
+}
+
+.sidebar br:has(+ img),
+.sidebar img + br {
+	display: none;
+}

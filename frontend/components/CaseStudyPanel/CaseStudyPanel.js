@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import PageSidebar from "../PageSidebar/PageSidebar";
 import styles from "./CaseStudyPanel.module.css";
 
 export default function CaseStudyPanel({ entry, accent, open, id, retainWhenClosed = false }) {
@@ -6,6 +7,7 @@ export default function CaseStudyPanel({ entry, accent, open, id, retainWhenClos
 	const contentRef = useRef(null);
 	const [displayed, setDisplayed] = useState({ entry, accent });
 	const updateContent = !retainWhenClosed || open;
+	const sidebar = displayed.entry?.caseStudies?.pageSidebar || "";
 
 	useEffect(() => {
 		if (!updateContent) return;
@@ -56,7 +58,13 @@ export default function CaseStudyPanel({ entry, accent, open, id, retainWhenClos
 			<div className={styles.clip}>
 				<div ref={contentRef} className={styles.inner}>
 					<h1 id={`${id}-title`}>{displayed.entry?.title}</h1>
-					<div dangerouslySetInnerHTML={{ __html: displayed.entry?.content || "" }} />
+					<div className={sidebar.trim() ? styles.columns : undefined}>
+						<div
+							className={styles.mainContent}
+							dangerouslySetInnerHTML={{ __html: displayed.entry?.content || "" }}
+						/>
+						<PageSidebar content={sidebar} />
+					</div>
 				</div>
 			</div>
 		</section>

@@ -46,12 +46,12 @@
 .inner {
 	box-sizing: border-box;
 	width: 100%;
-	max-width: 1300px;
+	max-width: 1320px;
 	margin-inline: auto;
 	padding: 30px 20px;
 }
 
-.inner h1 {
+.inner > h1 {
 	margin: 0 0 30px;
 	font-family: var(--font-share);
 	font-size: 36px;
@@ -59,12 +59,57 @@
 	overflow-wrap: anywhere;
 }
 
-.inner p {
+.mainContent {
+	min-width: 0;
+	font-family: var(--font-kedebideri);
+	font-size: 16px;
+	line-height: 1.2;
+	overflow-wrap: anywhere;
+}
+
+.mainContent p {
 	max-width: 700px;
 	margin: 0 0 20px;
 	font-family: var(--font-kedebideri);
 	font-size: 16px;
 	line-height: 1.5;
+}
+
+.mainContent img,
+.mainContent video {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+.mainContent figure {
+	margin: 0;
+}
+
+.mainContent p:has(> img) {
+	margin: 0;
+}
+
+.mainContent :is(img, figure:has(img), p:has(> img)) + :is(img, figure:has(img), p:has(> img)) {
+	margin-top: 30px;
+}
+
+.mainContent :is(img, figure:has(img), p:has(> img)) + p:not(:has(> img)) {
+	margin-top: 20px;
+}
+
+.columns {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 40px;
+	align-items: start;
+}
+
+@media (min-width: 768px) {
+	.columns {
+		grid-template-columns: minmax(0, 794fr) minmax(0, 440fr);
+		gap: 46px;
+	}
 }
 
 @media (prefers-reduced-motion: reduce) {

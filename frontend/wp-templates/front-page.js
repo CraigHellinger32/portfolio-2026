@@ -163,6 +163,7 @@ FrontPageTemplate.query = gql`
 				uri
 				caseStudies {
 					subtitle
+					pageSidebar
 					chemicalSymbol: chemicalsymbol
 					client {
 						nodes {

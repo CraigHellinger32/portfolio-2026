@@ -69,6 +69,22 @@ add_action( 'acf/include_fields', function () {
 				'graphql_field_name'      => 'client',
 				'graphql_connection_type' => 'one_to_many',
 			],
+			[
+				'key'                => 'field_6ae9084b81a9d',
+				'label'              => 'Page sidebar',
+				'name'               => 'page-sidebar',
+				'type'               => 'wysiwyg',
+				'required'           => 0,
+				'default_value'      => '',
+				'allow_in_bindings'  => 0,
+				'tabs'               => 'all',
+				'toolbar'            => 'full',
+				'media_upload'       => 1,
+				'delay'              => 0,
+				'show_in_graphql'    => 1,
+				'graphql_field_name' => 'pageSidebar',
+				'graphql_non_null'   => 0,
+			],
 		],
 		'location'           => [
 			[
