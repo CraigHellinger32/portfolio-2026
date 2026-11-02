@@ -51,6 +51,10 @@
 	margin: 0;
 }
 
+.sidebar > p > :is(img, picture):only-child {
+	margin-block: 0;
+}
+
 .sidebar br:has(+ :is(img, picture)),
 .sidebar :is(img, picture) + br {
 	display: none;
