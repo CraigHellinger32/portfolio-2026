@@ -40,6 +40,8 @@ export default function ContentCard({
 	const displayedLogoAlt = useLightLogo && lightLogo?.sourceUrl ? lightLogo.altText || resolvedBrandLogoAlt : resolvedBrandLogoAlt;
 	const resolvedBrandName = brandName || linkedClient?.title;
 	const title = entry.title || "Untitled case study";
+	const resolvedSymbol = symbol || getSymbol(title);
+	const hasDescender = ["g", "y", "p"].includes(resolvedSymbol[1]);
 	const Card = onClick ? "button" : Link;
 
 	return (
@@ -86,8 +88,15 @@ export default function ContentCard({
 			</span>
 
 			<span className={styles.content}>
-				<span className={styles.symbol} aria-hidden="true">
-					{symbol || getSymbol(title)}
+				<span
+					className={`${styles.symbol}${hasDescender ? ` ${styles.symbolDescender}` : ""}`}
+					aria-hidden="true"
+				>
+					{resolvedSymbol.split(/(\d+)/).map((part, index) => (
+						/^\d+$/.test(part) ? (
+							<sup key={index} className={styles.symbolNumber}>{part}</sup>
+						) : part
+					))}
 				</span>
 				<span className={styles.title}>{title}</span>
 				{showSubtitle && entry.caseStudies?.subtitle && (

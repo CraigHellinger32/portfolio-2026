@@ -204,6 +204,18 @@
 	transition: color 600ms ease, text-shadow 600ms ease;
 }
 
+.symbolDescender {
+	margin-bottom: 5px;
+}
+
+.symbolNumber {
+	position: relative;
+	top: -0.65em;
+	font-size: 50%;
+	line-height: 0;
+	vertical-align: baseline;
+}
+
 .title {
 	width: 100%;
 	font-family: var(--font-kedebideri);
