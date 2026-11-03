@@ -127,6 +127,42 @@
 	outline-offset: 3px;
 }
 
+.card:not(a):not(button) {
+	cursor: default;
+}
+
+.cvSection {
+	width: 169px;
+	margin: 0 auto 52px;
+}
+
+.card[data-size="medium"] {
+	width: 169px;
+	height: 169px;
+	border: 1.5px solid #231f20;
+	padding: 9px;
+}
+
+.card[data-size="medium"] .topRow {
+	min-height: 26.452px;
+	gap: 3px;
+}
+
+.card[data-size="medium"] .number {
+	font-size: 37.575px;
+	line-height: 26.452px;
+}
+
+.card[data-size="medium"] .symbol {
+	font-size: 67.589px;
+	line-height: 60.161px;
+}
+
+.card[data-size="medium"] .title {
+	font-size: 22.043px;
+	line-height: 19.104px;
+}
+
 .image {
 	position: absolute;
 	inset: 0;

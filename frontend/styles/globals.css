@@ -27,6 +27,22 @@ body {
   font-family: var(--font-kedebideri);
 }
 
+#__next {
+  display: flex;
+  min-height: 100vh;
+  min-height: 100dvh;
+  flex-direction: column;
+}
+
+#__next > main {
+  flex: 1 0 auto;
+}
+
+#__next > header,
+#__next > footer {
+  flex-shrink: 0;
+}
+
 .site-header {
   margin-bottom: 28px;
   text-align: center;

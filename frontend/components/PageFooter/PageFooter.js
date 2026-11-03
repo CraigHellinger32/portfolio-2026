@@ -2,7 +2,7 @@ import { useSyncExternalStore } from "react";
 import Image from "next/image";
 import styles from "./PageFooter.module.css";
 
-const tileColors = ["#007db5", "#de0087", "#fff200", "#fff"];
+const tileColors = ["#007db5", "#de0087", "#fff200", "var(--footer-monochrome, #fff)"];
 const colorTiles = Array.from({ length: 40 }, (_, index) => ({
 	color: tileColors[Math.floor(index / 10)],
 	opacity: 1 - (index % 10) / 10,

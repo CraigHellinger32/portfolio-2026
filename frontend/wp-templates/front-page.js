@@ -139,6 +139,14 @@ export default function FrontPageTemplate(props) {
 					))}
 				</ul>
 			</section>
+			<section className={styles.cvSection} aria-label="Curriculum Vitae">
+				<ContentCard
+					entry={{ title: "Curriculum Vitae" }}
+					number={skillNumberStart + skills.length}
+					symbol="Cv"
+					size="medium"
+				/>
+			</section>
 			</main>
 			<PageFooter 
 				email="mail@craighellinger.co.uk" 
