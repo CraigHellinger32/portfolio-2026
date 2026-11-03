@@ -1,20 +1,26 @@
 import { useSyncExternalStore } from "react";
 
-function subscribeTheme(onChange) {
+export function subscribeTheme(onChange) {
+	const media = window.matchMedia("(prefers-color-scheme: dark)");
 	window.addEventListener("storage", onChange);
 	window.addEventListener("pf2026-theme-change", onChange);
+	media.addEventListener("change", onChange);
 	return () => {
 		window.removeEventListener("storage", onChange);
 		window.removeEventListener("pf2026-theme-change", onChange);
+		media.removeEventListener("change", onChange);
 	};
 }
 
-function getTheme() {
+export function getTheme() {
 	try {
-		return window.localStorage.getItem("pf2026-theme") === "dark";
+		const saved = window.localStorage.getItem("pf2026-theme");
+		if (saved === "light" || saved === "dark") return saved === "dark";
 	} catch {
-		return document.documentElement.dataset.theme === "dark";
+		const preference = document.documentElement.dataset.themePreference;
+		if (preference === "light" || preference === "dark") return preference === "dark";
 	}
+	return window.matchMedia("(prefers-color-scheme: dark)").matches;
 }
 
 export default function useDarkMode() {

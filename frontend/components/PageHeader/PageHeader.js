@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useDarkMode from "../../hooks/useDarkMode";
 import DarkModeButton from "./DarkModeButton";
 import BurgerMenuButton from "./BurgerMenuButton";
@@ -8,12 +8,9 @@ export default function PageHeader({ title, description }) {
 	const dark = useDarkMode();
 	const [menuOpen, setMenuOpen] = useState(false);
 
-	useEffect(() => {
-		document.documentElement.dataset.theme = dark ? "dark" : "light";
-	}, [dark]);
-
 	function toggleTheme() {
 		document.documentElement.dataset.theme = dark ? "light" : "dark";
+		document.documentElement.dataset.themePreference = dark ? "light" : "dark";
 		try {
 			window.localStorage.setItem("pf2026-theme", dark ? "light" : "dark");
 		} catch {}
