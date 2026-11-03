@@ -98,6 +98,30 @@ add_action( 'acf/include_fields', function () {
 				'graphql_non_null'   => 0,
 			],
 			[
+				'key'                => 'field_pf2026_case_study_start_year',
+				'label'              => 'Start year',
+				'name'               => 'start_year',
+				'type'               => 'number',
+				'instructions'       => 'The project year, or the first year of a date range.',
+				'min'                => 1900,
+				'max'                => 2100,
+				'step'               => 1,
+				'show_in_graphql'    => 1,
+				'graphql_field_name' => 'startYear',
+			],
+			[
+				'key'                => 'field_pf2026_case_study_end_year',
+				'label'              => 'End year',
+				'name'               => 'end_year',
+				'type'               => 'number',
+				'instructions'       => 'Optional. Leave empty for a single year; otherwise enter the final year of the project.',
+				'min'                => 1900,
+				'max'                => 2100,
+				'step'               => 1,
+				'show_in_graphql'    => 1,
+				'graphql_field_name' => 'endYear',
+			],
+			[
 				'key'                     => 'field_6adfc9d985e02',
 				'label'                   => 'Client',
 				'name'                    => 'client',
@@ -252,6 +276,17 @@ add_action( 'acf/include_fields', function () {
 		],
 	] );
 } );
+
+add_filter( 'acf/validate_value/key=field_pf2026_case_study_end_year', function ( $valid, $value ) {
+	if ( true !== $valid || '' === $value || null === $value ) {
+		return $valid;
+	}
+	$start = $_POST['acf']['field_pf2026_case_study_start_year'] ?? null;
+	if ( is_numeric( $start ) && (int) $value < (int) $start ) {
+		return 'End year must be the same as or later than Start year.';
+	}
+	return $valid;
+}, 10, 2 );
 
 add_action( 'init', function () {
 	$post_types = [

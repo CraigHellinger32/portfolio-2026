@@ -52,12 +52,42 @@
 	padding: 30px 20px;
 }
 
-.inner > h1 {
+.heading {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 20px 30px;
 	margin: 0 0 30px;
+}
+
+.titleBlock {
+	display: flex;
+	min-width: 0;
+	max-width: 100%;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.titleBlock[data-has-year="true"] {
+	border-inline-end: 1px solid currentColor;
+	padding-inline-end: 30px;
+}
+
+.heading h1,
+.years {
+	margin: 0;
 	font-family: var(--font-share);
 	font-size: 36px;
-	line-height: 1.1;
+	font-weight: 700;
+	line-height: 32px;
 	overflow-wrap: anywhere;
+}
+
+.subtitle {
+	margin: 0;
+	font-family: var(--font-kedebideri);
+	font-size: 20px;
+	line-height: 1.2;
 }
 
 .mainContent {

@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql, useQuery } from "@apollo/client";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import ContentCard from "../components/ContentCard/ContentCard";
@@ -6,6 +6,22 @@ import CaseStudyPanel from "../components/CaseStudyPanel/CaseStudyPanel";
 import PageFooter from "../components/PageFooter/PageFooter";
 import PageHeader from "../components/PageHeader/PageHeader";
 import styles from "../components/ContentCard/ContentCard.module.css";
+
+const CASE_STUDY_DETAILS_QUERY = gql`
+	query GetCaseStudyDetails($uri: ID!) {
+		caseStudy(id: $uri, idType: URI) {
+			id
+			title
+			content
+			caseStudies {
+				subtitle
+				startYear
+				endYear
+				pageSidebar
+			}
+		}
+	}
+`;
 
 export default function FrontPageTemplate(props) {
 	const router = useRouter();
@@ -20,6 +36,18 @@ export default function FrontPageTemplate(props) {
 	);
 	const panelOpen = selectedIndex !== -1;
 	const activeIndex = panelOpen ? selectedIndex : lastIndex;
+	const activeEntry = visibleCaseStudies[activeIndex];
+	const { data: detailData, loading: detailLoading, error: detailError, refetch } = useQuery(
+		CASE_STUDY_DETAILS_QUERY,
+		{
+			variables: { uri: activeEntry?.uri || "/" },
+			skip: !panelOpen || !activeEntry,
+			ssr: false,
+			fetchPolicy: "no-cache",
+		}
+	);
+	const detailEntry = detailData?.caseStudy?.id === activeEntry?.id ? detailData.caseStudy : null;
+	const panelEntry = detailEntry || activeEntry;
 	const clients = props.data.clients.nodes.filter(
 		(client) => client.clients?.hideOnFrontPage !== true
 	);
@@ -78,9 +106,12 @@ export default function FrontPageTemplate(props) {
 			<div className={styles.caseStudyPanelSlot}>
 			<CaseStudyPanel
 				id="case-study-panel"
-				entry={visibleCaseStudies[activeIndex]}
+				entry={panelEntry}
 				accent={accents[activeIndex]}
 				open={panelOpen}
+				loading={detailLoading && !detailEntry}
+				error={detailError}
+				onRetry={() => void refetch().catch(() => {})}
 			/>
 			</div>
 			{[0, 1].map((row) => {
@@ -94,10 +125,13 @@ export default function FrontPageTemplate(props) {
 					>
 						<CaseStudyPanel
 							id={`case-study-panel-row-${row}`}
-							entry={visibleCaseStudies[entryIndex]}
+							entry={rowActive ? panelEntry : visibleCaseStudies[entryIndex]}
 							accent={accents[entryIndex]}
 							open={panelOpen && rowActive}
 							retainWhenClosed
+							loading={detailLoading && !detailEntry}
+							error={detailError}
+							onRetry={() => void refetch().catch(() => {})}
 						/>
 					</div>
 				);
@@ -166,11 +200,9 @@ FrontPageTemplate.query = gql`
 			nodes {
 				id
 				title
-				content
 				uri
 				caseStudies {
 					subtitle
-					pageSidebar
 					chemicalSymbol: chemicalsymbol
 					client {
 						nodes {
