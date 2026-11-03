@@ -21,7 +21,6 @@
 	--footer-link: #000;
 	--footer-hover: #444;
 	--footer-monochrome: #000;
-	--footer-icon-filter: brightness(0);
 }
 
 .copyright {
@@ -75,8 +74,6 @@
 	display: block;
 	width: 24px;
 	height: 24px;
-	filter: var(--footer-icon-filter, none);
-	transition: filter 600ms ease;
 }
 
 .colorMark {
