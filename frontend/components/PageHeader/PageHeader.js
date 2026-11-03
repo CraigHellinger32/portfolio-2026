@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Link from "next/link";
 import useDarkMode from "../../hooks/useDarkMode";
 import DarkModeButton from "./DarkModeButton";
 import BurgerMenuButton from "./BurgerMenuButton";
@@ -22,10 +23,10 @@ export default function PageHeader({ title, description }) {
 			<div className={styles.themeControl}>
 				<DarkModeButton dark={dark} onToggle={toggleTheme} />
 			</div>
-			<div className={styles.brand}>
+			<Link href="/" className={styles.brand}>
 				<h1 className={styles.title}>{title}</h1>
 				<p className={styles.description}>{description}</p>
-			</div>
+			</Link>
 			<div className={styles.menuControl}>
 				<BurgerMenuButton open={menuOpen} onToggle={() => setMenuOpen(!menuOpen)} />
 			</div>
