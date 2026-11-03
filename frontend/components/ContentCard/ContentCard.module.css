@@ -65,6 +65,11 @@
 	box-shadow: 0 0 0 1px var(--content-card-keyline);
 }
 
+.clientGrid > li,
+.caseStudyItem {
+	transition: box-shadow 600ms ease;
+}
+
 .skillGrid {
 	grid-template-columns: repeat(auto-fit, 82px);
 	width: min(100%, 328px);
@@ -120,6 +125,7 @@
 	font-family: var(--font-kedebideri);
 	text-align: left;
 	cursor: pointer;
+	transition: background-color 600ms ease, color 600ms ease, border-color 600ms ease;
 }
 
 .card:focus-visible {
@@ -201,6 +207,7 @@
 	max-width: 100%;
 	object-fit: contain;
 	object-position: left top;
+	transition: filter 600ms ease;
 }
 
 .number {
@@ -303,7 +310,8 @@
 }
 
 .card[data-size="case-study"] {
-	transition: border-bottom-color 600ms cubic-bezier(0.22, 1, 0.36, 1),
+	transition: background-color 600ms ease, color 600ms ease, border-color 600ms ease,
+		border-bottom-color 600ms cubic-bezier(0.22, 1, 0.36, 1),
 		box-shadow 600ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -644,6 +652,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+	.card,
+	.clientGrid > li,
+	.caseStudyItem,
+	.brand img,
 	.card[data-size="case-study"],
 	.image,
 	.topRow,

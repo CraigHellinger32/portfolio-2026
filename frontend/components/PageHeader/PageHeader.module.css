@@ -6,6 +6,7 @@
 	padding: 20px 20px 0;
 	background: var(--background);
 	color: var(--foreground);
+	transition: background-color 600ms ease, color 600ms ease;
 }
 
 .brand {
@@ -58,7 +59,7 @@
 	line-height: normal;
 	text-align: left;
 	cursor: pointer;
-	transition: opacity 400ms ease;
+	transition: opacity 400ms ease, color 600ms ease;
 }
 
 .control img {
@@ -85,6 +86,23 @@
 .menuButton {
 	min-width: 60px;
 	color: var(--header-link, #007db5);
+}
+
+.menuIcon {
+	display: block;
+	flex: 0 0 24px;
+	width: 24px;
+	height: 24px;
+	background-color: currentColor;
+	mask: url("/header/menu.svg") center / contain no-repeat;
+}
+
+.menuIcon[data-open="true"] {
+	mask-image: url("/header/close.svg");
+}
+
+.menuButton:focus-visible {
+	outline-color: currentColor;
 }
 
 @media (max-width: 359px) {
@@ -155,6 +173,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+	.header,
 	.control {
 		transition: none;
 	}

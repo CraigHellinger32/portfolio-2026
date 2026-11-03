@@ -12,6 +12,7 @@
 	gap: 40px;
 	padding: 40px;
 	background: var(--footer-background);
+	transition: background-color 600ms ease;
 }
 
 :global(html[data-theme="dark"]) .footer {
@@ -30,6 +31,7 @@
 	font-size: 12px;
 	line-height: normal;
 	white-space: nowrap;
+	transition: color 600ms ease;
 }
 
 .year {
@@ -53,7 +55,7 @@
 	font-size: 12px;
 	font-weight: 700;
 	line-height: normal;
-	transition: color 400ms ease;
+	transition: color 600ms ease;
 	text-decoration: none;
 	white-space: nowrap;
 }
@@ -61,6 +63,7 @@
 .contactLink[href]:hover,
 .contactLink[href]:focus-visible {
 	color: var(--footer-hover);
+	transition-duration: 400ms;
 }
 
 .contactLink:focus-visible {
@@ -73,6 +76,7 @@
 	width: 24px;
 	height: 24px;
 	filter: var(--footer-icon-filter, none);
+	transition: filter 600ms ease;
 }
 
 .colorMark {
@@ -88,6 +92,7 @@
 	height: 10px;
 	background-color: var(--tile-color);
 	opacity: var(--tile-opacity);
+	transition: background-color 600ms ease;
 }
 
 @media (min-width: 768px) {
@@ -100,5 +105,15 @@
 	.colorMark {
 		width: 216px;
 		justify-content: end;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.footer,
+	.copyright,
+	.contactLink,
+	.icon,
+	.colorTile {
+		transition: none;
 	}
 }

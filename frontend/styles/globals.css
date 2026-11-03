@@ -22,7 +22,7 @@
 :root[data-theme="dark"] {
   --background: #231f20;
   --foreground: #ffffff;
-  --header-link: #56c9ff;
+  --header-link: #fff200;
   --content-card-background: #231f20;
   --content-card-text: #fff;
   --content-card-keyline: #fff;
@@ -37,6 +37,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-kedebideri);
+  transition: background-color 600ms ease, color 600ms ease;
 }
 
 #__next {
@@ -53,6 +54,12 @@ body {
 #__next > header,
 #__next > footer {
   flex-shrink: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    transition: none;
+  }
 }
 
 .site-header {
