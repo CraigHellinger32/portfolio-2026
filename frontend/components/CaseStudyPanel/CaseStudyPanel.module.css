@@ -34,8 +34,9 @@
 	color: #231f20;
 }
 
-.dark {
-	background-color: #231f20;
+.monochrome {
+	background-color: var(--accent-monochrome-background);
+	color: var(--accent-monochrome-text);
 }
 
 .clip {

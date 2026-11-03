@@ -62,7 +62,7 @@
 
 .clientGrid > li {
 	min-width: 0;
-	box-shadow: 0 0 0 1px #231f20;
+	box-shadow: 0 0 0 1px var(--content-card-keyline);
 }
 
 .skillGrid {
@@ -112,10 +112,10 @@
 	flex-direction: column;
 	justify-content: space-between;
 	overflow: hidden;
-	border: 1px solid #777;
+	border: 1px solid var(--content-card-border);
 	padding: 5px;
-	background: #fff;
-	color: #231f20;
+	background: var(--content-card-background);
+	color: var(--content-card-text);
 	text-decoration: none;
 	font-family: var(--font-kedebideri);
 	text-align: left;
@@ -139,7 +139,7 @@
 .card[data-size="medium"] {
 	width: 169px;
 	height: 169px;
-	border: 1.5px solid #231f20;
+	border: 1.5px solid var(--content-card-keyline);
 	padding: 9px;
 }
 
@@ -336,12 +336,13 @@
 .card[data-selected="true"][data-accent="yellow"] {
 	--selected-edge: #fff200;
 	background: #fff200;
+	color: #231f20;
 }
 
-.card[data-selected="true"][data-accent="dark"] {
-	--selected-edge: #231f20;
-	background: #231f20;
-	color: #fff;
+.card[data-selected="true"][data-accent="monochrome"] {
+	--selected-edge: var(--accent-monochrome-background);
+	background: var(--accent-monochrome-background);
+	color: var(--accent-monochrome-text);
 }
 
 .card[data-size="client"] {
@@ -352,7 +353,7 @@
 .card[data-size="skill"] {
 	width: 82px;
 	height: 82px;
-	border: 0.73px solid #231f20;
+	border: 0.73px solid var(--content-card-keyline);
 	padding: 4.379px;
 }
 
@@ -488,7 +489,7 @@
 	.caseStudyItem {
 		grid-column: var(--desktop-column);
 		grid-row: 2;
-		box-shadow: 0 0 0 1px #231f20;
+		box-shadow: 0 0 0 1px var(--content-card-keyline);
 	}
 
 	.caseStudyPanelSlot {
@@ -554,7 +555,7 @@
 		--logo-width: 102px;
 		border: 0;
 		padding: 12px;
-		box-shadow: 0 2px 0 var(--selected-edge, #231f20);
+		box-shadow: 0 2px 0 var(--selected-edge, var(--content-card-keyline));
 	}
 
 	.card[data-size="case-study"] .number {

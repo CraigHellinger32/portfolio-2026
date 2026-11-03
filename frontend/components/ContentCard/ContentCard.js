@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import useDarkMode from "../../hooks/useDarkMode";
 import styles from "./ContentCard.module.css";
 
 function getSymbol(title) {
@@ -27,6 +28,7 @@ export default function ContentCard({
 	onClick,
 	panelId,
 }) {
+	const dark = useDarkMode();
 	const image = size === "case-study" ? entry.featuredImage?.node?.sourceUrl : null;
 	const linkedClient = size === "case-study" ? entry.caseStudies?.client?.nodes?.[0] : null;
 	const resolvedBrandLogo = brandLogo || linkedClient?.featuredImage?.node?.sourceUrl;
@@ -34,8 +36,13 @@ export default function ContentCard({
 	const configuredLogoSize = (linkedClient || entry).clientBranding?.logoSize;
 	const logoSizeValue = Array.isArray(configuredLogoSize) ? configuredLogoSize[0] : configuredLogoSize;
 	const logoSize = ["compact", "standard", "wide"].includes(logoSizeValue) ? logoSizeValue : "standard";
-	const lightLogo = linkedClient?.clientBranding?.lightLogo?.node;
-	const useLightLogo = size === "case-study" && selected && accent !== "yellow";
+	const logoScale = { compact: 0.6, standard: 1, wide: 1.5 }[logoSize];
+	const mobileLogoWidth = (size === "client" ? 36.488 : 75.201) * logoScale;
+	const desktopLogoWidth = (size === "client" ? 75.201 : 102) * logoScale;
+	const lightLogo = (linkedClient || entry).clientBranding?.lightLogo?.node;
+	const useLightLogo = selected
+		? accent !== "yellow" && (accent !== "monochrome" || !dark)
+		: dark;
 	const displayedLogo = useLightLogo && lightLogo?.sourceUrl ? lightLogo.sourceUrl : resolvedBrandLogo;
 	const displayedLogoAlt = useLightLogo && lightLogo?.sourceUrl ? lightLogo.altText || resolvedBrandLogoAlt : resolvedBrandLogoAlt;
 	const resolvedBrandName = brandName || linkedClient?.title;
@@ -76,7 +83,8 @@ export default function ContentCard({
 							data-reversed={useLightLogo && !lightLogo?.sourceUrl}
 							width={102}
 							height={27}
-							unoptimized
+							sizes={`(max-width: 767px) ${mobileLogoWidth}px, ${desktopLogoWidth}px`}
+							unoptimized={/\.svg(?:[?#]|$)/i.test(displayedLogo)}
 						/>
 					) : (
 						resolvedBrandName

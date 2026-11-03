@@ -4,6 +4,12 @@
 :root {
   --background: #ffffff;
   --foreground: #231f20;
+  --content-card-background: #fff;
+  --content-card-text: #231f20;
+  --content-card-keyline: #231f20;
+  --content-card-border: #777;
+  --accent-monochrome-background: #231f20;
+  --accent-monochrome-text: #fff;
   --font-share: "Share", sans-serif;
   --font-kedebideri: "Kedebideri", sans-serif;
 }
@@ -17,6 +23,12 @@
   --background: #231f20;
   --foreground: #ffffff;
   --header-link: #56c9ff;
+  --content-card-background: #231f20;
+  --content-card-text: #fff;
+  --content-card-keyline: #fff;
+  --content-card-border: #fff;
+  --accent-monochrome-background: #fff;
+  --accent-monochrome-text: #231f20;
   color-scheme: dark;
 }
 

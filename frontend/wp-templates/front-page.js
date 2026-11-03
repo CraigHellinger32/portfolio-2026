@@ -10,7 +10,7 @@ import styles from "../components/ContentCard/ContentCard.module.css";
 export default function FrontPageTemplate(props) {
 	const router = useRouter();
 	const [lastIndex, setLastIndex] = useState(0);
-	const accents = ["cyan", "magenta", "yellow", "dark"];
+	const accents = ["cyan", "magenta", "yellow", "monochrome"];
 	const { title, description } = props.data.generalSettings;
 	const caseStudies = props.data.caseStudies.nodes;
 	const visibleCaseStudies = caseStudies.slice(0, 4);
@@ -210,6 +210,12 @@ FrontPageTemplate.query = gql`
 				excerpt
 				clientBranding {
 					logoSize
+					lightLogo {
+						node {
+							sourceUrl
+							altText
+						}
+					}
 				}
 				featuredImage {
 					node {
