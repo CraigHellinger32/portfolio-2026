@@ -13,6 +13,13 @@
   --color-foreground: var(--foreground);
 }
 
+:root[data-theme="dark"] {
+  --background: #231f20;
+  --foreground: #ffffff;
+  --header-link: #56c9ff;
+  color-scheme: dark;
+}
+
 body {
   margin: 0;
   background: var(--background);

@@ -1,0 +1,161 @@
+.header {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+	align-items: center;
+	gap: 0 12px;
+	padding: 20px 20px 0;
+	background: var(--background);
+	color: var(--foreground);
+}
+
+.brand {
+	grid-column: 2;
+	grid-row: 1;
+	min-width: 0;
+	text-align: center;
+}
+
+.title,
+.description {
+	margin: 0;
+	line-height: normal;
+}
+
+.title {
+	font-family: var(--font-share);
+	font-size: 21px;
+	font-weight: 700;
+}
+
+.description {
+	font-family: var(--font-kedebideri);
+	font-size: 12px;
+}
+
+.themeControl {
+	grid-column: 1;
+	grid-row: 1;
+	justify-self: start;
+}
+
+.menuControl {
+	grid-column: 3;
+	grid-row: 1;
+	justify-self: end;
+}
+
+.control {
+	display: inline-flex;
+	align-items: center;
+	gap: 3px;
+	min-height: 28px;
+	border: 0;
+	padding: 0 5px 0 0;
+	background: transparent;
+	font-family: var(--font-share);
+	font-size: 12px;
+	font-weight: 700;
+	line-height: normal;
+	text-align: left;
+	cursor: pointer;
+	transition: opacity 400ms ease;
+}
+
+.control img {
+	flex: 0 0 24px;
+}
+
+.control:hover {
+	opacity: 0.6;
+}
+
+.control:focus-visible {
+	outline: 2px solid #007db5;
+	outline-offset: 4px;
+}
+
+.themeButton {
+	color: var(--foreground);
+}
+
+.themeLabel > span {
+	display: block;
+}
+
+.menuButton {
+	min-width: 60px;
+	color: var(--header-link, #007db5);
+}
+
+@media (max-width: 359px) {
+	.header {
+		gap: 0 6px;
+		padding-inline: 8px;
+	}
+
+	.title {
+		font-size: 19px;
+	}
+
+	.description {
+		font-size: 11px;
+	}
+}
+
+@media (min-width: 414px) {
+	.themeLabel {
+		white-space: nowrap;
+	}
+
+	.themeLabel > span {
+		display: inline;
+	}
+}
+
+@media (min-width: 768px) {
+	.header {
+		grid-template-columns: minmax(0, 1fr) 84px 60px;
+		align-items: center;
+		column-gap: 40px;
+	}
+
+	.brand {
+		grid-column: 1;
+		text-align: left;
+	}
+
+	.themeControl {
+		grid-column: 2;
+	}
+
+	.title {
+		font-size: 27px;
+	}
+
+	.description {
+		font-size: 15.692px;
+	}
+}
+
+@media (min-width: 1100px) {
+	.title {
+		font-size: 37px;
+	}
+
+	.description {
+		font-size: 22px;
+	}
+}
+
+@media (min-width: 1366px) {
+	.header {
+		align-items: start;
+		padding: 40px 40px 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.control {
+		transition: none;
+	}
+}

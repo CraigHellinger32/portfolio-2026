@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import ContentCard from "../components/ContentCard/ContentCard";
 import CaseStudyPanel from "../components/CaseStudyPanel/CaseStudyPanel";
 import PageFooter from "../components/PageFooter/PageFooter";
+import PageHeader from "../components/PageHeader/PageHeader";
 import styles from "../components/ContentCard/ContentCard.module.css";
 
 export default function FrontPageTemplate(props) {
@@ -28,13 +29,11 @@ export default function FrontPageTemplate(props) {
 
 	return (
 		<>
+			<PageHeader title={title} description={description} />
 			<main className={styles.page}>
-			<header className="site-header">
-				<h1 className="site-title">{title}</h1>
-				<p className="site-description">{description}</p>
-			</header>
 
 			<div
+				id="case-studies"
 				className={styles.caseStudySection}
 				style={{
 					"--case-study-columns": String(Math.max(visibleCaseStudies.length, 1)),
@@ -106,7 +105,7 @@ export default function FrontPageTemplate(props) {
 			</section>
 			</div>
 
-			<section className={styles.section}>
+			<section id="clients" className={styles.section}>
 				<h2 className={styles.sectionTitle}>Clients</h2>
 				<ul className={styles.clientGrid}>
 					{clients.map((entry, index) => (
@@ -125,7 +124,7 @@ export default function FrontPageTemplate(props) {
 				</ul>
 			</section>
 
-			<section className={styles.section}>
+			<section id="skills" className={styles.section}>
 				<h2 className={styles.sectionTitle}>Skills</h2>
 				<ul className={styles.skillGrid}>
 					{skills.map((entry, index) => (

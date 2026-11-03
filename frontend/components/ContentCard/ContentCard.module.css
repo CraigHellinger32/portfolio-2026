@@ -79,7 +79,7 @@
 	width: 100%;
 	max-width: 414px;
 	margin: 0 auto;
-	padding: 12px 20px 0;
+	padding: 30px 20px 0;
 }
 
 .sectionTitle {
@@ -437,7 +437,7 @@
 @media (min-width: 768px) {
 	.page {
 		max-width: 1440px;
-		padding: 24px 32px 0;
+		padding: 80px 32px 0;
 	}
 
 	.section {
