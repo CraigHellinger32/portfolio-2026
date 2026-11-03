@@ -1,10 +1,10 @@
 import { gql } from "@apollo/client";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import CaseStudyCard from "../components/CaseStudyCard/CaseStudyCard";
+import ContentCard from "../components/ContentCard/ContentCard";
 import CaseStudyPanel from "../components/CaseStudyPanel/CaseStudyPanel";
 import PageFooter from "../components/PageFooter/PageFooter";
-import styles from "../components/CaseStudyCard/CaseStudyCard.module.css";
+import styles from "../components/ContentCard/ContentCard.module.css";
 
 export default function FrontPageTemplate(props) {
 	const router = useRouter();
@@ -56,7 +56,7 @@ export default function FrontPageTemplate(props) {
 								"--desktop-column": index + 2,
 							}}
 						>
-							<CaseStudyCard
+							<ContentCard
 								entry={entry}
 								number={index + 1}
 								symbol={entry.caseStudies?.chemicalSymbol}
@@ -111,7 +111,7 @@ export default function FrontPageTemplate(props) {
 				<ul className={styles.clientGrid}>
 					{clients.map((entry, index) => (
 						<li key={entry.id}>
-							<CaseStudyCard
+							<ContentCard
 								entry={entry}
 								number={clientNumberStart + index}
 								size="client"
@@ -130,7 +130,7 @@ export default function FrontPageTemplate(props) {
 				<ul className={styles.skillGrid}>
 					{skills.map((entry, index) => (
 						<li key={entry.id}>
-							<CaseStudyCard
+							<ContentCard
 								entry={entry}
 								number={skillNumberStart + index}
 								size="skill"

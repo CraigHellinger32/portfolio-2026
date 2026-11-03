@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import styles from "./CaseStudyCard.module.css";
+import styles from "./ContentCard.module.css";
 
 function getSymbol(title) {
 	const words = title.trim().split(/\s+/).filter(Boolean);
@@ -12,7 +12,7 @@ function getSymbol(title) {
 	return words[0]?.slice(0, 2).replace(/^./, (letter) => letter.toUpperCase()) || "CS";
 }
 
-export default function CaseStudyCard({
+export default function ContentCard({
 	entry,
 	number,
 	symbol,
@@ -21,6 +21,7 @@ export default function CaseStudyCard({
 	brandName,
 	size = "case-study",
 	showSubtitle = size === "case-study",
+	hoverEffect = size === "case-study",
 	selected = false,
 	accent = "cyan",
 	onClick,
@@ -47,6 +48,7 @@ export default function CaseStudyCard({
 			data-accent={accent}
 			data-size={size}
 			data-logo-size={logoSize}
+			data-hover-effect={hoverEffect}
 			data-selected={selected}
 			{...(onClick
 				? { type: "button", onClick, "aria-expanded": selected, "aria-controls": panelId }

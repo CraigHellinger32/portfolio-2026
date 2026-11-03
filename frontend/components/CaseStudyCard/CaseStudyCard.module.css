@@ -219,24 +219,24 @@
 	line-height: 1;
 }
 
-.card:hover .image,
-.card:focus-visible .image {
+.card[data-hover-effect="true"]:hover .image,
+.card[data-hover-effect="true"]:focus-visible .image {
 	opacity: 1;
 }
 
-.card:hover .topRow,
-.card:focus-visible .topRow {
+.card[data-hover-effect="true"]:hover .topRow,
+.card[data-hover-effect="true"]:focus-visible .topRow {
 	opacity: 0;
 }
 
-.card:hover .content,
-.card:focus-visible .content {
+.card[data-hover-effect="true"]:hover .content,
+.card[data-hover-effect="true"]:focus-visible .content {
 	color: #fff;
 	text-shadow: 0 1px 4px #231f20;
 }
 
-.card:hover .symbol,
-.card:focus-visible .symbol {
+.card[data-hover-effect="true"]:hover .symbol,
+.card[data-hover-effect="true"]:focus-visible .symbol {
 	color: #231f20;
 	text-shadow:
 		-1px -1px 0 #fff,
@@ -398,7 +398,11 @@
 
 	.card[data-size="client"] .brand {
 		--logo-width: 36.488px;
-		--logo-height: 9.587px;
+		--logo-height: 22px;
+	}
+
+	.card[data-size="client"][data-logo-size="wide"] .brand {
+		--logo-height: 14.5px;
 	}
 
 	.card[data-size="client"] .number {
@@ -452,8 +456,9 @@
 	}
 
 	.clientGrid {
-		grid-template-columns: repeat(4, minmax(0, 169px));
-		width: min(100%, 681px);
+		grid-template-columns: repeat(4, 169px);
+		width: 681px;
+		flex-shrink: 0;
 	}
 
 	.skillGrid {
@@ -461,6 +466,8 @@
 	}
 
 	.card[data-size="client"] {
+		width: 169px;
+		height: 169px;
 		padding: 9px;
 	}
 
@@ -470,9 +477,13 @@
 	}
 
 	.card[data-size="client"] .brand {
-		--logo-width: 50px;
-		--logo-height: 20px;
+		--logo-width: 75.201px;
+		--logo-height: 45px;
 		font-size: 10px;
+	}
+
+	.card[data-size="client"][data-logo-size="wide"] .brand {
+		--logo-height: 29px;
 	}
 
 	.card[data-size="client"] .number {
@@ -548,8 +559,18 @@
 	}
 
 	.clientGrid {
-		grid-template-columns: repeat(7, minmax(0, 169px));
-		width: min(100%, 1191px);
+		grid-template-columns: repeat(7, 169px);
+		width: 1191px;
+	}
+
+	.section:has(> .clientGrid) {
+		width: 100vw;
+		max-width: none;
+		margin-inline: calc(50% - 50vw);
+	}
+
+	.section:has(> .clientGrid) > .sectionTitle {
+		flex-basis: clamp(110px, calc(100vw - 1255px), 210px);
 	}
 
 	.section {
