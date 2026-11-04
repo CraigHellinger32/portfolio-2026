@@ -27,9 +27,9 @@ export default function PageHeader({ title, description }) {
 				<h1 className={styles.title}>{title}</h1>
 				<p className={styles.description}>{description}</p>
 			</Link>
-			<div className={styles.menuControl}>
+			{/* <div className={styles.menuControl}>
 				<BurgerMenuButton open={menuOpen} onToggle={() => setMenuOpen(!menuOpen)} />
-			</div>
+			</div> */}
 		</header>
 	);
 }

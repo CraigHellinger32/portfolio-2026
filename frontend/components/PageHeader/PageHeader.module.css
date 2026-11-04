@@ -52,6 +52,11 @@
 	justify-self: end;
 }
 
+.header:not(:has(> .menuControl)) > .themeControl {
+	grid-column: -2 / -1;
+	justify-self: end;
+}
+
 .control {
 	display: inline-flex;
 	align-items: center;
@@ -142,6 +147,10 @@
 		grid-template-columns: minmax(0, 1fr) 84px 60px;
 		align-items: center;
 		column-gap: 40px;
+	}
+
+	.header:not(:has(> .menuControl)) {
+		grid-template-columns: minmax(0, 1fr) 84px;
 	}
 
 	.brand {
