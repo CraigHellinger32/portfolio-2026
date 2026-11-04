@@ -1,8 +1,8 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import PageSidebar from "../PageSidebar/PageSidebar";
-import styles from "./CaseStudyPanel.module.css";
+import styles from "./ContentPanel.module.css";
 
-export default function CaseStudyPanel({ entry, accent, open, id, retainWhenClosed = false, loading = false, error, onRetry }) {
+export default function ContentPanel({ entry, accent, open, id, retainWhenClosed = false, loading = false, error, onRetry }) {
 	const panelRef = useRef(null);
 	const contentRef = useRef(null);
 	const [displayed, setDisplayed] = useState(() => open ? { entry, accent } : null);
@@ -89,11 +89,11 @@ export default function CaseStudyPanel({ entry, accent, open, id, retainWhenClos
 						)}
 					</header>
 					{!error && (loading || displayed?.entry?.content === undefined) && !displayed?.entry?.content && (
-						<p role="status">Loading case study...</p>
+						<p role="status">Loading content...</p>
 					)}
 					{error ? (
 						<div role="alert">
-							<p>Unable to load this case study.</p>
+								<p>Unable to load this content.</p>
 							<button type="button" onClick={onRetry}>Retry</button>
 						</div>
 					) : (

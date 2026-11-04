@@ -1,17 +1,7 @@
-import { gql } from "@apollo/client";
-import SingleTemplate from "./single";
+import FrontPageTemplate from "./front-page";
 
 export default function ClientTemplate(props) {
-	return <SingleTemplate {...props} />;
+	return <FrontPageTemplate {...props} />;
 }
 
-ClientTemplate.query = gql`
-	query GetClient($uri: ID!) {
-		post: client(id: $uri, idType: URI) {
-			title
-			content
-		}
-	}
-`;
-
-ClientTemplate.variables = SingleTemplate.variables;
+ClientTemplate.query = FrontPageTemplate.query;

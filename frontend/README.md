@@ -67,6 +67,27 @@ each image's `currentSrc`, rendered width, and natural width. Check WebP deliver
 appropriate candidate sizes, preserved image proportions, and 30px/40px spacing.
 Use a fresh browser context per density to avoid reuse of larger cached candidates.
 
+## CV Download
+
+The CV card uses WPGraphQL's `cvUrl` field, registered by the content plugin.
+WordPress stores the PDF attachment ID in `pf2026_cv_attachment_id` and resolves
+its URL with `wp_get_attachment_url()`. No local or production hostname is stored
+in the frontend source.
+
+Migrate the WordPress database and uploads together, including the PDF, and update
+WordPress's site/upload URLs and `NEXT_PUBLIC_WORDPRESS_URL` for the target
+environment. Rebuild or revalidate frontend pages after migration or replacing
+the PDF so statically generated links pick up the new URL.
+
+To replace the CV, upload a new PDF in the Media Library, then select its ID:
+
+```sh
+wp option update pf2026_cv_attachment_id <new-pdf-attachment-id>
+```
+
+The card is non-navigating if no valid PDF is configured. The configured PDF URL
+is public; do not use this setting for a private document.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

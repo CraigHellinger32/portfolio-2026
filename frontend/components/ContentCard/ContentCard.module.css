@@ -1,3 +1,13 @@
+.clientSection {
+	width: 100vw;
+	margin-left: calc(50% - 50vw);
+	margin-bottom: 22px;
+}
+
+.clientSection > .section {
+	margin-bottom: 1px;
+}
+
 .caseStudySection {
 	width: 100vw;
 	margin-left: calc(50% - 50vw);
@@ -526,6 +536,10 @@
 		width: 169px;
 		height: 169px;
 		padding: 9px;
+	}
+
+	.clientSection {
+		margin-bottom: 52px;
 	}
 
 	.card[data-size="client"] .topRow {

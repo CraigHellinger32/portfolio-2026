@@ -27,6 +27,8 @@ export default function ContentCard({
 	accent = "cyan",
 	onClick,
 	panelId,
+	nativeLink = false,
+	target,
 }) {
 	const dark = useDarkMode();
 	const image = size === "case-study" ? entry.featuredImage?.node?.sourceUrl : null;
@@ -49,7 +51,7 @@ export default function ContentCard({
 	const title = entry.title || "Untitled case study";
 	const resolvedSymbol = symbol || getSymbol(title);
 	const hasDescender = ["g", "y", "p"].includes(resolvedSymbol[1]);
-	const Card = onClick ? "button" : entry.uri ? Link : "div";
+	const Card = onClick ? "button" : entry.uri ? (nativeLink ? "a" : Link) : "div";
 
 	return (
 		<Card
@@ -61,7 +63,7 @@ export default function ContentCard({
 			data-selected={selected}
 			{...(onClick
 				? { type: "button", onClick, "aria-expanded": selected, "aria-controls": panelId }
-				: entry.uri ? { href: entry.uri } : {})}
+				: entry.uri ? { href: entry.uri, target, rel: target === "_blank" ? "noopener noreferrer" : undefined } : {})}
 		>
 			{image && (
 				<Image

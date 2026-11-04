@@ -2,7 +2,7 @@ import { gql, useQuery } from "@apollo/client";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import ContentCard from "../components/ContentCard/ContentCard";
-import CaseStudyPanel from "../components/CaseStudyPanel/CaseStudyPanel";
+import ContentPanel from "../components/ContentPanel/ContentPanel";
 import PageFooter from "../components/PageFooter/PageFooter";
 import PageHeader from "../components/PageHeader/PageHeader";
 import styles from "../components/ContentCard/ContentCard.module.css";
@@ -23,9 +23,20 @@ const CASE_STUDY_DETAILS_QUERY = gql`
 	}
 `;
 
+const CLIENT_DETAILS_QUERY = gql`
+	query GetClientDetails($uri: ID!) {
+		client(id: $uri, idType: URI) {
+			id
+			title
+			content
+		}
+	}
+`;
+
 export default function FrontPageTemplate(props) {
 	const router = useRouter();
 	const [lastIndex, setLastIndex] = useState(0);
+	const [lastClientIndex, setLastClientIndex] = useState(0);
 	const accents = ["cyan", "magenta", "yellow", "monochrome"];
 	const { title, description } = props.data.generalSettings;
 	const caseStudies = props.data.caseStudies.nodes;
@@ -52,6 +63,22 @@ export default function FrontPageTemplate(props) {
 		(client) => client.clients?.hideOnFrontPage !== true
 	);
 	const skills = props.data.skills.nodes;
+	const selectedClientIndex = clients.findIndex(
+		(entry) => entry.uri?.replace(/\/$/, "") === selectedPath
+	);
+	const clientPanelOpen = selectedClientIndex !== -1;
+	const activeClientIndex = clientPanelOpen ? selectedClientIndex : lastClientIndex;
+	const activeClient = clients[activeClientIndex];
+	const { data: clientData, loading: clientLoading, error: clientError, refetch: refetchClient } = useQuery(
+		CLIENT_DETAILS_QUERY,
+		{
+			variables: { uri: activeClient?.uri || "/" },
+			skip: !clientPanelOpen || !activeClient,
+			ssr: false,
+			fetchPolicy: "no-cache",
+		}
+	);
+	const clientDetail = clientData?.client?.id === activeClient?.id ? clientData.client : null;
 	const clientNumberStart = visibleCaseStudies.length + 1;
 	const skillNumberStart = clientNumberStart + clients.length;
 
@@ -104,7 +131,7 @@ export default function FrontPageTemplate(props) {
 					))}
 				</ul>
 			<div className={styles.caseStudyPanelSlot}>
-			<CaseStudyPanel
+			<ContentPanel
 				id="case-study-panel"
 				entry={panelEntry}
 				accent={accents[activeIndex]}
@@ -123,7 +150,7 @@ export default function FrontPageTemplate(props) {
 						className={styles.mobileCaseStudyPanelSlot}
 						style={{ gridRow: row * 2 + 3 }}
 					>
-						<CaseStudyPanel
+						<ContentPanel
 							id={`case-study-panel-row-${row}`}
 							entry={rowActive ? panelEntry : visibleCaseStudies[entryIndex]}
 							accent={accents[entryIndex]}
@@ -139,7 +166,8 @@ export default function FrontPageTemplate(props) {
 			</section>
 			</div>
 
-			<section id="clients" className={styles.section}>
+			<div id="clients" className={styles.clientSection}>
+			<section className={styles.section}>
 				<h2 className={styles.sectionTitle}>Clients</h2>
 				<ul className={styles.clientGrid}>
 					{clients.map((entry, index) => (
@@ -149,6 +177,18 @@ export default function FrontPageTemplate(props) {
 								number={clientNumberStart + index}
 								size="client"
 								symbol={entry.clients?.chemicalSymbol}
+								accent={accents[index % accents.length]}
+								selected={clientPanelOpen && activeClientIndex === index}
+								panelId="client-content-panel"
+								onClick={() => {
+									setLastClientIndex(index);
+									const path = clientPanelOpen && activeClientIndex === index ? "/" : entry.uri;
+									void router.push(
+										{ pathname: router.pathname, query: router.query },
+										path,
+										{ shallow: true, scroll: false }
+									);
+								}}
 								brandLogo={entry.featuredImage?.node?.sourceUrl}
 								brandLogoAlt={entry.featuredImage?.node?.altText || ""}
 								brandName={entry.title}
@@ -157,6 +197,16 @@ export default function FrontPageTemplate(props) {
 					))}
 				</ul>
 			</section>
+			<ContentPanel
+				id="client-content-panel"
+				entry={clientDetail || activeClient}
+				accent={accents[activeClientIndex % accents.length]}
+				open={clientPanelOpen}
+				loading={clientLoading && !clientDetail}
+				error={clientError}
+				onRetry={() => void refetchClient().catch(() => {})}
+			/>
+			</div>
 
 			<section id="skills" className={styles.section}>
 				<h2 className={styles.sectionTitle}>Skills</h2>
@@ -175,10 +225,12 @@ export default function FrontPageTemplate(props) {
 			</section>
 			<section className={styles.cvSection} aria-label="Curriculum Vitae">
 				<ContentCard
-					entry={{ title: "Curriculum Vitae" }}
+					entry={{ title: "Curriculum Vitae", uri: props.data.cvUrl }}
 					number={skillNumberStart + skills.length}
 					symbol="Cv"
 					size="medium"
+					nativeLink
+					target="_blank"
 				/>
 			</section>
 			</main>
@@ -192,6 +244,7 @@ export default function FrontPageTemplate(props) {
 
 FrontPageTemplate.query = gql`
 	query GetFrontPage {
+		cvUrl
 		generalSettings {
 			title
 			description

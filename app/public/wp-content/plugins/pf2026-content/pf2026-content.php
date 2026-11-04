@@ -13,6 +13,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+add_action( 'graphql_register_types', function () {
+	register_graphql_field( 'RootQuery', 'cvUrl', [
+		'type'        => 'String',
+		'description' => 'The current public CV PDF URL from the Media Library.',
+		'resolve'     => function () {
+			$attachment_id = (int) get_option( 'pf2026_cv_attachment_id' );
+			if ( ! $attachment_id || 'application/pdf' !== get_post_mime_type( $attachment_id ) ) {
+				return null;
+			}
+			return wp_get_attachment_url( $attachment_id ) ?: null;
+		},
+	] );
+} );
+
 add_action( 'after_setup_theme', function () {
 	add_image_size( 'pf2026-400', 400, 0, false );
 	add_image_size( 'pf2026-480', 480, 0, false );
