@@ -33,11 +33,22 @@ const CLIENT_DETAILS_QUERY = gql`
 	}
 `;
 
+const SKILL_DETAILS_QUERY = gql`
+	query GetSkillDetails($uri: ID!) {
+		skill(id: $uri, idType: URI) {
+			id
+			title
+			content
+		}
+	}
+`;
+
 export default function FrontPageTemplate(props) {
 	const router = useRouter();
 	const [lastIndex, setLastIndex] = useState(0);
 	const [lastClientIndex, setLastClientIndex] = useState(0);
-	const accents = ["cyan", "magenta", "yellow", "monochrome"];
+	const [lastSkillIndex, setLastSkillIndex] = useState(0);
+	const accents = ["cyan", "magenta", "yellow"];
 	const { title, description } = props.data.generalSettings;
 	const caseStudies = props.data.caseStudies.nodes;
 	const visibleCaseStudies = caseStudies.slice(0, 4);
@@ -63,6 +74,22 @@ export default function FrontPageTemplate(props) {
 		(client) => client.clients?.hideOnFrontPage !== true
 	);
 	const skills = props.data.skills.nodes;
+	const selectedSkillIndex = skills.findIndex(
+		(entry) => entry.uri?.replace(/\/$/, "") === selectedPath
+	);
+	const skillPanelOpen = selectedSkillIndex !== -1;
+	const activeSkillIndex = skillPanelOpen ? selectedSkillIndex : lastSkillIndex;
+	const activeSkill = skills[activeSkillIndex];
+	const { data: skillData, loading: skillLoading, error: skillError, refetch: refetchSkill } = useQuery(
+		SKILL_DETAILS_QUERY,
+		{
+			variables: { uri: activeSkill?.uri || "/" },
+			skip: !skillPanelOpen || !activeSkill,
+			ssr: false,
+			fetchPolicy: "no-cache",
+		}
+	);
+	const skillDetail = skillData?.skill?.id === activeSkill?.id ? skillData.skill : null;
 	const selectedClientIndex = clients.findIndex(
 		(entry) => entry.uri?.replace(/\/$/, "") === selectedPath
 	);
@@ -114,7 +141,7 @@ export default function FrontPageTemplate(props) {
 								entry={entry}
 								number={index + 1}
 								symbol={entry.caseStudies?.chemicalSymbol}
-								accent={accents[index]}
+								accent={accents[index % accents.length]}
 								selected={panelOpen && activeIndex === index}
 								panelId={`case-study-panel case-study-panel-row-${Math.floor(index / 2)}`}
 								onClick={() => {
@@ -134,7 +161,7 @@ export default function FrontPageTemplate(props) {
 			<ContentPanel
 				id="case-study-panel"
 				entry={panelEntry}
-				accent={accents[activeIndex]}
+				accent={accents[activeIndex % accents.length]}
 				open={panelOpen}
 				loading={detailLoading && !detailEntry}
 				error={detailError}
@@ -153,7 +180,7 @@ export default function FrontPageTemplate(props) {
 						<ContentPanel
 							id={`case-study-panel-row-${row}`}
 							entry={rowActive ? panelEntry : visibleCaseStudies[entryIndex]}
-							accent={accents[entryIndex]}
+							accent={accents[entryIndex % accents.length]}
 							open={panelOpen && rowActive}
 							retainWhenClosed
 							loading={detailLoading && !detailEntry}
@@ -208,21 +235,44 @@ export default function FrontPageTemplate(props) {
 			/>
 			</div>
 
-			<section id="skills" className={styles.section}>
-				<h2 className={styles.sectionTitle}>Skills</h2>
-				<ul className={styles.skillGrid}>
-					{skills.map((entry, index) => (
-						<li key={entry.id}>
-							<ContentCard
-								entry={entry}
-								number={skillNumberStart + index}
-								size="skill"
-								symbol={entry.skills?.chemicalSymbol}
-							/>
-						</li>
-					))}
-				</ul>
-			</section>
+			<div id="skills" className={styles.skillSection}>
+				<section className={styles.section} aria-labelledby="skills-title">
+					<h2 id="skills-title" className={styles.sectionTitle}>Skills</h2>
+					<ul className={styles.skillGrid}>
+						{skills.map((entry, index) => (
+							<li key={entry.id}>
+								<ContentCard
+									entry={entry}
+									number={skillNumberStart + index}
+									size="skill"
+									symbol={entry.skills?.chemicalSymbol}
+									accent={accents[index % accents.length]}
+									selected={skillPanelOpen && activeSkillIndex === index}
+									panelId="skill-content-panel"
+									onClick={() => {
+										setLastSkillIndex(index);
+										const path = skillPanelOpen && activeSkillIndex === index ? "/" : entry.uri;
+										void router.push(
+											{ pathname: router.pathname, query: router.query },
+											path,
+											{ shallow: true, scroll: false }
+										);
+									}}
+								/>
+							</li>
+						))}
+					</ul>
+				</section>
+				<ContentPanel
+					id="skill-content-panel"
+					entry={skillDetail || activeSkill}
+					accent={accents[activeSkillIndex % accents.length]}
+					open={skillPanelOpen}
+					loading={skillLoading && !skillDetail}
+					error={skillError}
+					onRetry={() => void refetchSkill().catch(() => {})}
+				/>
+			</div>
 			<section className={styles.cvSection} aria-label="Curriculum Vitae">
 				<ContentCard
 					entry={{ title: "Curriculum Vitae", uri: props.data.cvUrl }}

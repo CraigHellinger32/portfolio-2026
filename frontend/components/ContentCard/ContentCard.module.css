@@ -4,6 +4,21 @@
 	margin-bottom: 22px;
 }
 
+.skillSection {
+	width: 100vw;
+	margin-left: calc(50% - 50vw);
+	margin-bottom: 22px;
+}
+
+.skillSection > .section {
+	margin-bottom: 0;
+}
+
+.skillSection > .section:has(.skillGrid) {
+	width: 100%;
+	margin-inline: 0;
+}
+
 .clientSection > .section {
 	margin-bottom: 1px;
 }
@@ -91,10 +106,24 @@
 }
 
 .page {
+	display: flex;
 	width: 100%;
 	max-width: 414px;
+	flex-direction: column;
+	gap: 40px;
 	margin: 0 auto;
-	padding: 30px 20px 0;
+	padding: 30px 20px 80px;
+}
+
+.page > .caseStudySection,
+.page > .clientSection,
+.page > .skillSection,
+.page > .cvSection {
+	margin-block: 0;
+}
+
+.page > .section {
+	margin-block: 0;
 }
 
 .sectionTitle {
@@ -492,11 +521,7 @@
 @media (min-width: 768px) {
 	.page {
 		max-width: 1440px;
-		padding: 80px 32px 0;
-	}
-
-	.section {
-		margin-bottom: 52px;
+		padding: 80px 32px;
 	}
 
 	.caseStudySection > .section {
