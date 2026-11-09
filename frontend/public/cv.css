@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Kedebideri&family=Share:wght@400;700&display=swap");
+
+:root {
+	--background: #ffffff;
+	--foreground: #231f20;
+	--font-share: "Share", sans-serif;
+	--font-kedebideri: "Kedebideri", sans-serif;
+}
+
+body {
+	background: var(--background);
+	color: var(--foreground);
+	font-family: var(--font-kedebideri);
+	font-size: 16px;
+	line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+	font-family: var(--font-share);
+	font-weight: 700;
+	line-height: 1.1;
+}
+
+h1 {
+	font-size: 21px;
+}
+
+h2 {
+	font-size: 36px;
+}
+
+h3 {
+	font-size: 20px;
+}
+
+header > p:first-of-type {
+	font-size: 20px;
+	line-height: 1.2;
+}
+
+a {
+	color: inherit;
+}
+
+@media (min-width: 700px) {
+	h1 {
+		font-size: 37px;
+	}
+}

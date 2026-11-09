@@ -69,6 +69,11 @@ Use a fresh browser context per density to avoid reuse of larger cached candidat
 
 ## CV Download
 
+A standalone HTML CV is available at `/cv.html` from `public/cv.html`. Its
+typography is defined separately in `public/cv.css`. Update its portfolio URL
+and bracketed content prompts before sharing it. This page is separate from
+the PDF linked by the CV card.
+
 The CV card uses WPGraphQL's `cvUrl` field, registered by the content plugin.
 WordPress stores the PDF attachment ID in `pf2026_cv_attachment_id` and resolves
 its URL with `wp_get_attachment_url()`. No local or production hostname is stored
