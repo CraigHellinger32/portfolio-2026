@@ -49,6 +49,7 @@ export default function FrontPageTemplate(props) {
 	const [lastClientIndex, setLastClientIndex] = useState(0);
 	const [lastSkillIndex, setLastSkillIndex] = useState(0);
 	const accents = ["cyan", "magenta", "yellow"];
+	const cmykAccents = [...accents, "monochrome"];
 	const { title, description } = props.data.generalSettings;
 	const caseStudies = props.data.caseStudies.nodes;
 	const visibleCaseStudies = caseStudies.slice(0, 4);
@@ -141,7 +142,7 @@ export default function FrontPageTemplate(props) {
 								entry={entry}
 								number={index + 1}
 								symbol={entry.caseStudies?.chemicalSymbol}
-								accent={accents[index % accents.length]}
+								accent={cmykAccents[index % cmykAccents.length]}
 								selected={panelOpen && activeIndex === index}
 								panelId={`case-study-panel case-study-panel-row-${Math.floor(index / 2)}`}
 								onClick={() => {
@@ -161,7 +162,7 @@ export default function FrontPageTemplate(props) {
 			<ContentPanel
 				id="case-study-panel"
 				entry={panelEntry}
-				accent={accents[activeIndex % accents.length]}
+				accent={cmykAccents[activeIndex % cmykAccents.length]}
 				open={panelOpen}
 				loading={detailLoading && !detailEntry}
 				error={detailError}
@@ -180,7 +181,7 @@ export default function FrontPageTemplate(props) {
 						<ContentPanel
 							id={`case-study-panel-row-${row}`}
 							entry={rowActive ? panelEntry : visibleCaseStudies[entryIndex]}
-							accent={accents[entryIndex % accents.length]}
+							accent={cmykAccents[entryIndex % cmykAccents.length]}
 							open={panelOpen && rowActive}
 							retainWhenClosed
 							loading={detailLoading && !detailEntry}
@@ -204,7 +205,7 @@ export default function FrontPageTemplate(props) {
 								number={clientNumberStart + index}
 								size="client"
 								symbol={entry.clients?.chemicalSymbol}
-								accent={accents[index % accents.length]}
+								accent={cmykAccents[index % cmykAccents.length]}
 								selected={clientPanelOpen && activeClientIndex === index}
 								panelId="client-content-panel"
 								onClick={() => {
@@ -227,7 +228,7 @@ export default function FrontPageTemplate(props) {
 			<ContentPanel
 				id="client-content-panel"
 				entry={clientDetail || activeClient}
-				accent={accents[activeClientIndex % accents.length]}
+				accent={cmykAccents[activeClientIndex % cmykAccents.length]}
 				open={clientPanelOpen}
 				loading={clientLoading && !clientDetail}
 				error={clientError}
@@ -275,7 +276,7 @@ export default function FrontPageTemplate(props) {
 			</div>
 			<section className={styles.cvSection} aria-label="Curriculum Vitae">
 				<ContentCard
-					entry={{ title: "Curriculum Vitae", uri: props.data.cvUrl }}
+					entry={{ title: "Curriculum Vitae", uri: "/cv.html" }}
 					number={skillNumberStart + skills.length}
 					symbol="Cv"
 					size="medium"
@@ -294,7 +295,6 @@ export default function FrontPageTemplate(props) {
 
 FrontPageTemplate.query = gql`
 	query GetFrontPage {
-		cvUrl
 		generalSettings {
 			title
 			description

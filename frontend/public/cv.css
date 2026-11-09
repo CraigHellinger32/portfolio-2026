@@ -1,51 +1,218 @@
-@import url("https://fonts.googleapis.com/css2?family=Kedebideri&family=Share:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kedebideri:wght@400;700&family=Share:wght@400;700&display=swap");
 
 :root {
 	--background: #ffffff;
 	--foreground: #231f20;
+	--brand-blue: #007db5;
 	--font-share: "Share", sans-serif;
 	--font-kedebideri: "Kedebideri", sans-serif;
+	--page-inset: 40px;
+	--section-gap: 30px;
+	--content-gap: 20px;
+}
+
+* {
+	box-sizing: border-box;
 }
 
 body {
+	margin: 0;
 	background: var(--background);
 	color: var(--foreground);
 	font-family: var(--font-kedebideri);
 	font-size: 16px;
-	line-height: 1.5;
+	line-height: 24px;
 }
 
-h1,
+.no-wrap {
+	white-space: nowrap;
+}
+
+main {
+	display: flex;
+	width: 100%;
+	max-width: 1366px;
+	min-height: 2174px;
+	flex-direction: column;
+	gap: var(--section-gap);
+	margin-inline: auto;
+	padding: var(--page-inset);
+}
+
+header {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 330px;
+	align-items: center;
+	min-height: 127px;
+	border-bottom: 1px solid currentColor;
+	padding-bottom: 20px;
+}
+
+.identity h1,
 h2,
 h3 {
+	margin: 0;
 	font-family: var(--font-share);
 	font-weight: 700;
-	line-height: 1.1;
 }
 
-h1 {
-	font-size: 21px;
+.identity h1 {
+	font-size: 37px;
+	line-height: 41px;
+	max-width: 142px;
+	overflow-wrap: normal;
 }
 
-h2 {
-	font-size: 36px;
-}
-
-h3 {
+.identity > p {
+	margin: 0;
 	font-size: 20px;
+	line-height: 24px;
+	margin-right: 30px;
 }
 
-header > p:first-of-type {
+.contact {
+	display: flex;
+	flex-direction: column;
+	font-style: normal;
+	text-align: right;
+}
+
+.contact p {
+	margin: 0;
+	overflow-wrap: anywhere;
+}
+
+section > h2 {
+	margin-bottom: var(--content-gap);
+	font-size: 30px;
+	line-height: 40px;
+}
+
+section p,
+section ul {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.skills ul,
+article ul,
+.portfolio ul {
+	padding-left: 40px;
+	list-style-type: square;
+}
+
+.experience > h2 {
+	display: block;
+	margin-bottom: 30px;
+}
+
+article + article {
+	margin-top: 30px;
+}
+
+article h3 {
 	font-size: 20px;
-	line-height: 1.2;
+	line-height: 22px;
+}
+
+article > p {
+	margin: 0;
+}
+
+article ul {
+	margin-top: 16px;
+}
+
+.portfolio > p {
+	margin-bottom: var(--content-gap);
+}
+
+.portfolio > h3 {
+	margin-bottom: var(--content-gap);
+}
+
+.portfolio ul li {
+	margin-block: 0;
+}
+
+.education {
+	display: flex;
+	flex-direction: column;
+	gap: var(--content-gap);
+}
+
+.education > h2 {
+	margin-bottom: 0;
 }
 
 a {
-	color: inherit;
+	color: var(--brand-blue);
+	text-decoration: underline;
 }
 
-@media (min-width: 700px) {
-	h1 {
-		font-size: 37px;
+a:hover {
+	text-decoration: none;
+}
+
+@media (max-width: 767px) {
+	:root {
+		--page-inset: 24px;
+		--section-gap: 30px;
+	}
+
+	main {
+		min-height: 100vh;
+	}
+
+	header {
+		grid-template-columns: minmax(0, 1fr);
+		row-gap: var(--content-gap);
+		padding-bottom: var(--content-gap);
+	}
+
+	.contact {
+		text-align: left;
+	}
+}
+
+@page {
+  size: A4;
+  margin: 15mm;
+}
+
+@media print {
+	main {
+		min-height: 0;
+	}
+
+	body {
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+	}
+
+	.identity h1 {
+		max-width: none;
+	}
+
+	.no-print { display: none; }
+
+	#experience {
+		break-before: page;
+	}
+
+	h2, h3, .job { break-inside: avoid; }
+
+	.jobs {
+		display: block;
+	}
+
+	.jobs > .job {
+		display: flow-root;
+		page-break-inside: avoid;
+	}
+
+	.jobs > .job + .job {
+		margin-top: 0;
+		padding-top: 30px;
 	}
 }

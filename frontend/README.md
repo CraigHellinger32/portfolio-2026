@@ -71,13 +71,13 @@ Use a fresh browser context per density to avoid reuse of larger cached candidat
 
 A standalone HTML CV is available at `/cv.html` from `public/cv.html`. Its
 typography is defined separately in `public/cv.css`. Update its portfolio URL
-and bracketed content prompts before sharing it. This page is separate from
-the PDF linked by the CV card.
+and bracketed content prompts before sharing it. The CV card links to this HTML
+page, which includes a print-hidden download link to `public/Craig-Hellinger-CV.pdf`.
+Replace that file when updating the downloadable CV.
 
-The CV card uses WPGraphQL's `cvUrl` field, registered by the content plugin.
-WordPress stores the PDF attachment ID in `pf2026_cv_attachment_id` and resolves
-its URL with `wp_get_attachment_url()`. No local or production hostname is stored
-in the frontend source.
+WordPress also retains a PDF copy. WPGraphQL's `cvUrl` field, registered by the
+content plugin, resolves the Media Library attachment selected by
+`pf2026_cv_attachment_id` using `wp_get_attachment_url()`.
 
 Migrate the WordPress database and uploads together, including the PDF, and update
 WordPress's site/upload URLs and `NEXT_PUBLIC_WORDPRESS_URL` for the target
@@ -90,8 +90,8 @@ To replace the CV, upload a new PDF in the Media Library, then select its ID:
 wp option update pf2026_cv_attachment_id <new-pdf-attachment-id>
 ```
 
-The card is non-navigating if no valid PDF is configured. The configured PDF URL
-is public; do not use this setting for a private document.
+Keep the frontend PDF and WordPress copy in sync. Both PDF URLs are public;
+do not use them for a private document.
 
 ## Learn More
 
