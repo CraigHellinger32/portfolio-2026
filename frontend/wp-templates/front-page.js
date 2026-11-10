@@ -1,5 +1,5 @@
-import { gql, useQuery } from "@apollo/client";
-import { useState } from "react";
+import { gql } from "@apollo/client";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import ContentCard from "../components/ContentCard/ContentCard";
 import ContentPanel from "../components/ContentPanel/ContentPanel";
@@ -7,47 +7,21 @@ import PageFooter from "../components/PageFooter/PageFooter";
 import PageHeader from "../components/PageHeader/PageHeader";
 import styles from "../components/ContentCard/ContentCard.module.css";
 
-const CASE_STUDY_DETAILS_QUERY = gql`
-	query GetCaseStudyDetails($uri: ID!) {
-		caseStudy(id: $uri, idType: URI) {
-			id
-			title
-			content
-			caseStudies {
-				subtitle
-				startYear
-				endYear
-				pageSidebar
-			}
-		}
-	}
-`;
-
-const CLIENT_DETAILS_QUERY = gql`
-	query GetClientDetails($uri: ID!) {
-		client(id: $uri, idType: URI) {
-			id
-			title
-			content
-		}
-	}
-`;
-
-const SKILL_DETAILS_QUERY = gql`
-	query GetSkillDetails($uri: ID!) {
-		skill(id: $uri, idType: URI) {
-			id
-			title
-			content
-		}
-	}
-`;
-
 export default function FrontPageTemplate(props) {
 	const router = useRouter();
 	const [lastIndex, setLastIndex] = useState(0);
 	const [lastClientIndex, setLastClientIndex] = useState(0);
 	const [lastSkillIndex, setLastSkillIndex] = useState(0);
+	const [detailData, setDetailData] = useState(null);
+	const [skillData, setSkillData] = useState(null);
+	const [clientData, setClientData] = useState(null);
+	const [detailLoading, setDetailLoading] = useState(false);
+	const [skillLoading, setSkillLoading] = useState(false);
+	const [clientLoading, setClientLoading] = useState(false);
+	const [detailError, setDetailError] = useState(null);
+	const [skillError, setSkillError] = useState(null);
+	const [clientError, setClientError] = useState(null);
+	
 	const accents = ["cyan", "magenta", "yellow"];
 	const cmykAccents = [...accents, "monochrome"];
 	const { title, description } = props.data.generalSettings;
@@ -60,15 +34,75 @@ export default function FrontPageTemplate(props) {
 	const panelOpen = selectedIndex !== -1;
 	const activeIndex = panelOpen ? selectedIndex : lastIndex;
 	const activeEntry = visibleCaseStudies[activeIndex];
-	const { data: detailData, loading: detailLoading, error: detailError, refetch } = useQuery(
-		CASE_STUDY_DETAILS_QUERY,
-		{
-			variables: { uri: activeEntry?.uri || "/" },
-			skip: !panelOpen || !activeEntry,
-			ssr: false,
-			fetchPolicy: "no-cache",
+	
+	// Helper function to fetch detail data
+	const fetchDetailData = () => {
+		if (!activeEntry) return;
+		
+		const cache = sessionStorage.getItem(`detail-${activeEntry.uri}`);
+		if (cache) {
+			setDetailData(JSON.parse(cache));
+			setDetailLoading(false);
+			setDetailError(null);
+			return;
 		}
-	);
+		
+		setDetailLoading(true);
+		setDetailError(null);
+		const query = JSON.stringify({
+			query: `query GetCaseStudyDetails($uri: ID!) {
+				caseStudy(id: $uri, idType: URI) {
+					id
+					title
+					content
+					caseStudies {
+						subtitle
+						startYear
+						endYear
+						pageSidebar
+					}
+				}
+			}`,
+			variables: { uri: activeEntry.uri }
+		});
+		
+		fetch(process.env.NEXT_PUBLIC_WORDPRESS_URL || "http://pf2026.local", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: query
+		})
+			.then(r => r.json())
+			.then(result => {
+				if (result.errors) {
+					setDetailError(new Error(result.errors[0].message));
+					setDetailData(null);
+				} else {
+					const data = result.data;
+					setDetailData(data);
+					sessionStorage.setItem(`detail-${activeEntry.uri}`, JSON.stringify(data));
+				}
+				setDetailLoading(false);
+			})
+			.catch(err => {
+				setDetailError(err);
+				setDetailData(null);
+				setDetailLoading(false);
+			});
+	};
+	
+	const refetch = () => fetchDetailData();
+	
+	// Fetch case study details when panel opens
+	useEffect(() => {
+		if (!panelOpen || !activeEntry) {
+			setDetailData(null);
+			setDetailLoading(false);
+			setDetailError(null);
+			return;
+		}
+		
+		fetchDetailData();
+	}, [panelOpen, activeEntry]);
 	const detailEntry = detailData?.caseStudy?.id === activeEntry?.id ? detailData.caseStudy : null;
 	const panelEntry = detailEntry || activeEntry;
 	const clients = props.data.clients.nodes.filter(
@@ -81,15 +115,70 @@ export default function FrontPageTemplate(props) {
 	const skillPanelOpen = selectedSkillIndex !== -1;
 	const activeSkillIndex = skillPanelOpen ? selectedSkillIndex : lastSkillIndex;
 	const activeSkill = skills[activeSkillIndex];
-	const { data: skillData, loading: skillLoading, error: skillError, refetch: refetchSkill } = useQuery(
-		SKILL_DETAILS_QUERY,
-		{
-			variables: { uri: activeSkill?.uri || "/" },
-			skip: !skillPanelOpen || !activeSkill,
-			ssr: false,
-			fetchPolicy: "no-cache",
+	
+	// Helper function to fetch skill data
+	const fetchSkillData = () => {
+		if (!activeSkill) return;
+		
+		const cache = sessionStorage.getItem(`skill-${activeSkill.uri}`);
+		if (cache) {
+			setSkillData(JSON.parse(cache));
+			setSkillLoading(false);
+			setSkillError(null);
+			return;
 		}
-	);
+		
+		setSkillLoading(true);
+		setSkillError(null);
+		const query = JSON.stringify({
+			query: `query GetSkillDetails($uri: ID!) {
+				skill(id: $uri, idType: URI) {
+					id
+					title
+					content
+				}
+			}`,
+			variables: { uri: activeSkill.uri }
+		});
+		
+		fetch(process.env.NEXT_PUBLIC_WORDPRESS_URL || "http://pf2026.local", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: query
+		})
+			.then(r => r.json())
+			.then(result => {
+				if (result.errors) {
+					setSkillError(new Error(result.errors[0].message));
+					setSkillData(null);
+				} else {
+					const data = result.data;
+					setSkillData(data);
+					sessionStorage.setItem(`skill-${activeSkill.uri}`, JSON.stringify(data));
+				}
+				setSkillLoading(false);
+			})
+			.catch(err => {
+				setSkillError(err);
+				setSkillData(null);
+				setSkillLoading(false);
+			});
+	};
+	
+	const refetchSkill = () => fetchSkillData();
+	
+	// Fetch skill details when panel opens
+	useEffect(() => {
+		if (!skillPanelOpen || !activeSkill) {
+			setSkillData(null);
+			setSkillLoading(false);
+			setSkillError(null);
+			return;
+		}
+		
+		fetchSkillData();
+	}, [skillPanelOpen, activeSkill]);
+	
 	const skillDetail = skillData?.skill?.id === activeSkill?.id ? skillData.skill : null;
 	const selectedClientIndex = clients.findIndex(
 		(entry) => entry.uri?.replace(/\/$/, "") === selectedPath
@@ -97,15 +186,70 @@ export default function FrontPageTemplate(props) {
 	const clientPanelOpen = selectedClientIndex !== -1;
 	const activeClientIndex = clientPanelOpen ? selectedClientIndex : lastClientIndex;
 	const activeClient = clients[activeClientIndex];
-	const { data: clientData, loading: clientLoading, error: clientError, refetch: refetchClient } = useQuery(
-		CLIENT_DETAILS_QUERY,
-		{
-			variables: { uri: activeClient?.uri || "/" },
-			skip: !clientPanelOpen || !activeClient,
-			ssr: false,
-			fetchPolicy: "no-cache",
+	
+	// Helper function to fetch client data
+	const fetchClientData = () => {
+		if (!activeClient) return;
+		
+		const cache = sessionStorage.getItem(`client-${activeClient.uri}`);
+		if (cache) {
+			setClientData(JSON.parse(cache));
+			setClientLoading(false);
+			setClientError(null);
+			return;
 		}
-	);
+		
+		setClientLoading(true);
+		setClientError(null);
+		const query = JSON.stringify({
+			query: `query GetClientDetails($uri: ID!) {
+				client(id: $uri, idType: URI) {
+					id
+					title
+					content
+				}
+			}`,
+			variables: { uri: activeClient.uri }
+		});
+		
+		fetch(process.env.NEXT_PUBLIC_WORDPRESS_URL || "http://pf2026.local", {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: query
+		})
+			.then(r => r.json())
+			.then(result => {
+				if (result.errors) {
+					setClientError(new Error(result.errors[0].message));
+					setClientData(null);
+				} else {
+					const data = result.data;
+					setClientData(data);
+					sessionStorage.setItem(`client-${activeClient.uri}`, JSON.stringify(data));
+				}
+				setClientLoading(false);
+			})
+			.catch(err => {
+				setClientError(err);
+				setClientData(null);
+				setClientLoading(false);
+			});
+	};
+	
+	const refetchClient = () => fetchClientData();
+	
+	// Fetch client details when panel opens
+	useEffect(() => {
+		if (!clientPanelOpen || !activeClient) {
+			setClientData(null);
+			setClientLoading(false);
+			setClientError(null);
+			return;
+		}
+		
+		fetchClientData();
+	}, [clientPanelOpen, activeClient]);
+	
 	const clientDetail = clientData?.client?.id === activeClient?.id ? clientData.client : null;
 	const clientNumberStart = visibleCaseStudies.length + 1;
 	const skillNumberStart = clientNumberStart + clients.length;
