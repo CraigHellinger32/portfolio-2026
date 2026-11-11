@@ -10,6 +10,10 @@
   --content-card-border: #777;
   --accent-monochrome-background: #231f20;
   --accent-monochrome-text: #fff;
+  --brand-cyan: #007db5;
+  --brand-magenta: #de0087;
+  --brand-yellow: #fff200;
+  --brand-blue: #0066cc;
   --font-share: "Share", sans-serif;
   --font-kedebideri: "Kedebideri", sans-serif;
 }
@@ -103,18 +107,18 @@ body {
 
 /* Monochrome panel links: yellow in light mode, blue in dark mode */
 .monochrome a {
-  color: #fff200;
+  color: var(--brand-yellow);
   text-decoration: underline;
 }
 
 .monochrome a,
 .monochrome a span {
-  color: #fff200;
+  color: var(--brand-yellow);
   text-decoration: underline;
 }
 
 :root[data-theme="dark"] .monochrome a,
 :root[data-theme="dark"] .monochrome a span {
-  color: #0066cc !important;
+  color: var(--brand-blue) !important;
   text-decoration: underline !important;
 }

@@ -22,16 +22,16 @@
 }
 
 .cyan {
-	background-color: #007db5;
+	background-color: var(--brand-cyan);
 }
 
 .magenta {
-	background-color: #de0087;
+	background-color: var(--brand-magenta);
 }
 
 .yellow {
-	background-color: #fff200;
-	color: #231f20;
+	background-color: var(--brand-yellow);
+	color: var(--foreground);
 }
 
 .monochrome {
@@ -104,8 +104,15 @@
 
 /* Links in monochrome panels (dark background with light text) */
 .monochrome .mainContent a {
-	color: #0066cc !important;
 	text-decoration: underline !important;
+}
+
+[data-theme="dark"] .monochrome .mainContent a {
+	color: var(--brand-blue) !important;
+}
+
+[data-theme="light"] .monochrome .mainContent a {
+	color: var(--brand-yellow) !important;
 }
 
 /* Links in other colored panels keep their theme styling */
