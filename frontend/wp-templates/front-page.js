@@ -66,7 +66,7 @@ export default function FrontPageTemplate(props) {
 			variables: { uri: activeEntry.uri }
 		});
 		
-		fetch(process.env.NEXT_PUBLIC_WORDPRESS_URL || "http://pf2026.local", {
+		fetch(`${process.env.NEXT_PUBLIC_WORDPRESS_URL || "http://pf2026.local"}/graphql`, {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: query
@@ -141,7 +141,7 @@ export default function FrontPageTemplate(props) {
 			variables: { uri: activeSkill.uri }
 		});
 		
-		fetch(process.env.NEXT_PUBLIC_WORDPRESS_URL || "http://pf2026.local", {
+		fetch(`${process.env.NEXT_PUBLIC_WORDPRESS_URL || "http://pf2026.local"}/graphql`, {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: query
@@ -212,7 +212,7 @@ export default function FrontPageTemplate(props) {
 			variables: { uri: activeClient.uri }
 		});
 		
-		fetch(process.env.NEXT_PUBLIC_WORDPRESS_URL || "http://pf2026.local", {
+		fetch(`${process.env.NEXT_PUBLIC_WORDPRESS_URL || "http://pf2026.local"}/graphql`, {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: query

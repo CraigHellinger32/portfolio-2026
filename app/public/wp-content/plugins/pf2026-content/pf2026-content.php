@@ -13,6 +13,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// Add CORS headers for GraphQL and REST API
+add_action( 'init', function () {
+	if ( defined( 'REST_REQUEST' ) || ( isset( $_SERVER['REQUEST_URI'] ) && false !== strpos( $_SERVER['REQUEST_URI'], '/graphql' ) ) ) {
+		header( 'Access-Control-Allow-Origin: *' );
+		header( 'Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS' );
+		header( 'Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With' );
+		header( 'Access-Control-Max-Age: 3600' );
+		
+		if ( isset( $_SERVER['REQUEST_METHOD'] ) && 'OPTIONS' === $_SERVER['REQUEST_METHOD'] ) {
+			status_header( 200 );
+			exit;
+		}
+	}
+}, 1 );
+
 add_action( 'graphql_register_types', function () {
 	register_graphql_field( 'RootQuery', 'cvUrl', [
 		'type'        => 'String',
