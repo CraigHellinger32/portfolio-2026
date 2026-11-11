@@ -32,8 +32,17 @@ Populate an existing case study from the requested Figma frame, including its te
 - Prefer an existing properly authorized WordPress application password. Do not guess credentials, read or print secrets, commit them, or send them to an unrelated service. Application passwords require HTTPS except for a trusted local development site.
 - If no credential is available and local administrative access is authorized, the previously successful workflow created a **temporary** application password using Local's bundled PHP and WP-CLI, used it for authenticated REST requests, then revoked and verified its removal. Discover the current user, runtime, socket and paths rather than assuming them. On this installation the WP-CLI phar was under `/Applications/Local.app/Contents/Resources/extraResources/bin/wp-cli/wp-cli.phar`; Local's PHP and MySQL socket were under `~/Library/Application Support/Local/`.
 - WP-CLI operations are `user application-password create <user-id> <unique-name> --porcelain`, `user application-password list <user-id> --fields=uuid,name --format=json`, and `user application-password delete <user-id> <uuid> --yes`. Capture the created password privately in memory; use it for HTTP Basic authentication without displaying it in logs. In a `finally` cleanup, find the uniquely named credential, revoke it and verify it is absent. Report cleanup failure explicitly.
+- **Localhost-only direct database access:** On localhost/development-only sites without working WP-CLI or auth, direct MySQL updates are acceptable as a last resort. Local by Flywheel stores MySQL socket at `~/Library/Application Support/Local/run/<hash>/mysql/mysqld.sock`. Use Local's bundled MySQL client (typically at `/Applications/Local.app/Contents/Resources/extraResources/lightning-services/mysql-8.4.0+N/bin/darwin-arm64/bin/mysql`) with socket path `-S` flag and database credentials from `wp-config.php`. Always escape content with proper SQL string literals or parameterized queries to prevent injection. Example:
+  ```bash
+  LOCAL_MYSQL="/Applications/Local.app/Contents/Resources/extraResources/lightning-services/mysql-8.4.0+2/bin/darwin-arm64/bin/mysql"
+  SOCKET="$HOME/Library/Application Support/Local/run/HASH/mysql/mysqld.sock"
+  $LOCAL_MYSQL -S "$SOCKET" -u root -proot database_name << EOF
+  UPDATE wp_posts SET post_content = '...' WHERE ID = 7;
+  EOF
+  ```
+  Never do this on production or shared infrastructure.
 - Update only the intended post's supplied fields with authenticated `POST /wp-json/wp/v2/case_study/<id>` using a JSON payload, normally `content`. Upload media first. Preserve publication status unless a change is explicitly requested. Back up or capture the original content and field values before mutation, check HTTP errors, and do not claim success until readback.
-- If required ACF fields cannot be written through the authorized API, explain the limitation and request approval for an appropriate supported WordPress/ACF update mechanism. Do not silently skip the sidebar, modify the database directly, create an ad hoc unauthenticated/token endpoint, or alter plugin security/CORS to bypass authentication. Existing custom endpoints must not be assumed safe or necessary.
+- If required ACF fields cannot be written through the authorized API, explain the limitation and request approval for an appropriate supported WordPress/ACF update mechanism. Do not silently skip the sidebar, modify the database directly without documenting the reason, create an ad hoc unauthenticated/token endpoint, or alter plugin security/CORS to bypass authentication. Existing custom endpoints must not be assumed safe or necessary.
 
 ## 4. Verify the result
 

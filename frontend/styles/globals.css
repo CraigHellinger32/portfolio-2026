@@ -100,3 +100,21 @@ body {
     font-size: 22px;
   }
 }
+
+/* Monochrome panel links: yellow in light mode, blue in dark mode */
+.monochrome a {
+  color: #fff200;
+  text-decoration: underline;
+}
+
+.monochrome a,
+.monochrome a span {
+  color: #fff200;
+  text-decoration: underline;
+}
+
+:root[data-theme="dark"] .monochrome a,
+:root[data-theme="dark"] .monochrome a span {
+  color: #0066cc !important;
+  text-decoration: underline !important;
+}

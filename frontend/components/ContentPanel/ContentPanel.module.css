@@ -98,6 +98,22 @@
 	overflow-wrap: anywhere;
 }
 
+.mainContent a {
+	color: inherit;
+}
+
+/* Links in monochrome panels (dark background with light text) */
+.monochrome .mainContent a {
+	color: #0066cc !important;
+	text-decoration: underline !important;
+}
+
+/* Links in other colored panels keep their theme styling */
+.cyan .mainContent a,
+.magenta .mainContent a {
+	color: inherit;
+}
+
 .mainContent p {
 	max-width: 700px;
 	margin: 0 0 20px;
