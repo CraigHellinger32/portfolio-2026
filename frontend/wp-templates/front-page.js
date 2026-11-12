@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import ContentCard from "../components/ContentCard/ContentCard";
 import ContentPanel from "../components/ContentPanel/ContentPanel";
@@ -7,8 +7,39 @@ import PageFooter from "../components/PageFooter/PageFooter";
 import PageHeader from "../components/PageHeader/PageHeader";
 import styles from "../components/ContentCard/ContentCard.module.css";
 
+function useCompactColumns(sectionRef) {
+	const [columns, setColumns] = useState(1);
+
+	useEffect(() => {
+		const section = sectionRef.current;
+		const updateColumns = () => {
+			if (window.matchMedia("(min-width: 1366px)").matches) return;
+			const style = getComputedStyle(section);
+			const fixedColumns = Number(style.getPropertyValue("--compact-columns"));
+			const cardWidth = parseFloat(style.getPropertyValue("--compact-card-width"));
+			const maxWidth = parseFloat(style.getPropertyValue("--compact-max-width"));
+			setColumns(fixedColumns || Math.max(1, Math.floor(
+				Math.min(section.clientWidth, maxWidth) / cardWidth
+			)));
+		};
+		const observer = new ResizeObserver(updateColumns);
+		observer.observe(section);
+		window.addEventListener("resize", updateColumns);
+		return () => {
+			observer.disconnect();
+			window.removeEventListener("resize", updateColumns);
+		};
+	}, [sectionRef]);
+
+	return columns;
+}
+
 export default function FrontPageTemplate(props) {
 	const router = useRouter();
+	const clientSectionRef = useRef(null);
+	const skillSectionRef = useRef(null);
+	const clientColumns = useCompactColumns(clientSectionRef);
+	const skillColumns = useCompactColumns(skillSectionRef);
 	const [lastIndex, setLastIndex] = useState(0);
 	const [lastClientIndex, setLastClientIndex] = useState(0);
 	const [lastSkillIndex, setLastSkillIndex] = useState(0);
@@ -339,11 +370,22 @@ export default function FrontPageTemplate(props) {
 			</div>
 
 			<div id="clients" className={styles.clientSection}>
-			<section className={styles.section}>
+			<section
+				ref={clientSectionRef}
+				className={styles.section}
+				style={{ "--compact-row-columns": clientColumns }}
+			>
 				<h2 className={styles.sectionTitle}>Clients</h2>
-				<ul className={styles.clientGrid}>
+				<ul className={styles.clientGrid} role="list">
 					{clients.map((entry, index) => (
-						<li key={entry.id}>
+						<li
+							key={entry.id}
+							className={styles.compactCardItem}
+							style={{
+								"--compact-column": index % clientColumns + 2,
+								"--compact-row": Math.floor(index / clientColumns) * 2 + 2,
+							}}
+						>
 							<ContentCard
 								entry={entry}
 								number={clientNumberStart + index}
@@ -351,7 +393,7 @@ export default function FrontPageTemplate(props) {
 								symbol={entry.clients?.chemicalSymbol}
 								accent={cmykAccents[index % cmykAccents.length]}
 								selected={clientPanelOpen && activeClientIndex === index}
-								panelId="client-content-panel"
+								panelId={`client-content-panel client-content-panel-row-${Math.floor(index / clientColumns)}`}
 								onClick={() => {
 									setLastClientIndex(index);
 									const path = clientPanelOpen && activeClientIndex === index ? "/" : entry.uri;
@@ -368,7 +410,30 @@ export default function FrontPageTemplate(props) {
 						</li>
 					))}
 				</ul>
+				{Array.from({ length: Math.ceil(clients.length / clientColumns) }, (_, row) => {
+					const rowActive = Math.floor(activeClientIndex / clientColumns) === row;
+					const entryIndex = rowActive ? activeClientIndex : row * clientColumns;
+					return (
+						<div
+							key={row}
+							className={styles.compactPanelSlot}
+							style={{ gridRow: row * 2 + 3 }}
+						>
+							<ContentPanel
+								id={`client-content-panel-row-${row}`}
+								entry={rowActive ? clientDetail || activeClient : clients[entryIndex]}
+								accent={cmykAccents[entryIndex % cmykAccents.length]}
+								open={clientPanelOpen && rowActive}
+								retainWhenClosed
+								loading={clientLoading && !clientDetail}
+								error={clientError}
+								onRetry={() => void refetchClient().catch(() => {})}
+							/>
+						</div>
+					);
+				})}
 			</section>
+			<div className={styles.widePanelSlot}>
 			<ContentPanel
 				id="client-content-panel"
 				entry={clientDetail || activeClient}
@@ -379,13 +444,26 @@ export default function FrontPageTemplate(props) {
 				onRetry={() => void refetchClient().catch(() => {})}
 			/>
 			</div>
+			</div>
 
 			<div id="skills" className={styles.skillSection}>
-				<section className={styles.section} aria-labelledby="skills-title">
+				<section
+					ref={skillSectionRef}
+					className={styles.section}
+					aria-labelledby="skills-title"
+					style={{ "--compact-row-columns": skillColumns }}
+				>
 					<h2 id="skills-title" className={styles.sectionTitle}>Skills</h2>
-					<ul className={styles.skillGrid}>
+					<ul className={styles.skillGrid} role="list">
 						{skills.map((entry, index) => (
-							<li key={entry.id}>
+							<li
+								key={entry.id}
+								className={styles.compactCardItem}
+								style={{
+									"--compact-column": index % skillColumns + 2,
+									"--compact-row": Math.floor(index / skillColumns) * 2 + 2,
+								}}
+							>
 								<ContentCard
 									entry={entry}
 									number={skillNumberStart + index}
@@ -393,7 +471,7 @@ export default function FrontPageTemplate(props) {
 									symbol={entry.skills?.chemicalSymbol}
 									accent={accents[index % accents.length]}
 									selected={skillPanelOpen && activeSkillIndex === index}
-									panelId="skill-content-panel"
+									panelId={`skill-content-panel skill-content-panel-row-${Math.floor(index / skillColumns)}`}
 									onClick={() => {
 										setLastSkillIndex(index);
 										const path = skillPanelOpen && activeSkillIndex === index ? "/" : entry.uri;
@@ -407,7 +485,30 @@ export default function FrontPageTemplate(props) {
 							</li>
 						))}
 					</ul>
+					{Array.from({ length: Math.ceil(skills.length / skillColumns) }, (_, row) => {
+						const rowActive = Math.floor(activeSkillIndex / skillColumns) === row;
+						const entryIndex = rowActive ? activeSkillIndex : row * skillColumns;
+						return (
+							<div
+								key={row}
+								className={styles.compactPanelSlot}
+								style={{ gridRow: row * 2 + 3 }}
+							>
+								<ContentPanel
+									id={`skill-content-panel-row-${row}`}
+									entry={rowActive ? skillDetail || activeSkill : skills[entryIndex]}
+									accent={accents[entryIndex % accents.length]}
+									open={skillPanelOpen && rowActive}
+									retainWhenClosed
+									loading={skillLoading && !skillDetail}
+									error={skillError}
+									onRetry={() => void refetchSkill().catch(() => {})}
+								/>
+							</div>
+						);
+					})}
 				</section>
+				<div className={styles.widePanelSlot}>
 				<ContentPanel
 					id="skill-content-panel"
 					entry={skillDetail || activeSkill}
@@ -417,6 +518,7 @@ export default function FrontPageTemplate(props) {
 					error={skillError}
 					onRetry={() => void refetchSkill().catch(() => {})}
 				/>
+				</div>
 			</div>
 			<section className={styles.cvSection} aria-label="Curriculum Vitae">
 				<ContentCard

@@ -64,6 +64,10 @@
 	min-width: 0;
 }
 
+.compactPanelSlot {
+	display: none;
+}
+
 .clientGrid,
 .skillGrid {
 	display: grid;
@@ -637,9 +641,81 @@
 	}
 }
 
-@media (min-width: 768px) and (max-width: 1365px) {
-	.caseStudyPanelSlot {
-		margin-top: 1px;
+/* Include fractional widths below desktop when the browser is zoomed. */
+@media not all and (min-width: 1366px) {
+	.clientSection > .section,
+	.skillSection > .section {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) repeat(var(--compact-row-columns, 1), var(--compact-card-width)) minmax(0, 1fr);
+		width: 100%;
+		max-width: none;
+		margin-inline: 0;
+		gap: 0;
+	}
+
+	.clientSection > .section {
+		--compact-columns: 3;
+		--compact-card-width: 82px;
+		column-gap: 1px;
+	}
+
+	.skillSection > .section {
+		--compact-card-width: 82px;
+		--compact-max-width: 328px;
+	}
+
+	.clientSection .sectionTitle,
+	.skillSection .sectionTitle {
+		grid-column: 1 / -1;
+		grid-row: 1;
+	}
+
+	.clientGrid,
+	.skillGrid {
+		display: contents;
+	}
+
+	.compactCardItem {
+		grid-column: var(--compact-column);
+		grid-row: var(--compact-row);
+		min-width: 0;
+	}
+
+	.widePanelSlot {
+		display: none;
+	}
+
+	.compactPanelSlot {
+		display: block;
+		grid-column: 1 / -1;
+		min-width: 0;
+	}
+
+	.clientSection .compactCardItem {
+		margin-bottom: 1px;
+	}
+
+	.compactCardItem .card[data-size="client"][data-selected="true"] {
+		z-index: 1;
+		box-shadow: 0 1px 0 var(--selected-edge);
+	}
+
+	.compactCardItem .card[data-size="skill"][data-selected="true"] {
+		border-bottom-color: var(--selected-edge);
+	}
+	@media (min-width: 768px) {
+		.clientSection > .section {
+			--compact-columns: 4;
+			--compact-card-width: 169px;
+		}
+
+		.skillSection > .section {
+			--compact-max-width: 1230px;
+		}
+
+		.caseStudyPanelSlot {
+			margin-top: 1px;
+		}
 	}
 }
 
