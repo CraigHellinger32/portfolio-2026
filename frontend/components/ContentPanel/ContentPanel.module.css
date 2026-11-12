@@ -31,7 +31,7 @@
 
 .yellow {
 	background-color: var(--brand-yellow);
-	color: var(--foreground);
+	color: #231f20;
 }
 
 .monochrome {

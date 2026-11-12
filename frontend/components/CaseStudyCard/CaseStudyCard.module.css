@@ -434,8 +434,8 @@
 
 	.caseStudySection > .section {
 		grid-template-columns: minmax(0, 1fr) repeat(var(--case-study-columns, 4), minmax(0, 230px)) minmax(0, 1fr);
-		column-gap: 1px;
-		row-gap: 1px;
+		column-gap: -1px;
+		row-gap: -1px;
 	}
 
 	.caseStudyItem {
