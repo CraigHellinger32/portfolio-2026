@@ -602,7 +602,7 @@
 		--logo-width: 102px;
 		border: 0;
 		padding: 12px;
-		box-shadow: 0 2px 0 var(--selected-edge, var(--content-card-keyline));
+		box-shadow: 0 1px 0 var(--selected-edge, var(--content-card-keyline));
 	}
 
 	.card[data-size="case-study"] .number {
@@ -638,12 +638,13 @@
 }
 
 @media (min-width: 1366px) {
-	.caseStudySection > .section {
-		grid-template-columns: minmax(0, 1fr) max-content 16px repeat(var(--case-study-columns, 4), minmax(0, 230px)) minmax(0, 1fr);
-	}
-
 	.caseStudyItem {
 		grid-column: calc(var(--desktop-column) + 2);
+		box-shadow: 0 0 0 2px var(--content-card-keyline);
+	}
+
+	.caseStudySection > .section {
+		grid-template-columns: minmax(0, 1fr) max-content 16px repeat(var(--case-study-columns, 4), minmax(0, 230px)) minmax(0, 1fr);
 	}
 
 	.caseStudySection .sectionTitle {
@@ -652,6 +653,10 @@
 		justify-self: start;
 		width: max-content;
 		margin: 0;
+	}
+
+	.card[data-size="case-study"] {
+		box-shadow: 0 2px 0 var(--selected-edge, var(--content-card-keyline));
 	}
 
 	.clientGrid {
@@ -663,6 +668,15 @@
 	.skillGrid {
 		margin: 0;
 		flex-shrink: 0;
+	}
+
+	.card[data-size="client"] {
+		box-shadow: 0 1px 0 var(--selected-edge, var(--content-card-keyline));
+	}
+
+	.card[data-size="skill"] {
+		border-bottom: 0;
+		box-shadow: 0 0.73px 0 var(--selected-edge, var(--content-card-keyline));
 	}
 
 	.section:has(> :is(.clientGrid, .skillGrid)) {
