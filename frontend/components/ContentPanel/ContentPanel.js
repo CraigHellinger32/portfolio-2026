@@ -1,8 +1,9 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import PageSidebar from "../PageSidebar/PageSidebar";
+import RedactedContent from "../RedactedImageButton/RedactedContent";
 import styles from "./ContentPanel.module.css";
 
-export default function ContentPanel({ entry, accent, open, id, retainWhenClosed = false, loading = false, error, onRetry }) {
+export default function ContentPanel({ entry, accent, open, id, retainWhenClosed = false, loading = false, error, onRetry, onUnlock }) {
 	const panelRef = useRef(null);
 	const contentRef = useRef(null);
 	const [displayed, setDisplayed] = useState(() => open ? { entry, accent } : null);
@@ -98,11 +99,10 @@ export default function ContentPanel({ entry, accent, open, id, retainWhenClosed
 						</div>
 					) : (
 					<div className={sidebar.trim() ? styles.columns : undefined}>
-						<div
-							className={styles.mainContent}
-							dangerouslySetInnerHTML={{ __html: displayed?.entry?.content || "" }}
-						/>
-						<PageSidebar content={sidebar} />
+						<div className={styles.mainContent}>
+							<RedactedContent html={displayed?.entry?.content} onUnlock={onUnlock} />
+						</div>
+						<PageSidebar content={sidebar} onUnlock={onUnlock} />
 					</div>
 					)}
 				</div>

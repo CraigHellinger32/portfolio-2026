@@ -16,6 +16,9 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+Development output is written to `.next-dev`, while production builds use
+`.next`, so running a build does not overwrite the active dev server's assets.
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
@@ -29,11 +32,31 @@ The Next server must be able to fetch those URLs. SVG logos are served directly.
 Upload card photos at least 460px square for a 230px card on a 2x display;
 the current 230px originals cannot gain detail through optimization.
 
-Post content and ACF sidebar HTML retain WordPress `srcset`, native lazy loading,
-and layout-aware `sizes`. The content plugin registers uncropped 400px, 480px,
-and 880px variants. EWWW Image Optimizer supplies WebP `<picture>` sources with
-JPEG fallback through its `eio_parse_page_html` integration, so no Apache rewrite
-rules or client-side WebP rewriting are needed for the headless frontend.
+The content plugin registers uncropped 400px, 480px, 880px, and 30px-wide
+variants. Case-study body and sidebar raster images in GraphQL use the 30px-wide
+derivative as their visible preview and apply a CSS blur when **Redact panel
+images** is enabled in the case-study editor's ACF fields. The toggle defaults
+to on; turn it off to show normal images without blur, lock icons, or image
+buttons. Cyber-spacial is configured with the toggle off. Larger `srcset`
+candidates are removed from previews; SVGs are not altered. Case-study card
+backgrounds remain unblurred. EWWW Image Optimizer supplies WebP `<picture>`
+sources with a raster fallback through its `eio_parse_page_html` integration.
+Other WordPress content retains its existing responsive image behavior.
+Case-study details are fetched when the panel opens rather than reused from
+session storage, so reopening a panel picks up changes to the redaction toggle.
+
+Panel images must be registered in the WordPress Media Library so their previews
+can be found. If a preview is missing or an image is not registered, it is not
+displayed and the WordPress error log identifies its source. Import any missing
+images through WordPress, generate the preview, and refresh the frontend cache.
+Redacted panel images render through a reusable button with the Figma lock
+icon. It is marked unavailable until a future password flow supplies `onUnlock`
+to `ContentPanel`; no password modal is implemented yet.
+
+The blur is only a visual redaction, not access control. Full-size source URLs
+remain in WordPress and are included in image markup for a future unlock flow;
+anyone who can inspect the public GraphQL response or guess an upload URL may
+still retrieve those originals.
 
 When migrating, copy the media files (including `.webp` siblings), database, and
 EWWW Image Optimizer plugin. For a fresh WordPress installation:
@@ -48,11 +71,11 @@ Keep JPG/PNG/GIF/SVG optimization disabled if originals must remain untouched;
 do not enable original deletion or format replacement. Local WebP encoding must
 be supported by the production host; no cloud API key is configured here.
 
-After activating the content plugin and saving EWWW settings, generate missing
-sizes and WebP copies for existing uploads:
+After activating the content plugin and saving EWWW settings, generate the
+30px preview size and WebP copies for existing uploads:
 
 ```sh
-wp media regenerate --only-missing --skip-delete --yes
+wp media regenerate --image_size=pf2026-blur-30 --only-missing --skip-delete --yes
 wp ewwwio optimize media --webp-only --noprompt
 ```
 

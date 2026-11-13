@@ -26,6 +26,7 @@ Populate an existing case study from the requested Figma frame, including its te
 - Upload images through the WordPress media REST endpoint, `/wp-json/wp/v2/media`, with authenticated requests, correct MIME type and filename. Set meaningful alt text when appropriate. Use the returned attachment URLs/IDs; do not copy files directly into uploads and leave them unregistered.
 - Prepare semantic HTML with paragraphs, headings, lists, links and images in the design's reading order. Preserve existing placeholder wording where present; do not invent facts. Use the existing panel and sidebar styling, not hardcoded Figma colours or bespoke column markup.
 - The case-study ACF group exposes `subtitle`, `startYear`, `endYear` and `pageSidebar` through GraphQL, but is not currently exposed through standard REST. Confirm this against the current plugin configuration. Do not assume an empty REST `acf` response means the fields are empty: read them via GraphQL.
+- Custom ACF groups and image processing live in the existing `app/public/wp-content/plugins/pf2026-content/pf2026-content.php` plugin. Add or change portfolio ACF fields there using its existing `acf_add_local_field_group()` registrations rather than creating another plugin or endpoint. The **Redact panel images** toggle controls case-study body/sidebar images, not card hover backgrounds.
 
 ## 3. Authenticate and update safely
 
@@ -42,7 +43,7 @@ Populate an existing case study from the requested Figma frame, including its te
   ```
   Never do this on production or shared infrastructure.
 - Update only the intended post's supplied fields with authenticated `POST /wp-json/wp/v2/case_study/<id>` using a JSON payload, normally `content`. Upload media first. Preserve publication status unless a change is explicitly requested. Back up or capture the original content and field values before mutation, check HTTP errors, and do not claim success until readback.
-- If required ACF fields cannot be written through the authorized API, explain the limitation and request approval for an appropriate supported WordPress/ACF update mechanism. Do not silently skip the sidebar, modify the database directly without documenting the reason, create an ad hoc unauthenticated/token endpoint, or alter plugin security/CORS to bypass authentication. Existing custom endpoints must not be assumed safe or necessary.
+- For authorized local ACF changes that REST cannot write, use the existing content plugin for field definitions and ACF's supported `update_field( <field-key>, <value>, <verified-post-id> )` through Local WP-CLI to save values. Capture previous values and read them back after updating. This is a supported WordPress operation, not a direct SQL update; no new endpoint is needed. For other unsupported field-write mechanisms, explain the limitation and request approval. Do not silently skip fields, create an ad hoc unauthenticated/token endpoint, or alter plugin security/CORS to bypass authentication. Existing custom endpoints must not be assumed safe or necessary.
 
 ## 4. Verify the result
 

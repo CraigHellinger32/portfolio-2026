@@ -14,6 +14,7 @@
     "@faustwp/cli": "^3.5.1",
     "@faustwp/core": "^3.5.1",
     "graphql": "^16.14.2",
+    "html-react-parser": "^6.1.9",
     "next": "^15.5.28",
     "react": "19.3.0",
     "react-dom": "19.3.0"

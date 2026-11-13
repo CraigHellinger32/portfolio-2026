@@ -43,12 +43,23 @@ add_action( 'graphql_register_types', function () {
 } );
 
 add_action( 'after_setup_theme', function () {
+	add_image_size( 'pf2026-blur-30', 30, 0, false );
 	add_image_size( 'pf2026-400', 400, 0, false );
 	add_image_size( 'pf2026-480', 480, 0, false );
 	add_image_size( 'pf2026-880', 880, 0, false );
 } );
 
-function pf2026_responsive_content_images( $html, $sidebar = false ) {
+function pf2026_should_redact_images( $post_id ) {
+	if ( 'case_study' !== get_post_type( $post_id ) ) {
+		return false;
+	}
+	if ( ! metadata_exists( 'post', $post_id, 'redact_panel_images' ) ) {
+		return true;
+	}
+	return (bool) get_post_meta( $post_id, 'redact_panel_images', true );
+}
+
+function pf2026_responsive_content_images( $html, $sidebar = false, $blur = false ) {
 	if ( ! is_string( $html ) || '' === $html || is_admin() ) {
 		return $html;
 	}
@@ -67,6 +78,37 @@ function pf2026_responsive_content_images( $html, $sidebar = false ) {
 		if ( 'sidebar' === $tags->get_attribute( 'data-pf2026-image-context' ) && ! $sidebar ) {
 			continue;
 		}
+		if ( $blur ) {
+			$source = $tags->get_attribute( 'data-pf2026-original-src' ) ?: $tags->get_attribute( 'src' );
+			$class = $tags->get_attribute( 'class' ) ?: '';
+			$attachment_id = 0;
+			if ( $source ) {
+				$attachment_id = preg_match( '/(?:^|\s)wp-image-(\d+)(?:\s|$)/', $class, $matches )
+					? (int) $matches[1]
+					: attachment_url_to_postid( $source );
+			}
+			$mime = $attachment_id ? get_post_mime_type( $attachment_id ) : '';
+			if ( $source && 'image/svg+xml' !== $mime && ! preg_match( '/\.svg(?:[?#]|$)/i', $source ) ) {
+				$preview = $attachment_id && wp_attachment_is_image( $attachment_id )
+					? wp_get_attachment_image_src( $attachment_id, 'pf2026-blur-30' )
+					: false;
+				$tags->set_attribute( 'data-pf2026-original-src', $source );
+				$tags->set_attribute( 'data-pf2026-blurred', 'true' );
+				$tags->remove_attribute( 'srcset' );
+				$tags->remove_attribute( 'sizes' );
+				if ( $preview && $preview[1] <= 30 ) {
+					$tags->set_attribute( 'src', $preview[0] );
+					$metadata = wp_get_attachment_metadata( $attachment_id );
+					if ( ! $tags->get_attribute( 'width' ) && ! empty( $metadata['width'] ) && ! empty( $metadata['height'] ) ) {
+						$tags->set_attribute( 'width', $metadata['width'] );
+						$tags->set_attribute( 'height', $metadata['height'] );
+					}
+				} else {
+					$tags->remove_attribute( 'src' );
+					error_log( 'PF2026: 30px preview unavailable for case-study image: ' . $source );
+				}
+			}
+		}
 		if ( $sidebar ) {
 			$tags->set_attribute( 'data-pf2026-image-context', 'sidebar' );
 		}
@@ -75,16 +117,59 @@ function pf2026_responsive_content_images( $html, $sidebar = false ) {
 		}
 	}
 
-	return apply_filters( 'eio_parse_page_html', $tags->get_updated_html() );
+	$html = $tags->get_updated_html();
+	if ( $blur ) {
+		$html = pf2026_limit_picture_sources( $html );
+	}
+	return apply_filters( 'eio_parse_page_html', $html );
+}
+
+function pf2026_limit_picture_sources( $html ) {
+	$tags = new WP_HTML_Tag_Processor( $html );
+	$in_picture = false;
+	while ( $tags->next_token() ) {
+		$name = $tags->get_tag();
+		if ( 'PICTURE' === $name ) {
+			$in_picture = ! $tags->is_tag_closer();
+		} elseif ( $in_picture && 'SOURCE' === $name && ! $tags->is_tag_closer() ) {
+			$tags->set_bookmark( 'picture-source' );
+			$preview = null;
+			while ( $tags->next_token() ) {
+				if ( 'PICTURE' === $tags->get_tag() && $tags->is_tag_closer() ) {
+					break;
+				}
+				if ( 'IMG' === $tags->get_tag() ) {
+					if ( 'true' === $tags->get_attribute( 'data-pf2026-blurred' ) ) {
+						$preview = $tags->get_attribute( 'src' ) ?: '';
+					}
+					break;
+				}
+			}
+			$tags->seek( 'picture-source' );
+			if ( null !== $preview && ( ! $preview || $tags->get_attribute( 'srcset' ) !== $preview . '.webp' ) ) {
+				$tags->remove_attribute( 'srcset' );
+			}
+			$tags->release_bookmark( 'picture-source' );
+		}
+	}
+	return $tags->get_updated_html();
 }
 
 add_filter( 'the_content', function ( $html ) {
-	return 'case_study' === get_post_type() ? pf2026_responsive_content_images( $html ) : $html;
+	return 'case_study' === get_post_type()
+		? pf2026_responsive_content_images( $html, false, function_exists( 'is_graphql_request' ) && is_graphql_request() && pf2026_should_redact_images( get_the_ID() ) )
+		: $html;
 }, 30 );
 
 add_filter( 'acf/format_value/key=field_6ae9084b81a9d', function ( $html ) {
 	return pf2026_responsive_content_images( $html, true );
 }, 30 );
+
+add_filter( 'wpgraphql/acf/field_value', function ( $value, $field, $root, $post_id ) {
+	return isset( $field['key'] ) && 'field_6ae9084b81a9d' === $field['key']
+		? pf2026_responsive_content_images( $value, true, pf2026_should_redact_images( $post_id ) )
+		: $value;
+}, 30, 4 );
 
 add_action( 'acf/include_fields', function () {
 	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
@@ -101,6 +186,19 @@ add_action( 'acf/include_fields', function () {
 		'map_graphql_types_from_location_rules' => 0,
 		'graphql_types'      => '',
 		'fields'             => [
+			[
+				'key'                => 'field_pf2026_redact_panel_images',
+				'label'              => 'Redact panel images',
+				'name'               => 'redact_panel_images',
+				'type'               => 'true_false',
+				'instructions'       => 'Show blurred previews and locks for raster images in the main panel and sidebar. Card hover backgrounds are unaffected.',
+				'default_value'      => 1,
+				'ui'                 => 1,
+				'ui_on_text'         => 'Redacted',
+				'ui_off_text'        => 'Visible',
+				'show_in_graphql'    => 1,
+				'graphql_field_name' => 'redactPanelImages',
+			],
 			[
 				'key'                => 'field_6adfbe51c7fce',
 				'label'              => 'Chemical symbol',

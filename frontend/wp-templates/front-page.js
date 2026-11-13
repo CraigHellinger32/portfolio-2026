@@ -70,14 +70,6 @@ export default function FrontPageTemplate(props) {
 	const fetchDetailData = () => {
 		if (!activeEntry) return;
 		
-		const cache = sessionStorage.getItem(`detail-${activeEntry.uri}`);
-		if (cache) {
-			setDetailData(JSON.parse(cache));
-			setDetailLoading(false);
-			setDetailError(null);
-			return;
-		}
-		
 		setDetailLoading(true);
 		setDetailError(null);
 		const query = JSON.stringify({
@@ -110,7 +102,6 @@ export default function FrontPageTemplate(props) {
 				} else {
 					const data = result.data;
 					setDetailData(data);
-					sessionStorage.setItem(`detail-${activeEntry.uri}`, JSON.stringify(data));
 				}
 				setDetailLoading(false);
 			})

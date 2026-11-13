@@ -136,6 +136,10 @@
 	height: auto;
 }
 
+.mainContent img[data-pf2026-blurred="true"] {
+	filter: blur(2px);
+}
+
 .mainContent figure {
 	margin: 0;
 }
@@ -144,15 +148,15 @@
 	display: block;
 }
 
-.mainContent p:has(> :is(img, picture)) {
+.mainContent p:has(> :is(img, picture, button:has(img))) {
 	margin: 0;
 }
 
-.mainContent :is(img, picture, figure:has(img), p:has(> :is(img, picture))) + :is(img, picture, figure:has(img), p:has(> :is(img, picture))) {
+.mainContent :is(img, picture, button:has(img), figure:has(img), p:has(> :is(img, picture, button:has(img)))) + :is(img, picture, button:has(img), figure:has(img), p:has(> :is(img, picture, button:has(img)))) {
 	margin-top: 30px;
 }
 
-.mainContent :is(img, picture, figure:has(img), p:has(> :is(img, picture))) + p:not(:has(> :is(img, picture))) {
+.mainContent :is(img, picture, button:has(img), figure:has(img), p:has(> :is(img, picture, button:has(img)))) + p:not(:has(> :is(img, picture, button:has(img)))) {
 	margin-top: 20px;
 }
 

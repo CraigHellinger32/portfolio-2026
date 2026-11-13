@@ -35,6 +35,10 @@
 	height: auto;
 }
 
+.sidebar img[data-pf2026-blurred="true"] {
+	filter: blur(2px);
+}
+
 .sidebar a {
 	color: inherit;
 }
@@ -43,19 +47,20 @@
 	display: block;
 }
 
-.sidebar :is(p, h1, h2, h3, h4, h5, h6) :is(img, picture) {
+.sidebar :is(p, h1, h2, h3, h4, h5, h6) :is(img, picture, button:has(img)) {
 	margin-block: 40px;
 }
 
-.sidebar picture img {
+.sidebar picture img,
+.sidebar button :is(img, picture) {
 	margin: 0;
 }
 
-.sidebar > p > :is(img, picture):only-child {
+.sidebar > p > :is(img, picture, button:has(img)):only-child {
 	margin-block: 0;
 }
 
-.sidebar br:has(+ :is(img, picture)),
-.sidebar :is(img, picture) + br {
+.sidebar br:has(+ :is(img, picture, button:has(img))),
+.sidebar :is(img, picture, button:has(img)) + br {
 	display: none;
 }
