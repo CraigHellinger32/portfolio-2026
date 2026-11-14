@@ -1,0 +1,24 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block breadcrumb %}
+{% endblock %}
+
+{% block page_heading %}
+    {% include 'partials/atoms/text/heading.html.twig' with {
+        'title': 'Please log in to view this page'
+    } %}
+{% endblock %}
+
+{% block page_content %}
+    <div class="boxed">
+        <h2 class="boxed__heading">You are trying to access protected content.</h2>
+        <p class="boxed__text">Please log in to view this page.</p>
+
+        {% include 'partials/atoms/button/call_to_action.html.twig' with {
+            'link': path('user_account_signin'),
+            'title': getTranslatedString('sign-in-link-label'),
+            'className': 'button--secondary'
+            }
+        %}
+    </div>
+{% endblock %}

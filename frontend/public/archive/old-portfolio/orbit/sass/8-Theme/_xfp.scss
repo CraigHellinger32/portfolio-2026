@@ -1,0 +1,281 @@
+// Back-up space variables for when missing
+
+$space: 24 * 1px !default;
+
+$space-sixth: round($space / 6) !default;
+$space-quarter: round($space / 4) !default;
+$space-third: round($space / 3) !default;
+$space-half: round($space / 2) !default;
+$space-two-thirds: round($space / 1.5) !default;
+$space-three-quarters: round($space / 1.33333333) !default;
+$space-and-quarter: round($space + $space-quarter) !default;
+$space-and-third: round($space + $space-third) !default;
+$space-and-half: round($space + $space-half) !default;
+$space-and-two-thirds: round($space + $space-two-thirds) !default;
+$space-and-three-quarters: round($space + $space-three-quarters) !default;
+$space-double: round($space * 2) !default;
+$space-triple: round($space * 3) !default;
+$space-quadruple: round($space * 4) !default;
+
+
+// Back-up font size variable for when missing
+
+$micro: 12px !default;
+
+
+// Back-up colour variables for when missing
+
+$color-white: #fff !default;
+$color-off-white: mix($color-primary, $color-white, 7%) !default;
+$color-subtle: mix($color-primary, $color-white, 60%) !default;
+$color-text-muted: mix($color-text-default, $color-white, 60%) !default;
+
+
+// Event booking component styling
+
+.calendar--event-booking {
+    max-width: none;
+    width: 100%;
+
+    .ie8-wrapper & {
+        display: none;
+    }
+
+    .calendar__table,
+    .calendar__days,
+    .calendar__dates,
+    tr,
+    th,
+    td {
+        @include respond-max($mid-width) {
+            display: block;
+        }
+    }
+
+    .calendar__table {
+        background-color: $color-border;
+        transition: .125s ease-in;
+
+        @include respond-min($mid-width) {
+            table-layout: fixed;
+        }
+
+        @include respond-max($mid-width) {
+            margin-top: $space;
+        }
+    }
+
+    .calendar__days {
+        tr {
+            @include respond-max($mid-width) {
+                @include visuallyhidden;
+            }
+        }
+
+        th {
+            @include respond-min($mid-width) {
+                width: percentage(1 / 7);
+            }
+        }
+    }
+
+    .calendar__dates {
+        td {
+            background-color: $color-white;
+            transition: .125s ease-in;
+            vertical-align: top;
+
+            @include respond-min($mid-width) {
+                width: percentage(1 / 7);
+            }
+
+            @include respond-max($mid-width) {
+                min-height: $space-double + $space-half;
+                padding-bottom: $space-sixth;
+                padding-left: $space-double;
+                padding-top: $space-sixth;
+                position: relative;
+                text-align: left;
+                width: 100%;
+            }
+
+            &:not(:empty):not(.is-disabled) {
+                cursor: pointer;
+            }
+
+            &.is-disabled {
+                background-color: $color-off-white;
+                cursor: not-allowed;
+
+                &::before,
+                legend {
+                    color: $color-text-muted;
+                }
+            }
+
+            &::before {
+                @include respond-max($mid-width) {
+                    content: attr(data-day);
+                    font-size: $micro;
+                    font-weight: bold;
+                    left: 0;
+                    padding-right: $space-sixth;
+                    position: absolute;
+                    text-align: right;
+                    top: $space-third;
+                    transition: .125s ease-in;
+                    width: $space-and-two-thirds;
+                }
+            }
+        }
+
+        legend {
+            @include respond-max($mid-width) {
+                left: 0;
+                padding: 0 $space-sixth 0 0;
+                position: absolute;
+                text-align: right;
+                top: $space;
+                width: $space-and-two-thirds;
+            }
+        }
+
+        fieldset,
+        legend {
+            margin-bottom: 0;
+        }
+
+        fieldset {
+            padding-bottom: $space-sixth;
+            transition: .125s ease-in;
+        }
+
+        .button {
+            margin-bottom: 0;
+            margin-top: $space-sixth;
+
+            @include respond-min($mid-width) {
+                width: calc(100% - #{$space-third});
+            }
+
+            @include respond-max($mid-width) {
+                margin-right: $space-sixth;
+                min-width: $space-quadruple + $space-third;
+                width: calc(25% - #{$space-sixth});
+            }
+        }
+
+        .form__radio {
+            @include visuallyhidden;
+
+            &:checked + .button {
+                background-color: $color-success;
+                color: $color-black;
+            }
+
+            &:disabled + .button {
+                @extend .button--disabled;
+            }
+        }
+
+        .form__label--radio {
+            &::before,
+            &::after {
+                content: none;
+            }
+        }
+    }
+
+    .calendar__date {
+        margin: 0 auto;
+    }
+
+    &.is-interactive {
+        .calendar__dates {
+            &:hover td:not(.is-highlighted):not(:empty):not(.is-disabled):hover,
+            &.has-selection:hover td:not(.is-highlighted):not(:empty):not(.is-disabled):hover {
+                background-color: $color-subtle;
+            }
+
+            .is-highlighted {
+                background-color: mix($color-success, $color-white, 60%);
+            }
+
+            &:hover td:not(.is-highlighted):not(:hover) fieldset,
+            &:hover td:not(.is-highlighted):not(:hover)::before,
+
+            &:not(.has-selection):hover .is-highlighted:not(:hover) fieldset,
+            &:not(.has-selection):hover .is-highlighted:not(:hover)::before,
+
+            &.has-selection td:not(.is-highlighted):not(:hover) fieldset,
+            &.has-selection td:not(.is-highlighted):not(:hover)::before,
+
+            tr::before {
+                @include respond-max($mid-width) {
+                    border-bottom: 1px solid $color-text-muted;
+                    content: attr(data-label);
+                    display: block;
+                    padding: $space-two-thirds 0;
+                    text-align: center;
+                    width: 100%;
+                }
+            }
+
+            tr:not(.is-expanded):not(:hover) td {
+                @include respond-max($mid-width) {
+                    display: none;
+                }
+            }
+
+            td::after {
+                content: attr(data-available-slots) ' available';
+                display: block;
+                font-size: $micro;
+                font-style: italic;
+
+                @include respond-min($mid-width) {
+                    margin-bottom: $space-quarter;
+                    margin-top: $space * -1;
+                }
+            }
+
+            .is-expanded td::after {
+                @include respond-min($mid-width) {
+                    display: none;
+                }
+            }
+
+            .is-expanded td:not(.is-disabled):hover::after {
+                @include respond-max($mid-width) {
+                    display: none;
+                }
+            }
+
+            .is-expanded .is-highlighted::after {
+                @include respond-max($mid-width) {
+                    display: none;
+                }
+            }
+
+            tr:not(.is-expanded) .button {
+                @include respond-min($mid-width) {
+                    display: none;
+                }
+            }
+
+            td:not(.is-highlighted):not(:hover) .button {
+                @include respond-max($mid-width) {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    &.is-loading {
+        .calendar__table {
+            cursor: default;
+            opacity: .5;
+            pointer-events: none;
+        }
+    }
+}

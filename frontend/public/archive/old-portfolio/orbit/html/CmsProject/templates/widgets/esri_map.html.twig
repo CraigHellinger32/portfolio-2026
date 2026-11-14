@@ -1,0 +1,9 @@
+{% block widget_wrap %}
+    <div class="widget-arcgis-map">
+
+        {% block widget_content %}
+            {{ getESRIMapsHTML(-1, '', guid)|raw }}
+        {% endblock %}
+
+    </div>
+{% endblock widget_wrap %}

@@ -1,0 +1,40 @@
+{% block widget_wrap %}
+    <div class="widget-latest-news">
+        {% block widget_wrap_inner %}
+
+            {% block widget_heading %}
+                {% include 'partials/atoms/text/widget_heading.html.twig' with {
+                    'title': getTranslatedString('news-list-title')
+                } %}
+            {% endblock %}
+
+            {% block widget_content %}
+                {% block widget_content_inner %}
+                    {% block news_featured %}
+                        {% if article %}
+
+                            {% block news_featured_inner %}
+                                {% include 'partials/molecules/article/featured.html.twig' with {
+                                    'title': article.title,
+                                    'summary': article.summary,
+                                    'link': article.link
+                                } only %}
+                            {% endblock news_featured_inner %}
+
+                        {% endif %}
+                    {% endblock news_featured %}
+
+                    {% block news_list %}
+                        {% include 'partials/molecules/list/list.html.twig' with {
+                            'group': group,
+                            'type': 'article'
+                        } %}
+                    {% endblock news_list %}
+
+                {% endblock widget_content_inner %}
+            {% endblock widget_content %}
+
+        {% endblock widget_wrap_inner %}
+
+    </div>
+{% endblock widget_wrap %}

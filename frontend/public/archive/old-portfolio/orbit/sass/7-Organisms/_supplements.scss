@@ -1,0 +1,87 @@
+// Supplements
+//
+// Supplement styling, see /sass/objects/_supplements.scss for CMS related placeholder classes (WIP)
+//
+// Styleguide 16
+
+.supplements {
+    @extend %cf;
+
+    clear: both;
+    float: left;
+    width: 100%;
+}
+
+.supplements--secondary {
+    margin-top: $space-double;
+}
+
+.supplement {
+    @extend %boxed;
+
+    background-color: $color-subtle;
+    clear: both;
+    float: left;
+    margin-bottom: $widget-supp-slug;
+    width: 100%;
+
+    .pagination + & {
+        margin-top: $space-double;
+    }
+
+    .page-content &,
+    .aside & {
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .widget-row + & {
+        margin-top: $widget-supp-slug;
+    }
+}
+
+.supplement__heading {
+    @extend %boxed__heading;
+
+    margin: 0 0 $slug-small;
+}
+
+.supplement__subheading {
+    font-size: $normalis;
+}
+
+.supplement__text {
+    margin: 0 0 $slug;
+
+    strong {
+        margin-right: $space-half;
+    }
+}
+
+// For supplements that have full width images
+.supplement--flush {
+    .aside--sidebar & {
+        padding: $space $space-and-quarter;
+
+        @include respond-min($mid-width) {
+            padding: 0;
+        }
+    }
+
+    .image {
+        .aside--sidebar & {
+            @include respond-min($mid-width) {
+                width: 100%;
+            }
+        }
+    }
+
+    .supplement__content {
+        .aside--sidebar & {
+            @include respond-min($mid-width) {
+                padding: $space $space-and-quarter;
+            }
+        }
+    }
+}

@@ -1,0 +1,36 @@
+{% block supplement %}
+    <div class="supplement supplement--further-info">
+
+        {% block supplement_content %}
+            {% block supplement_heading %}
+                {% include 'partials/atoms/text/supplement_heading.html.twig' with {
+                    'title': title
+                    }
+                %}
+            {% endblock %}
+
+            {% block supplement_summary %}
+                {% include 'partials/atoms/text/supplement_description.html.twig' with {
+                    'summary': summary
+                    }
+                %}
+            {% endblock %}
+
+            {% block supplement_link %}
+                {% if link and link_title %}
+
+                    {% block supplement_link_inner %}
+                        {% include 'partials/atoms/button/call_to_action.html.twig' with {
+                            'link': link,
+                            'title': link_title,
+                            'className': 'button--secondary'
+                            }
+                        %}
+                    {% endblock %}
+
+                {% endif %}
+            {% endblock %}
+        {% endblock supplement_content %}
+
+    </div>
+{% endblock supplement %}

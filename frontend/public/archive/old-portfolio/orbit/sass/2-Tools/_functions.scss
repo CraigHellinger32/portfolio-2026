@@ -1,0 +1,54 @@
+//
+// pxToRem($value)
+// Function - converts a value to REM
+// $value - value to be converted to REM
+//
+@function pxToRem($value) {
+    @return ($value / $base-font-size * 1rem);
+}
+
+//
+// pxToEm($value)
+// Function - converts a value to EM
+// $value - pixel value to be converted to EM
+//
+@function pxToEm($value) {
+    @return ($value / $base-font-size * 1em);
+}
+
+//
+// remToEm($value)
+// Function - converts a value to EM
+// $value - REM value to be converted to EM
+// $context - REM value for the context eg current size
+//
+@function remToEm($value, $context: 1rem) {
+    @return ($value / $context * 1em);
+}
+
+//
+// remToPx($value)
+// Function - converts a rem-based value to px
+// $value - rem-based value to be converted to px
+//
+@function remToPx($value) {
+    @return ($value / 1rem * $base-font-size);
+}
+
+//
+// stripUnits($number)
+// Function - Remove the units from a given value.
+// $number - value and unit
+//
+@function stripUnits($number) {
+    @return $number / ($number * 0 + 1);
+}
+
+//
+// aspectRatio($width, $height)
+// Function - Get aspect ratio of image.
+// $width and $image - unitless dimentions of image
+//
+@function aspectRatio($width, $height) {
+    @return ($height / $width) * 100%;
+}

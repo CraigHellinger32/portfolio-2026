@@ -1,0 +1,9 @@
+{% extends 'layouts/article.html.twig' %}
+
+{% set columns = 'two-column'%}
+
+{% block before_primary_supplements %}
+    {% block share_links %}
+        {% include 'partials/organisms/share.html.twig' %}
+    {% endblock %}
+{% endblock %}

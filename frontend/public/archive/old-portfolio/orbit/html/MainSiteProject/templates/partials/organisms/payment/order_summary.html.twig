@@ -1,0 +1,54 @@
+{% extends '@theme:paybridgebase/partials/organisms/payment/order_summary.html.twig' %}
+
+{% set threeColumnTable = false %}
+{% if group is not empty %}
+    {% for item in group %}
+        {% if item.cxm is defined and item.cxm is not empty %}
+            {% set threeColumnTable = true %}
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+{% block order_summary_heading %}
+    <h3 class="h4">Itemised list</h3>
+{% endblock %}
+
+{% block order_summary_table_header %}
+    <thead>
+        <tr>
+            <th>Service</th>
+            <th>Cost</th>
+            {% if threeColumnTable %}<td class="th"></td>{% endif %}
+        </tr>
+    </thead>
+{% endblock %}
+
+{% block order_items %}
+    <tbody>
+        {% if group is not empty %}
+            {% for item in group %}
+
+                {% block order_item %}
+                    {{ parent() }}
+                {% endblock %}
+
+            {% endfor %}
+        {% else %}
+
+            {% block order_no_items_message %}
+                <tr>
+                    <td class="no-results" colspan="{{ threeColumnTable ? 3 : 2 }}">
+                        <div class="no-results__message">
+                            <p>There were no items in the order.</p>
+                        </div>
+                    </td>
+                </tr>
+            {% endblock %}
+
+        {% endif %}
+    </tbody>
+{% endblock %}
+
+{% block order_item_cxm %}
+    {% if threeColumnTable %}<td>{{ item.cxm|raw }}</td>{% endif %}
+{% endblock %}

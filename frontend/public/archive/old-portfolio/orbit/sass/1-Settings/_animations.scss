@@ -1,0 +1,31 @@
+// ================================================
+//  Animation
+// ================================================
+//   Bounce -- [Example]
+//  =====================
+@keyframes animation--bounce {
+    0%, 10%, 20%, 100% {
+        transform: translateY(0);
+    }
+
+    5% {
+        transform: translateY(-10px);
+    }
+
+    15% {
+        transform: translateY(-5px);
+    }
+}
+
+.animation--bounce,
+%animation--bounce {
+    animation-duration: 3s;
+    animation-name: animation--bounce;
+}
+
+.animation--infinite,
+%animation--infinite {
+    animation-iteration-count: infinite;
+}
+
+// ================================================

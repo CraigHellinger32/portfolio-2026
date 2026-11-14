@@ -1,0 +1,25 @@
+{% extends '@theme:base/pages/utilities_content/search/list.html.twig' %}
+
+{% block search_synonyms_inner %}
+    <h2 class="boxed__heading">You could also try:
+        {% for synonym in synonymSuggestions %}
+            <a class="boxed__link" href="{{ synonym.url }}">{{ synonym.word }}</a>
+            {% if loop.index < synonymSuggestions|length %}, {% endif %}
+        {% endfor %}
+    </h2>
+{% endblock %}
+
+{% block search_refinement_heading %}
+    <h2 class="boxed__heading">Refine by:</h2>
+{% endblock %}
+
+{% block search_spelling_inner %}
+    <h2 class="boxed__heading">
+        Did you mean
+        {% for suggestion in spellingSuggestions %}
+            <a class="boxed__link" href="{{ suggestion.url }}">{{ suggestion.word }}</a>
+            {% if loop.index < spellingSuggestions|length %}, {% endif %}
+        {% endfor %}
+        ?
+    </h2>
+{% endblock %}

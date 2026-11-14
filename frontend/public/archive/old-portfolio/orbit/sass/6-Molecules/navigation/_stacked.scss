@@ -1,0 +1,23 @@
+// Stacked navigation
+//
+// Renders the list into vertical mode
+//
+// Markup:
+// <ul class="nav nav--stacked">
+//   <li><a>Home</a></li>
+//   <li><a>Contact</a></li>
+//   <li><a>About</a></li>
+// </ul>
+//
+// Styleguide 14.1
+
+.nav--stacked,
+%nav--stacked {
+    .nav__item {
+        display: list-item;
+    }
+
+    .nav__link {
+        display: block;
+    }
+}

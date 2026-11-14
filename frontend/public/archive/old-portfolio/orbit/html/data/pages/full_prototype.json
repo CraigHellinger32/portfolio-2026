@@ -1,0 +1,231 @@
+{
+    "bodyClass": "homepage-modular",
+    "content": {
+        "title": "Prototypes",
+        "homepage": {
+            "orderedWidgets": [
+                [
+
+                    {
+                        "widget": {
+                            "title": "navigation"
+                        },
+                        "widgetID": 502,
+                        "title": "Style Guide",
+                        "widthPercentage": 33,
+                        "links": [
+                            {
+                                "title": "Branding",
+                                "link": "./1-branding.html"
+                            },
+                            {
+                                "title": "Typography",
+                                "link": "./1-typography.html"
+                            },
+                            {
+                                "title": "Standard Form Components",
+                                "link": "./1-form-components.html"
+                            },
+                            {
+                                "title": "XFP Form Components",
+                                "link": "./1-xfp.html"
+                            },
+                            {
+                                "title": "Standard Components",
+                                "link": "./1-standard-components.html"
+                            },
+                            {
+                                "title": "Supplements",
+                                "link": "./1-supplements.html"
+                            },
+                            {
+                                "title": "Tables",
+                                "link": "./1-tables.html"
+                            },
+                            {
+                                "title": "Carousels",
+                                "link": "./1-carousels.html"
+                            }
+                        ]
+                    },
+                    {
+                        "widget": {
+                            "title": "navigation"
+                        },
+                        "widgetID": 502,
+                        "title": "Page Types",
+                        "widthPercentage": 33,
+                        "links": [
+                            {
+                                "title": "Home Page",
+                                "link": "./2-home-page.html"
+                            },
+                            {
+                                "title": "Home Page (2 columns)",
+                                "link": "./2-home-page-2-col.html"
+                            },
+                            {
+                                "title": "Landing Page",
+                                "link": "./2-landing-page.html"
+                            },
+                            {
+                                "title": "Document Page (1 column)",
+                                "link": "./2-document-one-column.html"
+                            },
+                            {
+                                "title": "Document Page (2 columns)",
+                                "link": "./2-document-two-column.html"
+                            },
+                            {
+                                "title": "Generic Listing Page",
+                                "link": "./2-generic-listing-page.html"
+                            },
+                            {
+                                "title": "Standard Jadu Widgets (100% width)",
+                                "link": "./2-home-page-widgets.html"
+                            },
+                            {
+                                "title": "Standard Jadu Widgets (50% Width)",
+                                "link": "./2-home-page-widgets-50-50.html"
+                            }
+                        ]
+                    },
+                    {
+                        "widget": {
+                            "title": "navigation"
+                        },
+                        "widgetID": 502,
+                        "title": "Directory Pages",
+                        "widthPercentage": 33,
+                        "links": [
+                            {
+                                "title": "Directory Article",
+                                "link": "./3-directory-article.html"
+                            },
+                            {
+                                "title": "Directory A-Z",
+                                "link": "./3-directory-az.html"
+                            },
+                            {
+                                "title": "Directory Record",
+                                "link": "./3-directory-record.html"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "widget": {
+                            "title": "navigation"
+                        },
+                        "widgetID": 502,
+                        "title": "Listing Pages",
+                        "widthPercentage": 33,
+                        "links": [
+                            {
+                                "title": "AZ Listing Page",
+                                "link": "./4-az-listing-page.html"
+                            },
+                            {
+                                "title": "Councillors Listing Page",
+                                "link": "./4-councillors-listing-page.html"
+                            },
+                            {
+                                "title": "Meetings Listing Page",
+                                "link": "./4-meetings-listing-page.html"
+                            },
+                            {
+                                "title": "Events Listing Page",
+                                "link": "./4-events-listing-page.html"
+                            },
+                            {
+                                "title": "News Listing Page",
+                                "link": "./4-news-listing-page.html"
+                            },
+                            {
+                                "title": "Search Listing Page",
+                                "link": "./4-search-results.html"
+                            }
+                        ]
+                    },
+                    {
+                        "widget": {
+                            "title": "navigation"
+                        },
+                        "widgetID": 502,
+                        "title": "Article Pages",
+                        "widthPercentage": 33,
+                        "links": [
+                            {
+                                "title": "Councillor Article Page",
+                                "link": "./5-article-councillor.html"
+                            },
+                            {
+                                "title": "Meeting Article Page",
+                                "link": "./5-article-meeting.html"
+                            },
+                            {
+                                "title": "Download Article Page",
+                                "link": "./5-article-download.html"
+                            },
+                            {
+                                "title": "Event Article Page",
+                                "link": "./5-article-event.html"
+                            },
+                            {
+                                "title": "News Article Page",
+                                "link": "./5-article-news.html"
+                            }
+                        ]
+                    },
+                    [
+                        {
+                            "widget": {
+                                "title": "navigation"
+                            },
+                            "widgetID": 502,
+                            "title": "Form Pages",
+                            "widthPercentage": 33,
+                            "links": [
+                                {
+                                    "title": "User Registration Page",
+                                    "link": "./6-form-user-registration.html"
+                                },
+                                {
+                                    "title": "User Sign In Page",
+                                    "link": "./6-form-user-signin.html"
+                                },
+                                {
+                                    "title": "Directory Submit Page",
+                                    "link": "./6-form-directory-submit.html"
+                                },
+                                {
+                                    "title": "Event Submission Page",
+                                    "link": "./6-form-event-submission.html"
+                                }
+                            ]
+                        },
+                        {
+                            "widget": {
+                                "title": "navigation"
+                            },
+                            "widgetID": 502,
+                            "title": "Miscellaneous Pages",
+                            "widthPercentage": 33,
+                            "links": [
+                                {
+                                    "title": "404",
+                                    "link": "./404.html"
+                                },
+                                {
+                                    "title": "Offline",
+                                    "link": "./offline.html"
+                                }
+                            ]
+                        }
+                    ]
+                ]
+            ]
+        }
+    }
+}

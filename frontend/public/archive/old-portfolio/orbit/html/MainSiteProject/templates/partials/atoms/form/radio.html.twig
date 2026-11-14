@@ -1,0 +1,27 @@
+{# REMEMBER to change the path to @theme:xfpbase if you have XFP installed #}
+{% extends '@theme:base/partials/atoms/form/radio.html.twig' %}
+
+{% block form_radio_inner %}
+
+    {% block form_radio_input %}
+        <input
+            {% block form_radio_attributes %}
+                class="form__radio"
+                id="{{ name ~ loop.index }}"
+                type="radio"
+                name="{{ name }}"
+                value="{{ option.value }}"
+                {% if help is not empty %}
+                    aria-describedby="help_text_{{ id|default(name) }}"
+                {% endif %}
+                {% if option.value == value %} checked{% endif %}
+                {% if option.data is not empty %} data-xfp="{{ option.data }}"{% endif %}
+            {% endblock %}
+        >
+    {% endblock %}
+
+    {% block form_radio_label %}
+        {{ parent() }}
+    {% endblock %}
+
+{% endblock %}

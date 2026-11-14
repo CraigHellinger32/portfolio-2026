@@ -1,0 +1,49 @@
+{% block record_list_heading %}
+    {% if title %}
+        <h2{% if titleClass %} class="{{ titleClass }}"{% endif %}>{{ title }}</h2>
+    {% endif %}
+{% endblock %}
+
+{% if group %}
+    {% spaceless %}
+
+    {% block record_list %}
+        <ul class="list{{ className ? ' ' ~ className }}{{ modifier ? ' ' ~ modifier }}">
+            {% for item in group %}
+
+                {% block record_item %}
+                    <li class="list__item">
+
+                        {% block record_item_inner %}
+                            {% block record_item_icon %}
+                                {% if item.icon %}
+                                    <span class="icon icon--inline {{ item.icon }}"></span>
+                                {% endif %}
+                            {% endblock %}
+
+                            {% block record_item_content %}
+                                {% if (item.disabled == true) %}
+
+                                    {% block record_item_disabled %}
+                                        <span class="list__link">{{ item.title }}</span>
+                                    {% endblock %}
+
+                                {% else %}
+
+                                    {% block record_item_link %}
+                                        <a class="list__link" href="{{ item.url }}">{{ item.title }}</a>
+                                    {% endblock %}
+
+                                {% endif %}
+                            {% endblock record_item_content %}
+                        {% endblock record_item_inner %}
+
+                    </li>
+                {% endblock record_item %}
+
+            {% endfor %}
+        </ul>
+    {% endblock record_list %}
+
+    {% endspaceless %}
+{% endif %}

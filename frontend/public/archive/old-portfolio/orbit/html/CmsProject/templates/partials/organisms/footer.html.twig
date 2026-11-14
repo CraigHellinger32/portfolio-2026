@@ -1,0 +1,74 @@
+{% block footer_content %}
+    {% set links = [
+        {
+            'title' : 'A-Z of council services',
+            'url': path('atoz_list')
+        },
+        {
+            'title' : 'Events',
+            'url': path('event_list')
+        },
+        {
+            'title' : 'News',
+            'url': path('news_list')
+        },
+        {
+            'title' : getTranslatedString('accessibility-settings-link'),
+            'url': path('accessibility_settings')
+        },
+        {
+            'title' : 'Councillors',
+            'url': path('councillor_list')
+        },
+        {
+            'title' : 'Meetings',
+            'url': path('meeting_list')
+        }
+        ]
+    %}
+
+    {% set date = ''|date('Y') %}
+
+    <footer class="site-footer">
+        {% block footer_links %}
+            <div class="container container--flex">
+
+                {% block footer_links_content %}
+                    {% include 'partials/organisms/footer_section.html.twig' with {
+                        'links': links
+                    } only %}
+                {% endblock %}
+
+            </div>
+        {% endblock %}
+
+        {% block footer_bottom %}
+            <div class="container">
+
+                {% block footer_bottom_content %}
+                    {% block footer_copyright %}
+                        <p class="site-footer__text site-footer__rights">{{ getTranslatedString('copyright', [ date, getConstantValue('METADATA_GENERIC_NAME') ]) }}</p>
+                    {% endblock %}
+
+                    {% block footer_suppliers %}
+                        <p class="site-footer__text">
+                            <a href="http://www.jadu.net">Powered by <strong>Jadu Continuum</strong>.</a>
+                        </p>
+                    {% endblock %}
+
+                    {% block footer_bottom_links %}
+                        {% include 'partials/organisms/footer_bottom_nav.html.twig' %}
+                    {% endblock %}
+
+                    {% block footer_back_to_top %}
+                        <a class="button button--primary back-to-top" href="#top" rel="nofollow" data-scroll-to="#top" title="Back to Top">
+                            <span class="visually-hidden">Back to the top</span>
+                            <span class="icon icon-ui-chevron-up"></span>
+                        </a>
+                    {% endblock %}
+                {% endblock %}
+
+            </div>
+        {% endblock %}
+    </footer>
+{% endblock %}

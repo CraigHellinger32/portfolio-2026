@@ -1,0 +1,33 @@
+{% block header %}
+    <header class="site-header" id="top">
+
+        {% block header_inner %}
+
+            {% block header_navigation %}
+                <div class="container">
+
+                    {% block header_navigation_inner %}
+                        {% block header_identity %}
+                            {% include 'partials/organisms/identity.html.twig' %}
+                        {% endblock %}
+
+                        {% block header_navigation_primary %}
+                            {% include 'partials/organisms/primary_navigation.html.twig' %}
+                        {% endblock %}
+                    {% endblock %}
+
+                </div>
+            {% endblock %}
+
+            {% block header_search %}
+                {{ component('search') }}
+            {% endblock %}
+
+            {% block header_menu %}
+                {% include 'partials/organisms/menu.html.twig' %}
+            {% endblock %}
+
+        {% endblock header_inner %}
+
+    </header>
+{% endblock header %}

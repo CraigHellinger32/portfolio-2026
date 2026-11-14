@@ -1,0 +1,313 @@
+// ========================================================
+//  BASE
+// ========================================================
+//  A thin layer of styling on top of normalize.css that
+//  provides a starting point. Removes the default spacing
+//  and border for appropriate elements.
+
+// ========================================================
+//  Body
+// ======
+//  Orbit's global default font-size is 16px (1em),
+//  with a line-height of 1.5.
+//  This is applied to the <html> element.
+
+// ========================================================
+//  Top-level HTML element
+// ========================
+//  Assign our `$base-font-size` & predefine some defaults
+//
+//   1. Apply the `$base-font-size`, `$line-height-ratio`,
+//       & `$face-base`
+//   2. Always add the horizontal scrollbar to prevent
+//       layout shifting
+//   3. Show baseline
+html {
+    box-sizing: border-box;
+    font: #{($base-font-size / 16px) * .85em} / #{$line-height-ratio} $font-family;
+    margin: 0;
+    min-height: 100%;
+
+    @if $show-baseline == true {
+        position: relative;
+    }
+
+    @include respond-min($small-width) {
+        font-size: #{($base-font-size / 16px) * .9em};
+    }
+
+    @include respond-min($large-width) {
+        font-size: #{($base-font-size / 16px) * 1em};
+    }
+
+    @if $show-baseline == true {
+        $baseline-size: stripUnits($base-line-height);
+
+        &::before {
+            content: '';
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            z-index: 10000;
+
+            @include respond-min($large-width) {
+                background-image: url(http://basehold.it/i/#{$baseline-size});
+            }
+        }
+    }
+}
+
+body {
+    color: $color-text-default;
+    min-height: 100vh;
+    padding-top: 0;
+
+    @include respond-min($smallest-width) {
+        overflow-x: hidden;
+    }
+
+    @include respond-min($mid-width) {
+        display: flex;
+        flex-direction: column;
+    }
+
+    @include if-ie(ie) {
+        display: block;
+    }
+}
+
+html,
+body {
+    max-width: 100%;
+    min-height: 100vh;
+}
+
+* {
+    // ========================================================
+    //  Improve font rendering in Chrome and Firefox
+    // ========================================================
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+
+    // ========================================================
+    //  Border box everything
+    // =======================
+    // As per: http://www.paulirish.com/2012/box-sizing-border-box-ftw/
+    &,
+    &::before,
+    &::after {
+        box-sizing: border-box;
+    }
+}
+
+// ========================================================
+//  The usual resetting of margins, paddings, borders etc.
+// ========================================================
+blockquote,
+dl,
+dd,
+ol,
+ul,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+pre,
+fieldset,
+hr {
+    margin: 0;
+}
+
+fieldset,
+ol,
+ul {
+    padding: 0;
+}
+
+iframe,
+fieldset {
+    border: 0;
+}
+
+
+// ========================================================
+//  Focused elements
+// ==================
+//  Allow the focus outline on all focusable elements
+[tabindex]:focus {
+    @include focus-outline;
+}
+
+//  Do not show focus outline on elements that cannot be
+//  tabbed to.
+[tabindex="-1"]:focus {
+    outline: none;
+}
+
+
+// ========================================================
+//  Strong text
+// ==================
+strong {
+    font-weight: $font-weight-bold;
+}
+
+
+// ========================================================
+//  Images
+// ========
+//  By default all images are fluid (max-width: 100%;).
+//  `alt` attribute is visually offset when images don't
+//  load (font-style: italic;). Images are NON-FLUID if
+//  you specify the 'width' and/or 'height' attributes.
+img {
+    font-style: italic;
+    max-width: 100%;
+}
+
+img[width],
+img[height] {
+    max-width: none;
+}
+
+// ========================================================
+//  Vertical rhythm
+// =================
+//  Vertical rhythm is applied to the following elements
+//  Ref: http://csswizardry.com/2012/06/single-direction-margin-declarations
+hgroup,
+.hgroup,
+ul,
+ol,
+dl,
+blockquote,
+p,
+pre,
+address,
+table,
+form,
+hr {
+    margin: $space-half 0 $space;
+}
+
+address {
+    font-style: normal;
+}
+
+//  Remove extra vertical spacing when nesting lists.
+li {
+    > ul,
+    > ol {
+        margin-bottom: 0;
+    }
+}
+
+hr {
+    background-color: $color-border;
+    border: 0;
+    height: 1px;
+    margin: $space 0;
+}
+
+
+// ========================================================
+//  Lists
+// =======
+//  Default indentation value for lists
+ul,
+ol,
+dd {
+    margin: remToEm($space-half) 0 0 pxToEm($base-line-height);
+}
+
+li {
+    margin: remToEm($space-third) 0 0;
+}
+
+// ========================================================
+//  Code and pre
+// ==============
+code {
+    background-color: #dcdcdc;
+    border-radius: 2px;
+    box-decoration-break: clone;
+    line-height: 1;
+    padding: 0 2px;
+    word-wrap: break-word;
+}
+
+pre {
+    @extend %milli;
+
+    margin-top: 0;
+    tab-size: 2;
+
+    + p {
+        margin-top: $space;
+    }
+}
+
+// ========================================================
+//  Text highlighting
+// ===================
+// scss-lint:disable ImportantRule, VendorPrefix
+::-moz-selection {
+    background-color: $color-link-focus !important;
+    color: $color-white !important;
+    text-shadow: none !important;
+}
+
+::selection {
+    background-color: $color-link-focus !important;
+    color: $color-white !important;
+    text-shadow: none !important;
+}
+// scss-lint:enable ImportantRule, VendorPrefix
+
+// ========================================================
+//  A11y-toggle
+// =============
+//  Necessary styling for A11y-toggle to work
+[data-a11y-toggle]:not([aria-controls]),
+[aria-hidden='true'][aria-labelledby] {
+    &:not(.nav--secondary-navigation) {
+        display: none;
+    }
+}
+
+[role="button"] {
+    cursor: pointer;
+}
+
+// ========================================================
+//  Tables
+// ===================
+// Remove most spacing between table cells.
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+td,
+th {
+    padding: 0;
+}
+
+//  Reduce motion
+// ==============
+// scss-lint:disable ImportantRule
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
+// scss-lint:enable ImportantRule
+
+// ========================================================

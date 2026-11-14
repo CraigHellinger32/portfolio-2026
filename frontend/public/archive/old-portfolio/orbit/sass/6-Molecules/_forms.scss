@@ -1,0 +1,253 @@
+// ========================================================
+//  Forms
+// ========================================================
+//  Styling for all forms within the CMS / Xforms,
+//  XFP & FormBuilder [XFP2] forms.
+// ========================================================
+
+//  Base styling
+// ==============
+.form,
+%form {
+    @extend %cf;
+
+    margin: $slug 0 $slug-large;
+}
+
+// ========================================================
+//  Form Structure
+// ================
+//  Top level structure, introduction, headings & actions
+.form__heading {
+    @extend %h3;
+
+    margin: 0 0 $slug;
+}
+
+.form__instructions {
+    margin-bottom: $slug;
+
+    .one-column & {
+        > .editor {
+            max-width: 100%;
+        }
+    }
+}
+
+.form__actions {
+    .button {
+        margin-bottom: 0;
+    }
+
+    .button--primary {
+        float: right;
+    }
+
+    + .button {
+        @include respond-min($small-width) {
+            float: left;
+        }
+    }
+}
+
+.form__action {
+    @extend %cf;
+
+    display: block;
+    margin-bottom: $slug-small;
+
+    @include respond-min($small-width) {
+        display: inline-block;
+        margin-bottom: 0;
+        width: 50%;
+    }
+}
+
+.form__action--primary {
+    @include respond-min($small-width) {
+        float: right;
+    }
+
+    .button {
+        @include respond-min($small-width) {
+            float: right;
+        }
+    }
+
+    .payment-review-form & {
+        @include respond-max($small-width) {
+            float: none;
+
+            .button {
+                float: none;
+            }
+        }
+    }
+
+    .form + .form & {
+        .payment-review-form & {
+            float: none;
+
+            .button {
+                float: none;
+            }
+        }
+    }
+}
+
+.form__action--secondary {
+    @include respond-min($small-width) {
+        float: left;
+    }
+
+    .button {
+        float: right;
+
+        @include respond-min($small-width) {
+            float: left;
+        }
+    }
+}
+
+.form__footer {
+    @extend %cf;
+
+    border-top: $border-width-small solid $color-border;
+    clear: both;
+    padding-top: $slug;
+}
+
+// ========================================================
+//  Form Rows
+// ===========
+//  Layout for each field block
+.form__control {
+    clear: both;
+    float: left;
+    margin: $slug-small 0 $slug;
+    position: relative;
+    width: 100%;
+
+    &:first-of-type {
+        margin-top: 0;
+
+        .form__label {
+            margin-top: 0;
+        }
+    }
+}
+
+.form__component {
+    @extend %cf;
+
+    clear: both;
+    float: left;
+    width: 100%;
+}
+
+// ========================================================
+//  Form question blocks
+// ======================
+
+.form__fieldset {
+    min-width: 0;
+
+    .form__component {
+        margin-top: $slug-small;
+    }
+
+    > .form__label {
+        clear: both;
+        float: left;
+        font-weight: $font-weight-normal;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+
+    .form__label--legend {
+        font-weight: $font-weight-bold;
+        margin-bottom: 0;
+    }
+
+    .form__control {
+        margin: $slug-small 0;
+    }
+}
+
+.form__control-group {
+    display: flex;
+
+    .form__label {
+        flex: 1 1 auto;
+        font-weight: $font-weight-normal;
+        max-width: 100%;
+        order: 2;
+    }
+
+    .form__label--checkbox,
+    .form__label--radio {
+        flex: 0 0 auto;
+        order: 1;
+    }
+}
+
+// ========================================================
+//  Form Fields
+// =============
+
+.form__field {
+    @extend %form__field;
+    @extend %form__field--bordered;
+
+    min-height: $epsilon * $epsilon-line-height + $space-half * 2 + $space-twelfth;
+
+    @include respond-min($mid-width) {
+        min-height: $zeta * $zeta-line-height + $space-half * 2 + $space-twelfth;
+    }
+
+    @include respond-min($large-width) {
+        min-height: $normalis * $line-height-ratio + $space-half * 2 + $space-twelfth;
+    }
+}
+
+.form__field--disabled {
+    color: $color-text-muted;
+    font-style: italic;
+}
+
+// ========================================================
+//  Form notes & error messaging
+// ====================================
+
+.form__control--error {
+    .form__label {
+        color: $color-danger-text;
+    }
+
+    .form__label--checkbox,
+    .form__label--radio {
+        color: inherit;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: $color-link;
+        }
+    }
+}
+
+.form__error-message {
+    color: $color-danger-text;
+}
+
+.form--block .form__label--confirmation {
+    float: none;
+    padding-right: 0;
+    width: 100%;
+}
+
+.form--block .form__field--confirmation {
+    margin-top: $slug-small;
+}

@@ -1,0 +1,60 @@
+{% block widget_wrap %}
+    <div class="widget-whos-my-councillor">
+        {% block widget_wrap_inner %}
+
+            {% block widget_heading %}
+                {% include 'partials/atoms/text/widget_heading.html.twig' with {
+                    'title': "Who's my Councillor?"
+                } %}
+            {% endblock %}
+
+            {% block widget_content %}
+                {% block widget_content_inner %}
+
+                    {% if error_message is not empty %}
+                        {% block councillor_error %}
+                            {{ error_message }}
+                        {% endblock councillor_error %}
+                    {% endif %}
+
+                    {% block widget_form %}
+                        <form class="form" method="get">
+                            {% block widget_form_inner %}
+                                {% block widget_form_postcode_search %}
+                                    {% include 'partials/molecules/form/append_group.html.twig' with {
+                                        'type': 'text',
+                                        'label': 'Postcode',
+                                        'name': 'councillor_postcode',
+                                        'id': 'councillor_postcode',
+                                        'value': postcode,
+                                        'button': {
+                                            'name': 'submit',
+                                            'value': 'Find',
+                                            'modifier': 'button--secondary'
+                                        }
+                                    } %}
+                                {% endblock %}
+                            {% endblock widget_form_inner %}
+
+                        </form>
+                    {% endblock widget_form %}
+
+                    {% if associated_wards|length > 1 %}
+                        <p class="widget__text">Multiple wards are associated with this postcode.</p>
+                    {% endif %}
+
+                    {% block councillor_list %}
+                        {% if group|length > 0 %}
+                            {% include 'partials/molecules/list/list.html.twig' with {
+                                'group': group,
+                                'type': 'article',
+                                'title': 'Councillors related to ' ~ postcode
+                            } %}
+                        {% endif %}
+                    {% endblock councillor_list %}
+
+                {% endblock widget_content_inner %}
+            {% endblock widget_content %}
+        {% endblock widget_wrap_inner %}
+    </div>
+{% endblock widget_wrap %}

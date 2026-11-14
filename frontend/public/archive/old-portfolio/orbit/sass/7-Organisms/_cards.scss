@@ -1,0 +1,55 @@
+%card,
+.card {
+    @extend %boxed;
+    @extend %cf;
+
+    display: block;
+    margin: 0;
+    padding: $space;
+    position: relative;
+    text-decoration: none;
+    transition: background-color $transition-speed-fast ease-out;
+
+    .icon {
+        position: absolute;
+        right: $space;
+        top: $space;
+        transform: none;
+        transition: transform $transition-speed-fast ease-out;
+        z-index: 1;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: $color-disabled;
+        text-decoration: none;
+
+        .icon {
+            transform: translateX($border-width-large);
+        }
+    }
+}
+
+%card--small,
+.card--small {
+    padding: $space-half;
+
+    .icon {
+        top: $space-half;
+    }
+}
+
+%card__heading,
+.card__heading {
+    font-size: $zeta;
+    font-weight: $font-weight-normal;
+    line-height: 1.2;
+    margin: 0;
+    padding-right: $space-and-two-thirds;
+}
+
+%card__heading--small,
+.card__heading--small {
+    font-size: $normalis;
+}

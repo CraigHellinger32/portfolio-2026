@@ -1,0 +1,67 @@
+// ========================================================
+//  Tab links
+// ========================================================
+
+//  Skip links
+// ========================================================
+.skip-links {
+    background: transparent;
+    border: 0;
+    display: inline;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: zIndex('modal');
+}
+
+%list--skip-links,
+.list--skip-links {
+    height: 0;
+    left: 0;
+    overflow: visible;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+
+    &,
+    & .list__item {
+        margin: 0;
+        padding: 0;
+    }
+
+    .list__link {
+        display: inline-block;
+        padding: $space-half $space $space-two-thirds;
+
+        &:link,
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: $color-black;
+            color: $color-white;
+        }
+
+        &:not(:hover):not(:active):not(:focus) {
+            @extend %visually-hidden;
+        }
+    }
+}
+
+// ========================================================
+
+
+
+//  Back to top
+// ========================================================
+.list--back-to-top {
+    @extend %list--skip-links;
+
+    position: fixed;
+    z-index: zIndex('modal');
+}
+
+// ========================================================

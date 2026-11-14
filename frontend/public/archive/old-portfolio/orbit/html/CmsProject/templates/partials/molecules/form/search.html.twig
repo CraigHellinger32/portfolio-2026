@@ -1,0 +1,49 @@
+{% block form_search %}
+    <form
+        class="site-search form form--search {{ searchPosition|default('site-search--header') }}"
+        id="{{ searchFormId|default('js-search') }}"
+        action="{{ path('search_list') }}"
+        method="get">
+
+        {% block form_search_inner %}
+            <div class="container">
+
+                {% block form_search_control %}
+                    <div class="form__control">
+
+                        {% block form_search_control_inner %}
+                            {% block form_search_label %}
+                                <label class="form__label visually-hidden" for="{{ searchInputId|default('search-site-header') }}">
+                                    {{ getTranslatedString('search-label') }}
+                                </label>
+                            {% endblock %}
+
+                            {% block form_search_group %}
+                                <div class="form__append-group">
+
+                                    {% block form_search_group_inner %}
+                                        {% block form_search_input %}
+                                            <input class="form__field" type="search" size="18" maxlength="40" name="q" placeholder="{{ getTranslatedString('search-label') }}" id="{{ searchInputId|default('search-site-header') }}">
+                                        {% endblock %}
+
+                                        {% block form_search_buttom %}
+                                            <button class="button button--primary" type="submit">
+                                                <span class="icon icon-ui-search"></span>
+                                                <span class="icon-fallback">{{ getTranslatedString('search-button-label') }}</span>
+                                            </button>
+                                        {% endblock %}
+                                    {% endblock form_search_group_inner %}
+
+                                </div>
+                            {% endblock form_search_group %}
+                        {% endblock form_search_control_inner %}
+
+                    </div>
+                {% endblock form_search_control %}
+
+            </div>
+            <button class="visually-hidden site-search__focus-button" data-focus="js-search-toggle">View menu</button>
+        {% endblock form_search_inner %}
+
+    </form>
+{% endblock form_search %}

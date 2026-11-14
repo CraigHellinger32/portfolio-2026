@@ -1,0 +1,27 @@
+{% extends '@theme:base/partials/atoms/form/google_map.html.twig' %}
+
+{% block form_map_wrap %}
+    {% block a11y_skip_map_button_forwards %}
+        <button class="button visually-hidden js-map-skip-forwards">
+            Skip embedded map
+        </button>
+    {% endblock %}
+
+    {{ parent() }}
+{% endblock %}
+
+{% block form_map_inner %}
+    {% block a11y_skip_map_button_backwards %}
+        <button class="button visually-hidden js-map-skip-backwards">
+            Return above map
+        </button>
+    {% endblock %}
+
+    {{ parent() }}
+{% endblock %}
+
+{% block form_map_hidden_input %}
+    {# Core issue raised for this fix here: https://jadultd.atlassian.net/browse/PHOT-251 #}
+    <label class="visually-hidden" for="latlong_{{ id }}">{{ name }}</label>
+    <input class="visually-hidden" id="latlong_{{ id }}" name="{{ name }}" value="{{ value|default(map_config.default_view[map.locale]|raw) }}" tabindex="-1">
+{% endblock %}

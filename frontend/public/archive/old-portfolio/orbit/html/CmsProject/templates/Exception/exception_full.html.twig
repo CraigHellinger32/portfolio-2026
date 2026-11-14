@@ -1,0 +1,19 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block breadcrumb %}
+{% endblock %}
+
+{% block site_announcement %}
+    {% include 'partials/organisms/announcement.html.twig' with {
+        'title': 'This site is in dev mode'|upper
+        }
+    %}
+{% endblock %}
+
+{% block page_heading %}
+    {{ exception.message }} ({{ status_code }} {{ status_text }})
+{% endblock %}
+
+{% block page_content %}
+    {% include '@Twig/Exception/exception.html.twig' %}
+{% endblock %}

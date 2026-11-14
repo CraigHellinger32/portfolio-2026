@@ -1,0 +1,65 @@
+{% block progress_bar %}
+    <div class="progress-bar{{ percentage > 99 ? ' progress-bar--success' }}">
+        {% block progress_bar_inner %}
+            {% block progress_bar_track %}
+                <div class="progress-bar__track">
+                    <div class="progress-bar__indicator" style="width:{{ percentage }}%"></div>
+                </div>
+            {% endblock %}
+
+            {% block progress_bar_info -%}
+                <p class="progress-bar__info">
+                    {% block progress_bar_info_inner -%}
+                        {% block progress_bar_page_info -%}
+                            <span class="progress-bar__page-info">
+                                {% block progress_bar_text_page -%}
+                                    {{ languagePack.getText('LANG_GENERAL_PAGE')|default('Page') }} {# MODIFIED FOR PROTOTYPES #}
+                                {%- endblock %}
+
+                                {% block progress_bar_text_current -%}
+                                    <strong class="progress-bar__current-page">
+                                        {{ current }}
+                                    </strong>
+                                {%- endblock %}
+
+                                {% block progress_bar_text_of -%}
+                                    {{ languagePack.getText('LANG_GENERAL_OF')|default('of') }} {# MODIFIED FOR PROTOTYPES #}
+                                {%- endblock %}
+
+                                {% block progress_bar_text_total_pages -%}
+                                    <strong class="progress-bar__total-pages">{{ max }}</strong>
+                                {%- endblock %}
+
+                                {% block progress_bar_text_total_pages_possible -%}
+                                    {% if multiple -%}
+                                        <span class="progress-bar__total-possible">
+                                            ({{ languagePack.getText('LANG_GENERAL_POSSIBLE') }})
+                                        </span>
+                                    {%- endif %}.
+                                {%- endblock %}
+                            </span>
+                        {%- endblock %}
+
+                        {% block progress_bar_progress -%}
+                            <span class="progress-bar__progress-info">
+                                {% block progress_bar_text_current_page -%}
+                                    {{ languagePack.getText('LANG_GENERAL_YOU_ARE')|default('You are') }} {# MODIFIED FOR PROTOTYPES #}
+                                {%- endblock %}
+
+                                {% block progress_bar_text_percentage -%}
+                                    <strong class="progress-bar__percent-complete">
+                                        {{ percentage }}%
+                                    </strong>
+                                {%- endblock %}
+
+                                {% block progress_bar_text_complete -%}
+                                    {{ languagePack.getText('LANG_GENERAL_COMPLETE')|default('complete') }}.  {# MODIFIED FOR PROTOTYPES #}
+                                {%- endblock %}
+                            </span>
+                        {%- endblock %}
+                    {%- endblock %}
+                </p>
+            {%- endblock %}
+        {% endblock %}
+    </div>
+{% endblock %}

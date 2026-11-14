@@ -1,0 +1,17 @@
+{% extends '@theme:base/pages/utilities_content/offline.html.twig' %}
+
+{% block skip_links %}
+{% endblock %}
+
+{% block site_footer %}
+    {% embed 'partials/organisms/footer.html.twig' %}
+        {% block footer_links %}
+        {% endblock %}
+
+        {% block footer_bottom_links %}
+        {% endblock %}
+
+        {% block footer_back_to_top %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

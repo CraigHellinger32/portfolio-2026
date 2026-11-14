@@ -1,0 +1,256 @@
+
+{
+    "bodyClass": "councillor-list",
+    "content": {
+        "title": "Councillors Listing Page",
+        "lists": [
+            {
+                "type": "article",
+                "items": [
+                    {
+                        "image": {
+                            "url": "images/diagnosis.png",
+                            "alt": "alt text"
+                        },
+                        "title": "Prashil Mistry",
+                        "meta": [
+                            {
+                                "type": "default",
+                                "title": "Ward",
+                                "value": "Queen Eleanor and Buccleuch"
+                            },
+                            {
+                                "type": "default",
+                                "title": "Party",
+                                "value": "Labour"
+                            }
+                        ],
+                        "link": "#"
+                    },
+                    {
+                        "image": {
+                            "url": "images/alumni.png",
+                            "alt": "alt text"
+                        },
+                        "title": "Chris Pettitt",
+                        "meta": [
+                            {
+                                "type": "default",
+                                "title": "Ward",
+                                "value": "Slade"
+                            },
+                            {
+                                "type": "default",
+                                "title": "Party",
+                                "value": "Conservative"
+                            }
+                        ],
+                        "link": "#"
+                    },
+                    {
+                        "image": {
+                            "url": "images/diversity.png",
+                            "alt": "alt text"
+                        },
+                        "title": "Shekinah Sugandaran",
+                        "meta": [
+                            {
+                                "type": "default",
+                                "title": "Ward",
+                                "value": "Slade"
+                            },
+                            {
+                                "type": "default",
+                                "title": "Party",
+                                "value": "Green Party"
+                            }
+                        ],
+                        "link": "#"
+                    },
+                    {
+                        "image": {
+                            "url": "images/news-listing-1.png",
+                            "alt": "alt text"
+                        },
+                        "title": "Carl Newton",
+                        "meta": [
+                            {
+                                "type": "default",
+                                "title": "Ward",
+                                "value": "Desborough Loatland"
+                            },
+                            {
+                                "type": "default",
+                                "title": "Party",
+                                "value": "Labour"
+                            }
+                        ],
+                        "link": "#"
+                    },
+                    {
+                        "image": {
+                            "url": "images/research.png",
+                            "alt": "alt text"
+                        },
+                        "title": "Suraj Kika",
+                        "meta": [
+                            {
+                                "type": "default",
+                                "title": "Ward",
+                                "value": "Burton Latimer"
+                            },
+                            {
+                                "type": "default",
+                                "title": "Party",
+                                "value": "Conservative"
+                            }
+                        ],
+                        "link": "#"
+                    },
+                    {
+                        "image": {
+                            "url": "images/student.png",
+                            "alt": "alt text"
+                        },
+                        "title": "Supriya Handoo",
+                        "meta": [
+                            {
+                                "type": "default",
+                                "title": "Ward",
+                                "value": "Welland"
+                            },
+                            {
+                                "type": "default",
+                                "title": "Party",
+                                "value": "Liberal Democrats"
+                            }
+                        ],
+                        "link": "#"
+                    },
+                    {
+                        "image": {
+                            "url": "images/alumni.png",
+                            "alt": "alt text"
+                        },
+                        "title": "Dave Paul",
+                        "meta": [
+                            {
+                                "type": "default",
+                                "title": "Ward",
+                                "value": "William Knibb"
+                            },
+                            {
+                                "type": "default",
+                                "title": "Party",
+                                "value": "Labour"
+                            }
+                        ],
+                        "link": "#"
+                    },
+                    {
+                        "image": {
+                            "url": "images/diagnosis.png",
+                            "alt": "alt text"
+                        },
+                        "title": "Mitesh Suba",
+                        "meta": [
+                            {
+                                "type": "default",
+                                "title": "Ward",
+                                "value": "Desborough Loatland"
+                            },
+                            {
+                                "type": "default",
+                                "title": "Party",
+                                "value": "Conservative"
+                            }
+                        ],
+                        "link": "#"
+                    },
+                    {
+                        "image": {
+                            "url": "images/diversity.png",
+                            "alt": "alt text"
+                        },
+                        "title": "Luke O'Neill",
+                        "meta": [
+                            {
+                                "type": "default",
+                                "title": "Ward",
+                                "value": "St. Peters"
+                            },
+                            {
+                                "type": "default",
+                                "title": "Party",
+                                "value": "Labour"
+                            }
+                        ],
+                        "link": "#"
+                    },
+                    {
+                        "image": {
+                            "url": "images/news-listing-1.png",
+                            "alt": "alt text"
+                        },
+                        "title": "Heather Stroud",
+                        "meta": [
+                            {
+                                "type": "default",
+                                "title": "Ward",
+                                "value": "Brambleside"
+                            },
+                            {
+                                "type": "default",
+                                "title": "Party",
+                                "value": "Labour"
+                            }
+                        ],
+                        "link": "#"
+                    },
+                    {
+                        "image": {
+                            "url": "images/research.png",
+                            "alt": "alt text"
+                        },
+                        "title": "Steven Mann",
+                        "meta": [
+                            {
+                                "type": "default",
+                                "title": "Ward",
+                                "value": "Desborough Loatland"
+                            },
+                            {
+                                "type": "default",
+                                "title": "Party",
+                                "value": "Liberal Democrats"
+                            }
+                        ],
+                        "link": "#"
+                    }
+                ]
+            }
+        ],
+        "filterBar": {
+            "action": "4-councillors-listing-page.html?filter=true",
+            "method": "get",
+            "controls": [
+                {
+                    "type":"select",
+                    "label":"Filter by ward",
+                    "name": "ward",
+                    "options":[{"value": "-1","text":"Any"},{"value": "1","text":"District One"},{"value": "2","text":"District Two has a longer name"},{"value": "3","text":"District Three has an even longer name"}]
+                },
+                {
+                    "type": "select",
+                    "label": "Filter by party",
+                    "name": "party",
+                    "options":[{"value": "-1","text":"All"},{"value": "conservative","text":"Conservative"},{"value": "labour","text":"Labour"},{"value": "lib-dem","text":"Liberal Democrats"},{"value": "other","text":"Other"}]
+                }
+            ],
+            "primaryAction": {
+                "name": "go",
+                "label": "Go"
+            }
+        }
+    }
+}

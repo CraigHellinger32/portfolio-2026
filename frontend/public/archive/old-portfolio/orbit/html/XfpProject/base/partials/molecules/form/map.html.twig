@@ -1,0 +1,140 @@
+{% if question.map_type == 'esri' and not question.esri_enabled %}
+    {% block form_map_no_map_message %}
+        <p>This map cannot be displayed.</p>
+    {% endblock %}
+{% else %}
+    {% block form_map %}
+        {% block form_map_js_styles %}
+            <script>
+                var sheet = (function() {
+                    var style = document.createElement('style');
+
+                    style.appendChild(document.createTextNode(''));
+                    document.head.appendChild(style);
+
+                    return style.sheet;
+                })();
+
+                sheet.insertRule('.map, .map.container {height: 500px; margin: 0; padding: 0;}', 0);
+            </script>
+        {% endblock %}
+
+        {% block form_map_js %}
+            {% if not mapRendered %}
+                {% if question.map_type == 'esri' %}
+                    {% block form_map_js_esri %}
+                        <link rel="stylesheet" type="text/css" href="https://js.arcgis.com/3.17/esri/css/esri.css?v=xfp_cb_26">
+                        <script>
+                            var mapDiv = '{{ question.question.getName() }}_map',
+                                centerLat = {{ constant('XFP_MAP_COMPONENT_CENTER_LAT') }},
+                                centerLng = {{ constant('XFP_MAP_COMPONENT_CENTER_LNG') }},
+                                zoom = {{ constant('XFP_MAP_COMPONENT_ZOOM') }};
+                        </script>
+                        <script src="/site/xfp/javascript/maps/arcgis-loader.js?v=xfp_cb_26"></script>
+                    {% endblock %}
+                {% else %}
+                    {% block form_map_js_google %}
+                        <script src="{{ asset('site/xfp/javascript/maps/google-loader.js?v=xfp_cb_26') }}"></script> {# CHANGED FOR PROTOTYPES #}
+                        <script>
+                            function initXfpMaps() {
+                                var mapDivs = document.querySelectorAll('.location-map-google');
+                                for (var i = 0; i < mapDivs.length; i++) {
+                                    map = new GoogleMap(mapDivs[i]);
+                                    map.init(mapDivs[i].getAttribute('data-type') == 'osm', {{ constant('XFP_MAP_COMPONENT_CENTER_LAT') }}, {{ constant('XFP_MAP_COMPONENT_CENTER_LNG') }}, {{ constant('XFP_MAP_COMPONENT_ZOOM') }});
+                                }
+                            }
+                        </script>
+                        <script src="https://maps.googleapis.com/maps/api/js?key={{ constant('GOOGLE_MAPS_API_KEY') }}&amp;callback=initXfpMaps" async defer></script>
+                    {% endblock %}
+                {% endif %}
+            {% endif %}
+        {% endblock %}
+
+        {% block form_map_current_location_button %}
+            <a class="button button--secondary current-location" href="#{{ question.name }}_map">Use my current location</a>
+        {% endblock %}
+
+        {% block form_map_or_text %}
+            <strong class="form__label">or</strong>
+        {% endblock %}
+
+        {% block form_map_postcode %}
+            {% block form_map_postcode_label %}
+                <label class="form__label" for="{{ name ~ '_postcode' }}">Enter a postcode:</label>
+            {% endblock %}
+
+            {% block form_map_postcode_input %}
+                {% include 'partials/atoms/form/input.html.twig' with {
+                    'type': 'text',
+                    'className': 'postcode-lookup',
+                    'name': name ~ '_postcode'
+                    } only
+                %}
+            {% endblock %}
+
+            {% block form_map_postcode_button %}
+                {% include 'partials/atoms/form/button.html.twig' with {
+                    'name': 'go',
+                    'value': 'Go',
+                    'label': 'Go',
+                    'className': 'button--secondary postcode-lookup-btn',
+                    'type': 'button'
+                    }
+                %}
+            {% endblock %}
+
+            {% block form_map_postcode_error %}
+                {% include 'partials/atoms/form/inline_error.html.twig' with {
+                    'error': 'Please enter a valid postcode',
+                    'className': 'postcode-error',
+                    'style': 'display:none;'
+                    }
+                %}
+            {% endblock %}
+        {% endblock %}
+
+        {% block form_map_pin_or_text %}
+            {{ block('form_map_or_text') }}
+        {% endblock %}
+
+        {% block form_map_pin %}
+            {% block form_map_pin_label %}
+                <span class="form__label">Click 'Add Pin' to place a pin on the map, and drag it to the desired location:</span>
+            {% endblock %}
+
+            {% block form_map_pin_location %}
+                <div id="{{ question.name }}_map" class="location-map{% if question.map_type != 'esri' %}-google map{% else %}-esri{% endif %}" data-type="{{ question.map_type }}">
+                    <noscript>Please enable JavaScript in order to use the map.</noscript>
+                </div>
+            {% endblock %}
+
+            {% block form_map_pin_hidden %}
+                {% include 'partials/atoms/form/input_hidden.html.twig' with {
+                    'name': question.name,
+                    'value': question.value
+                    }
+                %}
+            {% endblock %}
+
+            {% block form_map_pin_button_add %}
+                {% include 'partials/atoms/form/button.html.twig' with {
+                    'name': 'add_pin',
+                    'value': 'Add Pin',
+                    'className': 'button--secondary add-pin-btn',
+                    'type': 'button'
+                    } only
+                %}
+            {% endblock %}
+
+            {% block form_map_pin_button_remove %}
+                {% include 'partials/atoms/form/button.html.twig' with {
+                    'name': 'remove_pin',
+                    'value': 'Remove Pin',
+                    'className': 'button--secondary remove-pin-btn',
+                    'type': 'button'
+                    } only
+                %}
+            {% endblock %}
+        {% endblock %}
+    {% endblock %}
+{% endif %}

@@ -1,0 +1,52 @@
+{% if navigations.links is not empty %}
+    {% block widget_wrap %}
+        <nav class="widget-navigation" aria-label="{{ navigations.title }}">
+
+            {% block widget_wrap_inner %}
+
+                {% block widget_heading %}
+                    {% if navigations.title is not empty %}
+                        {% include 'partials/atoms/text/widget_heading.html.twig' with {
+                            'title': navigations.title
+                            }
+                        %}
+                    {% endif %}
+                {% endblock %}
+
+                {% block widget_content %}
+                    <ul class="list">
+
+                        {% block widget_content_inner %}
+                            {% for link in navigations.links  %}
+
+                                {% block navigation_item %}
+                                    <li class="list__item">
+                                        <a class="list__link" href="{{ link.link }}">
+
+                                            {% block navigation_item_inner %}
+                                                {% block navigation_heading %}
+                                                    <h3 class="list__heading">
+                                                        {{ link.title }}
+                                                    </h3>
+                                                {% endblock %}
+
+                                                {% block navigation_icon %}
+                                                    <span class="icon icon--small icon-ui-arrow-right"></span>
+                                                {% endblock %}
+                                            {% endblock navigation_item_inner %}
+
+                                        </a>
+                                    </li>
+                                {% endblock navigation_item %}
+
+                            {% endfor %}
+                        {% endblock widget_content_inner %}
+
+                    </ul>
+                {% endblock widget_content %}
+
+            {% endblock widget_wrap_inner %}
+
+        </nav>
+    {% endblock widget_wrap %}
+{% endif %}

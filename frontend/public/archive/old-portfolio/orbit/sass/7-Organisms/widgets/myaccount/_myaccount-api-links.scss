@@ -1,0 +1,16 @@
+.widget--myaccount-api-links {
+    h3 {
+        @extend %boxed__heading !optional;
+    }
+
+    a {
+        @extend %button;
+        @extend %button--primary;
+    }
+
+    .list__item {
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+}

@@ -1,0 +1,56 @@
+{% import _self as macros %}
+
+{% for row in rows %}
+
+    {% block widget_row %}
+        <div class="widget-row">
+
+            {% block widget_width %}
+                {% for widget in row %}
+                    {% if widget is iterable %}
+
+                        {% block widget_iterable %}
+                            {% set width = widget|first %}
+
+                                {% block widget_iterable_wrap %}
+                                    <div class="widget-width widget-width--{{ width.widthPercentage }} widget-stack {{ widget.widgetID }}">
+
+                                        {% block widget_iterable_inner %}
+                                            {% for stackedWidget in widget %}
+                                                {{ macros.widget(stackedWidget) }}
+                                            {% endfor %}
+                                        {% endblock %}
+
+                                    </div>
+                                {% endblock widget_iterable_wrap %}
+
+                        {% endblock widget_iterable %}
+
+                    {% else %}
+
+                        {% block widget_singular %}
+                            <div class="widget-width widget-width--{{ widget.widthPercentage }}">
+
+                                {% block widget_singular_inner %}
+                                    {{ macros.widget(widget) }}
+                                {% endblock %}
+
+                            </div>
+                        {% endblock widget_singular %}
+
+                    {% endif %}
+                {% endfor %}
+            {% endblock widget_width %}
+
+        </div>
+    {% endblock widget_row %}
+
+{% endfor %}
+
+{% macro widget(widget) %}
+    {% if not widget.widget.memberOnly or app.user %}
+    <div class="widget widget--{{ widget.widget.title|escape('classname') }}{{ widget.stylesheet ? ' ' ~ widget.stylesheet }} " data-widget-id="{{ widget.widgetID }}" data-widget-name="{{ widget.widget.title }}">
+        {{ widget(widget) }}
+    </div>
+    {% endif %}
+{% endmacro %}

@@ -1,0 +1,28 @@
+%list--inline,
+.list--inline {
+    margin: 0;
+
+    .list__item {
+        display: inline-block;
+        margin: $space-half $space 0 0;
+        white-space: nowrap;
+
+        @include respond-max($x-small-width) {
+            width: 100%;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    .list__item--condensed {
+        margin-right: $space-eighth;
+    }
+
+    .list__item--expanded {
+        @include respond-max($small-width) {
+            margin-right: $space-eighth;
+        }
+    }
+}

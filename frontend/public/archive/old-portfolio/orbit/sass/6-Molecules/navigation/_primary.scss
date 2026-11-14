@@ -1,0 +1,129 @@
+.nav--primary-navigation {
+    align-self: center;
+    flex: 0 1 auto;
+    font-size: $milli;
+    text-align: right;
+
+    .list__item {
+        margin-top: 0;
+        width: auto;
+    }
+
+    .search-icon {
+        opacity: 1;
+        transition: opacity .4s ease-out $transition-speed;
+    }
+
+    .search-hidden-focus {
+        display: none;
+    }
+
+    .button {
+        margin: 0;
+        padding: $space-hard $space-two-thirds;
+        position: relative;
+
+        &[aria-expanded="true"] {
+            @include respond-max($small-width) {
+                background-color: $color-primary-light;
+                border-color: $color-primary-light;
+            }
+
+            .search-icon {
+                opacity: 0;
+                transition: opacity $transition-speed ease-out;
+            }
+
+            ~ .search-hidden-focus {
+                display: block;
+            }
+        }
+    }
+
+    .button__text {
+        display: none;
+
+        @include respond-min($small-width) {
+            display: inline-block;
+            font-size: $milli;
+            text-transform: uppercase;
+            vertical-align: middle;
+        }
+    }
+}
+
+.navigation-buttons,
+.account-navigation {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.navigation-buttons {
+    .list--inline {
+        align-items: stretch;
+        display: flex;
+    }
+
+    .list__item {
+        margin-right: $border-width-mid;
+    }
+
+    .list__item--account {
+        @include respond-min($small-width) {
+            display: none;
+        }
+    }
+}
+
+.account-navigation {
+    margin-right: $space-half;
+
+    @include respond-min($x-large-width) {
+        margin-right: $gutter;
+    }
+
+    .list {
+        display: none;
+
+        @include respond-min($small-width) {
+            display: block;
+        }
+    }
+
+    .list__item {
+        margin-right: $space-third;
+
+        &::after {
+            content: '/';
+            margin-left: $space-quarter;
+        }
+
+        &:last-child {
+            &::after {
+                content: none;
+            }
+        }
+    }
+
+    .list__link {
+        text-decoration: none;
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: underline;
+        }
+
+        &:visited {
+            color: $color-link;
+        }
+    }
+
+    .button {
+        margin-right: $space-twelfth;
+
+        @include respond-min($small-width) {
+            display: none;
+        }
+    }
+}

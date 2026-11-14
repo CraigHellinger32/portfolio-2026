@@ -1,0 +1,18 @@
+.widget--myaccount-cxm-service-widget {
+    .cxm-service__info {
+        position: relative;
+    }
+
+    .thumbnail {
+        margin-bottom: $space;
+    }
+
+    .cxm-service__case-detail-item {
+        font-weight: $font-weight-bold;
+        margin: 0 0 $space-third;
+    }
+
+    .button {
+        @extend %button--primary;
+    }
+}

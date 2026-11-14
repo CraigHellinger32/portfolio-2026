@@ -1,0 +1,43 @@
+{% block confirmation_answer_wrap %}
+    {% block confirmation_answer_question %}
+        <span class="list__item-title">{{ question }}</span>
+    {% endblock %}
+
+    {% block confirmation_answer_container %}
+        <div class="list__item-content">
+            {% block confirmation_answer %}
+                {% if type == 'File Upload' %}
+                    {% for upload in answer.tmpAnswer %}
+                        {% block confirmation_answer_file_upload %}
+                            {{ upload.name }}{% if not loop.last %}, {% endif %}
+                        {% endblock %}
+                    {% endfor %}
+                {% elseif answer.component == 'Matrix' %}
+                    {% block confirmation_answer_matrix %}
+                        {{ answer.tmpAnswer|raw }}
+                    {% endblock %}
+                {% elseif answer.component == 'Text Area' %}
+                    {% block confirmation_answer_text_area %}
+                        {{ answer.tmpAnswer|nl2br }}
+                    {% endblock %}
+                {% elseif answer.component == 'Integrated' and answer.tmpAnswer is iterable %}
+                    {% block confirmation_answer_integrated %}
+                        <table class="table data-table">
+                            {% block confirmation_answer_integrated_inner %}
+                                <tbody>
+                                    {% for elementLabel, elementValue in answer.tmpAnswer %}
+                                        <tr><td>{{ elementLabel }}</td><td>{{ elementValue }}</td></tr>
+                                    {% endfor %}
+                                </tbody>
+                            {% endblock %}
+                        </table>
+                    {% endblock %}
+                {% else %}
+                    {% block confirmation_answer_content %}
+                        {{ answer.tmpAnswer }}
+                    {% endblock %}
+                {% endif %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+{% endblock %}

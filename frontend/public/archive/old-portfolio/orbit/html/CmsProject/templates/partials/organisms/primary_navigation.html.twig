@@ -1,0 +1,81 @@
+{% block navigation_primary %}
+    <nav class="nav nav--primary-navigation" aria-label="Main Navigation">
+        {% spaceless %}
+
+            {% block navigation_primary_inner %}
+
+                {% block navigation_account %}
+                    {% include 'partials/organisms/account.html.twig' %}
+                {% endblock %}
+
+                {% block navigation_buttons_wrap %}
+                    <div class="navigation-buttons">
+
+                        {% block navigation_buttons %}
+                            <ul class="list list--inline">
+
+                                {% block navigation_buttons_inner %}
+
+                                    {% block navigation_buttons_account %}
+                                        <li class="list__item list__item--account">
+                                            <a class="button button--secondary button--icon" href="{{ path('user_home') }}">
+                                                <span class="icon icon-account"></span>
+                                                <span class="icon-fallback">{{ getTranslatedString('account-link-label') }}</span>
+                                            </a>
+                                        </li>
+                                    {% endblock navigation_buttons_account %}
+
+                                    {% block navigation_buttons_search %}
+                                        <li class="list__item">
+                                            <a class="button button--primary button--icon list__link js-search-toggle js-toggle" id="js-search-toggle" href="#js-search" data-a11y-toggle="js-search">
+
+                                                {% block navigation_buttons_search_inner %}
+
+                                                    {% block navigation_buttons_search_icon %}
+                                                        <span class="icon icon-ui-search search-icon"></span>
+                                                        <span class="icon toggle-icon toggle-icon--search">
+                                                            <span class="toggle-icon__line"></span>
+                                                        </span>
+                                                    {% endblock %}
+
+                                                    {% block navigation_buttons_search_text %}
+                                                        <span class="button__text">{{ getTranslatedString('search-button-label') }}</span>
+                                                    {% endblock %}
+
+                                                {% endblock %}
+                                            </a>
+                                            <button class="visually-hidden search-hidden-focus" data-focus="search-site-header">Search our site</button>
+                                        </li>
+                                    {% endblock navigation_buttons_search %}
+
+                                    {% block navigation_buttons_menu %}
+                                        <li class="list__item">
+                                            <a class="button button--primary button--icon list__link js-menu-toggle js-toggle" id="js-menu-toggle" href="#js-menu" data-a11y-toggle="js-menu">
+
+                                                {% block navigation_buttons_menu_icon %}
+                                                    <span class="icon toggle-icon">
+                                                        <span class="toggle-icon__line"></span>
+                                                    </span>
+                                                {% endblock %}
+
+                                                {% block navigation_buttons_menu_text %}
+                                                    <span class="button__text">Menu</span>
+                                                {% endblock %}
+
+                                            </a>
+                                        </li>
+                                    {% endblock navigation_buttons_menu %}
+
+                                {% endblock navigation_buttons_inner %}
+
+                            </ul>
+                        {% endblock navigation_buttons %}
+
+                    </div>
+                {% endblock navigation_buttons_wrap %}
+
+            {% endblock navigation_primary_inner %}
+
+        {% endspaceless %}
+    </nav>
+{% endblock navigation_primary %}

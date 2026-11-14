@@ -1,0 +1,12 @@
+// Announcements and Tracked URLs
+.site-announcement {
+    background-color: $color-warning;
+
+    .alert {
+        margin: 0;
+
+        &::before {
+            left: 0;
+        }
+    }
+}

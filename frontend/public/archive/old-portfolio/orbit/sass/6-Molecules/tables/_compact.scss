@@ -1,0 +1,35 @@
+.data-table--compact,
+%data-table--compact {
+    margin-bottom: $space-half;
+
+    tbody {
+        tr:first-child {
+            td {
+                padding-top: $space-third;
+            }
+        }
+
+        tr:last-child {
+            td {
+                padding-bottom: $space-quarter;
+            }
+        }
+    }
+
+    th,
+    td {
+        padding-top: $space-quarter;
+    }
+
+    th {
+        border-bottom: 1px solid $color-text-muted;
+        padding-bottom: $space-fifth;
+    }
+
+    td {
+        padding-bottom: $space-quarter;
+    }
+
+    tbody {
+    }
+}

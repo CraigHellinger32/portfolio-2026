@@ -1,0 +1,50 @@
+.page-meta {
+    border-top: $border-width-small solid $color-border;
+    display: inline-block;
+    margin-top: $slug-large;
+    padding-top: $slug-large;
+
+    @include respond-min($mid-width) {
+        margin-top: $slug * 2;
+    }
+
+    .payment-complete-article .summary + & {
+        margin-bottom: $slug;
+        margin-top: 0;
+    }
+}
+
+.meta {
+    margin: 0 0 $space-quarter;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    strong {
+        font-weight: $font-weight-heading;
+    }
+
+    ~ .button {
+        margin-top: $slug;
+    }
+
+    &,
+    a,
+    .meta__link {
+        @include textWordbreak(false);
+    }
+
+    a {
+        &,
+        &:visited {
+            text-decoration: underline;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: none;
+        }
+    }
+}

@@ -1,0 +1,128 @@
+{% block supplement %}
+    {% set flushImage = true %}
+
+    <div class="supplement supplement--contact{{ flushImage ? ' supplement--flush' }}">
+        {% block supplement_inner %}
+            {% block supplement_image %}
+                {% if image %}
+                    {% set convertedImage = convertToLazyImage(image) %}
+                    {% include 'partials/atoms/image/image.html.twig' with {
+                        'url': convertedImage.url,
+                        'alt': convertedImage.alt|default('')
+                        }
+                    %}
+                {% endif %}
+            {% endblock %}
+
+            {% block supplement_content %}
+                <div class="supplement__content">
+
+                    {% block supplement_content_inner %}
+
+                        {% block supplement_heading %}
+                            {% include 'partials/atoms/text/supplement_heading.html.twig' with {
+                                'title': title
+                                }
+                            %}
+                        {% endblock %}
+
+                        {% block supplement_summary %}
+                            {% if summary is not empty %}
+
+                                {% block supplement_summary_inner %}
+                                    {% include 'partials/atoms/text/supplement_description.html.twig' with {
+                                        'summary': summary
+                                        }
+                                    %}
+                                {% endblock %}
+
+                            {% endif %}
+                        {% endblock %}
+
+                        {% block supplement_address %}
+                            {% if record.address %}
+
+                                {% block supplement_address_inner %}
+                                    {# Raw filter on 'value' is only for prototypes. Remove for production #}
+                                    {% include 'partials/atoms/text/meta.html.twig' with {
+                                        'type': 'address',
+                                        'label': getTranslatedString('address-label'),
+                                        'value': record.address|raw
+                                        }
+                                    %}
+                                {% endblock %}
+
+                            {% endif %}
+                        {% endblock %}
+
+                        {% block supplement_telephone %}
+                            {% if record.telephone %}
+
+                                {% block supplement_telephone_inner %}
+                                    {% include 'partials/atoms/text/meta.html.twig' with {
+                                        'type': 'telephone',
+                                        'label': getTranslatedString('telephone-label'),
+                                        'value': record.telephone
+                                        }
+                                    %}
+                                {% endblock %}
+
+                            {% endif %}
+                        {% endblock %}
+
+                        {% block supplement_fax %}
+                            {% if record.fax %}
+
+                                {% block supplement_fax_inner %}
+                                    {% include 'partials/atoms/text/meta.html.twig' with {
+                                        'type': 'fax',
+                                        'label': getTranslatedString('fax-label'),
+                                        'value': record.fax
+                                        }
+                                    %}
+                                {% endblock %}
+
+                            {% endif %}
+                        {% endblock %}
+
+                        {% block supplement_email %}
+                            {% if record.email %}
+
+                                {% block supplement_email_inner %}
+                                    {% include 'partials/atoms/text/meta.html.twig' with {
+                                        'type': 'email',
+                                        'label': getTranslatedString('email-label'),
+                                        'value': record.email
+                                        }
+                                    %}
+                                {% endblock %}
+
+                            {% endif %}
+                        {% endblock %}
+
+                        {% block supplement_links %}
+                            {% if record.urls %}
+                                {% set links = [] %}
+                                {% for  text, url in record.urls %}
+                                    {% set links = links|merge([{'title': text, 'url': url}]) %}
+                                {% endfor %}
+
+                                {% block supplement_links_list %}
+                                    {% include 'partials/molecules/list/list.html.twig' with {
+                                        'type': 'record',
+                                        'group': links,
+                                        'title': '',
+                                        'className': 'list--navigation'
+                                        }
+                                    %}
+                                {% endblock %}
+                            {% endif %}
+                        {% endblock supplement_links %}
+
+                    {% endblock supplement_content_inner %}
+
+                </div>
+            {% endblock supplement_content %}
+        {% endblock supplement_inner %}
+    </div>
+{% endblock supplement %}

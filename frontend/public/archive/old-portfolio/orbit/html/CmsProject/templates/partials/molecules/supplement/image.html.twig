@@ -1,0 +1,58 @@
+{% block supplement %}
+    {% set flushImage = true %}
+
+    <div class="supplement supplement--image{{ flushImage ? ' supplement--flush' }}">
+
+        {% block supplement_inner %}
+            {% block supplement_image %}
+                {% if image %}
+                    {% block supplement_image_inner %}
+                        {% set convertedImage = convertToLazyImage(image) %}
+                        {% include 'partials/atoms/image/image.html.twig' with {
+                            'url': convertedImage.url,
+                            'alt': convertedImage.alt|default('')
+                            }
+                        %}
+                    {% endblock %}
+                {% endif %}
+            {% endblock %}
+
+            {% block supplement_content %}
+                <div class="supplement__content">
+
+                    {% block supplement_content_inner %}
+                        {% block supplement_summary %}
+                            {% if summary %}
+
+                                {% block supplement_summary_inner %}
+                                    {% include 'partials/atoms/text/supplement_description.html.twig' with {
+                                        'summary': summary
+                                        }
+                                    %}
+                                {% endblock %}
+
+                            {% endif %}
+                        {% endblock %}
+
+                        {% block supplement_link %}
+                            {% if link and link_title %}
+
+                                {% block supplement_link_inner %}
+                                    {% include 'partials/atoms/button/call_to_action.html.twig' with {
+                                        'link': link,
+                                        'title': link_title,
+                                        'className': 'button--secondary'
+                                        }
+                                    %}
+                                {% endblock %}
+
+                            {% endif %}
+                        {% endblock %}
+                    {% endblock supplement_content_inner %}
+
+                </div>
+            {% endblock supplement_content %}
+        {% endblock supplement_inner %}
+
+    </div>
+{% endblock supplement %}

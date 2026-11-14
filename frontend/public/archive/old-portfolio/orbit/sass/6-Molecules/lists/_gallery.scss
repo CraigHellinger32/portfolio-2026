@@ -1,0 +1,14 @@
+.list--gallery {
+    .list__item {
+        box-sizing: border-box;
+        display: inline-block;
+        padding: $space-half;
+        text-align: center;
+        vertical-align: top;
+        width: 25%;
+    }
+
+    img {
+        width: 100%;
+    }
+}

@@ -1,0 +1,67 @@
+{% if news is not empty %}
+    {% set section = 'News Listing' %}
+    <div class="style-guide__section" id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}">
+        {% include 'partials/atoms/styleguide/text/heading.html.twig' with {
+            'section': section
+            }
+        %}
+        {% block news_featured %}
+            {% include 'partials/molecules/article/featured.html.twig' with {
+                'feature': page.content.feature,
+                'image': page.content.feature.image,
+                'title': page.content.feature.title,
+                'summary': page.content.feature.summary,
+                'group': page.content.feature.meta,
+                'content': page.content.feature.body,
+                'link': page.content.feature.link,
+                'paths': paths
+                }
+            %}
+        {% endblock %}
+
+        {% block news_list %}
+            {% include 'partials/molecules/list/list.html.twig' with {
+                'type': 'article',
+                'title': newstitle,
+                'group': news,
+                'paths': paths
+                } only
+            %}
+        {% endblock %}
+    </div>
+{% endif %}
+{% if events is not empty %}
+    {% set section = 'Events Listing' %}
+    <div class="style-guide__section" id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}">
+        {% include 'partials/atoms/styleguide/text/heading.html.twig' with {
+            'section': section
+            }
+        %}
+        {% block events_list %}
+            {% include 'partials/molecules/list/list.html.twig' with {
+                'type': 'article',
+                'title': eventstitle,
+                'group': events,
+                'paths': paths
+                } only
+            %}
+        {% endblock %}
+    </div>
+{% endif %}
+{% if searchresults is not empty %}
+    {% set section = 'Search Results Listing' %}
+    <div class="style-guide__section" id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}">
+        {% include 'partials/atoms/styleguide/text/heading.html.twig' with {
+            'section': section
+            }
+        %}
+        {% block search_results %}
+            {% include 'partials/molecules/list/list.html.twig' with {
+                'type': 'article',
+                'group': searchresults,
+                'paths': paths
+                } only
+            %}
+        {% endblock %}
+    </div>
+{% endif %}

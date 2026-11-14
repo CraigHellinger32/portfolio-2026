@@ -1,0 +1,69 @@
+{% block form_upload_wrap %}
+    {% set form_upload_class = 'form__dropzone' ~ (form_upload_class ? ' ' ~ form_upload_class) %}
+
+    {% block form_upload %}
+        <div
+            {% block form_upload_attributes %}
+                id="{{ question.name }}_dz"
+                data-id="{{ question.name }}"
+                class="{{ form_upload_class }}"
+                {% if question.restrict_types is defined %}data-types="{{ question.restrict_types }}"{% endif %}
+                {% if question.restrict_count is defined %}data-count="{{ question.restrict_count }}"{% endif %}
+            {% endblock %}
+        >
+
+            {% block form_upload_inner %}
+                {% block form_upload_message %}
+                    <div class="dz-message hidden">
+                        {% block form_upload_message_button %}
+                            <button type="button" class="button form__dropzone-upload-button">Drop files here or click to upload.</button>
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+
+                {% block form_upload_input %}
+                    <input class="form__field form__field--upload" name="{{ question.name }}" id="{{ question.name }}" type="file" multiple />
+                {% endblock %}
+
+                {% block form_upload_fallback %}
+                    <div class="fallback file-upload">
+                        {% block form_upload_fallback_inner %}
+                            {% block form_upload_fallback_label %}
+                                <label class="file-upload__label visually-hidden" for="{{ question.name }}">
+                                    <span class="file-upload__text">Choose a file&hellip;</span>
+                                </label>
+                            {% endblock %}
+
+                            {% block form_upload_files %}
+                                {% for file in question.value %}
+                                    {% block form_upload_file %}
+                                        <p class="uploaded-file">
+                                            {% block form_upload_file_text %}
+                                                Uploaded file: {{ file.name }}
+                                            {% endblock %}
+
+                                            {% block form_upload_file_button %}
+                                                {% include 'partials/atoms/button/call_to_action.html.twig' with {
+                                                    'link': path('xfp_form', { id: formID, remove: question.name }),
+                                                    'title': 'Remove',
+                                                    'className': 'button--small'
+                                                    }
+                                                %}
+                                            {% endblock %}
+                                        </p>
+                                    {% endblock %}
+                                {% endfor %}
+                            {% endblock %}
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+
+    {% include 'partials/atoms/form/input_hidden.html.twig' with {
+        'name': question.name ~ '-files',
+        'value': (question.value != '' ? question.value|json_encode : '[]')
+        }
+    %}
+{% endblock %}

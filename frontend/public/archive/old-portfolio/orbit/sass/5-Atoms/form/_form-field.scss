@@ -1,0 +1,46 @@
+$form-field-text-colour: $color-text-default !default;
+
+//  Base place-holder of all form elements
+// ========================================
+//  Define a global form field place-holder for all:
+//  inputs, selects, text-areas, radio-buttons &
+//  check-boxes
+%form__field {
+    appearance: none;
+    border-radius: 0;
+    color: $form-field-text-colour;
+    display: block;
+    font-family: $font-family;
+    font-size: $epsilon;
+    line-height: $epsilon-line-height;
+    margin: 0;
+    max-width: 100%;
+    padding: $space-half;
+    vertical-align: baseline;
+    width: 100%;
+
+    @include respond-min($mid-width) {
+        font-size: $zeta;
+        line-height: $zeta-line-height;
+    }
+
+    @include respond-min($large-width) {
+        font-size: $normalis;
+        line-height: $line-height-ratio;
+    }
+
+    &:focus {
+        @include focus-outline;
+
+        border-color: $color-link-focus;
+    }
+}
+
+//  Bordered place-holder
+// =======================
+//  For use with all elements all, except:
+//  check-boxes & radio-buttons
+%form__field--bordered {
+    background-color: $color-white;
+    border: $border-width-small solid $color-border-input;
+}

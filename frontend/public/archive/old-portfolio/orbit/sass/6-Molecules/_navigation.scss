@@ -1,0 +1,21 @@
+.nav {
+    @extend %cf;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav__item,
+.nav__link {
+    display: inline-block;
+}
+
+.nav__heading {
+    font-size: $epsilon;
+    margin-bottom: $slug;
+
+    &:first-child {
+        margin-top: 0;
+    }
+}

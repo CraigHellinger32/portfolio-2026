@@ -1,0 +1,62 @@
+{% set section = 'List styles' %}
+
+<div class="style-guide__section" id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}">
+    {% include 'partials/atoms/styleguide/text/heading.html.twig' with {
+        'section': section
+        }
+    %}
+    {% include 'partials/molecules/list/list.html.twig' with {
+        'type': record,
+        'title': lists.record.title,
+        'group': lists.record.group
+        }
+    %}
+    <br/>
+    {% include 'partials/molecules/list/list.html.twig' with {
+        'type': record,
+        'title': 'list--navigation',
+        'group': lists.record.group,
+        'className': 'list--navigation'
+        }
+    %}
+    <br/>
+    {% include 'partials/molecules/list/list.html.twig' with {
+        'type': record,
+        'title': 'list--unordered',
+        'group': lists.record.group,
+        'className': 'list--unordered'
+        }
+    %}
+    <br/>
+    {% include 'partials/molecules/list/list.html.twig' with {
+        'type': record,
+        'title': 'list--ordered',
+        'group': lists.record.group,
+        'className': 'list--ordered'
+        }
+    %}
+    <br/>
+    {% include 'partials/molecules/list/list.html.twig' with {
+        'type': numbered,
+        'title': lists.numbered.title,
+        'group': lists.numbered.group,
+        'className': 'list--numbered'
+        }
+    %}
+    <br/>
+    {% include 'partials/molecules/list/list.html.twig' with {
+        'type': record,
+        'title': 'list--rich',
+        'group': lists.record.group,
+        'className': 'list--rich'
+        }
+    %}
+    <br/>
+    {% include 'partials/molecules/list/list.html.twig' with {
+        'type': record,
+        'title': 'list--striped',
+        'group': lists.record.group,
+        'className': 'list--striped'
+        }
+    %}
+</div>

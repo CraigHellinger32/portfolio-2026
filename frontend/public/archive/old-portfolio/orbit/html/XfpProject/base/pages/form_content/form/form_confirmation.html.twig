@@ -1,0 +1,28 @@
+{% extends 'layouts/'~ (photonEnabled ? '' : 'legacy-') ~'form.html.twig' %}
+
+{% block stylesheet_base %}
+    <link rel="stylesheet" type="text/css" href="/site/xfp/css/summary.css?v=xfp_cb_26" />
+    {{ parent() }}
+{% endblock %}
+
+{% block javascript_footer %}
+    {% block javascript_footer_xfp %}
+        {% block javasript_footer_xfp_inline %}
+            <script>
+                document.querySelector('form.form--form-builder').addEventListener('submit', function(ev) {
+                    var formTag = document.querySelector('form.form--form-builder');
+
+                    if (formTag.getAttribute('data-submitted') !== 'true') {
+                        formTag.setAttribute('data-submitted', 'true');
+                        return true;
+                    }
+
+                    ev.preventDefault();
+                    return false;
+                });
+            </script>
+        {% endblock %}
+    {% endblock %}
+
+    {{ parent() }}
+{% endblock %}

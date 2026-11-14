@@ -1,0 +1,104 @@
+{% extends 'layouts/list.html.twig' %}
+
+{% block list %}
+    {% set titleClass = 'boxed__heading' %}
+
+    <div class="boxed boxed--standout">
+        {{ parent() }}
+    </div>
+{% endblock %}
+
+{% block main %}
+    {{ parent() }}
+
+    {% block api_details %}
+        {% if apiKey is not empty %}
+
+            {% block api_details_wrap %}
+                <div class="boxed">
+
+                    {% block api_details_inner %}
+                        {% block api_details_heading %}
+                            <h2 class="boxed__heading">{{ getTranslatedString('api-key-list-title') }}</h2>
+                        {% endblock %}
+
+                        {% block api_details_list %}
+                            <ul class="boxed__list list list--rich">
+                                {% if apiKey.key is not empty %}
+                                    <li class="list__item">Key: {{ apiKey.key }}</li>
+                                {% endif %}
+
+                                <li class="list__item">Status: {{ apiKey.status }}</li>
+                            </ul>
+                        {% endblock %}
+                    {% endblock api_details_inner %}
+
+                </div>
+            {% endblock api_details_wrap %}
+
+        {% endif %}
+    {% endblock api_details %}
+
+    {% block api_apply %}
+        {% if apiLinkEnabled %}
+
+            {% block api_apply_wrap %}
+                <div class="boxed">
+
+                    {% block api_apply_inner %}
+                        {% block api_apply_heading %}
+                            <h2 class="boxed__heading">{{ getTranslatedString('api-key-list-title') }}</h2>
+                        {% endblock %}
+
+                        {% block api_apply_button %}
+                            {% include 'partials/atoms/button/call_to_action.html.twig' with {
+                                'link': path('user_account_api_apply'),
+                                'title': getTranslatedString('api-application-link'),
+                                'className': 'button--secondary'
+                                }
+                            %}
+                        {% endblock %}
+                    {% endblock api_apply_inner %}
+
+                </div>
+            {% endblock api_apply_wrap %}
+
+        {% endif %}
+    {% endblock api_apply %}
+
+    {% block directory_entry_list %}
+        {% if directory.approved|length > 0 or directory.unapproved|length > 0 %}
+
+            {% block directory_entry_list_warp %}
+                <div class="boxed">
+
+                    {% block entry_list %}
+                        {% block directory_entry_list_heading %}
+                            <h2 class="boxed__heading">{{ getTranslatedString('directories-submission-list-title') }}</h2>
+                        {% endblock %}
+
+                        {% block entry_list_inner %}
+                            <ul class="boxed__list list list--rich">
+                                {% for entry in directory.approved  %}
+                                    <li class="list__item">
+                                        {{ entry.getTitle()|encodeHtml }}
+                                        {% if entry.getLive() %}
+                                            - <a href="{{ path('directory_record_details', {'recordId' : entry.getId(), 'recordSlug': entry.getSlug()}) }}"> {{ getTranslatedString('view-live-label') }}</a>
+                                        {% endif %}
+                                        - <a href="{{ path('directory_record_edit', {'recordId': entry.getId(), 'recordSlug' : entry.getSlug() , 'recordType': 'record'})  }}"> {{ getTranslatedString('edit-label') }}</a>
+                                    </li>
+                                {% endfor %}
+
+                                {% for entry in directory.unapproved  %}
+                                    <li class="list__item">{{ entry.getTitle()|encodeHtml }} -  ({{ getTranslatedString('unapproved-label')  }})  - <a href="{{ path('directory_record_edit', {'recordId': entry.getId(), 'recordSlug' : entry.getSlug(), 'recordType': 'userRecord'}) }}">  {{ getTranslatedString('edit-label') }}</a>
+                                {% endfor %}
+                            </ul>
+                        {% endblock %}
+                    {% endblock entry_list %}
+
+                </div>
+            {% endblock directory_entry_list_warp %}
+        {% endif %}
+    {% endblock directory_entry_list %}
+
+{% endblock main %}

@@ -1,0 +1,11 @@
+{
+    "bodyClass": "homepage-modular",
+    "content": {
+        "title": "Landing Page",
+        "homepage": {
+            "orderedWidgets": [
+
+            ]
+        }
+    }
+}

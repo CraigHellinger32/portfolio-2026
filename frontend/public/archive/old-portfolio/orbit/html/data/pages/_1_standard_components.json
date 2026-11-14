@@ -1,0 +1,22 @@
+{
+    "bodyClass": "two-column",
+    "content": {
+        "title": "Standard Components"
+    },
+    "relatedPages": {
+        "group": [
+            {
+                "title": "Related Page 1",
+                "url": "404.html?related-page=1"
+            },
+            {
+                "title": "Related Page 2",
+                "url": "404.html?related-page=2"
+            },
+            {
+                "title": "Related Page 3",
+                "url": "404.html?related-page=3"
+            }
+        ]
+    }
+}

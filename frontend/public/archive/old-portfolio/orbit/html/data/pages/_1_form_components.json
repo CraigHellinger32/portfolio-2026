@@ -1,0 +1,159 @@
+{
+    "content": {
+        "title": "Standard Form Components",
+        "formHeading": "Form Heading",
+        "instructions": "Form instructions go here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "primaryAction": {
+            "name": "next",
+            "label": "Save and Continue"
+        },
+        "secondaryAction": {
+            "name": "prev",
+            "label": "Previous"
+        },
+        "controls": [
+            {
+                "type": "text",
+                "label": "1.1 Text Input",
+                "help": "Help text goes here",
+                "name": "input",
+                "mandatory": true
+            },
+            {
+                "type": "text",
+                "label": "1.2 Text Input Error Styling",
+                "name": "input_error",
+                "mandatory": true,
+                "error": true
+            },
+            {
+                "type": "textarea",
+                "label": "2.1 Text Area",
+                "name": "textarea",
+                "help": "Really really really really really really really really really really really really really long help text goes here.",
+                "mandatory": true
+            },
+            {
+                "type": "textarea",
+                "label": "2.2 Text Area Error Styling",
+                "name": "textarea_error",
+                "mandatory": true,
+                "error": true
+            },
+            {
+                "type": "select",
+                "label": "3.1 Select Dropdown",
+                "name": "select",
+                "options": [
+                    {
+                        "value": "1",
+                        "text": "Option 1"
+                    },
+                    {
+                        "value": "2",
+                        "text": "Option 2"
+                    },
+                    {
+                        "value": "3",
+                        "text":"Option 3"
+                    }
+                ],
+                "help": "Help text goes here",
+                "mandatory": true
+            },
+            {
+                "type": "select",
+                "label": "3.2 Select Dropdown Error Styling",
+                "name": "select_error",
+                "options": [
+                    {
+                        "value": "1",
+                        "text": "Option 1"
+                    },
+                    {
+                        "value": "2",
+                        "text": "Option 2"
+                    },
+                    {
+                        "value": "3",
+                        "text":"Option 3"
+                    }
+                ],
+                "mandatory": true,
+                "error": true
+            },
+            {
+                "type": "radio",
+                "label": "4.1 Radio Buttons",
+                "name": "radio_buttons",
+                "options": [
+                    {
+                        "text": "Option 1"
+                    },
+                    {
+                        "text": "Option 2 has a really really really really really really really really really really really really really long description."
+                    },
+                    {
+                        "text": "Option 3"
+                    }
+                ],
+                "help": "Help text goes here",
+                "mandatory": true
+            },
+            {
+                "type": "radio",
+                "label": "4.1 Radio Buttons Error Styling",
+                "name": "radio_buttons_error",
+                "options": [
+                    {
+                        "text": "Option 1"
+                    },
+                    {
+                        "text": "Option 2"
+                    },
+                    {
+                        "text": "Option 3"
+                    }
+                ],
+                "mandatory": true,
+                "error": true
+            },
+            {
+                "type": "checkbox",
+                "label": "5.1 Checkbox",
+                "name": "checkbox",
+                "options": [
+                    {
+                        "text": "Option 1"
+                    },
+                    {
+                        "text": "Option 2"
+                    },
+                    {
+                        "text": "Option 3"
+                    }
+                ],
+                "help": "Help text goes here",
+                "mandatory": true
+            },
+            {
+                "type": "checkbox",
+                "label": "5.1 Checkbox Error Styling",
+                "name": "checkbox_error",
+                "options": [
+                    {
+                        "text": "Option 1"
+                    },
+                    {
+                        "text": "Option 2"
+                    },
+                    {
+                        "text": "Option 3"
+                    }
+                ],
+                "mandatory": true,
+                "error": true
+            }
+        ]
+    }
+}

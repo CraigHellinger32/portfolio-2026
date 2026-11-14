@@ -1,0 +1,39 @@
+// Container
+%container,
+.container {
+    @extend %cf;
+
+    @include container;
+
+    padding: 0 $gutter-small;
+}
+
+%container--flush,
+.container--flush {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.container {
+    .container {
+        @extend %container--flush;
+    }
+}
+
+.container--wide {
+    max-width: $container-wide;
+}
+
+.outer-container {
+    @extend %container;
+
+    .modular & {
+        max-width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.measure {
+    max-width: $content-max-width;
+}

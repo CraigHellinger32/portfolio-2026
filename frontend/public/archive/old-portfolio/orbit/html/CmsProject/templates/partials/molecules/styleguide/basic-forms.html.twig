@@ -1,0 +1,13 @@
+{% set section = 'Basic form' %}
+
+<div class="style-guide__section" id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}">
+    {% include 'partials/atoms/styleguide/text/heading.html.twig' with {
+        'section': section
+        }
+    %}
+    {% include 'partials/organisms/form/form.html.twig' with {
+        'form': form,
+        'paths': paths
+        }
+    %}
+</div>

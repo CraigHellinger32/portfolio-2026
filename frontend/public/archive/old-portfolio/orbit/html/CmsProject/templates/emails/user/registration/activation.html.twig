@@ -1,0 +1,7 @@
+{% extends 'emails/layout/base.html.twig' %}
+
+{% block main %}
+    {{ getTranslatedString('verify-email-body') }}<br><br>
+    <a class="btn-primary" itemprop="url" href="{{ absolute_url(path('user_activation', {email: user.getEmail(), hash: user.getAuthenticationHash()})) }}">{{ getTranslatedString('verify-email-link') }}</a><br><br>
+    Webmaster
+{% endblock %}

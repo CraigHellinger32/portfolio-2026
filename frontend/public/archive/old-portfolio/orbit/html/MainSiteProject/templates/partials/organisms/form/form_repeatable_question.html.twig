@@ -1,0 +1,21 @@
+{% extends '@theme:xfpbase/partials/organisms/form/form_repeatable_question.html.twig' %}
+
+{% block form_repeatable_details_button_edit %}
+    {% include 'partials/atoms/form/button.html.twig' with {
+        'name': 'callback',
+        'value': { 'action': 'repeatable-edit-row', 'element': section.object.getName(), 'data': loop.index }|json_encode,
+        'label': 'Edit',
+        'hiddenText': row|first
+        }
+    %}
+{% endblock %}
+
+{% block form_repeatable_details_button_remove %}
+    {% include 'partials/atoms/form/button.html.twig' with {
+        'name': 'callback',
+        'value': { 'action': 'repeatable-remove-row', 'element': section.object.getName(), 'data': loop.index }|json_encode,
+        'label': 'Remove',
+        'hiddenText': row|first
+        }
+    %}
+{% endblock %}

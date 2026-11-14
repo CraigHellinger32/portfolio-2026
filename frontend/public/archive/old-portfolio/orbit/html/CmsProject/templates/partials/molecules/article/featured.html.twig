@@ -1,0 +1,6 @@
+{% if title is not empty %}
+    {% include 'partials/molecules/article/summary.html.twig' with {
+        'featuredClass': 'listing--featured'
+    }
+    %}
+{% endif %}

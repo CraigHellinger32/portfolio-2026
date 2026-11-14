@@ -1,0 +1,68 @@
+// Widgets
+//
+// Orbit provides mapping between widget sizes and the susy grid.
+// Note, widgets use a custom 100 col grid rather than the default 12 col grid to allow for correct widget sizes.
+// You can view an example widget page at /widgets.html to see how they work with the grid.
+// Feel free to change as needed (use caution though!).
+// See sass/layout/_widgets.scss.
+//
+// Styleguide 19.5
+
+.widget-row {
+    @extend %cf;
+    @extend %module;
+
+    @include respond-min($mid-width) {
+        margin-left: -$gutter-small;
+        margin-right: -$gutter-small;
+    }
+}
+
+.widget-width {
+    @extend %cf;
+
+    @include respond-min($mid-width) {
+        float: left;
+        padding: 0 $gutter-small;
+        width: 100%;
+    }
+
+    @include respond-max($mid-width) {
+        margin-bottom: $space;
+    }
+}
+
+@include respond-min($mid-width) {
+    @include widget-width;
+}
+
+.widget {
+    @extend %module;
+    @extend %cf;
+
+    margin-top: $widget-supp-slug;
+
+    &:empty {
+        display: none;
+    }
+}
+
+.widget-inner {
+    @extend %boxed;
+}
+
+%widget__heading,
+.widget__heading {
+    font-size: $delta;
+    font-weight: $font-weight-heading;
+    margin-bottom: $slug;
+
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+%widget__subheading,
+.widget__subheading {
+    font-size: $zeta;
+}

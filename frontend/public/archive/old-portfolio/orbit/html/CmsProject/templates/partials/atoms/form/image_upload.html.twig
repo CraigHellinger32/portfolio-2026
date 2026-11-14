@@ -1,0 +1,13 @@
+{% set previewImageId =  'preview_' ~ random() %}
+{% set image =  convertToLazyImage(value) %}
+<input type="hidden" name="{{ name }}" value="0" data-preview-id="{{ previewImageId }}">
+<input type='file' onchange="previewUploadedImage(this);" name="{{ name }}" id="{{ name }}" data-preview-id="{{ previewImageId }}"/>
+
+<div class="image image--preview">
+    <img id="{{ previewImageId }}" src="{{image.getUrl() }}" alt="{{ image.getAlt() }}" class="image image--thumbnail"  data-initial-value="{{ image.getUrl() }}"/>
+    <p class="image__remove-button">
+        <button class="button--small" type="button" {% if value is empty %}style="display:none"{% endif %} id="remove_button_{{ previewImageId }}" onclick="removeImageUpload(this)" aria-label="Remove {{ label }}" data-preview-id="{{ previewImageId }}">
+            Remove image
+        </button>
+    </p>
+</div>

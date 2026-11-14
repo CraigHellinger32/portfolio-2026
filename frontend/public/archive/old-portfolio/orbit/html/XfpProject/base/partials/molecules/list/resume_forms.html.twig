@@ -1,0 +1,21 @@
+{% block resume_forms_list %}
+    <ul class="list list--with-button{{ className ? ' ' ~ className }}{{ modifier ? ' ' ~ modifier }}">
+        {% for item in group %}
+            {% block resume_forms_item %}
+                <li class="list__item">
+
+                    {% block resume_forms_item_inner %}
+                        {% block resume_forms_item_text %}
+                            <span class="list__item-text">Started {{ item.label }}</span>
+                        {% endblock %}
+
+                        {% block resume_forms_item_button %}
+                            <a class="button list__item-button" href="{{ item.url }}">Resume</a>
+                        {% endblock %}
+                    {% endblock %}
+
+                </li>
+            {% endblock %}
+        {% endfor %}
+    </ul>
+{% endblock %}

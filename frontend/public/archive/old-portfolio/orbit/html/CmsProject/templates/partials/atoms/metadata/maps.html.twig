@@ -1,0 +1,27 @@
+{% set map_config = getDefaultMapConfig() %}
+<script>
+    (function (jadu) {
+        if (!jadu.maps) {
+            jadu.maps = {};
+        }
+        jadu.maps.locale = "{{ map_config.locale }}";
+        jadu.maps.defaultViews = {{ map_config.default_view|raw }};
+        {% if map_config.google is defined and map_config.google == true %}
+            jadu.maps.maptype = 'google';
+        {% else %}
+            jadu.maps.maptype = 'osm';
+        {% endif %}
+    }(this.jadu || (this.jadu = {})));
+</script>
+<script src="{{ asset('site/js/maps/maps.min.js') }}"></script>
+<script src="{{ asset('site/js/maps/geocoder_google.min.js') }}"></script>
+<script src="//maps.google.com/maps/api/js?v=3&amp;key={{ map_config.api_key|raw }}"></script>
+
+{%  set route = app.request.get('_route') %}
+{% if route == 'directory_record_details'  %}
+    <script src="{{ asset('site/js/maps/directory_record.min.js') }}"></script>
+{% elseif route == 'directory_search' %}
+    <script src="{{ asset('site/js/maps/directory_search.min.js') }}"></script>
+{% elseif route == 'directory_submit' or route == 'directory_record_edit' %}
+    <script src="{{ asset('site/js/maps/directory_submit.min.js') }}"></script>
+{% endif %}

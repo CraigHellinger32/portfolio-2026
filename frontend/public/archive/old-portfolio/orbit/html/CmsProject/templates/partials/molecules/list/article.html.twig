@@ -1,0 +1,31 @@
+{% block article_list_heading %}
+    {% if title %}
+        <h2>{{ title }}</h2>
+    {% endif %}
+{% endblock %}
+
+{% block article_list %}
+    <ul class="list list--listing">
+
+        {% block article_list_inner %}
+            {% for item in group %}
+
+                {% block article_list_item %}
+                    <li class="list__item">
+                        {% include 'partials/molecules/article/summary.html.twig' with {
+                            'image': item.image,
+                            'title': item.title,
+                            'summary': item.summary,
+                            'group': item.meta,
+                            'content': item.body|raw,
+                            'link': item.link
+                            }
+                        %}
+                    </li>
+                {% endblock article_list_item %}
+
+            {% endfor %}
+        {% endblock article_list_inner %}
+
+    </ul>
+{% endblock article_list %}

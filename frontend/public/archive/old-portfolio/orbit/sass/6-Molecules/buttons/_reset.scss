@@ -1,0 +1,26 @@
+.button--reset,
+%button--reset {
+    &,
+    &:visited,
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: transparent;
+        border: 0;
+        color: $color-link;
+        margin: 0;
+        padding: 0;
+        text-transform: initial;
+    }
+
+    &:visited {
+        color: $color-link-visited;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: $color-link-hover;
+        text-decoration: underline;
+    }
+}

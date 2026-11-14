@@ -1,0 +1,141 @@
+// Tables
+//
+// Why have table styles? Given the widespread use of tables in plugins like calendars and date pickers, we've opted to isolate our custom table styles.
+// Table modifiers can be combined as normal, for example you mighr like to have a compact and striped table with borders.
+//
+// ##See sass/objects/_tables.scss.
+//
+// Markup:
+// <table class="data-table {$modifiers}">
+//  <caption>Table Caption</caption>
+//  <thead>
+//      <tr>
+//          <th scope="col">Question</th>
+//                  <th scope="col">Answer</th>
+//      </tr>
+//  </thead>
+//  <tbody>
+//      <tr>
+//          <td>Time?</td>
+//          <td>No Time</td>
+//      </tr>
+//      <tr>
+//          <td>Yes?</td>
+//          <td>No</td>
+//      </tr>
+//      <tr>
+//          <td>Sollicitudin</td>
+//          <td>Malesuada</td>
+//      </tr>
+//  </tbody>
+// </table>
+//
+// .data-table--compact     - Reduces padding
+// .data-table--striped     - Adds stripes
+// .data-table--bordered    - Adds borders
+//
+// Styleguide 17
+
+$table-heading-background-colour: $color-primary !default;
+$table-caption-side: top !default;
+
+.data-table,
+%data-table {
+    width: 100%;
+
+    @if $table-caption-side == 'bottom' {
+        caption-side: bottom;
+    }
+
+    caption {
+        @extend %data-table__caption;
+    }
+
+    thead {
+    }
+
+    tbody {
+        tr:first-child {
+            td {
+                padding-top: $space-half;
+            }
+        }
+    }
+
+    tfoot {
+    }
+
+    tr {
+        &:last-child {
+            > th {
+                border-bottom: $border-width-small solid $table-heading-background-colour;
+            }
+        }
+    }
+
+    th,
+    .th {
+        @extend %milli;
+
+        background-color: $table-heading-background-colour;
+        border: $border-width-small solid $table-heading-background-colour;
+        border-bottom: 0;
+        color: $color-primary-offset;
+        font-weight: $font-weight-heading;
+        padding: $space-half;
+        text-align: left;
+
+        > a:not(.button) {
+            &,
+            &:visited {
+                color: $color-primary-offset;
+            }
+        }
+    }
+
+    td {
+        @extend %milli;
+
+        border: $border-width-small solid $color-primary;
+        padding: $space-half;
+
+        > p:last-child {
+            margin-bottom: 0;
+
+            @include respond-min($x-small-width) {
+                margin-bottom: $space-half;
+            }
+        }
+    }
+
+    .button {
+        &,
+        .editor & {
+            margin: $space-quarter;
+
+            @include respond-max($x-small-width) {
+                margin: 0;
+
+                + .button {
+                    margin-top: $space-half;
+                }
+            }
+        }
+    }
+}
+
+table {
+    .page-content &:not([class]) {
+        @extend %data-table;
+    }
+}
+
+%data-table__caption,
+.data-table__caption {
+    @if $table-caption-side == 'bottom' {
+        margin-top: $slug-small;
+    }
+    @else {
+        margin-bottom: $slug-small;
+    }
+}

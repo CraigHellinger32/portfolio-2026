@@ -1,0 +1,325 @@
+<!doctype HTML>
+<html>
+	<head>
+		<title>Icons Preview!</title>
+		<meta charset="utf-8">
+		<style>
+			body {
+				background-image: linear-gradient(#eee 25%, transparent 25%, transparent), linear-gradient(#eee 25%, transparent 25%, transparent), linear-gradient(transparent 75%, #eee 75%), linear-gradient(transparent 75%, #eee 75%);
+				width: auto;
+				background-size: 10px 10px;
+			}
+		</style>
+		<script>
+			/*! grunt-grunticon Stylesheet Loader - v2.1.6 | https://github.com/filamentgroup/grunticon | (c) 2015 Scott Jehl, Filament Group, Inc. | MIT license. */
+
+!function(){function e(e,t){function n(){!o&&t&&(o=!0,t.call(e))}var o;e.addEventListener&&e.addEventListener("load",n),e.attachEvent&&e.attachEvent("onload",n),"isApplicationInstalled"in navigator&&"onloadcssdefined"in e&&e.onloadcssdefined(n)}!function(e){"use strict";var t=function(t,n,o){function r(e){if(c.body)return e();setTimeout(function(){r(e)})}function a(){d.addEventListener&&d.removeEventListener("load",a),d.media=o||"all"}var i,c=e.document,d=c.createElement("link");if(n)i=n;else{var l=(c.body||c.getElementsByTagName("head")[0]).childNodes;i=l[l.length-1]}var s=c.styleSheets;d.rel="stylesheet",d.href=t,d.media="only x",r(function(){i.parentNode.insertBefore(d,n?i:i.nextSibling)});var u=function(e){for(var t=d.href,n=s.length;n--;)if(s[n].href===t)return e();setTimeout(function(){u(e)})};return d.addEventListener&&d.addEventListener("load",a),d.onloadcssdefined=u,u(a),d};"undefined"!=typeof exports?exports.loadCSS=t:e.loadCSS=t}("undefined"!=typeof global?global:this),function(t){var n=function(o,r){"use strict";if(o&&3===o.length){var a=t.navigator,i=t.document,c=t.Image,d=!(!i.createElementNS||!i.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!i.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||t.opera&&-1===a.userAgent.indexOf("Chrome")||-1!==a.userAgent.indexOf("Series40")),l=new c;l.onerror=function(){n.method="png",n.href=o[2],loadCSS(o[2])},l.onload=function(){var t=1===l.width&&1===l.height,a=o[t&&d?0:t?1:2];n.method=t&&d?"svg":t?"datapng":"png",n.href=a,e(loadCSS(a),r)},l.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==",i.documentElement.className+=" grunticon"}};n.loadCSS=loadCSS,n.onloadCSS=e,t.grunticon=n}(this),function(e,t){"use strict";var n,o=t.document,r=function(e){if(o.attachEvent?"complete"===o.readyState:"loading"!==o.readyState)e();else{var t=!1;o.addEventListener("readystatechange",function(){t||(t=!0,e())},!1)}},a=function(e){return t.document.querySelector('link[href$="'+e+'"]')},i=function(e,t){if(n&&!t)return n;n={};var o,r,a,i,c,d;if(!(o=e.sheet))return n;r=o.cssRules?o.cssRules:o.rules;for(var l=0;l<r.length;l++)a=r[l].cssText,i="grunticon:"+r[l].selectorText,(c=a.split(");")[0].match(/US\-ASCII\,([^"']+)/))&&c[1]&&(d=decodeURIComponent(c[1]),n[i]=d);return n},c=function(e,t){var n,r,a,i,c;t?n=e:(t=e,n=o),i="data-grunticon-embed";for(var d in t){c=d.slice("grunticon:".length);try{r=n.querySelectorAll(c)}catch(e){continue}a=[];for(var l=0;l<r.length;l++)null!==r[l].getAttribute(i)&&a.push(r[l]);if(a.length)for(l=0;l<a.length;l++)a[l].innerHTML=t[d],a[l].style.backgroundImage="none",a[l].removeAttribute(i)}return a},d=function(t,n){"svg"===e.method&&r(function(){var o=i(a(e.href));"function"==typeof n?(c(t,o),n()):c(o),"function"==typeof t&&t()})};e.embedIcons=c,e.getCSS=a,e.getIcons=i,e.ready=r,e.svgLoadedCallback=d,e.embedSVG=d}(grunticon,this)}();
+			
+			grunticon(["icons.data.svg.css", "icons.data.png.css", "icons.fallback.css"], grunticon.svgLoadedCallback);
+		</script>
+		<noscript><link href="icons.fallback.css" rel="stylesheet"></noscript>
+	</head>
+	<body>
+
+		<h1>CUSTOM PREVIEW - you can change this in the previewTemplate option</h1>
+			<pre><code>.icon-allotments-grey:</code></pre><div class="icon-allotments-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-allotments:</code></pre><div class="icon-allotments" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-appeal-grey:</code></pre><div class="icon-appeal-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-appeal:</code></pre><div class="icon-appeal" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-apply-grey:</code></pre><div class="icon-apply-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-apply:</code></pre><div class="icon-apply" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-apply2-grey:</code></pre><div class="icon-apply2-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-apply2:</code></pre><div class="icon-apply2" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-aquarium-grey:</code></pre><div class="icon-aquarium-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-aquarium:</code></pre><div class="icon-aquarium" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-beige-bin-paper-card-grey:</code></pre><div class="icon-beige-bin-paper-card-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-beige-bin-paper-card:</code></pre><div class="icon-beige-bin-paper-card" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-benefits-grey:</code></pre><div class="icon-benefits-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-benefits:</code></pre><div class="icon-benefits" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-benefits2-grey:</code></pre><div class="icon-benefits2-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-benefits2:</code></pre><div class="icon-benefits2" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-births-marriages-deaths-grey:</code></pre><div class="icon-births-marriages-deaths-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-births-marriages-deaths:</code></pre><div class="icon-births-marriages-deaths" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-births-marriages-deaths2-grey:</code></pre><div class="icon-births-marriages-deaths2-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-births-marriages-deaths2:</code></pre><div class="icon-births-marriages-deaths2" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-briefcase-grey:</code></pre><div class="icon-briefcase-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-briefcase:</code></pre><div class="icon-briefcase" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-building-control-grey:</code></pre><div class="icon-building-control-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-building-control:</code></pre><div class="icon-building-control" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-burgundy-bin-glass-grey:</code></pre><div class="icon-burgundy-bin-glass-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-burgundy-bin-glass:</code></pre><div class="icon-burgundy-bin-glass" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-business-grey:</code></pre><div class="icon-business-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-business:</code></pre><div class="icon-business" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-business2-grey:</code></pre><div class="icon-business2-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-business2:</code></pre><div class="icon-business2" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-business3-grey:</code></pre><div class="icon-business3-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-business3:</code></pre><div class="icon-business3" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-candle-grey:</code></pre><div class="icon-candle-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-candle:</code></pre><div class="icon-candle" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-care-grey:</code></pre><div class="icon-care-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-care:</code></pre><div class="icon-care" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-certificate-grey:</code></pre><div class="icon-certificate-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-certificate:</code></pre><div class="icon-certificate" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-children-families-grey:</code></pre><div class="icon-children-families-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-children-families:</code></pre><div class="icon-children-families" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-children-families2-grey:</code></pre><div class="icon-children-families2-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-children-families2:</code></pre><div class="icon-children-families2" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-children-families3-grey:</code></pre><div class="icon-children-families3-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-children-families3:</code></pre><div class="icon-children-families3" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-civil-partnership-grey:</code></pre><div class="icon-civil-partnership-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-civil-partnership:</code></pre><div class="icon-civil-partnership" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-clothing-allowance-grey:</code></pre><div class="icon-clothing-allowance-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-clothing-allowance:</code></pre><div class="icon-clothing-allowance" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-commercial-waste-grey:</code></pre><div class="icon-commercial-waste-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-commercial-waste:</code></pre><div class="icon-commercial-waste" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-conservation-grey:</code></pre><div class="icon-conservation-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-conservation:</code></pre><div class="icon-conservation" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-contact-grey:</code></pre><div class="icon-contact-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-contact:</code></pre><div class="icon-contact" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-contact2-grey:</code></pre><div class="icon-contact2-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-contact2:</code></pre><div class="icon-contact2" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-contact3-grey:</code></pre><div class="icon-contact3-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-contact3:</code></pre><div class="icon-contact3" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-council-tax-grey:</code></pre><div class="icon-council-tax-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-council-tax:</code></pre><div class="icon-council-tax" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-council-tax2-grey:</code></pre><div class="icon-council-tax2-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-council-tax2:</code></pre><div class="icon-council-tax2" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-council-tax3-grey:</code></pre><div class="icon-council-tax3-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-council-tax3:</code></pre><div class="icon-council-tax3" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-demolition-grey:</code></pre><div class="icon-demolition-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-demolition:</code></pre><div class="icon-demolition" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-dog-grey:</code></pre><div class="icon-dog-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-dog:</code></pre><div class="icon-dog" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-drainage-grey:</code></pre><div class="icon-drainage-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-drainage:</code></pre><div class="icon-drainage" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-environmental-health-grey:</code></pre><div class="icon-environmental-health-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-environmental-health:</code></pre><div class="icon-environmental-health" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-environmental-health2-grey:</code></pre><div class="icon-environmental-health2-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-environmental-health2:</code></pre><div class="icon-environmental-health2" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-environmental-health3-grey:</code></pre><div class="icon-environmental-health3-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-environmental-health3:</code></pre><div class="icon-environmental-health3" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-events-grey:</code></pre><div class="icon-events-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-events:</code></pre><div class="icon-events" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-events2-grey:</code></pre><div class="icon-events2-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-events2:</code></pre><div class="icon-events2" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-external-link-grey:</code></pre><div class="icon-external-link-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-external-link:</code></pre><div class="icon-external-link" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-facebook-logo-grey:</code></pre><div class="icon-facebook-logo-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-facebook-logo:</code></pre><div class="icon-facebook-logo" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-flickr-logo-grey:</code></pre><div class="icon-flickr-logo-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-flickr-logo:</code></pre><div class="icon-flickr-logo" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-flooding-drainage-grey:</code></pre><div class="icon-flooding-drainage-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-flooding-drainage:</code></pre><div class="icon-flooding-drainage" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-flower-grey:</code></pre><div class="icon-flower-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-flower-rose-grey:</code></pre><div class="icon-flower-rose-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-flower-rose:</code></pre><div class="icon-flower-rose" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-flower:</code></pre><div class="icon-flower" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-food-restaurants-grey:</code></pre><div class="icon-food-restaurants-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-food-restaurants:</code></pre><div class="icon-food-restaurants" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-furniture-grey:</code></pre><div class="icon-furniture-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-furniture:</code></pre><div class="icon-furniture" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-golf-grey:</code></pre><div class="icon-golf-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-golf:</code></pre><div class="icon-golf" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-green-bin-food-waste-grey:</code></pre><div class="icon-green-bin-food-waste-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-green-bin-food-waste:</code></pre><div class="icon-green-bin-food-waste" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-have-your-say-grey:</code></pre><div class="icon-have-your-say-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-have-your-say:</code></pre><div class="icon-have-your-say" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-have-your-say2-grey:</code></pre><div class="icon-have-your-say2-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-have-your-say2:</code></pre><div class="icon-have-your-say2" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-have-your-say3-grey:</code></pre><div class="icon-have-your-say3-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-have-your-say3:</code></pre><div class="icon-have-your-say3" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-health-social-care-grey:</code></pre><div class="icon-health-social-care-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-health-social-care:</code></pre><div class="icon-health-social-care" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-health-social-care2-grey:</code></pre><div class="icon-health-social-care2-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-health-social-care2:</code></pre><div class="icon-health-social-care2" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-health-social-care3-grey:</code></pre><div class="icon-health-social-care3-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-health-social-care3:</code></pre><div class="icon-health-social-care3" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-healthcare-grey:</code></pre><div class="icon-healthcare-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-healthcare:</code></pre><div class="icon-healthcare" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-home-improvement-grey:</code></pre><div class="icon-home-improvement-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-home-improvement:</code></pre><div class="icon-home-improvement" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-housing-council-tax-grey:</code></pre><div class="icon-housing-council-tax-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-housing-council-tax:</code></pre><div class="icon-housing-council-tax" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-housing-grey:</code></pre><div class="icon-housing-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-housing-options-advice-grey:</code></pre><div class="icon-housing-options-advice-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-housing-options-advice:</code></pre><div class="icon-housing-options-advice" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-housing:</code></pre><div class="icon-housing" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-housing2-grey:</code></pre><div class="icon-housing2-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-housing2:</code></pre><div class="icon-housing2" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-in-my-area-grey:</code></pre><div class="icon-in-my-area-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-in-my-area:</code></pre><div class="icon-in-my-area" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-in-my-area2-grey:</code></pre><div class="icon-in-my-area2-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-in-my-area2:</code></pre><div class="icon-in-my-area2" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-job-search-grey:</code></pre><div class="icon-job-search-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-job-search:</code></pre><div class="icon-job-search" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-job-search2-grey:</code></pre><div class="icon-job-search2-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-job-search2:</code></pre><div class="icon-job-search2" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-job-search3-grey:</code></pre><div class="icon-job-search3-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-job-search3:</code></pre><div class="icon-job-search3" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-landlords-grey:</code></pre><div class="icon-landlords-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-landlords-rental-grey:</code></pre><div class="icon-landlords-rental-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-landlords-rental:</code></pre><div class="icon-landlords-rental" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-landlords:</code></pre><div class="icon-landlords" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-leisure-culture-grey:</code></pre><div class="icon-leisure-culture-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-leisure-culture:</code></pre><div class="icon-leisure-culture" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-leisure-culture2-grey:</code></pre><div class="icon-leisure-culture2-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-leisure-culture2:</code></pre><div class="icon-leisure-culture2" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-leisure-culture3-grey:</code></pre><div class="icon-leisure-culture3-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-leisure-culture3:</code></pre><div class="icon-leisure-culture3" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-leisure-culture4-grey:</code></pre><div class="icon-leisure-culture4-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-leisure-culture4:</code></pre><div class="icon-leisure-culture4" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-libraries-leisure-grey:</code></pre><div class="icon-libraries-leisure-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-libraries-leisure:</code></pre><div class="icon-libraries-leisure" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-libraries1-grey:</code></pre><div class="icon-libraries1-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-libraries1:</code></pre><div class="icon-libraries1" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-libraries2-grey:</code></pre><div class="icon-libraries2-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-libraries2:</code></pre><div class="icon-libraries2" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-libraries3-grey:</code></pre><div class="icon-libraries3-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-libraries3:</code></pre><div class="icon-libraries3" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-marriage-certificate-grey:</code></pre><div class="icon-marriage-certificate-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-marriage-certificate:</code></pre><div class="icon-marriage-certificate" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-media-tv-grey:</code></pre><div class="icon-media-tv-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-media-tv:</code></pre><div class="icon-media-tv" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-music-grey:</code></pre><div class="icon-music-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-music:</code></pre><div class="icon-music" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-news-grey:</code></pre><div class="icon-news-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-news:</code></pre><div class="icon-news" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-news2-grey:</code></pre><div class="icon-news2-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-news2:</code></pre><div class="icon-news2" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-no-entry-grey:</code></pre><div class="icon-no-entry-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-no-entry:</code></pre><div class="icon-no-entry" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-noise-grey:</code></pre><div class="icon-noise-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-noise:</code></pre><div class="icon-noise" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-pay-grey:</code></pre><div class="icon-pay-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-pay:</code></pre><div class="icon-pay" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-pay2-grey:</code></pre><div class="icon-pay2-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-pay2:</code></pre><div class="icon-pay2" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-people-communities-grey:</code></pre><div class="icon-people-communities-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-people-communities:</code></pre><div class="icon-people-communities" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-people-communities2-grey:</code></pre><div class="icon-people-communities2-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-people-communities2:</code></pre><div class="icon-people-communities2" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-performance-business-graph-grey:</code></pre><div class="icon-performance-business-graph-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-performance-business-graph:</code></pre><div class="icon-performance-business-graph" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-pest-control-grey:</code></pre><div class="icon-pest-control-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-pest-control:</code></pre><div class="icon-pest-control" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-pets-animals-grey:</code></pre><div class="icon-pets-animals-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-pets-animals:</code></pre><div class="icon-pets-animals" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-planning-applications-grey:</code></pre><div class="icon-planning-applications-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-planning-applications:</code></pre><div class="icon-planning-applications" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-policy-checklist-grey:</code></pre><div class="icon-policy-checklist-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-policy-checklist:</code></pre><div class="icon-policy-checklist" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-pollution-grey:</code></pre><div class="icon-pollution-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-pollution:</code></pre><div class="icon-pollution" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-private-rented-owned-housing-grey:</code></pre><div class="icon-private-rented-owned-housing-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-private-rented-owned-housing:</code></pre><div class="icon-private-rented-owned-housing" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-report-grey:</code></pre><div class="icon-report-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-report:</code></pre><div class="icon-report" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-report2-grey:</code></pre><div class="icon-report2-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-report2:</code></pre><div class="icon-report2" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-requests-grey:</code></pre><div class="icon-requests-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-requests:</code></pre><div class="icon-requests" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-requests2-grey:</code></pre><div class="icon-requests2-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-requests2:</code></pre><div class="icon-requests2" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-roadworks-grey:</code></pre><div class="icon-roadworks-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-roadworks:</code></pre><div class="icon-roadworks" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-rss-logo-grey:</code></pre><div class="icon-rss-logo-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-rss-logo:</code></pre><div class="icon-rss-logo" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-rubbish-recycling-grey:</code></pre><div class="icon-rubbish-recycling-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-rubbish-recycling:</code></pre><div class="icon-rubbish-recycling" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-rubbish-recycling2-grey:</code></pre><div class="icon-rubbish-recycling2-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-rubbish-recycling2:</code></pre><div class="icon-rubbish-recycling2" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-rubbish-recycling3-grey:</code></pre><div class="icon-rubbish-recycling3-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-rubbish-recycling3:</code></pre><div class="icon-rubbish-recycling3" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-rubbish-recycling4-grey:</code></pre><div class="icon-rubbish-recycling4-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-rubbish-recycling4:</code></pre><div class="icon-rubbish-recycling4" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-rubbish-recycling5-grey:</code></pre><div class="icon-rubbish-recycling5-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-rubbish-recycling5:</code></pre><div class="icon-rubbish-recycling5" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-safety-grey:</code></pre><div class="icon-safety-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-safety:</code></pre><div class="icon-safety" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-schools-children-grey:</code></pre><div class="icon-schools-children-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-schools-children:</code></pre><div class="icon-schools-children" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-schools-children2-grey:</code></pre><div class="icon-schools-children2-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-schools-children2:</code></pre><div class="icon-schools-children2" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-schools-children3-grey:</code></pre><div class="icon-schools-children3-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-schools-children3:</code></pre><div class="icon-schools-children3" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-schools-children4-grey:</code></pre><div class="icon-schools-children4-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-schools-children4:</code></pre><div class="icon-schools-children4" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-schools-children5-grey:</code></pre><div class="icon-schools-children5-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-schools-children5:</code></pre><div class="icon-schools-children5" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-search-grey:</code></pre><div class="icon-search-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-search:</code></pre><div class="icon-search" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-signpost-grey:</code></pre><div class="icon-signpost-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-signpost:</code></pre><div class="icon-signpost" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-sport-grey:</code></pre><div class="icon-sport-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-sport:</code></pre><div class="icon-sport" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-street-travel-parking2-grey:</code></pre><div class="icon-street-travel-parking2-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-street-travel-parking2:</code></pre><div class="icon-street-travel-parking2" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-street-travel-parking3-grey:</code></pre><div class="icon-street-travel-parking3-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-street-travel-parking3:</code></pre><div class="icon-street-travel-parking3" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-street-travel-parking4-grey:</code></pre><div class="icon-street-travel-parking4-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-street-travel-parking4:</code></pre><div class="icon-street-travel-parking4" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-streets-travel-parking-grey:</code></pre><div class="icon-streets-travel-parking-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-streets-travel-parking:</code></pre><div class="icon-streets-travel-parking" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-taxi-grey:</code></pre><div class="icon-taxi-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-taxi:</code></pre><div class="icon-taxi" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-toilets-grey:</code></pre><div class="icon-toilets-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-toilets:</code></pre><div class="icon-toilets" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-training-video-meeting-grey:</code></pre><div class="icon-training-video-meeting-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-training-video-meeting:</code></pre><div class="icon-training-video-meeting" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-transport-bus-grey:</code></pre><div class="icon-transport-bus-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-transport-bus:</code></pre><div class="icon-transport-bus" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-twitter-logo-grey:</code></pre><div class="icon-twitter-logo-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-twitter-logo:</code></pre><div class="icon-twitter-logo" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-voting-ballot-box-grey:</code></pre><div class="icon-voting-ballot-box-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-voting-ballot-box:</code></pre><div class="icon-voting-ballot-box" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-voting-cross-grey:</code></pre><div class="icon-voting-cross-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-voting-cross:</code></pre><div class="icon-voting-cross" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-voting-grey:</code></pre><div class="icon-voting-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-voting-rosette-grey:</code></pre><div class="icon-voting-rosette-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-voting-rosette:</code></pre><div class="icon-voting-rosette" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-voting:</code></pre><div class="icon-voting" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-wedding-cake-grey:</code></pre><div class="icon-wedding-cake-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-wedding-cake:</code></pre><div class="icon-wedding-cake" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-winter-snow-grey:</code></pre><div class="icon-winter-snow-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-winter-snow:</code></pre><div class="icon-winter-snow" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-your-council-grey:</code></pre><div class="icon-your-council-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-your-council:</code></pre><div class="icon-your-council" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-your-council2-grey:</code></pre><div class="icon-your-council2-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-your-council2:</code></pre><div class="icon-your-council2" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-your-council3-grey:</code></pre><div class="icon-your-council3-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-your-council3:</code></pre><div class="icon-your-council3" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-youtube-logo-grey:</code></pre><div class="icon-youtube-logo-grey" style="width: 44px; height: 44px;" ></div><hr/>
+			<pre><code>.icon-youtube-logo:</code></pre><div class="icon-youtube-logo" style="width: 44px; height: 44px;" ></div><hr/>
+
+		<h2 id="embedded-svg-option">Embedded SVG option</h2>
+		<p>(The <code>data-grunticon-embed</code> attribute tells grunticon to inject SVG inline):</p>
+
+		<pre><code>icon-burger:</code></pre><div class="icon-burger" data-grunticon-embed style="width: px; height: px;" ></div><hr/>
+
+		<style>
+			.icon-burger {
+				width: 32px;
+				height: 30px;
+				display: inline-block;
+			}
+			  .icon-burger.alt .cheese {
+		                fill: red;
+		            }
+				 .icon-burger.alt .buns {
+		                fill: orange;
+		            }
+				  .icon-burger.alt .burger {
+		                fill: yellow;
+		            }
+		 		 .icon-burger.alt .lettuce {
+		                fill: green;
+		            }
+
+		</style>
+
+		<pre><code>icon-burger (styled variation):</code></pre><div class="icon-burger alt" data-grunticon-embed></div><hr/>
+
+
+
+</body>
+</html>

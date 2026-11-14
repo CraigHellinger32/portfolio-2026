@@ -1,0 +1,30 @@
+{% block menu %}
+
+    {% block menu_inner %}
+        <div class="menu-navigation" id="js-menu">
+            <div class="container">
+
+                {% block menu_content %}
+                    <nav class="nav" aria-label="{{ heading }}">
+
+                        {% block menu_content_inner %}
+
+                            {% block menu_links %}
+                                {{ component('category_navigation') }}
+                                {{ component('navigation_widget') }}
+                            {% endblock %}
+
+                            {% block menu_focus_button %}
+                                <button class="visually-hidden" data-focus="js-menu-toggle">View menu</button>
+                            {% endblock %}
+
+                        {% endblock menu_content_inner %}
+
+                    </nav>
+                {% endblock menu_content %}
+
+            </div>
+        </div>
+    {% endblock menu_inner %}
+
+{% endblock menu %}

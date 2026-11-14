@@ -1,0 +1,7 @@
+{% extends 'partials/molecules/text/alert.html.twig' %}
+
+{% block alert_link %}
+    {% include 'partials/molecules/list/resume_forms.html.twig' with {
+        'group': url
+    } only %}
+{% endblock %}

@@ -1,0 +1,33 @@
+.data-table--bordered,
+%data-table--bordered {
+    border: 1px solid $color-text-muted;
+    margin-bottom: $space;
+
+    caption {
+        margin-bottom: $space-half;
+    }
+
+    thead {
+        background-color: $color-subtle;
+    }
+
+    tbody {
+        tr:first-child {
+            td {
+                padding-top: $space-half;
+            }
+        }
+    }
+
+    th {
+        + th {
+            border-left: 1px solid $color-text-muted;
+        }
+    }
+
+    td {
+        border: 1px solid $color-text-muted;
+        padding-bottom: $space-half;
+        padding-top: $space-half;
+    }
+}

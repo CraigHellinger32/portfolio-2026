@@ -1,0 +1,115 @@
+{% block widget_wrap %}
+    {# Different to core because we are manually setting these variables #}
+    {% set daysInMonth = 31 %}
+    {% set startDow = 1 %}
+    {% set dow = startDow %}
+    {% set currentDay = now|date('j') %}
+    {% set lastDateOfLastMonth = 31 %}
+    {% set eventsDays = [5, 6, 17] %}
+
+    <div class="widget-calendar">
+
+        {% block widget_wrap_inner %}
+
+            {% block widget_heading %}
+                {% include 'partials/atoms/text/widget_heading.html.twig' with {
+                    'title': 'Event calendar',
+                    'paths': paths
+                    }
+                %}
+            {% endblock %}
+
+            {% block widget_content %}
+                <div class="calendar">
+
+                    {% block widget_content_inner %}
+
+                        {% block calendar_header %}
+                            <div class="calendar__header-wrapper">
+                                {% block calendar_heading %}
+                                    <h3 class="calendar__heading">{{ now|date('F Y') }}</h3>
+                                {% endblock %}
+                            </div>
+                        {% endblock %}
+
+                        {% block calendar_table %}
+                            <table class="calendar__table">
+
+                                {% block calendar_table_inner %}
+
+                                    {% block calendar_days %}
+                                        <thead class="calendar__days">
+                                            <tr>
+                                                <th class="{{ getTranslatedString('sunday-label')|lower }}" scope="col">{{ getTranslatedString('sunday-label') }}</th>
+                                                <th scope="col">{{ getTranslatedString('monday-label') }}</th>
+                                                <th scope="col">{{ getTranslatedString('tuesday-label') }}</th>
+                                                <th scope="col">{{ getTranslatedString('wednesday-label') }}</th>
+                                                <th scope="col">{{ getTranslatedString('thursday-label') }}</th>
+                                                <th scope="col">{{ getTranslatedString('friday-label') }}</th>
+                                                <th class="{{ getTranslatedString('saturday-label')|lower }}" scope="col">{{ getTranslatedString('saturday-label') }}</th>
+                                            </tr>
+                                        </thead>
+                                    {% endblock calendar_days %}
+
+                                    {% block calendar_dates %}
+                                        <tbody class="calendar__dates">
+                                            <tr>
+
+                                                {% block calendar_day %}
+                                                    {% for day in range(1,daysInMonth) %}
+                                                        {% set dayClass = '' %}
+                                                        {% if currentDay == day %}
+                                                            {% set dayClass = ' calendar__date--today' %}
+                                                        {% endif %}
+
+                                                        {% if loop.first and startDow != 0 %}
+                                                            {% for i in 1..startDow %}
+                                                                <td><span class="calendar__date calendar__date--other-month">{{ lastDateOfLastMonth -i + 1 }}</span></td>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                        <td>
+                                                        {% if day in eventsDays %}
+                                                            {% set dateString = (day ~ '-' ~ time|date('m') ~ '-' ~ time|date('Y')) %}
+                                                            <a class="calendar__date calendar__date--link{{ dayClass }}" href="{{ path('event_list') }}?startDate={{ dateString }}&endDate={{ dateString }}">{{ day }}</a>
+                                                        {% else %}
+                                                            <span class="calendar__date{{ dayClass }}">{{ day }}</span>
+                                                        {% endif %}
+                                                        </td>
+                                                        {% if loop.last and dow != 6 %}
+                                                            {% set othermonthdays = 6 - dow %}
+                                                            {% for i in 1..othermonthdays %}
+                                                                <td><span class="calendar__date calendar__date--other-month">{{ i }}</span></td>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                        {% if dow == 6 %}
+                                                            {% set dow = 0 %}
+                                                            </tr><tr>
+                                                        {% else %}
+                                                            {% set dow = dow + 1 %}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                {% endblock calendar_day %}
+
+                                            </tr>
+                                        </tbody>
+                                    {% endblock calendar_dates %}
+
+                                {% endblock %}
+
+
+
+                            </table>
+                        {% endblock calendar_table %}
+
+                    {% endblock widget_content_inner %}
+
+
+
+                </div>
+            {% endblock widget_content %}
+
+
+        {% endblock widget_wrap_inner %}
+
+    </div>
+{% endblock widget_wrap %}

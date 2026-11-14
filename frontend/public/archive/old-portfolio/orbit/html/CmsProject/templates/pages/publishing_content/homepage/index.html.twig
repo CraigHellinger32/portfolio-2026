@@ -1,0 +1,20 @@
+{% extends 'layouts/modular.html.twig' %}
+
+{% block breadcrumb %}
+{% endblock %}
+
+{% block page_heading %}
+    <h1 class="visually-hidden">{{ getConstantValue('METADATA_GENERIC_NAME') }} - Home page</h1>
+{% endblock %}
+
+{% block stylesheet_cms %}
+    {{ parent() }}
+    {% if page_specific_stylesheet is not empty %} {# If statement added to stop this displaying in prototypes, but still remind us that this block exists if we need to override this partial #}
+        <link rel="stylesheet" type="text/css" href="{{ getWidgetStylePath(page_specific_stylesheet) }}">
+    {% endif %}
+{% endblock %}
+
+{% block javascript_footer %}
+    {{ parent() }}
+    {# <script src="{{ getWidgetScriptPath() }}"></script> #}{# JS commented out for prototypes #}
+{% endblock javascript_footer %}

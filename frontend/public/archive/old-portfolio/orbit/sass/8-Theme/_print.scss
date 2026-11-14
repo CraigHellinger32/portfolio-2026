@@ -1,0 +1,196 @@
+$print-styles-border-color: $color-border-mid !default;
+$print-styles-boxed-border: $border-width-mid solid $print-styles-border-color !default;
+
+/* There are 3 options here for list layout (used for "Pages in" navigation on the document page):
+    1. Default single column layout
+    2. Desktop: List items display in 2 columns alternating left to right using display: inline-block;
+    3. Desktop: List items display in 2 evenly split CSS columns display vertically 1,2,3 etc. in column one and 6,7,8 etc. in column 2.
+*/
+$two-columns-left-to-right: false; // Set to true for option 2
+$two-columns-top-to-bottom: true; // Set to true for option 3 (ensuring $two-columns-left-to-right is still set to false)
+
+@media print {
+    // scss-lint:disable ImportantRule
+
+    //  BASE
+    // ======================
+    @include widget-width;
+
+    html {
+        font-size: 85%;
+    }
+
+    body {
+        background-color: $color-white;
+    }
+
+    .mobile-hidden,
+    .tablet-hidden,
+    .button,
+    .widget-directory-search,
+    .widget-middle-advert .widget__content-link,
+    .breadcrumb,
+    .pagination,
+    .site-announcement {
+        display: none !important;
+    }
+
+    .page-content .image:not(.widget__image),
+    .page-content img:not([class]),
+    .image--feature {
+        max-width: $content-max-width !important;
+    }
+
+    .nav--pages-in {
+        .nav__heading {
+            display: block !important;
+        }
+
+        .nav__list {
+            @if $two-columns-top-to-bottom == true {
+                columns: 2;
+            }
+        }
+
+        .list__item {
+            display: block;
+
+            @if $two-columns-left-to-right == true {
+                @if $two-columns-top-to-bottom == false {
+                    display: inline-block;
+                    float: left;
+                    margin: $slug-smaller 0;
+                    padding-right: $space-half;
+                    width: percentage(1 / 2);
+                }
+            }
+        }
+
+        .list__link {
+            text-decoration: none !important;
+        }
+    }
+
+    .image--feature,
+    .image--caption {
+        float: right !important;
+        margin: 0 0 $space $space;
+        max-width: $featured-image-max;
+        min-width: $featured-image-min;
+        width: percentage(1 / 3) !important;
+    }
+
+    .map {
+        page-break-before: always;
+    }
+
+    //  HEADER
+    // ======================
+    .site-header {
+        border-bottom: $print-styles-boxed-border !important;
+        padding: $space-half 0;
+    }
+
+    .nav--primary-navigation {
+        display: none;
+    }
+
+    //  FOOTER
+    // ======================
+    .site-footer {
+        background-color: $color-white !important;
+        border-top: $print-styles-boxed-border !important;
+        text-align: left;
+    }
+
+    .site-footer__group,
+    .site-footer__links,
+    .back-to-top {
+        display: none;
+    }
+
+    .site-footer__text,
+    .site-footer__link {
+        color: $color-text-default !important;
+        text-align: left;
+    }
+
+    .site-footer__link {
+        text-decoration: none !important;
+    }
+
+    //  WIDGETS
+    // ======================
+    .widget-row {
+        margin-left: -$gutter-small;
+        margin-right: -$gutter-small;
+    }
+
+    .widget-width {
+        float: left;
+        padding: 0 $gutter-small;
+    }
+
+    .widget-width--100,
+    .widget-width--99,
+    .widget-width--98 {
+        width: 100%;
+    }
+
+    //  Gallery
+    // ----------------------
+    .widget-gallery {
+        display: none;
+    }
+
+    //  SIDEBAR
+    // ======================
+    .nav--social-links {
+        display: none;
+    }
+
+    .aside__section {
+        &[aria-labelledby="related-pages-heading-downloads"],
+        &[aria-labelledby="related-pages-heading-directories"] {
+            display: none !important;
+        }
+    }
+
+    //  SUPPLEMENTS
+    // ======================
+    .boxed,
+    .supplement {
+        border: $print-styles-boxed-border !important;
+        margin: $slug 0;
+
+        .image {
+            max-width: 100% !important;
+        }
+
+        .image--feature {
+            float: none !important;
+            margin-left: 0;
+        }
+    }
+
+    .supplement {
+        .button {
+            display: none;
+        }
+
+        .list--navigation {
+            .list__item {
+                padding-left: 0;
+
+                &::before {
+                    content: none;
+                }
+            }
+        }
+    }
+
+    .supplement--navigation {
+        display: none !important;
+    }
+    // scss-lint:enable ImportantRule
+}

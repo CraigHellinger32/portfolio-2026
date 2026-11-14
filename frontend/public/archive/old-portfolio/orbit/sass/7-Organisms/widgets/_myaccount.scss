@@ -1,0 +1,28 @@
+// CXM My Account Widgets https://gitlab.hq.jadu.net/cmp/my-account/tree/master/src/MyAccountWidgetProject/Resources/views/widgets/myaccount
+
+.myaccount-widget {
+    @extend %boxed;
+
+    @include respond-max($mid-width) {
+        margin: 0;
+    }
+
+    h2 {
+        @extend %boxed__heading;
+    }
+}
+
+@import 'myaccount/myaccount-signed-out';                           // 50
+@import 'myaccount/myaccount-sign-in';                              // 51
+@import 'myaccount/myaccount-payments';                             // 52
+@import 'myaccount/myaccount-paybridge-balance';                    // 53
+@import 'myaccount/myaccount-links';                                // 54
+@import 'myaccount/myaccount-directory-submissions';                // 55
+@import 'myaccount/myaccount-api-links';                            // 57
+@import 'myaccount/myaccount-forms';                                // 58
+@import 'myaccount/myaccount-cases-list';                           // 59 & 61
+@import 'myaccount/myaccount-cases-table';                          // 60
+@import 'myaccount/myaccount-my-address';                           // 62
+@import 'myaccount/myaccount-organisation-links';                   // 64
+@import 'myaccount/myaccount-cxm-service';                          // 65
+@import 'myaccount/myaccount-direct-debits';                        // 38001

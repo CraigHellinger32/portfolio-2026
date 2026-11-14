@@ -1,0 +1,126 @@
+/* There are 3 options here for list layout (Set in 6-Molecules/lists/_numbered.scss):
+    1. Default single column layout
+    2. Desktop: List items display in 2 columns alternating left to right using display: inline-block;
+    3. Desktop: List items display in 2 evenly split CSS columns display vertically 1,2,3 etc. in column one and 6,7,8 etc. in column 2.
+*/
+$two-columns-left-to-right: false !default; // Set to true for option 2
+$two-columns-top-to-bottom: false !default; // Set to true for option 3 (ensuring $two-columns-left-to-right is still set to false)
+$two-columns-breakpoint: $small-width !default; // Alter where the list splits to two columns
+
+.nav--pages-in {
+    margin-bottom: $slug-large;
+    position: relative;
+
+    @include respond-min($mid-width) {
+        border-bottom: $border-width-large solid $color-border;
+        border-top: $border-width-large solid $color-border;
+        padding: $slug 0;
+    }
+
+    .nav__heading {
+        font-size: $zeta;
+        font-weight: $font-weight-bold;
+
+        @if $two-columns-top-to-bottom == true {
+            margin-bottom: $slug-small;
+        }
+        @else {
+            margin-bottom: $slug;
+        }
+
+        .no-js & {
+            display: block;
+        }
+    }
+
+    .nav__toggle {
+        display: flex;
+        padding: $space-two-thirds;
+        position: relative;
+
+        @include respond-min($mid-width) {
+            display: none;
+        }
+
+        &[aria-expanded="true"] {
+            .nav__toggle-icon {
+                transform: rotate(0deg);
+            }
+        }
+    }
+
+    .nav__toggle-heading {
+        flex: 1 1 auto;
+        text-align: left;
+    }
+
+    .nav__toggle-pages {
+        flex: 0 1 auto;
+        margin-right: $space-two-thirds;
+    }
+
+    .nav__toggle-icon {
+        align-self: center;
+        flex: 0 0 auto;
+        transform: rotate(180deg);
+        transition: transform $transition-speed ease;
+    }
+
+    .nav__list {
+        font-size: $normalis;
+        margin: 0;
+
+        @include respond-max($mid-width) {
+            @include toggleFade();
+
+            background-color: $color-subtle;
+            border-bottom: $border-width-large solid $color-border;
+            margin-bottom: $slug;
+            padding: $space;
+            width: 100%;
+
+            .no-js & {
+                display: block;
+                position: static;
+            }
+        }
+    }
+
+    .list__link {
+        display: inline;
+        font-weight: $font-weight-heading;
+        text-decoration: none;
+
+        @include respond-min($mid-width) {
+            @include linkUnderline(null, $color-link);
+        }
+    }
+
+    .list__item {
+        @if $two-columns-top-to-bottom == false {
+            margin: $space-two-thirds 0;
+
+            @include respond-min($mid-width) {
+                margin: $space-hard 0;
+            }
+        }
+
+        &::before {
+            font-weight: $font-weight-heading;
+        }
+
+        &.is-active {
+            .list__link {
+                @include linkUnderlineReset();
+
+                color: $color-text-muted;
+
+                font-weight: $font-weight-normal;
+            }
+
+            &::before {
+                font-weight: $font-weight-normal;
+            }
+        }
+    }
+}

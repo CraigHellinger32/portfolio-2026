@@ -1,0 +1,26 @@
+$form-field-text-colour: $color-text-default !default;
+
+%form__select,
+.form__select {
+    @extend %form__field;
+    @extend %form__field--bordered;
+
+    background-position: right $gutter-small center;
+    background-size: $space-two-thirds;
+    padding-right: $space-and-two-thirds;
+
+    // Remove IE's default dropdown arrow so we can use our fancy SVG one.
+    &::-ms-expand {
+        display: none;
+    }
+
+    // remove ugly outline in Firefox
+    &:-moz-focusring {
+        color: transparent;
+        text-shadow: 0 0 0 $form-field-text-colour;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}

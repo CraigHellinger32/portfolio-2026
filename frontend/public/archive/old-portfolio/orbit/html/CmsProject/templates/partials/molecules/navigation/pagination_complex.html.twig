@@ -1,0 +1,37 @@
+{% if group %}
+
+    {% block pagination_complex %}
+        <nav class="pagination pagination--complex" aria-label="Pagination">
+
+            {% block pagination_list %}
+                <ul class="pagination__list">
+
+                    {% block pagination_list_inner %}
+                        {% for page in group %}
+
+                            {% block pagination_list_item %}
+                                {% if page.currentPage %}
+                                    {% block pagination_active %}
+                                        <li class="pagination__item">
+                                            <span class="pagination__active">{{ page.number }}</span>
+                                        </li>
+                                    {% endblock %}
+                                {% else %}
+                                    {% block pagination_link %}
+                                        <li class="pagination__item">
+                                            <a class="pagination__link" href="{{ page.url }}">{{ page.number }}</a>
+                                        </li>
+                                    {% endblock %}
+                                {% endif %}
+                            {% endblock pagination_list_item %}
+
+                        {% endfor %}
+                    {% endblock pagination_list_inner %}
+
+                </ul>
+            {% endblock pagination_list %}
+
+        </nav>
+    {% endblock pagination_complex %}
+
+{% endif %}

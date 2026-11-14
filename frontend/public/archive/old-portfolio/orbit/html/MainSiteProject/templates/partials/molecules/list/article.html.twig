@@ -1,0 +1,9 @@
+{% extends '@theme:base/partials/molecules/list/article.html.twig' %}
+
+{% block article_list %}
+    <ul class="list list--listing"{% if masonry is not empty %} data-enable-masonry{% endif %}>
+        {% block article_list_inner %}
+            {{ parent() }}
+        {% endblock %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,32 @@
+// For nested lists:
+// Just add 'list--grouped' class to parent <ul>
+
+%list--grouped,
+.list--grouped {
+    @extend %list--rich;
+
+    .list__item {
+        padding: $space 0;
+    }
+
+    .list {
+        @extend %list--navigation;
+
+        font-size: $milli;
+        margin: $space-half 0 0;
+
+        .list__item {
+            border: 0;
+            padding-bottom: $space-half;
+            padding-top: 0;
+
+            &:first-child {
+                border-top: 0;
+            }
+        }
+
+        .list__link {
+            // margin-left: $gutter;
+        }
+    }
+}

@@ -1,0 +1,25 @@
+{% extends '@theme:base/widgets/whats_new.html.twig' %}
+
+{% block news_list_item %}
+    <li class="list__item">
+        <a class="list__link" href="{{ path('news_article', {'articleId' : news.id, 'articleSlug': news.slug }) }}">{{ news.title }}</a><span class="list__time">{{ news.date.timestamp|date('jS F Y') }}</span>
+    </li>
+{% endblock %}
+
+{% block documents_list_item %}
+    <li class="list__item">
+        <a class="list__link" href="{{ getDocumentUrl(document.id) }}">{{ document.documentHeader.title }}</a><span class="list__time">{{ document.enterDate.timestamp|date('jS F Y') }}</span>
+    </li>
+{% endblock %}
+
+{% block downloads_list_item %}
+    <li class="list__item">
+        <a class="list__link" href="{{ path('file_download', {'fileId' : file.id, 'fileSlug': file.slug }) }}">{{ file.title }}</a><span class="list__time">{{ file.creationDate.timestamp|date('jS F Y') }}</span>
+    </li>
+{% endblock %}
+
+{% block events_list_item %}
+    <li class="list__item">
+        <a class="list__link" href="{{ path('event_article', {'eventId' : event.id, 'eventSlug': event.slug }) }}">{{ event.title }}</a><span class="list__time">{{ event.dateCreated.timestamp|date('jS F Y') }}</span>
+    </li>
+{% endblock %}

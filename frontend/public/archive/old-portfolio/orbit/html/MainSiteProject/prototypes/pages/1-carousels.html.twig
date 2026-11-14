@@ -1,0 +1,12 @@
+{% set page = data.pages['_1_carousels'] %}
+{% extends 'pages/publishing_content/homepage/category-modular.html.twig' %}
+
+{% block page_widgets %}
+    {{ parent() }}
+
+    {% include 'partials/molecules/styleguide/carousels.html.twig' with {
+        'latestTweets': page.latestTweets
+        }
+    %}
+
+{% endblock %}

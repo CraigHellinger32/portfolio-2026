@@ -1,0 +1,31 @@
+.list--2up,
+%list--2up {
+    margin: 0;
+
+    @include respond-min($small-width) {
+        break-inside: avoid;
+        -webkit-column-break-inside: avoid;
+        column-gap: $gutter-large;
+        columns: 1;
+        page-break-inside: avoid;
+    }
+
+    @include respond-min($mid-width) {
+        columns: 2;
+    }
+
+    > .list__item {
+        break-inside: avoid;
+        display: block;
+        margin: 0;
+        padding: $space-quarter 0;
+    }
+
+    .list__link {
+        display: block;
+
+        @include respond-min($small-width) {
+            display: inline-block;
+        }
+    }
+}

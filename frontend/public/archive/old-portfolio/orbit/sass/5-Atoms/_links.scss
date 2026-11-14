@@ -1,0 +1,76 @@
+// Links
+//
+// Base link styling
+// See sass/objects/_link.scss.
+//
+// :hover       - Hover state.
+// :active      - Active state.
+// :focus       - Focus state.
+//
+// Markup:
+// <a class="{$modifiers}">Link</a>
+//
+// Styleguide 11
+
+a {
+    color: $color-link;
+
+    &,
+    &:visited {
+        text-decoration: none;
+    }
+
+    &:visited {
+        color: $color-link-visited;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: $color-link-hover;
+        text-decoration: underline;
+    }
+
+    &:focus {
+        @include focus-outline;
+    }
+}
+
+.link-external {
+    background-color: $color-white;
+
+    &,
+    &:visited {
+        text-decoration: none;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none;
+
+        .link-external__text {
+            text-decoration: none;
+        }
+    }
+
+    .link-external__text {
+        text-decoration: underline;
+    }
+
+    .icon {
+        display: inline-block;
+        height: $space-half;
+        margin-left: $space-eighth;
+        margin-right: $space-eighth;
+        width: $space-half;
+    }
+
+    th & {
+        background-color: transparent;
+
+        .icon-external-link {
+            display: none;
+        }
+    }
+}

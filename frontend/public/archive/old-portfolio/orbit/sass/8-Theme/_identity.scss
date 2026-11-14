@@ -1,0 +1,29 @@
+.identity {
+    align-self: center;
+    flex: 0 1 auto;
+    margin-left: $space-half;
+    padding: $space-half 0;
+
+    @include respond-min($small-width) {
+        margin-left: 0;
+    }
+}
+
+.identity__logo {
+    width: pxToRem(200px);
+
+    @include respond-min($mid-width) {
+        width: pxToRem(300px);
+    }
+}
+
+.identity__link {
+    display: block;
+    transition: opacity $transition-speed ease-out;
+
+    &:hover,
+    &:focus,
+    &:active {
+        opacity: .7;
+    }
+}

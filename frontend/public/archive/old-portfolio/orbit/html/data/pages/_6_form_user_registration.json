@@ -1,0 +1,99 @@
+{
+    "bodyClass": "registration-form",
+    "content": {
+        "title": "Register",
+        "instructions": "When you open your account with us, you can get information about your preferred area every time you log on. We'll also be able to send you email alerts about these areas, but you can opt out if you prefer.",
+        "action": "2-home-page.html",
+        "method": "get",
+        "primaryAction": {
+            "name": "register",
+            "label": "Register"
+        },
+        "controls": [
+            {
+                "type": "email",
+                "label": "Email address",
+                "name": "reg_email",
+                "mandatory": true
+            },
+            {
+                "type": "email",
+                "label": "Confirm Email address",
+                "name": "email_conf",
+                "mandatory": true
+            },
+            {
+                "type": "password",
+                "label": "Password",
+                "help": "6–30 characters",
+                "name": "password",
+                "mandatory": true
+            },
+            {
+                "type": "password",
+                "label": "Confirm password",
+                "name": "password_conf",
+                "mandatory": true
+            },
+            {
+                "type": "select",
+                "label": "Title",
+                "name": "salutation",
+                "options": [
+                    {"value": "-1","text": "Select..."},{"value": "Mr","text": "Mr"},{"value": "Miss","text": "Miss"},{"value": "Mrs","text":"Mrs"},{"value": "Mrs","text":"Mrs"},{"value": "Ms","text":"Ms"},{"value": "Mx","text":"Mx"},{"value": "Dr","text":"Dr"}
+                ],
+                "mandatory": true
+            },
+            {
+                "type": "text",
+                "label": "First name",
+                "name": "forename",
+                "mandatory": true
+            },
+            {
+                "type": "text",
+                "label": "Last name",
+                "name": "surname",
+                "mandatory": true
+            },
+            {
+                "type": "date",
+                "label": "Date of birth",
+                "name": "dob",
+                "placeholder": "dd/mm/yyyy",
+                "help": "DD-MM-YYYY",
+                "mandatory": true
+            },
+            {
+                "type": "text",
+                "label": "Age",
+                "name": "age",
+                "mandatory": true
+            },
+            {
+                "type": "select",
+                "label": "Sex",
+                "name": "sex",
+                "options": [
+                    {"value": "-1","text": "Select..."},{"value": "Male","text": "Male"},{"value": "Female","text": "Female"},{"value": "Other","text": "Other"}
+                ]
+            },
+            {
+                "type": "textarea",
+                "label": "Address",
+                "name": "address",
+                "mandatory": true
+            },
+            {
+                "type": "checkbox",
+                "label": "Data protection",
+                "name": "dataProtection",
+                "options": [
+                    {
+                        "text": "I would like to be contacted regarding news, updates and offers."
+                    }
+                ]
+            }
+        ]
+    }
+}

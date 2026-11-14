@@ -1,0 +1,75 @@
+{% block listing %}
+    <article class="listing{{ featuredClass ? ' ' ~ featuredClass }}" aria-label="{{ title }}">
+
+        {% block listing_link %}
+            <a class="listing__link" href="{{ link.url }}">
+
+                {% block listing_link_inner %}
+                    {% block listing_content %}
+                        <div class="listing__content">
+
+                            {% block listing_content_inner %}
+                                {% block listing_heading %}
+                                    <h2 class="listing__heading">{{ title }}</h2>
+                                {% endblock %}
+
+                                {% block listing_summary %}
+                                    {% if summary %}
+
+                                        {% block listing_summary_inner %}
+                                            <p class="listing__summary">
+                                                {{ summary }}
+                                            </p>
+                                        {% endblock %}
+
+                                    {% endif %}
+                                {% endblock listing_summary %}
+
+                                {% block listing_meta %}
+                                    {% if group %}
+
+                                        {% block listing_meta_wrap %}
+                                            <div class="listing__meta">
+
+                                                {% block listing_meta_inner %}
+                                                    {% for item in group %}
+                                                        {% include 'partials/atoms/text/meta.html.twig' with {
+                                                            'type': item.type,
+                                                            'label': item.title,
+                                                            'value': item.value
+                                                            }
+                                                        %}
+                                                    {% endfor %}
+                                                {% endblock %}
+
+                                            </div>
+                                        {% endblock listing_meta_wrap %}
+
+                                    {% endif %}
+                                {% endblock listing_meta %}
+                            {% endblock listing_content_inner %}
+
+                        </div>
+                    {% endblock listing_content %}
+
+                    {% block listing_image %}
+                        {% if image %}
+
+                            {% block listing_image_inner %}
+                                {% include 'partials/atoms/image/image.html.twig' with {
+                                    'url': image.url,
+                                    'alt': image.alt,
+                                    'className': 'listing__image'
+                                    }
+                                %}
+                            {% endblock %}
+
+                        {% endif %}
+                    {% endblock listing_image %}
+                {% endblock listing_link_inner %}
+
+            </a>
+        {% endblock listing_link %}
+
+    </article>
+{% endblock listing %}

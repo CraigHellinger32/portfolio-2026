@@ -1,0 +1,44 @@
+{% block form_control -%}
+<div{{ isFirstError ? ' id="error_1"' }} class="form__control js-question{{ error ? ' form__control--error' }}">
+    {%- block form_control_inner -%}
+        {%- block form_question -%}
+            {% if label is not empty %}
+            <label class="form__label" for="{{ name }}">
+            {%- block form_question_inner -%}
+                {%- if error -%}
+                    {% include 'partials/atoms/form/error_indicator.html.twig' %}
+                {%- endif -%}
+                {{ label }}
+                {%- if required -%}
+                    {% include 'partials/atoms/form/required_indicator.html.twig' with {
+                        'required': languagePack.getText('LANG_XFORMS_REQUIRED')
+                        } 
+                    %}
+                {%- endif -%}
+            {%- endblock form_question_inner -%}
+            </label>
+            {% endif %}
+        {%- endblock form_question -%}
+
+        {%- block form_component -%}
+            <div class="form__component form__component--{{ type }}">
+                {%- block form_component_inner -%}
+                    {% include ['partials/atoms/form/'~ type ~'.html.twig', 'partials/atoms/form/input.html.twig'] %}
+                {%- endblock form_component_inner -%}
+                {%- if errorMsg is not empty and integratedComponent is empty %}
+                    {% include 'partials/atoms/form/inline_error.html.twig' with {
+                        'error': errorMsg
+                        } 
+                    %}
+                {% endif -%}
+                {%- if help is not empty %}
+                    {% include 'partials/atoms/form/help_text.html.twig' with {
+                        'help': help
+                        } 
+                    %}
+                {% endif -%}
+            </div>
+        {%- endblock form_component -%}
+    {%- endblock form_control_inner -%}
+</div>
+{%- endblock form_control %}

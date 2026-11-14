@@ -1,0 +1,80 @@
+{% for messages in app.session.flashBag.get('error') %}
+    {% if messages is not empty %}
+        {% if messages is iterable %}
+            {% for message in messages %}
+                {% include 'partials/molecules/text/alert.html.twig' with {
+                    'type': 'error',
+                    'title' : message,
+                    'index' : loop.index
+                }
+                %}
+            {% endfor %}
+        {% else %}
+            {% include 'partials/molecules/text/alert.html.twig' with {
+                'type': 'error',
+                'title' : messages
+            }
+            %}
+        {% endif %}
+    {% endif %}
+{% endfor %}
+{% for messages in app.session.flashBag.get('info') %}
+    {% if messages is not empty %}
+        {% if messages is iterable %}
+            {% for message in messages %}
+                {% include 'partials/molecules/text/alert.html.twig' with {
+                    'type': 'info',
+                    'title' : message,
+                    'index' : loop.index
+                }
+                %}
+            {% endfor %}
+        {% else %}
+            {% include 'partials/molecules/text/alert.html.twig' with {
+                'type': 'info',
+                'title' : messages
+            }
+            %}
+        {% endif %}
+    {% endif %}
+{% endfor %}
+{% for messages in app.session.flashBag.get('success') %}
+    {% if messages is not empty %}
+       {% if messages is iterable %}
+           {% for message in messages %}
+               {% include 'partials/molecules/text/alert.html.twig' with {
+                   'type': 'success',
+                   'title' : message,
+                   'index' : loop.index
+               }
+               %}
+           {% endfor %}
+       {% else %}
+           {% include 'partials/molecules/text/alert.html.twig' with {
+               'type': 'success',
+               'title' : messages
+           }
+           %}
+       {% endif %}
+    {% endif %}
+{% endfor %}
+{% for messages in app.session.flashBag.get('notice') %}
+    {% if messages is not empty %}
+        {% if messages is iterable %}
+            {% for message in messages %}
+                {% include 'partials/molecules/text/alert.html.twig' with {
+                    'type': 'notice',
+                    'title' : message,
+                    'index' : loop.index
+                }
+                %}
+            {% endfor %}
+        {% else %}
+            {% include 'partials/molecules/text/alert.html.twig' with {
+                'type': 'notice',
+                'title' : messages
+            }
+            %}
+        {% endif %}
+    {% endif %}
+{% endfor %}

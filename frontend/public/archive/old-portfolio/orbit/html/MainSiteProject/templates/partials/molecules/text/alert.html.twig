@@ -1,0 +1,25 @@
+{% extends '@theme:xfpbase/partials/molecules/text/alert.html.twig' %}
+
+{% block alert_link_iterable %}
+    <a class="alert__link" href="{{ singleURL.url }}">
+
+        {% block alert_link_inner %}
+            <span class="alert__link-text">
+                {{ singleURL.label|trim|default(singleURL.url|trim) }}
+            </span>
+        {% endblock %}
+
+    </a>
+{% endblock %}
+
+{% block alert_link_singular %}
+    <a class="alert__link" href="{{ url }}">
+
+        {% block alert_link_singular_inner %}
+            <span class="alert__link-text">
+                {{ label|trim|default(url) }}
+            </span>
+        {% endblock %}
+
+    </a>
+{% endblock %}

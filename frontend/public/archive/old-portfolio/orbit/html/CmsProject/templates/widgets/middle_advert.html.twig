@@ -1,0 +1,77 @@
+{# Default values were added to this file to prevent twing errors #}
+{% if not adverts is empty %}
+    {% block widget_wrap %}
+        <div class="widget-middle-advert">
+
+            {% block widget_wrap_inner %}
+                {% block widget_heading %}
+                    {% include 'partials/atoms/text/widget_heading.html.twig' with {
+                        'title': 'Featured content',
+                        'paths': paths
+                        }
+                    %}
+                {% endblock %}
+
+                {% block widget_content %}
+                    {% for advert in adverts %}
+
+                        {% block widget_content_inner %}
+                            <div class="boxed">
+
+                                {% block advert_link %}
+                                    <a class="widget__link" href="{{ advert.getUrl()|default(advert.url) }}">
+
+                                        {% block advert_image %}
+                                            {% if advert.image %}
+                                                {% include 'partials/atoms/image/image.html.twig' with {
+                                                    'url': advert.image.getUrl()|default(advert.image),
+                                                    'alt': advert.image.getAlt()|default(advert.alt)|default(''),
+                                                    'className': 'widget__image',
+                                                    'paths': paths
+                                                    }
+                                                %}
+                                            {% endif %}
+                                        {% endblock advert_image %}
+
+                                        {% block advert_content %}
+                                            {% block advert_content_inner %}
+
+                                                {% block advert_heading %}
+                                                    <h3 class="widget__subheading">{{ advert.getTitle()|default(advert.title) }}</h3>
+                                                {% endblock %}
+
+                                                {% block advert_subheading %}
+                                                    {% if not advert.getSubtitle() is empty or advert.subtitle is not empty %}
+
+                                                        {% block advert_subheading_inner %}
+                                                            <h4 class="widget__subheading-child">{{ advert.getSubtitle()|default(advert.subtitle) }}</h4>
+                                                        {% endblock %}
+                                                    {% endif %}
+                                                {% endblock %}
+
+                                                {% block advert_text %}
+                                                    {% if not advert.getContent() is empty or advert.content is not empty %}
+
+                                                        {% block advert_text_inner %}
+                                                            <p class="widget__text">{{ advert.getContent()|default(advert.content)  }}</p>
+                                                        {% endblock %}
+
+                                                    {% endif %}
+                                                {% endblock %}
+
+                                            {% endblock advert_content_inner %}
+                                        {% endblock advert_content %}
+
+                                    </a>
+                                {% endblock advert_link %}
+
+                            </div>
+                        {% endblock widget_content_inner %}
+
+                    {% endfor %}
+                {% endblock widget_content %}
+            {% endblock widget_wrap_inner %}
+
+        </div>
+    {% endblock widget_wrap %}
+{% endif %}

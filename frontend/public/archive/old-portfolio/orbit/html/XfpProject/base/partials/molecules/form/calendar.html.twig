@@ -1,0 +1,29 @@
+{% block form_calendar %}
+    {% block form_calendar_inner %}
+        {% if question.calendar %}
+            {% block form_calendar_question %}
+                {% include 'XFormsProCoreBundle:Form/Component/EventBooking:calendar.html.twig' with {
+                    'calendar': question.calendar,
+                    'component': {'questionId': question.globalID ~ '-' ~ question.object.id, 'name': question.name},
+                    'savedSlot': question.value,
+                    'selectedSlot': question.value
+                } %}
+            {% endblock %}
+        {% else %}
+            {% block form_calendar_error %}
+                {% include 'partials/atoms/form/inline_error.html.twig' with {
+                    'error': 'Sorry, no slots can be booked at the moment. Please try again later.'
+                    }
+                %}
+            {% endblock %}
+        {% endif %}
+    {% endblock %}
+
+    {% block form_calendar_javascript %}
+        {% if not componentRendered %}
+            {% block form_calendar_javascript_inner %}
+                <script src="/site/xfp/js/event-booking.js?v=xfp_cb_26"></script>
+            {% endblock %}
+        {% endif %}
+    {% endblock %}
+{% endblock %}

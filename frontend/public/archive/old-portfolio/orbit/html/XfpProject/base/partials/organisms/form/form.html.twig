@@ -1,0 +1,163 @@
+{% extends '@theme:base/partials/organisms/form/form.html.twig' %}
+
+{% block form_tag %}
+    <form
+        class="form form--block {% if form.isFormBuilder %}form--form-builder{% endif %}"
+        {% if form.method is not empty %}method="{{ form.method }}"{% endif %}
+        {% if form.action is not empty %}action="{{ form.action }}"{% endif %}
+        {% if form.isFormBuilder %}enctype="multipart/form-data"{% endif %}
+    >
+{% endblock %}
+
+{% block form_error %}
+    {% if resumeURLs %}
+        {% include 'partials/molecules/text/resume_forms_alert.html.twig' with {
+            'type': 'info',
+            'title': form.languagePack.getText('LANG_XFORMS_FORM_ALREADY_STARTED_HEADING'),
+            'summary': form.languagePack.getText('LANG_XFORMS_FORM_ALREADY_STARTED_MESSAGE'),
+            'url': resumeURLs
+            }
+        %}
+    {% endif %}
+
+    {% if userFriendlyErrorText %}
+        {% block form_error_friendly %}
+            {% include 'partials/molecules/text/alert.html.twig' with {
+                'type': 'error',
+                'title': userFriendlyErrorText.title,
+                'summary': userFriendlyErrorText.summary,
+                'url': userFriendlyErrorText.url
+                }
+            %}
+        {% endblock %}
+    {% else %}
+        {% for error in form.errors %}
+            {% block form_error_non_friendly %}
+                {% include 'partials/molecules/text/alert.html.twig' with {
+                    'type': 'error',
+                    'title': error.title,
+                    'summary': error.summary,
+                    'url': error.url
+                    }
+                %}
+            {% endblock %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+
+{% if logicError != 'notSignedIn' %}
+    {% block form_progress %}
+        {% block form_progress_bar %}
+            {% if form.progress is not empty %}
+                {% block form_progress_bar_inner %}
+                    {% include 'partials/molecules/progress_bar.html.twig' with {
+                        'percentage': form.progress.percentage,
+                        'current': form.progress.current,
+                        'max': form.progress.max,
+                        'multiple': form.progress.multiple,
+                        'languagePack': form.languagePack
+                        } only
+                    %}
+                {% endblock %}
+            {% endif %}
+        {% endblock %}
+
+        {% block form_progress_cancelled %}
+            {% if paybridge_cancelled %}
+                {% block form_progress_cancelled_inner %}
+                    {% include 'partials/molecules/text/alert.html.twig' with {
+                        'type': 'success',
+                        'title': 'Your order has been cancelled'
+                        }
+                    %}
+                {% endblock %}
+            {% endif %}
+        {% endblock %}
+    {% endblock %}
+
+    {% block form_content %}
+        {{ form.csrf.renderToken()|raw }}
+
+        {{ parent() }}
+        {% block form_answers %}
+            {% if form.state == 'confirmation' %}
+                {% include 'partials/organisms/form/form_confirmation_answers.html.twig' with {
+                    'answers': form.answers
+                    }
+                %}
+            {% endif %}
+        {% endblock %}
+
+        {% block form_recaptcha %}
+            {% if formPage.reCaptchaKey is not empty %}
+                <div class="g-recaptcha" data-sitekey="{{ formPage.reCaptchaKey }}"></div>
+                <script src="https://www.google.com/recaptcha/api.js?v=xfp_cb_26" async defer></script>
+                {% if formPage.errors.reCaptcha or formPage.reCaptchaError %}
+                    <p class=""help-text"{% if formPage.errors.reCaptcha and formPage.errors|length == 1 %} id="error_1"{% endif %}>{{ languagePack.getText('LANG_XFORMS_CAPTCHA_FAILURE_MESSAGE')|raw }}</p>
+                {% endif %}
+            {% endif %}
+        {% endblock %}
+    {% endblock %}
+
+    {% block form_questions %}
+        <div{% if xform %} id="question-holder"{% endif %}>
+            {{ parent() }}
+            {% for item in form.page.main.structure %}
+                {% if item.type == 'question' %}
+                    {% if not item.object.getSetting('internal_only') %}
+                        {% block form_question %}
+                            {{
+                                render_inline(controller('xfp_core.form_logic.question_view_transformer', {
+                                    question: item.render,
+                                    internal: false,
+                                    formID: xform.id,
+                                    pageURL: pageURL,
+                                    languagePack: form.languagePack,
+                                    templatePath: 'partials/molecules/form/'
+                                }))
+                            }}
+                        {% endblock %}
+                    {% endif %}
+                {% elseif item.repeatableData is defined %}
+                    {% if not item.object.getRepeatableQuestionSetting('internal_only') %}
+                        {% block form_repeatable %}
+                            {% include 'partials/organisms/form/form_repeatable_question.html.twig' with {
+                                'section': item,
+                                'formPage': form.page,
+                                'languagePack': form.languagePack,
+                                'formID': xform.id,
+                                'pageURL': pageURL
+                                } only
+                            %}
+                        {% endblock %}
+                    {% endif %}
+                {% else %}
+                    {% block form_section %}
+                        {% include 'partials/organisms/form/form_section.html.twig' with {
+                            'section': item,
+                            'formPage': form.page,
+                            'languagePack': form.languagePack,
+                            'formID': xform.id,
+                            'pageURL': pageURL
+                            } only
+                        %}
+                    {% endblock %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endblock %}
+
+    {% block form_actions %}
+        {{ parent() }}
+        {% if form.secondaryLinkAction is not empty %}
+            {% block form_actions_button_secondary %}
+                {% include 'partials/atoms/button/call_to_action.html.twig' with {
+                    'link': form.secondaryLinkAction.url,
+                    'title': form.secondaryLinkAction.title,
+                    'className': 'button--secondary'
+                    }
+                %}
+            {% endblock %}
+        {% endif %}
+    {% endblock %}
+{% endif %}

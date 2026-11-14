@@ -1,0 +1,24 @@
+{% set section = question.componentType|replace({'-':' ', '_':' '})|default('XFP component') %}
+
+<div id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}" class="style-guide__section">
+    {% include '@theme:base/partials/atoms/styleguide/text/heading.html.twig' with {
+        'section': section
+        }
+    %}
+    <div class="form__control js-question">
+        <div class="form__component form__component--{{ question.type }}">
+            {% if question.componentType == 'map' and question.map_type == 'google' %}
+                {% include '@theme:xfpbase/partials/molecules/text/alert.html.twig' with {
+                    'type': 'danger',
+                    'summary': '',
+                    'title': 'This map cannot be displayed'
+                    }
+                %}
+            {% endif %}
+            {% include filename with {
+                'question': question
+                }
+            %}
+        </div>
+    </div>
+</div>

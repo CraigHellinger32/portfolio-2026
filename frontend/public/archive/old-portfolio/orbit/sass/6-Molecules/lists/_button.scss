@@ -1,0 +1,51 @@
+$alert-list-border-color: $color-border-dark;
+
+.list--with-button,
+%list--with-button {
+    @extend %list--rich;
+
+    border-color: $alert-list-border-color;
+    margin-top: $slug;
+
+    .list__item {
+        align-items: center;
+        border-color: $alert-list-border-color;
+        display: flex;
+        padding: $space-third 0;
+
+        @include respond-max($x-small-width) {
+            flex-wrap: wrap;
+        }
+
+        &:first-child {
+            border-color: $alert-list-border-color;
+        }
+    }
+
+    .list__item-text {
+        display: inline-block;
+        flex: 1 1 auto;
+        margin: $space-sixth $space-half $space-sixth 0;
+        max-width: 100%;
+        vertical-align: middle;
+
+        @include respond-max($x-small-width) {
+            flex: 1 1 100%;
+            margin-bottom: $space-half;
+            margin-right: 0;
+            width: 100%;
+        }
+    }
+
+    .list__item-button {
+        @extend %button--small;
+        @extend %button--secondary;
+
+        flex: none;
+        margin: 0;
+
+        @include respond-max($x-small-width) {
+            margin-bottom: $space-quarter;
+        }
+    }
+}

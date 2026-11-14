@@ -1,0 +1,13 @@
+{% extends '@theme:base/partials/atoms/form/select.html.twig' %}
+
+{% block form_select %}
+
+    <select class="form__select" id="{{ id|default(name) }}" name="{{ name }}"{% if required %} aria-required="true"{% endif %}{% if help %} aria-describedby="help_text_{{ id|default(name) }}"{% endif %}>
+
+        {% block form_select_inner %}
+            {{ parent() }}
+        {% endblock %}
+
+    </select>
+
+{% endblock %}

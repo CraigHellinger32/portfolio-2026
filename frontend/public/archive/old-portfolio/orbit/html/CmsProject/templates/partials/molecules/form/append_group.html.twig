@@ -1,0 +1,26 @@
+{% extends 'partials/molecules/form/single_field.html.twig' %}
+
+{% block form_control -%}
+    <div{{ isFirstError ? ' id="error_1"' }} class="form__control form__control--append{{ formControlClasses ? ' ' ~ formControlClasses }} js-question{{ error ? ' form__control--error' }}">
+
+        {%- block form_append_group -%}
+            <div class="form__append-group">
+                {%- block form_control_inner -%}
+                    {{ parent() }}
+
+                    {% block form_append_group_button %}
+                        {% include 'partials/atoms/form/button.html.twig' with {
+                            'name': button.name|default('submit'),
+                            'type': button.type|default('submit'),
+                            'label': button.value|default(label),
+                            'value': button.value|default(label),
+                            'modifier': button.modifier
+                            }
+                        %}
+                    {% endblock %}
+
+                {%- endblock form_control_inner -%}
+            </div>
+        {%- endblock form_append_group -%}
+    </div>
+{%- endblock form_control %}

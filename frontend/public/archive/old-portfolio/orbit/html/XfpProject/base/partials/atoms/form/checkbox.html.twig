@@ -1,0 +1,25 @@
+{% extends '@theme:base/partials/atoms/form/checkbox.html.twig' %}
+
+{% block form_checkbox_input %}
+    <input
+        {% block form_checkbox_attributes %}
+            class="form__checkbox"
+            id="{{ name ~ loop.index }}"
+            type="checkbox"
+            name="{{ name ~ '[]' }}"
+            value="{{ option.value }}"
+            {% if option.value in value %} checked{% endif %}
+            {% if option.data is not empty %} data-xfp="{{ option.data }}"{% endif %}
+        {% endblock %}
+    >
+{% endblock %}
+
+{% block form_checkbox %}
+    {% if not option.internal or internal %}
+        <div class="form__control-group">
+            {% block form_checkbox_inner %}
+                {{ parent() }}
+            {% endblock %}
+        </div>
+    {% endif %}
+{% endblock %}

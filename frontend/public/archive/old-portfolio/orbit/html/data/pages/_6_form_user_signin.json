@@ -1,0 +1,26 @@
+{
+    "bodyClass": "signin-form",
+    "content": {
+        "title": "Sign in to your account",
+        "action": "2-home-page.html",
+        "method": "get",
+        "primaryAction": {
+            "name": "jaduSignInButton",
+            "label": "Sign in"
+        },
+        "controls": [
+            {
+                "type": "email",
+                "label": "Email address",
+                "name": "email",
+                "mandatory": true
+            },
+            {
+                "type": "password",
+                "label": "Password",
+                "name": "password",
+                "mandatory": true
+            }
+        ]
+    }
+}

@@ -1,0 +1,24 @@
+{% extends '@theme:base/partials/molecules/form/single_field.html.twig' %}
+
+{% block form_control -%}
+    {% if question is not empty %}
+        {% set error = question.hasError %}
+        {% set errorMsg = question.errorMsg %}
+        {% set label = question.text %}
+        {% set name = question.name %}
+        {% set isFirstError = question.firstError %}
+        {% set required = question.required %}
+        {% set type = question.object.componentType %}
+        {% set help = question.help %}
+        {% set integratedComponent = question.ic %}
+    {% endif %}
+    {{ parent() }}
+{% endblock %}
+
+{%- block form_component_inner -%}
+    {% if componentTemplate %}
+        {%- include componentTemplate -%}
+    {% else %}
+        {% include ['partials/atoms/form/'~ type ~'.html.twig', 'partials/atoms/form/input.html.twig'] %}
+    {% endif %}
+{%- endblock -%}

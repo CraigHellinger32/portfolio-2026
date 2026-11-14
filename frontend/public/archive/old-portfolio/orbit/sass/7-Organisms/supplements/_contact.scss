@@ -1,0 +1,15 @@
+// Contact supplement
+.supplement--contact {
+    &__image {
+    }
+
+    .supplement__address {
+        margin: $space-sixth 0 $slug;
+    }
+
+    .supplement__contact {
+        .supplement__text {
+            margin: 0 0 $space-eighth;
+        }
+    }
+}

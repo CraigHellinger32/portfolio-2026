@@ -1,0 +1,21 @@
+{% set section = 'Favicons' %}
+
+<div class="style-guide__section" id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}">
+    {% include 'partials/atoms/styleguide/text/heading.html.twig' with {
+        'section': section
+        }
+    %}
+    {% block style_guide_favicons %}
+        <div class="style-guide__favicons-wrapper">
+            {% for favicon in favicons %}
+                {% include 'partials/molecules/image/figure.html.twig' with {
+                    'url': path_url ~ favicon.url,
+                    'alt': favicon.alt|default('Favicon: ' ~ loop.index),
+                    'caption': favicon.url|default('Favicon ' ~ loop.index),
+                    'className': 'style-guide__favicon'
+                    }
+                %}
+            {% endfor %}
+        </div>
+    {% endblock %}
+</div>

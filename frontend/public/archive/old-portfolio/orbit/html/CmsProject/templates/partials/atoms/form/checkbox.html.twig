@@ -1,0 +1,29 @@
+{% for option in options %}
+
+    {% block form_checkbox %}
+        <div class="form__control-group">
+
+            {% block form_checkbox_inner %}
+
+                {% block form_checkbox_label %}
+                    <label class="form__label form__label--checkbox" for="{{ name ~ loop.index }}">
+                        {{ option.text }}
+                    </label>
+                {% endblock %}
+
+                {% block form_checkbox_input %}
+                    <input
+                        class="form__checkbox"
+                        id="{{ name ~ loop.index }}"
+                        type="checkbox"
+                        name="{{ name ~ '[]' }}"
+                        value="{{ option.value }}"
+                        {% if option.value in value %}checked{% endif %}>
+                {% endblock %}
+
+            {% endblock form_checkbox_inner %}
+
+        </div>
+    {% endblock form_checkbox %}
+
+{% endfor %}

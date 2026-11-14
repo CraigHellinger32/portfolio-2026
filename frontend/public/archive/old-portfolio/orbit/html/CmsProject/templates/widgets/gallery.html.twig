@@ -1,0 +1,59 @@
+{% if gallery %}
+    {% block widget_wrap %}
+        <div class="widget-gallery">
+
+            {% block widget_wrap_inner %}
+
+                {% block widget_heading %}
+                    {% include 'partials/atoms/text/widget_heading.html.twig' with {
+                        'title': gallery.title
+                        }
+                    %}
+                {% endblock %}
+
+                {% block widget_content %}
+                    {% block widget_content_inner %}
+
+                        {% block gallery_description %}
+                            {% include 'partials/atoms/text/editor.html.twig' with {
+                                'content': gallery.description
+                                }
+                            %}
+                        {% endblock %}
+
+                        {% block gallery_wrap %}
+                            {% if not preview %}
+                                {% if gallery.items is not empty %}
+
+                                    {% block gallery %}
+                                        <div class="carousel js-carousel">
+
+                                            {% block gallery_inner %}
+                                                {% for item in gallery.items %}
+                                                    {% if item.id is not empty %}
+
+                                                        {% block gallery_item %}
+                                                            <div class="slide">
+                                                                {{ component('multimedia_items', { 'itemID': item.id }) }}
+                                                            </div>
+                                                        {% endblock gallery_item %}
+
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endblock gallery_inner %}
+
+                                        </div>
+                                    {% endblock gallery %}
+
+                                {% endif %}
+                            {% endif %}
+                        {% endblock gallery_wrap %}
+
+                    {% endblock widget_content_inner %}
+                {% endblock widget_content %}
+
+            {% endblock widget_wrap_inner %}
+
+        </div>
+    {% endblock widget_wrap %}
+{% endif %}

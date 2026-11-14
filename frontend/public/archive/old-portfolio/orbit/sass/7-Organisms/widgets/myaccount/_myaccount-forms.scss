@@ -1,0 +1,124 @@
+// 2 Account form widgets:
+// '.widget--my-account-forms' isn't in the repo
+// '.widget--myaccount-form-submissions' = 58
+
+$rich-list-border-style: $border-width-small solid $color-border-mid !default;
+
+.widget--my-account-forms,
+.widget--myaccount-form-submissions {
+    @extend %boxed;
+
+    &.widget {
+        margin-top: $slug-large;
+    }
+
+    > h2 {
+        @extend %boxed__heading;
+    }
+
+    .widget-width--large & {
+        .submitted {
+            @include respond-min($mid-width) {
+                margin-right: $space;
+            }
+        }
+
+        .submitted,
+        .unsubmitted {
+            @include respond-min($mid-width) {
+                float: left;
+                width: calc(50% - #{$space-half});
+            }
+        }
+    }
+
+    .submitted,
+    .unsubmitted {
+        > h3 {
+            @extend %boxed__subheading;
+
+            margin: $slug 0 $slug-small;
+        }
+    }
+
+    .item-list {
+        @extend %list;
+
+        margin-bottom: 0;
+
+        > li {
+            border-bottom: $rich-list-border-style;
+            margin: 0;
+            padding: $space-third 0;
+
+            &:first-child {
+                border-top: $rich-list-border-style;
+            }
+
+            li {
+                border-bottom: 0;
+                margin-bottom: 0;
+                padding-bottom: 0;
+            }
+        }
+    }
+
+    .small-buttons {
+        .button {
+            @extend %button--primary;
+
+            + .button {
+                margin-left: $space-half;
+            }
+        }
+    }
+
+    .view-more {
+        @extend %button;
+        @extend %button--primary;
+
+        margin-top: $space-half;
+
+        // scss-lint:disable ImportantRule
+        &[style="display: block;"] { // override inline style added by core js
+            display: inline-block !important;
+        }
+        // scss-lint:enable ImportantRule
+    }
+}
+
+.widget--my-account-forms {
+    h3 {
+        @extend %boxed__subheading !optional;
+    }
+
+    h4 {
+        margin-bottom: $space-half;
+    }
+}
+
+// Widget 58
+.widget--myaccount-form-submissions {
+    h3 {
+        @extend %boxed__heading !optional;
+    }
+
+    h4 {
+        @extend %normalis;
+
+        margin-top: $space;
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+
+    .item-list {
+        margin-bottom: $space;
+    }
+
+    .button {
+        margin-top: $space-half;
+        padding: $space-third;
+    }
+}

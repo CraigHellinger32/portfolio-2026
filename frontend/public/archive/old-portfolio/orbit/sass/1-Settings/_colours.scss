@@ -1,0 +1,126 @@
+// ========================================================
+//  Brand palette
+// ===============
+
+//  Primary palette
+// =================
+$primary-palette: (
+    'blue-dark':                #2d3547,
+    'yellow':                   #fdcc00,
+    'blue':                     #004990,
+    'turquoise':                #6ee0ce,
+    'almond':                   #f0e8d4,
+    'custard':                  #feefb3,
+    'blue-pale':                #f5f5f7,
+    'grey-light':               #f8f8f8,
+    'purple-grey':              #5f647c
+);
+
+//  Neutral palette
+// =================
+$color-black:                   #000;
+$color-grey-darker:             #171717;
+$color-grey-dark:               #383835;
+$color-grey:                    #616365;
+$color-grey-mid:                #cacaca;
+$color-grey-light:              #eeece8;
+$color-off-white:               #fafaf8;
+$color-white:                   #fff;
+
+// ========================================================
+
+
+// ========================================================
+//  Non-brand palette
+// ===================
+
+//  UI palette
+// ============
+//  These can updated to use colours from the `Primary palette`
+$ui-palette: (
+    'blue':                    #226fb4,
+    'blue-dark':               #095294,
+    'green':                   #a4d0b1,
+    'orange':                  #f5a623,
+    'purple':                  #6d2077,
+    'red':                     #f3a3a9,
+    'yellow':                  #ffe13b
+);
+
+// ========================================================
+
+
+// ========================================================
+//  Site Colours
+// ==============
+
+//  Primary
+// =========
+$color-primary:                 map-get($primary-palette, 'blue-dark');
+$color-primary-light:           lighten($color-primary, 20%);
+$color-primary-offset:          $color-white;
+
+//  Text
+// ======
+$color-text-default:            $color-grey-darker;
+$color-text-heading:            $color-primary;
+$color-text-muted:              $color-grey;
+
+//  Secondary
+// ===========
+$color-secondary:               map-get($primary-palette, 'blue');
+$color-secondary-dark:          darken($color-secondary, 10%);
+$color-secondary-offset:        map-get($primary-palette, 'blue-pale');
+
+//  Response
+// ==========
+$color-success:                 map-get($ui-palette, 'green');
+$color-warning:                 map-get($ui-palette, 'orange');
+$color-danger:                  map-get($ui-palette, 'red');
+$color-danger-text:             darken($color-danger, 40%);
+$color-disabled:                $color-grey-light;
+
+//  Stand-out
+// ===========
+$color-standout:                map-get($primary-palette, 'turquoise');
+$color-standout-offset:         map-get($primary-palette, 'blue-dark');
+
+//  Link
+// ======
+$color-link:                    map-get($ui-palette, 'blue');
+$color-link-visited:            map-get($ui-palette, 'purple');
+$color-link-hover:              map-get($ui-palette, 'blue-dark');
+$color-link-focus:              map-get($ui-palette, 'purple');
+$color-link-focus-alt:          map-get($ui-palette, 'orange');
+
+//  Link colour themes
+// --------------------
+$color-link-primary-hover:          lighten($color-primary, 70%);
+$color-link-primary-visited:        lighten($color-primary, 60%);
+$color-link-secondary-hover:        lighten($color-secondary, 70%);
+$color-link-secondary-visited:      lighten($color-secondary, 60%);
+$color-link-primary-light-hover:    lighten($color-primary-light, 60%);
+$color-link-primary-light-visited:  lighten($color-primary-light, 50%);
+
+//  Misc
+// ======
+$color-site-background:         $color-grey-light;
+$color-subtle:                  map-get($primary-palette, 'blue-pale');
+
+//  Borders
+// =========
+//   Default border colours
+//   ----------------------
+$color-border:                  $color-grey-light;
+$color-border-light:            map-get($primary-palette, 'blue');
+$color-border-mid:              $color-grey-mid;
+$color-border-dark:             $color-grey;
+$color-border-input:            $color-text-default;
+
+//   Site specific border colours
+//   ----------------------------
+$color-border-primary:          lighten($color-primary, 10%);
+$color-border-secondary:        lighten($color-secondary, 10%);
+
+
+// ========================================================

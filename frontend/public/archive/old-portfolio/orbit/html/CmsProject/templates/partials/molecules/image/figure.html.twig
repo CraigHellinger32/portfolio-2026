@@ -1,0 +1,21 @@
+{% block figure %}
+    <figure class="image image--caption">
+
+        {% block figure_inner %}
+
+            {% block figure_image %}
+                {% include 'partials/atoms/image/image.html.twig' with {
+                    'url': url,
+                    'alt': alt
+                    }
+                %}
+            {% endblock %}
+
+            {% block figcaption %}
+                <figcaption class="image__caption">{{ caption }}</figcaption>
+            {% endblock %}
+
+        {% endblock figure_inner %}
+
+    </figure>
+{% endblock figure %}

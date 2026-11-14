@@ -1,0 +1,22 @@
+{% extends 'layouts/article.html.twig' %}
+
+{% block stylesheet_base %}
+    <link rel="stylesheet" type="text/css" href="/site/xfp/css/summary.css?v=xfp_cb_26" />
+    {{ parent() }}
+{% endblock %}
+
+{% block page_content_article %}
+    {% include 'partials/organisms/form/form_confirmation_answers.html.twig' with {
+        'answers': xfp_answers
+    } only %}
+{% endblock %}
+
+{% block after_page_content %}
+    {% include 'partials/molecules/list/list.html.twig' with {
+        'title': list.title,
+        'group': list.items,
+        'type': list.type,
+        'className': 'list--' ~ list.type
+        }
+    %}
+{% endblock %}

@@ -1,0 +1,185 @@
+// Paginator navigation
+//
+// Pagination style navigation
+//
+// Markup:
+// <nav class="pagination">
+//     <ol class="pagination__list">
+//         <li classpaginationitem pagination__item--previous"><span class="pagination__link is-disabled">Previous</span></li>
+//         <li class="pagination__item pagination__item--next"><a class="pagination__link" href="#">Next</a></li>
+//     </ol>
+// </nav>
+//
+// <nav class="pagination pagination--complex">
+//     <ol class="pagination__list">
+//         <li class="pagination__item pagination__item--previous"><span class="pagination__link is-disabled">Previous</span></li>
+//         <li class="pagination__item"><span class="pagination__link is-active">1</span></li>
+//         <li class="pagination__item"><a class="pagination__link" href="#">2</a></li>
+//         <li class="pagination__item"><a class="pagination__link" href="#">3</a></li>
+//         <li class="pagination__item pagination__item--next"><a class="pagination__link" href="#">Next</a></li>
+//     </ol>
+// </nav>
+//
+// Styleguide 14.3
+
+$pagination-icon-offset: 7px !default;
+
+.pagination {
+    @extend %cf;
+
+    border-top: $border-width-large solid $color-primary;
+    clear: both;
+    float: left;
+    margin-top: $space-and-two-thirds;
+    padding-top: $slug;
+    text-align: center;
+    width: 100%;
+
+    + .boxed {
+        clear: both;
+        float: left;
+        margin-top: $slug-large;
+        width: 100%;
+    }
+}
+
+.pagination__list {
+    @extend %cf;
+    @extend %list;
+}
+
+.pagination__item {
+    display: inline-block;
+}
+
+.pagination__link {
+    @include linkUnderlineReset();
+    @include linkUnderline('.pagination__meta', $color-text-default);
+
+    display: flex;
+    min-height: $space-and-two-thirds;
+    position: relative;
+
+    &,
+    &:visited {
+        .pagination__meta {
+            color: $color-text-default; // TODO - Fix the linkUnderline mixin so we don't need to do this.
+        }
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none;
+
+        .pagination__icon {
+            background-color: $color-secondary;
+        }
+    }
+
+    &.is-disabled {
+        cursor: not-allowed;
+        opacity: .4;
+
+        &:hover,
+        &:focus,
+        &:active {
+            .pagination__icon {
+                background-color: $color-primary;
+            }
+
+            .pagination__meta {
+                background-image: none;
+            }
+        }
+    }
+}
+
+.pagination__content {
+    align-self: center;
+    color: $color-text-default;
+    display: inline-block;
+}
+
+.pagination__icon {
+    background-color: $color-primary;
+    background-position: center;
+    background-size: 50%;
+    flex: 0 0 auto;
+    height: $space-and-two-thirds;
+    transition: background-color $transition-speed-fast ease-out;
+}
+
+.pagination__label {
+    display: block;
+    font-size: $zeta;
+    font-weight: $font-weight-bold;
+}
+
+.pagination__item--previous {
+    float: left;
+    padding-right: $space;
+    text-align: left;
+    width: 50%;
+
+    .pagination__link {
+        justify-content: flex-start;
+    }
+
+    .pagination__content {
+        margin-left: $gutter-small;
+    }
+}
+
+.pagination__item--next {
+    float: right;
+    padding-left: $space;
+    text-align: right;
+    width: 50%;
+
+    .pagination__link {
+        justify-content: flex-end;
+    }
+
+    .pagination__content {
+        margin-right: $gutter-small;
+    }
+}
+
+.pagination__item--previous,
+.pagination__item--next {
+    .is-disabled {
+    }
+}
+
+// VARS
+$pagination-item-max-width: 10rem !default;
+
+.pagination--complex {
+    border-top: 0;
+
+    .pagination__link,
+    .pagination__active {
+        margin-bottom: 0;
+        padding-left: $space-half;
+        padding-right: $space-half;
+    }
+
+    .pagination__link {
+        @extend %button;
+        @extend %button--secondary;
+    }
+
+    .pagination__active {
+        @extend %button;
+
+        cursor: default;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: $color-white;
+            color: $color-link;
+        }
+    }
+}

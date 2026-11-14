@@ -1,0 +1,9 @@
+.widget--myaccount-links {
+    h2 {
+        @extend %boxed__heading !optional;
+    }
+
+    h3 {
+        @extend %boxed__subheading !optional;
+    }
+}

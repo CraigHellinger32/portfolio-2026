@@ -1,0 +1,82 @@
+{% extends 'layouts/article.html.twig' %}
+
+{% block javascript_metadata %}
+    {# <script src="{{ asset('site/js/swfobject.min.js') }}"></script> - purposely leaving swfobject out of orbit #}
+{% endblock %}
+
+{% block main %}
+
+    {% block attachment_group_wrap %}
+        {% if attachments|length > 0 %}
+            {% for group in attachments %}
+
+                {% block attachment_group %}
+                    <div class="boxed">
+
+                        {% block attachment_group_inner %}
+                            {% for item in group %}
+
+                                {% block attachment_item %}
+                                    {% block attachment_heading %}
+                                        {% if loop.index == 1 %}
+
+                                            {% block attachment_heading_inner %}
+                                                <h2 class="boxed__heading">{{ item.type.type }}</h2>
+                                            {% endblock %}
+
+                                        {% endif %}
+                                    {% endblock %}
+
+                                    {% block attachment_content %}
+                                        {% if item.contentType == 'manual' %}
+
+                                            {% block attachment_manual %}
+                                                {% block attachment_manual_heading %}
+                                                    <h3 class="boxed__subheading">{{ item.title }}</h3>
+                                                {% endblock %}
+
+                                                {% block attachment_manual_content %}
+                                                    {% include 'partials/atoms/text/editor.html.twig' with {
+                                                            'content': item.content
+                                                        }
+                                                    %}
+                                                {% endblock %}
+                                            {% endblock attachment_manual %}
+
+                                        {% else %}
+
+                                            {% block attachment_button %}
+                                                {% include 'partials/atoms/button/call_to_action.html.twig' with {
+                                                    'link': path('meeting_download', { attachmentId: item.id, attachmentSlug: item.title|url_encode }),
+                                                    'title': item.title,
+                                                    'className': 'button--secondary button--small button--icon-right',
+                                                    'icon': 'ui-download'
+                                                    }
+                                                %}
+                                            {% endblock attachment_button %}
+
+                                        {% endif %}
+
+                                    {% endblock attachment_content %}
+                                {% endblock attachment_item %}
+
+                            {% endfor %}
+                        {% endblock attachment_group_inner %}
+
+                    </div>
+                {% endblock attachment_group %}
+
+            {% endfor %}
+        {% else %}
+            {% block meeting_alert %}
+                {% include 'partials/molecules/text/alert.html.twig' with {
+                    'type': 'warning',
+                    'title': getTranslatedString('no-entries')
+                    }
+                %}
+            {% endblock %}
+        {% endif %}
+    {% endblock attachment_group_wrap %}
+
+    {{ parent() }}
+{% endblock %}

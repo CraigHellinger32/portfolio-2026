@@ -1,0 +1,73 @@
+// Based on Codrops example - http://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/
+
+.form__field--upload,
+%form__field--upload {
+    line-height: 1;
+    min-height: auto;
+
+    .js & {
+        @include visuallyhidden;
+    }
+
+    &:focus,
+    &.has-focus {
+        ~ .form__label {
+            @include focus-outline;
+        }
+    }
+}
+
+.form__label--upload,
+%form__label--upload {
+    @extend %button;
+    @extend %button--primary;
+    @extend %button--icon-right;
+
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &::after {
+        background-position: center;
+        content: '';
+        display: block;
+        position: absolute;
+        right: $space-half;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .form__component--file & {
+        margin: $slug-small 0;
+        padding-right: $space-double + $space-half;
+
+        @include respond-min($small-width) {
+            width: auto;
+        }
+
+        &::after {
+            background-size: cover;
+            height: $space-and-third;
+            width: $space-and-third;
+        }
+    }
+
+    .form__required-note {
+        display: none;
+    }
+
+    // scss-lint:disable VendorPrefix ImportantRule
+    &::-moz-selection,
+    &::selection {
+        background-color: transparent !important;
+        color: $color-primary-offset !important;
+    }
+    // scss-lint:enable VendorPrefix ImportantRule
+}
+
+.no-js {
+    .fallback.file-upload {
+        @include visuallyhidden();
+    }
+}

@@ -1,0 +1,78 @@
+{
+    "bodyClass": "document-article",
+    "content": {
+        "title": "Document Page",
+        "image": {
+            "url": "./images/media_1.jpg",
+            "alt": "Free Flu Vaccinations"
+        },
+        "passwordProtected": false,
+        "restricted": false,
+        "navigation": [
+            {"title":"Document Page 1","url":"2-document-two-column.html?pagesIn=1"},{"title":"Document Page 2","url":"2-document-two-column.html?pagesIn=2","active":true},{"title":"Document Page 3","url":"2-document-two-column.html?pagesIn=3"},{"title":"Document Page 4","url":"2-document-two-column.html?pagesIn=4"},{"title":"Document Page 5 with a really, really, really long page title","url":"2-document-two-column.html?pagesIn=5"},{"title":"Document Page 6","url":"2-document-two-column.html?pagesIn=6"},{"title":"Document Page 7","url":"2-document-two-column.html?pagesIn=7"}
+        ],
+        "body": "<p class='summary'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vehicula accumsan augue, ac pharetra diam. Pellentesque egestas libero sed enim elementum, sit amet accumsan nunc cursus. Mauris gravida finibus faucibus. Suspendisse potenti. Donec condimentum euismod justo a viverra. Fusce quis luctus libero, sit amet finibus velit.</p><p>Mauris finibus nisl a laoreet aliquam. Proin blandit vehicula diam a ullamcorper. Proin lacus elit, rutrum id porttitor nec, scelerisque vulputate massa. Ut aliquam luctus augue, quis lacinia nisl congue eu.</p><img src=\"./images/media_2.jpg\" class=\"float_left\" alt=\"Editor image\"/><p>Etiam ut bibendum ipsum, nec faucibus nisl. Pellentesque rutrum elit eu dui suscipit vulputate. Donec auctor dui ut quam porttitor consequat. Vivamus purus felis, facilisis vel lectus ut, pulvinar vehicula sem. Donec at nisl tellus. Suspendisse potenti. Nulla et mattis lacus. Suspendisse bibendum risus sed libero hendrerit, vitae maximus lorem bibendum. Maecenas at tempor tortor. Aenean lacinia neque egestas felis auctor, sit amet porta nunc suscipit. Morbi eu vulputate libero. Vivamus sem lectus, ornare vel neque sit amet, accumsan eleifend eros. Pellentesque scelerisque quam ligula, non porta tellus accumsan non. Donec vulputate et nisl quis varius.</p><h2>Quisque efficitur molestie aliquet</h2><p>Donec sed purus nisl. Nunc non massa cursus, consectetur odio non, laoreet turpis. Donec laoreet leo quis risus ornare, in iaculis dolor rutrum. Aliquam a odio interdum, sagittis lacus a, euismod risus. Integer sed faucibus dolor. Suspendisse efficitur mi vitae metus egestas varius. Maecenas dapibus euismod lobortis. Proin eget aliquet massa. Suspendisse non posuere sapien, quis imperdiet purus. Suspendisse nec diam quis purus imperdiet viverra. Aenean luctus pharetra sapien, quis aliquet orci pharetra non. Integer sit amet sem porta, accumsan sapien eget, dictum risus.</p><div class=\"imageCaption image_centre\"><img alt=\"Centred image\" src=\"./images/media_3.jpg\"><p>Centred image with caption</p></div><p>Etiam placerat, ante a pellentesque finibus, dui quam tincidunt ante, eget consectetur justo sem et dolor. Nulla molestie et lacus varius pulvinar. Cras venenatis odio in metus fringilla tempor. Integer in suscipit dui. Pellentesque porttitor eu turpis sed facilisis. Nam mattis quam felis, ut bibendum magna accumsan molestie. Nullam dictum maximus orci, ac auctor ipsum sollicitudin at. Quisque vel sem et mi maximus faucibus vestibulum vel risus. Aenean eget tempus lectus. Fusce pulvinar cursus mauris, id interdum felis pretium ut. Nullam ullamcorper ipsum id nunc blandit, luctus rhoncus neque viverra. Vestibulum sit amet felis ut est faucibus sagittis. Aenean purus elit, lobortis eget arcu egestas, luctus lacinia risus. Vivamus bibendum turpis nec egestas molestie.</p><p><a class='button' href='#'>Apply online now</a></p><div class='imageCaption'><img alt='Apple iPhone books desk' src='./images/media_2.jpg' data-action='zoom'><p>Tall grass but the caption should be apple iphone</p></div><div class='imageCaption float_left'><img alt='Apple iPhone books desk' class='float_left' src='./images/media_2.jpg' data-action='zoom'><p>Tall grass but the caption should be apple iphone</p></div>",
+        "pagination": {
+            "previous": {
+                "url": "2-document-two-column.html?page=prev",
+                "subtitle": "Page Title Goes Here"
+            },
+            "next": {
+                "url": "2-document-two-column.html?page=next",
+                "subtitle": "Page Title Goes Here"
+            }
+        },
+        "supplements": [
+            {
+                "widget": {
+                    "title": "Navigation"
+                },
+                "locationOnPage": "sidebar",
+                "record": {
+                    "title": "Navigation",
+                    "urls": {
+                        "Link 1": "2-document-two-column.html?sidebar-link=1",
+                        "Link 2": "2-document-two-column.html?sidebar-link=2",
+                        "Link 3": "2-document-two-column.html?sidebar-link=3"
+                    }
+                }
+            },
+            {
+                "widget": {
+                    "title": "Navigation"
+                },
+                "locationOnPage": "below content",
+                "record": {
+                    "title": "Navigation",
+                    "urls": {
+                        "Link 1": "2-document-two-column.html?sidebar-link=1",
+                        "Link 2": "2-document-two-column.html?sidebar-link=2",
+                        "Link 3": "2-document-two-column.html?sidebar-link=3"
+                    }
+                }
+            }
+        ]
+    },
+    "relatedMenu": {
+        "downloads": [
+            {
+                "title": "Related download link 1",
+                "url": "5-article-download.html?related-link=1"
+            },
+            {
+                "title": "Related download link 2",
+                "url": "5-article-download.html?related-link=2"
+            }
+        ],
+        "directories": [
+            {
+                "title": "Related directory link 1",
+                "url": "3-directory-article.html?related-link=1"
+            },
+            {
+                "title": "Related directory link 2",
+                "url": "3-directory-article.html?related-link=2"
+            }
+        ]
+    }
+}

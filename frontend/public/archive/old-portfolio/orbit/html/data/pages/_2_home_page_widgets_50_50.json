@@ -1,0 +1,557 @@
+{
+    "type": "home",
+    "bodyClass": "category-modular",
+    "breadcrumb": [
+        {
+            "title": "Section Heading",
+            "url": "landing.html"
+        },
+        {
+            "title": "Sub-Section Heading",
+            "url": "landing.html"
+        },
+        {
+            "title": "Inner Heading",
+            "url": "landing.html"
+        }
+    ],
+    "content": {
+        "title": "Standard Widgets at 50% Width",
+        "homepage": {
+            "orderedWidgets": [
+                [
+                    {
+                        "widget": {
+                            "title": "content"
+                        },
+                        "title": "Basic content widget",
+                        "widthPercentage": 50,
+                        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce varius felis ut diam ullamcorper vestibulum. In venenatis velit a <a href=\"./nulla\">nulla tristique</a>, eu porta tortor <strong>ornare. <span class=\"text-underline\">Lorem ipsum</span> dolor sit amet</strong>, consectetur adipiscing elit. In sit amet sollicitudin sem, vel lobortis risus. Curabitur nec porttitor tellus, quis elementum orci. Nam pulvinar ut odio a malesuada."
+                    },
+                    {
+                        "widget": {
+                            "title": "Document"
+                        },
+                        "title": "this Category",
+                        "widgetID": 4,
+                        "widthPercentage": 50,
+                        "group": [
+                            {
+                                "documentHeader": {
+                                    "title": "Page link 1"
+                                },
+                                "url": "./document.html?page=1"
+                            },
+                            {
+                                "documentHeader": {
+                                    "title": "Page link 2"
+                                },
+                                "url": "./document.html?page=2"
+                            },
+                            {
+                                "documentHeader": {
+                                    "title": "Page link 3"
+                                },
+                                "url": "./document.html?page=3"
+                            },
+                            {
+                                "documentHeader": {
+                                    "title": "Page link 4 with a really, really, really long title"
+                                },
+                                "url": "./document.html?page=4"
+                            },
+                            {
+                                "documentHeader": {
+                                    "title": "Page link 5"
+                                },
+                                "url": "./document.html?page=5"
+                            },
+                            {
+                                "documentHeader": {
+                                    "title": "Page link 6"
+                                },
+                                "url": "./document.html?page=6"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "widget": {
+                            "title": "Events Calendar"
+                        },
+                        "title": "Events calendar widget",
+                        "widthPercentage": 50
+                    },
+                    {
+                        "widget": {
+                            "title": "images"
+                        },
+                        "widgetID": 2,
+                        "widthPercentage": 50,
+                        "imgSrc": "./images/media_6.jpg",
+                        "linkHref": "http://google.com",
+                        "linkText": "Image Widget"
+                    }
+
+                ],
+                [
+                    {
+                        "widget": {
+                            "title": "navigation"
+                        },
+                        "widgetID": 23,
+                        "title": "Navigation widget",
+                        "widthPercentage": 50,
+                        "links": [
+                            {
+                                "title": "Branding",
+                                "link": "./1-branding.html"
+                            },
+                            {
+                                "title": "Typography",
+                                "link": "./1-typography.html"
+                            },
+                            {
+                                "title": "Standard Components",
+                                "link": "./1-standard-components.html"
+                            },
+                            {
+                                "title": "Supplements",
+                                "link": "./1-supplements.html"
+                            },
+                            {
+                                "title": "Standard Form Components",
+                                "link": "./1-form-components.html"
+                            }
+                        ]
+                    },
+                    {
+                        "widget": {
+                            "title": "latest_news"
+                        },
+                        "widthPercentage": 50,
+                        "article": {
+                            "title": "Are you entitled for a free flu vaccination?",
+                            "summary": "Thousands of people across Coventry are being encouraged to take advantage of a free flu vaccination before the winter season takes hold.",
+                            "link": "/news.html?are-you-entitled-for-a-free-flu-vaccination-"
+                        },
+                        "group": [
+                            {
+                                "title": "Municipal Swimming Club recognised by the Queen",
+                                "summary": "The Municipal Swimming Club for Disabled People has been awarded the Queen’s Award for Voluntary Service from Her Majesty the Queen",
+                                "link": "/news?.html?swimming-club-recognised-by-the-queen"
+                            },
+                            {
+                                "title": "Local foster carer wins Pride of Britain Award",
+                                "summary": "A super-carer who has fostered more than 1,300 children over 34 years has won a Daily Mirror Pride of Britain Award.",
+                                "link": "/news.html?foster-carer-wins-pride-of-britain-award"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "widget": {
+                            "title": "Opinion Poll"
+                        },
+                        "widgetID": 24,
+                        "widthPercentage": 50,
+                        "poll": {
+                            "hasVoted": false,
+                            "question": "What answer would you give?",
+                            "answers": [
+                                {
+                                    "id": 0,
+                                    "answer": "Answer 1"
+                                },
+                                {
+                                    "id": 1,
+                                    "answer": "Answer 2"
+                                }
+                            ],
+                            "answerPercentage": {
+                                "0": 70,
+                                "1": 30
+                            },
+                            "form": {
+                                "action": "index.html",
+                                "method": "get",
+                                "controls": [
+                                    {
+                                        "type": "radio",
+                                        "label": "What is your favourite fruit?",
+                                        "name": "answer[]",
+                                        "options": [
+                                            {
+                                                "value": "answer1",
+                                                "text": "Apple"
+                                            },
+                                            {
+                                                "value": "answer2",
+                                                "text": "Banana"
+                                            },
+                                            {
+                                                "value": "answer3",
+                                                "text": "Pineapple"
+                                            },
+                                            {
+                                                "value": "answer4",
+                                                "text": "Orange"
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "primaryAction": {
+                                    "name": "submit",
+                                    "label": "Vote now"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "widget": {
+                            "title": "Opinion Poll"
+                        },
+                        "widgetID": 24,
+                        "widthPercentage": 50,
+                        "poll": {
+                            "hasVoted": true,
+                            "question": "What answer would you give?",
+                            "answers": [
+                                {
+                                    "id": 0,
+                                    "answer": "Answer 1"
+                                },
+                                {
+                                    "id": 1,
+                                    "answer": "Answer 2"
+                                }
+                            ],
+                            "answerPercentage": {
+                                "0": 70,
+                                "1": 30
+                            }
+                        }
+                    }
+                ],
+                [
+                    {
+                        "widget": {
+                            "title": "Directory Search"
+                        },
+                        "title": "Directory Search widget",
+                        "widgetID": 26,
+                        "widthPercentage": 50,
+                        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce varius felis ut diam ullamcorper vestibulum.",
+                        "directoryID": 7
+                    },
+                    {
+                        "widget": {
+                            "title": "Sub categories"
+                        },
+                        "widgetID": 3,
+                        "widthPercentage": 50,
+                        "categories": "Parent Category",
+                        "group": [
+                            {
+                                "name": "Sub-category 1",
+                                "id": 10001,
+                                "url": "./landing.html?page=1"
+                            },
+                            {
+                                "name": "Sub-category 2",
+                                "id": 10002,
+                                "url": "./landing.html?page=2"
+                            },
+                            {
+                                "name": "Sub-category 3",
+                                "id": 10003,
+                                "url": "./landing.html?page=3"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "widget": {
+                            "title": "External feeds"
+                        },
+                        "title": "External feeds widget",
+                        "widthPercentage": 50,
+                        "feed": {
+                            "name": "External Feed",
+                            "group": [
+                                {
+                                    "title": "Feed Link 1",
+                                    "url": "http://bbc.co.uk/news"
+                                },
+                                {
+                                    "title": "Feed Link 2",
+                                    "url": "http://bbc.co.uk/weather"
+                                },
+                                {
+                                    "title": "Feed Link 3",
+                                    "url": "http://bbc.co.uk/football"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "widget": {
+                            "title": "Whats new"
+                        },
+                        "widgetID": 11,
+                        "widthPercentage": 50,
+                        "newsArticles": [
+                            {
+                                "title": "Are you entitled for a free flu vaccination?",
+                                "id": 1,
+                                "date": {
+                                    "timestamp": "now"
+                                },
+                                "link": "/news/article/41/are-you-entitled-for-a-free-flu-vaccination-"
+                            },
+                            {
+                                "title": "Coventry Swimming Club recognised by the Queen",
+                                "id": 2,
+                                "date": {
+                                    "timestamp": "now"
+                                },
+                                "link": "/news/article/40/coventry-swimming-club-recognised-by-the-queen"
+                            },
+                            {
+                                "title": "Coventry foster carer wins Pride of Britain Award",
+                                "id": 3,
+                                "date": {
+                                    "timestamp": "now"
+                                },
+                                "link": "/news/article/42/coventry-foster-carer-wins-pride-of-britain-award"
+                            }
+                        ],
+                        "documents": [
+                            {
+                                "documentHeader": {
+                                    "title": "Be a foster carer"
+                                },
+                                "id": 11,
+                                "date": {
+                                    "timestamp": "now"
+                                }
+                            },
+                            {
+                                "documentHeader": {
+                                    "title": "Caring for children with disabilities"
+                                },
+                                "id": 12,
+                                "date": {
+                                    "timestamp": "now"
+                                }
+                            },
+                            {
+                                "documentHeader": {
+                                    "title": "Sleepover scheme carers"
+                                },
+                                "id": 13,
+                                "date": {
+                                    "timestamp": "now"
+                                }
+                            },
+                            {
+                                "documentHeader": {
+                                    "title": "Caring for teenagers"
+                                },
+                                "id": 14,
+                                "date": {
+                                    "timestamp": "now"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "widget": {
+                            "title": "Whats on"
+                        },
+                        "widgetID": 13,
+                        "widthPercentage": 50,
+                        "article": {
+                            "title": "TEST: Event with image and text",
+                            "summary": "In its original run, Hanna and Barbera produced 114 Tom and Jerry shorts for Metro-Goldwyn-Mayer from 1940 to 1957. During this time, they won seven Academy Awards for Animated Short Film, tying for"
+                        }
+                    },
+                    {
+                        "widget": {
+                            "title": "Homepage banner"
+                        },
+                        "widgetID": 17,
+                        "title": "Homepage banner widget",
+                        "widthPercentage": 50,
+                        "imgSrc": "./images/media_5.jpg",
+                        "linkHref": "http://google.com",
+                        "linkText": "Homepage banner widget",
+                        "caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                    }
+                ],
+                [
+                    {
+                        "widget": {
+                            "title": "Middle advert"
+                        },
+                        "widgetID": 15,
+                        "widthPercentage": 50,
+                        "adverts": [
+                            {
+                                "image": "./images/media_1.jpg",
+                                "url": "http://spacecraft.co.uk/news",
+                                "alt": "alt text goes here for Advert 1",
+                                "title": "Elit Commodo Sit Egestas",
+                                "subtitle": "Lorem ipsum dolor sit amet",
+                                "content": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                            },
+                            {
+                                "image": "./images/media_2.jpg",
+                                "url": "http://spacecraft.co.uk/events",
+                                "alt": "alt text goes here for Advert 2",
+                                "title": "Vulputate Lorem Inceptos",
+                                "subtitle": "Lorem ipsum dolor sit amet",
+                                "content": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                            }
+                        ]
+                    },
+                    {
+                        "widget": {
+                            "title": "Right advert"
+                        },
+                        "widgetID": 16,
+                        "widthPercentage": 50,
+                        "adverts": [
+                            {
+                                "image": "./images/media_3.jpg",
+                                "url": "5-article-news.html?right-advert=1",
+                                "alt": "alt text goes here for Advert 1",
+                                "title": "Elit Commodo Sit Egestas"
+                            },
+                            {
+                                "image": "./images/media_4.jpg",
+                                "url": "5-article-news.html?right-advert=2",
+                                "alt": "alt text goes here for Advert 2",
+                                "title": "Vulputate Lorem Inceptos"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "widget": {
+                            "title": "Website statistics"
+                        },
+                        "title": "Website statistics widget",
+                        "widthPercentage": 50,
+                        "stats": {
+                            "1550497100": {
+                                "pages": "10528",
+                                "visitors": "123670"
+                            },
+                            "1550496100": {
+                                "pages": "8996",
+                                "visitors": "10654"
+                            },
+                            "1550495100": {
+                                "pages": "9967",
+                                "visitors": "119076"
+                            }
+                        }
+                    },
+                    {
+                        "widget": {
+                            "title": "Sitemap"
+                        },
+                        "widthPercentage": 50,
+                        "rootCategories": [
+                            {
+                                "title": "Category A",
+                                "url": "landing.html"
+                            },
+                            {
+                                "title": "Category B",
+                                "url": "landing.html"
+                            },
+                            {
+                                "title": "Category C",
+                                "url": "landing.html"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "widget": {
+                            "title": "Gallery"
+                        },
+                        "widthPercentage": 50,
+                        "gallery": {
+                            "title": "Gallery widget",
+                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                            "items": [
+                                {
+                                    "id": 1
+                                },
+                                {
+                                    "id": 2
+                                },
+                                {
+                                    "id": 3
+                                },
+                                {
+                                    "id": 4
+                                }
+                            ]
+                        }
+                    },
+                    [
+                        {
+                            "widget": {
+                                "title": "content"
+                            },
+                            "title": "Stacked content and navigation widget",
+                            "widthPercentage": 50,
+                            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce varius felis ut diam ullamcorper vestibulum. In venenatis velit a <a href=\"./nulla\">nulla tristique</a>, eu porta tortor <strong>ornare. <span class=\"text-underline\">Lorem ipsum</span> dolor sit amet</strong>, consectetur adipiscing elit. In sit amet sollicitudin sem, vel lobortis risus. Curabitur nec porttitor tellus, quis elementum orci. Nam pulvinar ut odio a malesuada."
+                        },
+                        {
+                            "widget": {
+                                "title": "navigation"
+                            },
+                            "widgetID": 23,
+                            "title": "Navigation widget",
+                            "widthPercentage": 50,
+                            "links": [
+                                {
+                                    "title": "Branding",
+                                    "link": "./1-branding.html"
+                                },
+                                {
+                                    "title": "Typography",
+                                    "link": "./1-typography.html"
+                                },
+                                {
+                                    "title": "Standard Components",
+                                    "link": "./1-standard-components.html"
+                                },
+                                {
+                                    "title": "Supplements",
+                                    "link": "./1-supplements.html"
+                                },
+                                {
+                                    "title": "Standard Form Components",
+                                    "link": "./1-form-components.html"
+                                }
+                            ]
+                        }
+                    ]
+                ]
+            ]
+        }
+    }
+}

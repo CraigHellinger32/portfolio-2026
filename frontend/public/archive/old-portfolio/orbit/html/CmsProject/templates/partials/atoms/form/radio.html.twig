@@ -1,0 +1,29 @@
+{% for option in options %}
+
+    {% block form_radio %}
+        <div class="form__control-group">
+
+            {% block form_radio_inner %}
+
+                {% block form_radio_label %}
+                    <label class="form__label form__label--radio" for="{{ name ~ loop.index }}">
+                        {{ option.text }}
+                    </label>
+                {% endblock %}
+
+                {% block form_radio_input %}
+                    <input
+                        class="form__radio"
+                        type="radio"
+                        id="{{ name ~ loop.index }}"
+                        name="{{ name }}"
+                        value="{{ option.value }}"
+                        {% if option.value == value %} checked{% endif %}>
+                {% endblock %}
+
+            {% endblock form_radio_inner %}
+
+        </div>
+    {% endblock form_radio %}
+
+{% endfor %}

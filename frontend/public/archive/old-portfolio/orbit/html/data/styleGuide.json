@@ -1,0 +1,182 @@
+{
+    "colourPalette": [
+        {
+            "colour": "#2d3547",
+            "name": "dark-blue",
+            "whiteText": true
+        },
+        {
+            "colour": "#fdcc00",
+            "name": "yellow",
+            "whiteText": false
+        },
+        {
+            "colour": "#004990",
+            "name": "blue",
+            "whiteText": true
+        }
+    ],
+    "colourPaletteSecondary": [
+        {
+            "colour": "#6ee0ce",
+            "name": "turquoise",
+            "whiteText": false
+        },
+        {
+            "colour": "#f0e8d4",
+            "name": "almond",
+            "whiteText": false
+        },
+        {
+            "colour": "#feefb3",
+            "name": "custard",
+            "whiteText": false
+        },
+        {
+            "colour": "#f5f5f7",
+            "name": "blue-pale",
+            "whiteText": false
+        },
+        {
+            "colour": "#f8f8f8",
+            "name": "grey-light",
+            "whiteText": false
+        },
+        {
+            "colour": "#5f647c",
+            "name": "purple-grey",
+            "whiteText": true
+        }
+    ],
+    "buttonTypes": [
+        {
+            "className": "base",
+            "title": "Base"
+        },
+        {
+            "className": "primary",
+            "title": "Primary"
+        },
+        {
+            "className": "disabled",
+            "title": "Disabled"
+        },
+        {
+            "className": "success",
+            "title": "Success"
+        },
+        {
+            "className": "warning",
+            "title": "Warning"
+        },
+        {
+            "className": "danger",
+            "title": "Danger"
+        },
+        {
+            "className": "small",
+            "title": "Small"
+        },
+        {
+            "className": "large",
+            "title": "Large"
+        },
+        {
+            "className": "block",
+            "title": "Block"
+        }
+    ],
+    "alerts": [
+        {
+            "type": "information",
+            "heading": "Information Alert",
+            "text": "All poll results are indicative and may not reflect public opinion.",
+            "url": ""
+        },
+        {
+            "type": "success",
+            "heading": "Success Alert",
+            "text": "Your event will now be checked by the events moderator. Once approved, your event will be available to view on this site.",
+            "url": ""
+        },
+        {
+            "type": "warning",
+            "heading": "Warning Alert",
+            "text": "To view or download this file, you must first:",
+            "url": "#",
+            "label": "Authenticate yourself"
+        },
+        {
+            "type": "danger",
+            "heading": "Danger / Error Alert",
+            "url": ""
+        },
+        {
+            "type": "information",
+            "heading": "Alert Heading Carraiging Over Multiple Lines, Lorem Ipsum Dolor Sit Amet, Consectetur Adipisicing Elit, Lorem Ipsum Dolor Sit Amet, Consectetur Adipisicing Elit.",
+            "url": ""
+        }
+    ],
+    "resumeFormAlert": {
+        "type": "warning",
+        "heading": "Resume Form?",
+        "text": "You have previously started this form, you may continue from a saved version or start a new form.",
+        "group": [
+            {
+                "label": "2nd October 2018 12:50pm",
+                "url": "#"
+            },
+            {
+                "label": "2nd October 2018 12:31pm",
+                "url": "#"
+            },
+            {
+                "label": "28th September 2018 9:51pm",
+                "url": "#"
+            }
+        ]
+    },
+    "xfpAlert": {
+        "type": "warning",
+        "heading": "XFP Alert with Buttons",
+        "text": "Lorem Ipsum Dolor Sit Amet, Consectetur Adipisicing Elit, Lorem Ipsum Dolor Sit Amet, Consectetur Adipisicing Elit. Lorem Ipsum Dolor Sit Amet, Consectetur Adipisicing Elit, Lorem Ipsum Dolor Sit Amet, Consectetur Adipisicing Elit.",
+        "url": [
+            {
+                "url": "#",
+                "label": "Label 1"
+            },
+            {
+                "url": "#",
+                "label": "Label 2"
+            },
+            {
+                "url": "#",
+                "label": "Label 3"
+            }
+        ]
+    },
+    "filterBarForm": {
+        "action": "index.html",
+        "method": "get",
+        "controls": [{"type":"select","label":"Filter 1","name": "filter-1","options":[{"value": "1","text":"Option 1"},{"value": "2","text":"Option 2"},{"value": "3","text":"Option 3"}]},{"type":"select","label":"Filter 2","name": "filter-2","options":[{"value": "1","text":"Option 1"},{"value": "2","text":"Option 2"},{"value": "3","text":"Option 3"}]}],
+        "primaryAction": {
+            "name": "go",
+            "label": "Go"
+        }
+    },
+    "azList": [
+        {"title":"A","url":"#"},{"title":"B","url":"#"},{"title":"C","active":false},{"title":"D","url":"#"},{"title":"E","url":"#"},{"title":"F","url":"#"},{"title":"G","active":false},{"title":"H","active":false},{"title":"I","active":false},{"title":"J","url":"#"},{"title":"K","url":"#"},{"title":"L","url":"#"},{"title":"M","url":"#"},{"title":"N","active":false},{"title":"O","active":false},{"title":"P","url":"#"},{"title":"Q","active":false},{"title":"R","url":"#"},{"title":"S","url":"#"},{"title":"T","url":"#"},{"title":"U","active":false},{"title":"V","url":"#"},{"title":"W","url":"#"},{"title":"X","url":"#"},{"title":"Y","url":"#"},{"title":"Z","active":false}
+    ],
+    "pagesIn": [
+        {"title":"Document Page 1","url":"2-document-two-column.html?pagesIn=1"},{"title":"Document Page 2","url":"2-document-two-column.html?pagesIn=2","active":true},{"title":"Document Page 3","url":"2-document-two-column.html?pagesIn=3"},{"title":"Document Page 4","url":"2-document-two-column.html?pagesIn=4"},{"title":"Document Page 5","url":"2-document-two-column.html?pagesIn=5"},{"title":"Document Page 6","url":"2-document-two-column.html?pagesIn=6"},{"title":"Document Page 7","url":"2-document-two-column.html?pagesIn=7"}
+    ],
+    "pagination": {
+        "simple": [
+            {"previous_link":{"url":"2-document-two-column.html?prev1A","subtitle":"First Page Title Goes Here"},"next_link":{"url":"2-document-two-column.html?next1B","subtitle":"Third Page Title Goes Here"}},{"previous_link":{"url":"2-document-two-column.html?prev2A","subtitle":"Another Page Title Goes Here"}},{"next_link":{"url":"2-document-two-column.html?next3B","subtitle":"Yet Another Page Title Goes Here"}}
+        ],
+        "complex": [
+            {"number":1},{"number":2},{"number":3,"currentPage":true},{"number":4},{"number":5},{"number":6},{"number":7},{"number":8},{"number":9},{"number":10}
+        ]
+    }
+}
+

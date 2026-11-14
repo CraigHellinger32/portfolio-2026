@@ -1,0 +1,32 @@
+{% extends 'layouts/form.html.twig' %}
+{% set columns = 'two-column'%}
+
+{% block form_content %}
+    {% set className = 'boxed__form' %}
+
+    <div class="boxed">
+        {{ parent() }}
+    </div>
+{% endblock %}
+
+{% block before_primary_supplements %}
+
+    {% block button_register %}
+        {% include 'partials/atoms/button/call_to_action.html.twig' with {
+            'link': path('user_registration'),
+            'title': getTranslatedString('register-link-label'),
+            'className': 'button--secondary button--block'
+            }
+        %}
+    {% endblock %}
+
+    {% block button_forgot_password %}
+        {% include 'partials/atoms/button/call_to_action.html.twig' with {
+            'link': path('user_account_forgot_password'),
+            'title': getTranslatedString('reset-password-link'),
+            'className': 'button--secondary button--block'
+            }
+        %}
+    {% endblock %}
+
+{% endblock before_primary_supplements %}

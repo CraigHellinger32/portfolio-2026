@@ -1,0 +1,13 @@
+{% extends 'layouts/list.html.twig' %}
+{% set columns = 'two-column'%}
+
+{% block after_primary_supplements %}
+    {% block button_event_submit %}
+        {% include 'partials/atoms/button/call_to_action.html.twig' with {
+            'link': path('event_submission'),
+            'title': getTranslatedString('event-submission-link'),
+            'className': 'button--primary button--block'
+            }
+        %}
+    {% endblock %}
+{% endblock %}

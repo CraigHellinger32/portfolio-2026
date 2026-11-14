@@ -1,0 +1,65 @@
+{% extends '@theme:xfpbase/partials/molecules/form/map.html.twig' %}
+
+{% block form_map_pin %}
+
+    {% block form_map_pin_label %}
+        {{ parent() }}
+    {% endblock %}
+
+    {% block form_map_pin_location %}
+
+        {% block a11y_skip_map_button_forwards %}
+            <button class="button visually-hidden js-map-skip-forwards">
+                Skip embedded map
+            </button>
+        {% endblock %}
+
+        {{ parent() }}
+    {% endblock %}
+
+    {% block form_map_pin_hidden %}
+        {{ parent() }}
+    {% endblock %}
+
+    {% block form_map_pin_buttons %}
+        <div class="button-wrapper">
+
+            {% block form_map_pin_button_add %}
+                {{ parent() }}
+            {% endblock %}
+
+            {% block form_map_pin_button_remove %}
+                {{ parent() }}
+            {% endblock %}
+
+        </div>
+    {% endblock %}
+
+    {% block a11y_skip_map_button_backwards %}
+        <button class="button visually-hidden js-map-skip-backwards">
+            Return above map
+        </button>
+    {% endblock %}
+
+{% endblock %}
+
+{% block form_map_postcode %}
+    <div class="integrated-component">
+        {% block form_map_postcode_label %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% block form_map_postcode_input %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% block form_map_postcode_button %}
+            {{ parent() }}
+        {% endblock %}
+    </div>
+
+    {% block form_map_postcode_error %}
+        {{ parent() }}
+    {% endblock %}
+
+{% endblock %}

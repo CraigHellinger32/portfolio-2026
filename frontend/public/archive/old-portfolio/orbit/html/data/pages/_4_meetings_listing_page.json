@@ -1,0 +1,92 @@
+
+{
+    "bodyClass": "meeting-list",
+    "content": {
+        "title": "Meetings Listing Page",
+        "lists": [
+            {
+                "type": "record",
+                "items": [
+                    {
+                        "title": "16/01/2015: Upper Stoke Ward Forum",
+                        "url": "5-article-meeting.html?link=1"
+                    },
+                    {
+                        "title": "09/08/2015: Henley Ward Forums with a long long long long long long long long title",
+                        "url": "5-article-meeting.html?link=2"
+                    },
+                    {
+                        "title": "20/08/2015: Henley Ward Forums with a long long long long long long long long title",
+                        "url": "5-article-meeting.html?link=3"
+                    },
+                    {
+                        "title": "01/10/2015: Upper Stoke Ward Forum",
+                        "url": "5-article-meeting.html?link=4"
+                    },
+                    {
+                        "title": "01/10/2015: Henley Ward Forums with a long long long long long long long long title",
+                        "url": "5-article-meeting.html?link=5"
+                    },
+                    {
+                        "title": "10/10/2015: Upper Stoke Ward Forum",
+                        "url": "5-article-meeting.html?link=6"
+                    },
+                    {
+                        "title": "14/10/2015: Schools Forum",
+                        "url": "5-article-meeting.html?link=7"
+                    },
+                    {
+                        "title": "14/10/2015: Lower Stoke Ward Forum",
+                        "url": "5-article-meeting.html?link=8"
+                    },
+                    {
+                        "title": "01/11/2015: Upper Stoke Ward Forum",
+                        "url": "5-article-meeting.html?link=9"
+                    },
+                    {
+                        "title": "13/11/2015: Henley Ward Forums with a long long long long long long long long title",
+                        "url": "5-article-meeting.html?link=10"
+                    },
+                    {
+                        "title": "28/11/2015: Henley Ward Forums with a long long long long long long long long title",
+                        "url": "5-article-meeting.html?link=11"
+                    },
+                    {
+                        "title": "13/12/2015: Upper Stoke Ward Forum",
+                        "url": "5-article-meeting.html?link=12"
+                    },
+                    {
+                        "title": "20/12/2015: Lower Stoke Ward Forum",
+                        "url": "5-article-meeting.html?link=13"
+                    },
+                    {
+                        "title": "19/10/2016: Committee list with meeting with no attachment",
+                        "url": "5-article-meeting.html?link=14"
+                    }
+                ]
+            }
+        ],
+        "filterBar": {
+            "action": "4-meetings-listing-page.html?filter=true",
+            "method": "get",
+            "controls": [
+                {
+                    "type":"select",
+                    "label":"Filter by status",
+                    "name": "ward",
+                    "options":[{"value": "-1","text":"All"},{"value": "current","text":"Current"},{"value": "archived","text":"Archived"}]
+                },
+                {
+                    "type": "select",
+                    "label": "Filter by committee",
+                    "name": "party",
+                    "options":[{"value": "-1","text":"All"},{"value": "planning-committee","text":"Planning Committee"}]
+                }
+            ],
+            "primaryAction": {
+                "name": "go",
+                "label": "Go"
+            }
+        }
+    }
+}

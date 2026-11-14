@@ -1,0 +1,10 @@
+%listing--compact,
+.listing--compact {
+    .listing__heading {
+        @extend %zeta;
+    }
+
+    .listing__meta {
+        @extend %milli;
+    }
+}

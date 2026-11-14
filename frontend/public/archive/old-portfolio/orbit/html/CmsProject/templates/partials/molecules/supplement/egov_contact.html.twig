@@ -1,0 +1,127 @@
+{% block supplement %}
+    <div class="supplement supplement--contact">
+
+        {% block supplement_content %}
+
+            {% block supplement_name %}
+                {% if contact.name is not empty %}
+
+                    {% block supplement_name_inner %}
+                        {% include 'partials/atoms/text/supplement_heading.html.twig' with {
+                            'title': contact.name
+                            }
+                        %}
+                    {% endblock %}
+
+                {% endif %}
+            {% endblock %}
+
+            {% block supplement_department %}
+                {% if contact.department is not empty %}
+
+                    {% block supplement_department_inner %}
+                        {% include 'partials/atoms/text/meta.html.twig' with {
+                            'type': 'department',
+                            'label': getTranslatedString('department-label'),
+                            'value': contact.department
+                            }
+                        %}
+                    {% endblock %}
+
+                {% endif %}
+            {% endblock %}
+
+            {% block supplement_email %}
+                {% if email.url is not empty %}
+
+                    {% block supplement_email_inner %}
+                        {% include 'partials/atoms/text/meta.html.twig' with {
+                            'type': 'email',
+                            'label': getTranslatedString('email-label'),
+                            'value': email.url
+                            }
+                        %}
+                    {% endblock %}
+
+                {% endif %}
+            {% endblock %}
+
+            {% block supplement_telephone %}
+                {% if contact.telephone is not empty %}
+
+                    {% block supplement_telephone_inner %}
+                        {% include 'partials/atoms/text/meta.html.twig' with {
+                            'type': 'telephone',
+                            'label': getTranslatedString('telephone-label'),
+                            'value': contact.telephone
+                            }
+                        %}
+                    {% endblock %}
+
+                {% endif %}
+            {% endblock %}
+
+            {% block supplement_mobile %}
+                {% if contact.mobile is not empty %}
+
+                    {% block supplement_mobile_inner %}
+                        {% include 'partials/atoms/text/meta.html.twig' with {
+                            'type': 'telephone',
+                            'label': getTranslatedString('mobile-label'),
+                            'value': contact.mobile
+                            }
+                        %}
+                    {% endblock %}
+
+                {% endif %}
+            {% endblock %}
+
+            {% block supplement_fax %}
+                {% if contact.fax is not empty %}
+
+                    {% block supplement_fax_inner %}
+                        {% include 'partials/atoms/text/meta.html.twig' with {
+                            'type': 'fax',
+                            'label': getTranslatedString('fax-label'),
+                            'value': contact.fax
+                            }
+                        %}
+                    {% endblock %}
+
+                {% endif %}
+            {% endblock %}
+
+            {% block supplement_address %}
+                {% if contact.formattedAddress is not empty %}
+
+                    {% block supplement_address_inner %}
+                        {% include 'partials/atoms/text/meta.html.twig' with {
+                            'type': 'address',
+                            'label': getTranslatedString('address-label'),
+                            'value': contact.formattedAddress
+                            }
+                        %}
+                    {% endblock %}
+
+                {% endif %}
+            {% endblock %}
+
+            {% block supplement_link %}
+                {% if contact.url is not empty %}
+
+                    {% block supplement_link_inner %}
+                        {% include 'partials/atoms/button/call_to_action.html.twig' with {
+                            'link': contact.url,
+                            'title': 'Go to website',
+                            'className': 'button--secondary'
+                            }
+                        %}
+                    {% endblock %}
+
+                {% endif %}
+            {% endblock %}
+
+        {% endblock supplement_content %}
+
+    </div>
+{% endblock supplement %}

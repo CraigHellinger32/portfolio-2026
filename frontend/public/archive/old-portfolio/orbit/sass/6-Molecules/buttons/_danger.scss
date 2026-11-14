@@ -1,0 +1,16 @@
+.button--danger,
+%button--danger {
+    &,
+    &:visited {
+        background-color: $color-danger;
+        border-color: darken($color-danger, 10%);
+        color: $color-black;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: lighten($color-danger, 5%);
+        color: $color-black;
+    }
+}

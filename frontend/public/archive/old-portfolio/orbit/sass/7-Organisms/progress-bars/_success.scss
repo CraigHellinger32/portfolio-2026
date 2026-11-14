@@ -1,0 +1,10 @@
+.progress-bar--success,
+%progress-bar--success {
+    .progress-bar__indicator {
+        background: $color-success;
+
+        &::before {
+            border-left-color: $color-success;
+        }
+    }
+}

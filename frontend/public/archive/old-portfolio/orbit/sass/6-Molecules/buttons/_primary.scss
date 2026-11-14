@@ -1,0 +1,15 @@
+.button--primary,
+%button--primary {
+    &,
+    &:visited {
+        background-color: $color-primary;
+        border-color: $color-primary;
+        color: $color-white;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: $color-primary-light;
+    }
+}

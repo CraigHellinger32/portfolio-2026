@@ -1,0 +1,7 @@
+<button
+    class="button{% if modifier is not empty%} {{ modifier }}{% endif %}{% if className is not empty %} {{ className }}{% if disabled %} button--disabled{% endif %}{% endif %}"
+    type="{{ type|default('submit') }}"
+    name="{{ name }}"
+    value="{{ value }}"
+    {% if disabled %} disabled{% endif %}
+    {% if onclick is not empty %}onclick="{{ onclick }}"{% endif %}>{{ label|default(value) }}{% if hiddenText is not empty %}<span class="visually-hidden"> {{ hiddenText }}</span>{% endif %}</button>

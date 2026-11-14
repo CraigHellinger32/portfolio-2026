@@ -1,0 +1,12 @@
+// Scroll Lock Helper
+
+html[data-scroll-lock],
+[data-scroll-lock] body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+html[data-scroll-lock] {
+    overflow-y: scroll;
+}

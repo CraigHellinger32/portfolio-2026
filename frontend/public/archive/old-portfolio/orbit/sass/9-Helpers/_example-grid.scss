@@ -1,0 +1,268 @@
+// Example grid layout
+//
+// Basic grid example using susy. See /grid.html for more examples and information on grids in IE8 and below.
+// See /sass/layout/_example-grid.scss. for full sass.
+//
+// Markup:
+// <div class="container">
+//     <h3>Example Layout (All browsers)</h3>
+//     <main class="content--primary">
+//         <h2>Main content</h2>
+//         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque facilisis imperdiet maximus. Praesent rhoncus ullamcorper faucibus. Vestibulum vitae nulla eros. Morbi tempus magna at cursus vulputate. Sed vehicula dolor non elementum mollis. Nullam eget eros ut eros consequat varius. Donec tempus gravida velit, vel cursus lorem sodales ut.</p>
+//     </main>
+//     <aside class="sidebar--primary">
+//         <h3>Sidebar</h3>
+//         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque facilisis imperdiet maximus. Praesent rhoncus ullamcorper faucibus. Vestibulum vitae nulla eros. Morbi tempus magna at cursus vulputate. Sed vehicula dolor non elementum mollis. Nullam eget eros ut eros consequat varius. Donec tempus gravida velit, vel cursus lorem sodales ut.</p>
+//     </aside>
+// </div>
+//
+// ```
+// .container {
+//     @include container;
+// }
+// .content--primary {
+//     .lt-ie9 & {
+//         @include span(8 of 12 split);
+//     }
+//     @include respond-min($small-width) {
+//         @include span(8 of 12);
+//     }
+// }
+// .sidebar--primary {
+//     .lt-ie9 & {
+//         @include span(4 at 9 of 12 split);
+//     }
+//     @include respond-min($small-width) {
+//         @include span(4 at 9 of 12);
+//     }
+// }
+// ```
+//
+// Styleguide 18.1.1
+
+// Example gallery layout
+//
+// Basic gallery example using susy. See /grid.html for more examples and information on grids in IE8 and below.
+// See /sass/layout/_example-grid.scss. for full sass.
+//
+// Markup:
+// <div class="example-grid-page">
+//     <div class="container">
+//         <h2>Example Gallery (IE8+)</h2>
+//         <div class="example-gallery">
+//             <ul class="gallery">
+//                 <li class="gallery__item"><img src="http://placehold.it/300x300"></li>
+//                 <li class="gallery__item"><img src="http://placehold.it/300x300"></li>
+//                 <li class="gallery__item"><img src="http://placehold.it/300x300"></li>
+//                 <li class="gallery__item"><img src="http://placehold.it/300x300"></li>
+//                 <li class="gallery__item"><img src="http://placehold.it/300x300"></li>
+//                 <li class="gallery__item"><img src="http://placehold.it/300x300"></li>
+//                 <li class="gallery__item"><img src="http://placehold.it/300x300"></li>
+//                 <li class="gallery__item"><img src="http://placehold.it/300x300"></li>
+//                 <li class="gallery__item"><img src="http://placehold.it/300x300"></li>
+//                 <li class="gallery__item"><img src="http://placehold.it/300x300"></li>
+//                 <li class="gallery__item"><img src="http://placehold.it/300x300"></li>
+//                 <li class="gallery__item"><img src="http://placehold.it/300x300"></li>
+//                 <li class="gallery__item"><img src="http://placehold.it/300x300"></li>
+//                 <li class="gallery__item"><img src="http://placehold.it/300x300"></li>
+//                 <li class="gallery__item"><img src="http://placehold.it/300x300"></li>
+//                 <li class="gallery__item"><img src="http://placehold.it/300x300"></li>
+//             </ul>
+//         </div>
+//     </div>
+// </div>
+//
+// ```
+// .container {
+//     @include container;
+// }
+// .gallery {
+//     list-style: none;
+//     margin: 0;
+//     overflow: hidden;
+// }
+// .example-gallery {
+//     @extend %cf;
+//     .gallery__item {
+//         @include respond-min($small-width) {
+//             @include gallery(6 of 12);
+//         }
+//         @include respond-min($mid-width) {
+//             @include gallery(4 of 12);
+//         }
+//         @include respond-min($full-width) {
+//             @include gallery(3 of 12);
+//         }
+//     }
+// }
+// ```
+//
+// Styleguide 18.1.2
+
+
+.example-grid-page {
+    padding: $space 0;
+
+    .code-example {
+        @extend %module;
+
+        background: #efffff;
+        border-left: 2px solid #aadbf5;
+        clear: both;
+        margin: $space 0;
+        padding: $space;
+
+        h4 {
+            @extend .h6;
+
+            font-style: italic;
+            font-weight: normal;
+            padding-bottom: $space-half;
+        }
+    }
+
+    .container {
+        @include container;
+    }
+
+    .example {
+        background: #d5eefb;
+        border: 1px solid #aadbf5;
+        margin-top: gutter();
+        padding: $space;
+
+        &:first-child {
+            // scss-lint:disable ImportantRule
+            margin-left: 0 !important;
+            // scss-lint:enable ImportantRule
+        }
+
+        &:last-child {
+            // scss-lint:disable ImportantRule
+            margin-right: 0 !important;
+            // scss-lint:enable ImportantRule
+        }
+
+        .lt-ie8 & {
+            padding: 0;
+
+            // last-child support comes from ie9.js
+            &:last-child {
+                display: block;
+                float: none;
+                margin-left: gutter();
+                overflow: hidden;
+                width: auto;
+            }
+        }
+    }
+
+/**
+ * Example - Maintain grid at all breakpoints
+ */
+
+    .example--a1 {
+        @include span(12);
+    }
+
+    .example--a2 {
+        @include span(6);
+    }
+
+    .example--a3 {
+        @include span(4);
+    }
+
+    .example--a4 {
+        @include span(3);
+    }
+
+    .example--a5 {
+        @include span(2);
+    }
+
+/**
+ * Example - Responsive grid
+ */
+
+    .example--b1 {
+        // no style needed as block level element
+    }
+
+    .example--b2 {
+        @include respond-min($small-width) {
+            @include span(6);
+        }
+    }
+
+    .example--b3 {
+        @include respond-min($small-width) {
+            @include span(4);
+        }
+    }
+
+    .example--b4 {
+        @include respond-min($small-width) {
+            @include span(3);
+        }
+    }
+
+    .example--b5 {
+        @include respond-min($small-width) {
+            @include span(2);
+        }
+    }
+
+
+/**
+ * Example - Main layout
+ */
+
+    .main-content {
+        @include respond-min($small-width) {
+            @include span(8 of 12);
+        }
+    }
+
+    .sidebar {
+        @include respond-min($small-width) {
+            @include span(4 at 9 of 12);
+        }
+    }
+
+/**
+ * Example - Gallery
+ */
+
+    .gallery {
+        list-style: none;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .example-gallery {
+        @extend %cf;
+
+        .gallery__item {
+            @include respond-min($small-width) {
+                @include gallery(6 of 12);
+            }
+
+            @include respond-min($mid-width) {
+                @include gallery(4 of 12);
+            }
+
+            @include respond-min($full-width) {
+                @include gallery(3 of 12);
+            }
+        }
+    }
+
+    .example-gallery-oldie {
+        @extend %cf;
+
+        .gallery__item {
+            @include span(3 of 12 split);
+        }
+    }
+}

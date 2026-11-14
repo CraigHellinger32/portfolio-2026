@@ -1,0 +1,87 @@
+{% block widget_wrap %}
+    <div class="widget-directory-search">
+
+        {% block widget_heading %}
+            {% if title is not empty %}
+                {% include 'partials/atoms/text/widget_heading.html.twig' with {
+                    'title': title
+                    }
+                %}
+            {% endif %}
+        {% endblock %}
+
+        {% block widget_content %}
+            <div class="widget-inner">
+
+                {% block widget_content_inner %}
+                    {% block widget_summary %}
+                        {% if description is not empty %}
+                            <p class="summary">{{ description }}</p>
+                        {% endif %}
+                    {% endblock %}
+
+                    {% block widget_form %}
+                        <form class="form" method="get" action="{{ path('directory_search') }}">
+
+                            {% block widget_form_inner %}
+                                {% block widget_form_hidden_inputs %}
+                                    {% include 'partials/atoms/form/input_hidden.html.twig' with {
+                                        'name': 'directoryID',
+                                        'value': directoryID,
+                                        }
+                                    %}
+
+                                    {% include 'partials/atoms/form/input_hidden.html.twig' with {
+                                        'name': 'search',
+                                        'value': 'Search',
+                                        }
+                                    %}
+                                {% endblock %}
+
+                                {% block widget_form_keyword_search %}
+                                    {% include 'partials/molecules/form/append_group.html.twig' with {
+                                        'type': 'text',
+                                        'label': getTranslatedString('directory-keyword-label'),
+                                        'name': 'keywords',
+                                        'id': 'keyword_directory' ~ directoryID,
+                                        'button': {
+                                            'name': 'submit',
+                                            'value': 'Search',
+                                            'modifier': 'button--secondary'
+                                        }
+                                    } %}
+                                {% endblock %}
+
+                                {% block widget_form_postcode_search %}
+                                    {% include 'partials/molecules/form/append_group.html.twig' with {
+                                        'type': 'text',
+                                        'label': getTranslatedString('directory-postcode-label'),
+                                        'name': 'postcode',
+                                        'id': 'postcode_directory' ~ directoryID,
+                                        'button': {
+                                            'name': 'submit',
+                                            'value': 'Find',
+                                            'modifier': 'button--secondary'
+                                        }
+                                    } %}
+                                {% endblock %}
+                            {% endblock widget_form_inner %}
+
+                        </form>
+                    {% endblock widget_form %}
+
+                    {% block button_advanced_search %}
+                        {% include 'partials/atoms/button/call_to_action.html.twig' with {
+                            'link': path('directory_search') ~ '?directoryID=' ~ directoryID,
+                            'title': getTranslatedString('directory-search-link'),
+                            'className': 'button--primary'
+                            }
+                        %}
+                    {% endblock %}
+                {% endblock widget_content_inner %}
+
+            </div>
+        {% endblock widget_content %}
+
+    </div>
+{% endblock widget_wrap %}

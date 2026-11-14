@@ -1,0 +1,5 @@
+{% if componentTemplate %}
+    {%- include componentTemplate -%}
+{% else %}
+    {% include ['partials/atoms/form/'~ type ~'.html.twig', 'partials/atoms/form/input.html.twig'] %}
+{% endif %}

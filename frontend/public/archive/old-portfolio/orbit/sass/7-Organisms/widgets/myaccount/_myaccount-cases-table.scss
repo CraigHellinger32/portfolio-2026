@@ -1,0 +1,7 @@
+.widget--myaccount-cxm-cases-verbose-table {
+    .my-cases__table {
+        @extend %data-table;
+
+        margin-top: 0;
+    }
+}

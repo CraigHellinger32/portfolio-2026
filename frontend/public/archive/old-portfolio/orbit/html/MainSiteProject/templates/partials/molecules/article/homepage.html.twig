@@ -1,0 +1,55 @@
+{% extends '@theme:base/partials/molecules/article/homepage.html.twig' %}
+
+{% block widget_row %}
+    {% if row|first is iterable %}
+        {% set firstWidget = row|first|first %}
+    {% else %}
+        {% set firstWidget = row|first %}
+    {% endif %}
+
+    {% if widgetHasContainer(firstWidget.widgetID, firstWidget.widgetSettings, loop.index, columns) %}
+        <div class="container">
+    {% endif %}
+
+    <div class="widget-row{{ widgetRowModifier(firstWidget.widgetID, firstWidget.widgetSettings, loop.index) }}">
+
+        {% if widgetHasInnerContainer(firstWidget.widgetID, firstWidget.widgetSettings, columns) %}
+            <div class="container">
+        {% endif %}
+
+        {% block widget_width %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% if widgetHasInnerContainer(firstWidget.widgetID, firstWidget.widgetSettings, columns) %}
+            </div>
+        {% endif %}
+
+    </div>
+
+    {% if widgetHasContainer(firstWidget.widgetID, firstWidget.widgetSettings, loop.index, columns) %}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block widget_iterable_wrap %}
+    <div class="{{ widgetWidthModifier(width.widthPercentage) }} widget-stack">
+
+        {% block widget_iterable_inner %}
+            {{ parent() }}
+        {% endblock %}
+
+    </div>
+{% endblock %}
+
+{% block widget_singular %}
+    {% apply spaceless %}
+        <div class="{{ widgetWidthModifier(widget.widthPercentage) }}">
+
+            {% block widget_singular_inner %}
+                {{ parent() }}
+            {% endblock %}
+
+        </div>
+    {% endapply %}
+{% endblock %}

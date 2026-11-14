@@ -1,0 +1,10 @@
+.data-table--striped,
+%data-table--striped {
+    tbody {
+        tr {
+            &:nth-child(odd) {
+                background-color: $color-subtle;
+            }
+        }
+    }
+}

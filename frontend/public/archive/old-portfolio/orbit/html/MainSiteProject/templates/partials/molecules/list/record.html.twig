@@ -1,0 +1,15 @@
+{% extends '@theme:base/partials/molecules/list/record.html.twig' %}
+
+{% block record_list_heading %}
+    {% if title %}
+        {% if 'menu-navigation__heading' in titleClass %}
+            <span class="{{ titleClass }}">{{ title }}</span>
+        {% else %}
+            <h2{% if titleClass %} class="{{ titleClass }}"{% endif %}>{{ title }}</h2>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+{% block record_item_disabled %}
+    <span class="list__link--disabled">{{ item.title }}</span>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends '@theme:base/partials/molecules/list/page.html.twig' %}
+
+{% block pages_in_button %}
+    <button class="button button--block button--secondary button--icon-right nav__toggle js-pages-in-toggle" data-a11y-toggle="pages-in-list">
+        <span class="nav__toggle-heading">Contents</span>
+
+        <span class="nav__toggle-pages">{{ pages_in_string }}</span>
+        <span class="nav__toggle-icon icon icon-ui-chevron-up"></span>
+    </button>
+{% endblock pages_in_button %}

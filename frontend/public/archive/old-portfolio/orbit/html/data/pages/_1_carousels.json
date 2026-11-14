@@ -1,0 +1,84 @@
+{
+    "type": "home",
+    "bodyClass": "category-modular",
+    "breadcrumb": [
+        {
+            "title": "Full Prototype",
+            "url": "full-prototype.html"
+        }
+    ],
+    "content": {
+        "title": "Carousels",
+        "homepage": {
+            "orderedWidgets": [
+                [
+                    [
+                        {
+                            "widget": {
+                                "title": "Gallery"
+                            },
+                            "widthPercentage": 33,
+                            "gallery": {
+                                "title": "Gallery widget carousel",
+                                "description": "This is our 'out of the box' carousel functionality, as used in the Jadu gallery widget. Just add the class <code>.js-carousel</code>",
+                                "items": [
+                                    {
+                                        "id": 1
+                                    },
+                                    {
+                                        "id": 2
+                                    },
+                                    {
+                                        "id": 3
+                                    },
+                                    {
+                                        "id": 4
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "widget": {
+                                "title": "content"
+                            },
+                            "widgetID": 6,
+                            "content": "<pre><code class=\"language-html\">&lt;div class=\"carousel js-carousel\">\n\t&lt;div class=\"slide\">Slide 1 content&lt;/div>\n\t&lt;div class=\"slide\">Slide 2 content&lt;/div>\n&lt;/div></code></pre>"
+                        }
+                    ],
+                    {
+                        "widget": {
+                            "title": "content"
+                        },
+                        "title": "How carousels work",
+                        "widgetID": 6,
+                        "widthPercentage": 33,
+                        "content": "<p>For our carousels we use <a href=\"https://flickity.metafizzy.co/\">Flickity.</a> Documentation for that can be found <a href=\"https://flickity.metafizzy.co/options.html\">here.</a> This third party javascript plugin is included in Orbit via it's <a href=\"https://www.npmjs.com/package/flickity\">NPM module.</a> from <code>package.json</code>.</p><p>We customise our carousels to mimic the functionality of <a href=\"https://www.w3.org/WAI/tutorials/carousels/working-example/\">W3C's working example.</a>. This means disabling Flickity's default <a href=\"https://flickity.metafizzy.co/options.html#accessibility\">accessibility option</a> and creating our own custom functionality. You can find these modifications in <code>js/carousel-init.js</code> in Orbit.</p><p>When we style carousels, we always look to ensure that the default style will cover the most use cases. When we need to customise, we do it in this order:</p><ol><li>Can it be customised via the provided <a href=\"https://sass-lang.com/documentation/at-rules/mixin\">SASS mixins?</a> <code>flickityDotsPosition</code> and <code>flickityButtonsPosition</code></li><li>If not, can we use Orbit's custom data-attributes?</li><li>Otherwise, we need custom CSS and maybe custom javascript too.</li></ol>"
+                    },
+                    {
+                        "widget": {
+                            "title": "content"
+                        },
+                        "title": "Carousel with image links and fade modifier",
+                        "widgetID": 6,
+                        "widthPercentage": 33,
+                        "content": "<p>By default, Flickity uses the <code>transform</code> property to animate slides positioning. You can disable that using the modifier class <code>.carousel--fade</code></p><div class=\"carousel carousel--fade js-carousel\" data-carousel-draggable=\"false\"><div class=\"slide\"><a class=\"image-link slide__link\" href=\"404.html?carousel=1\"><img class=\"image image--with-link\" src=\"./images/media_1.jpg\" alt=\"multimedia_items 1\"></a></div><div class=\"slide\"><a class=\"image-link slide__link\" href=\"404.html?carousel=2\"><img class=\"image image--with-link\" src=\"./images/media_2.jpg\" alt=\"multimedia_items 2\"></a></div><div class=\"slide\"><a class=\"image-link slide__link\" href=\"404.html?carousel=3\"><img class=\"image image--with-link\" src=\"./images/media_3.jpg\" alt=\"multimedia_items 3\"></a></div><div class=\"slide\"><a class=\"image-link slide__link\" href=\"404.html?carousel=4\"><img class=\"image image--with-link\" src=\"./images/media_4.jpg\" alt=\"multimedia_items 4\"></a></div></div>"
+                    }
+                ]
+            ]
+        }
+    },
+    "latestTweets": [
+        {
+            "getTweetTextAsHTML": "Registration for the Energy Switch scheme is open to give you competitive deals on your energy bill. Read the full story: <a href='#'>www.jadu.net/your-council/n…</a>",
+            "getRelativeCreatedDateString": "2 days ago"
+        },
+        {
+            "getTweetTextAsHTML": "Are you a carer in the local area? @YourCouncil wants to hear from you! <a href='#'>Your council …</a> #carer <a href='#'>#YourCouncil</a>",
+            "getRelativeCreatedDateString": "3 days ago"
+        },
+        {
+            "getTweetTextAsHTML": "It's looking like it's going to be cold but dry. We'll be out topping up the grit that we've already laid down on our roads this evening.",
+            "getRelativeCreatedDateString": "3 days ago"
+        }
+    ]
+}

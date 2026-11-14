@@ -1,0 +1,15 @@
+<nav class="skip-links" aria-label="Skip link Navigation">
+    <ul class="list list--skip-links">
+
+        {% block skip_to_content_link %}
+            <li class="list__item">
+                <a class="list__link" href="#content" rel="nofollow">
+                    {{ getTranslatedString('skip-to-content-link') }}
+                </a>
+            </li>
+        {% endblock %}
+
+        {% block skip_to_nav_link %}{% endblock %}
+
+    </ul>
+</nav>

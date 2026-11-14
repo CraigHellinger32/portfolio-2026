@@ -1,0 +1,29 @@
+{
+    "title": "Header Navigation",
+    "description": "",
+    "fields": {
+        "headerLinks": {
+            "type": "array",
+            "max": 2,
+            "sortable": true,
+            "vocab": {
+                "item": "header link"
+            },
+            "fields": {
+                "link": "link"
+            }
+        },
+        "primaryNavigation": {
+            "type": "array",
+            "title": "Header navigation",
+            "max": 8,
+            "sortable": true,
+            "vocab": {
+                "item": "Navigation link"
+            },
+            "fields": {
+                "link": "link"
+            }
+        }
+    }
+}

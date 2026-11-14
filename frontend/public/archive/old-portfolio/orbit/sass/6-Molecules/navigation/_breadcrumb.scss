@@ -1,0 +1,59 @@
+// Breadcrumb navigation
+//
+// Renders the list into vertical breadcrumb mode
+//
+// Markup:
+// <ol class="nav nav--breadcrumb">
+//   <li><a>Home</a></li>
+//   <li><a>Contact</a></li>
+//   <li><a>About</a></li>
+// </ol>
+//
+// Styleguide 14.2
+
+.breadcrumb {
+    background-color: $color-subtle;
+    font-size: $milli;
+    font-weight: $font-weight-heading;
+    padding: $space-quarter 0;
+}
+
+.breadcrumb__prefix {
+    @extend %visually-hidden;
+}
+
+.list--breadcrumb {
+    display: block;
+    margin: 0;
+    padding: 0 0 $space-third;
+
+    .list__item {
+        display: inline-block;
+        margin: $space-third 0 0;
+
+        &:last-child::after {
+            display: none;
+        }
+
+        &::after {
+            content: '/';
+            display: inline;
+            padding: 0 ($space-half - $space-eighth) 0 $space-half;
+        }
+    }
+
+    a {
+        @include linkUnderline(null, $color-link, $color-subtle);
+
+        display: inline-block;
+        font-weight: $font-weight-normal;
+
+        &:visited {
+            color: $color-link;
+        }
+    }
+
+    span {
+        display: inline;
+    }
+}

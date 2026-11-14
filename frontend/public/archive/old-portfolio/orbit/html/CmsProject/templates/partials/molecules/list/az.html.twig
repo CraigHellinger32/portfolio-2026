@@ -1,0 +1,45 @@
+{% block az_list_heading %}
+    {% if title %}
+        <h2>{{ title }}</h2>
+    {% endif %}
+{% endblock %}
+
+{% if group %}
+    {% spaceless %}
+
+    {% block az_list %}
+        <ul class="list{{ className ? ' ' ~ className }}">
+
+            {% block az_list_inner %}
+                {% for item in group %}
+
+                    {% block az_list_item %}
+                        <li class="list__item">
+
+                            {% block az_list_item_content %}
+                                {% if (item.active == false) %}
+
+                                    {% block az_list_item_disabled %}
+                                        <span class="button button--disabled">{{ item.title }}</span>
+                                    {% endblock %}
+
+                                {% else %}
+
+                                    {% block az_list_item_link %}
+                                        <a class="button button--secondary" href="{{ item.url }}">{{ item.title }}</a>
+                                    {% endblock %}
+
+                                {% endif %}
+                            {% endblock az_list_item_content %}
+
+                        </li>
+                    {% endblock az_list_item %}
+
+                {% endfor %}
+            {% endblock az_list_inner %}
+
+        </ul>
+    {% endblock az_list %}
+
+    {% endspaceless %}
+{% endif %}

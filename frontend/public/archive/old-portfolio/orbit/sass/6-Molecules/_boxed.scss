@@ -1,0 +1,63 @@
+// Boxed
+//
+// Creates wells/boxes for content. See sass/objects/_boxed.scss.
+//
+// Markup:
+// <div class="boxed {$modifiers}">
+//     <h3 class="boxed__heading">Some awesome content</h3>
+//     <p class="boxed__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec velit pharetra, cursus nisi eu, viverra leo. Praesent tempus, massa ornare elementum iaculis, augue libero ultrices sapien, eget lobortis eros eros non ex.</p>
+// </div>
+//
+// .boxed--primary     - Primary background colour
+// .boxed--secondary   - Secondary background colour
+// .boxed--standout    - Standout background colour
+// .boxed--subtle      - Subtle background colour
+//
+// Styleguide 4
+$boxed-background-color: $color-subtle !default;
+
+.boxed,
+%boxed {
+    @extend %cf;
+    @extend %module;
+
+    background-color: $boxed-background-color;
+    border-color: $color-subtle;
+    margin: 0 0 $slug;
+    padding: $space $space-and-quarter;
+}
+
+%boxed__heading,
+.boxed__heading {
+    font-size: $delta;
+    margin-top: 0;
+}
+
+%boxed__subheading,
+.boxed__subheading {
+    font-size: $normalis;
+}
+
+%boxed__form,
+.boxed__form {
+    background: none;
+    border: 0;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+}
+
+%boxed__list,
+.boxed__list {
+    margin-bottom: $slug-large;
+}
+
+%boxed__link,
+.boxed__link {
+    background-color: $boxed-background-color;
+
+    .boxed--standout &,
+    .boxed--vanilla & {
+        background-color: $color-white;
+    }
+}

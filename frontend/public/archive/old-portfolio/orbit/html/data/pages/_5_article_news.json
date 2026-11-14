@@ -1,0 +1,26 @@
+{
+    "bodyClass": "news-article",
+    "breadcrumb": [
+        {
+            "title": "Latest news",
+            "url": "4-news-listing-page.html"
+        }
+    ],
+    "content": {
+        "title": "News Article",
+        "image": {
+            "url": "images/alumni.png",
+            "alt": "alt text",
+            "description": "Featured image"
+        },
+        "summary": "Awarded for services to web devvery and fixing scheduled tasks.",
+        "body": "<p>Archived Article 8 01/2013. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dolor mauris, tempus vel dictum vitae, semper in lacus. Integer vitae cursus metus, at consequat neque. Aenean id tincidunt lacus. Fusce bibendum tristique erat in dignissim. Cras ullamcorper elit tristique, porta purus non, euismod neque. Phasellus vestibulum eros non tortor bibendum pellentesque. Vestibulum lacus justo, congue in nunc quis, ultricies cursus nunc. Vestibulum et magna nibh. Fusce non arcu eget risus laoreet feugiat a et massa. Aenean dictum nibh eget orci luctus, non dignissim massa volutpat. Sed rhoncus metus ut placerat faucibus. Sed malesuada sed diam a volutpat. Phasellus ultricies quam quam, nec ullamcorper sapien consequat ac.</p><p><a href='http://google.co.uk' class='link-external'>Google</a></p><p><a href='#'>News</a></p><p>This is normal text.</p><p>This test has a last word that should be <span class=\"superscript_text\">higher</span></p><p>This text has a last word that should be <span class=\"subscript_text\">lower&nbsp;</span></p><p>This is some more normal text.</p><p><abbr title=\"This is the full version of the abbreviation which is much shorter than this will be.\">This is an abbreviation</abbr></p><blockquote title=\"This is blockquote styling\"><p>This is a blockquote. We have to remember what's important in life: friends, waffles and work.</p><p><cite>Leslie Knope</cite></p></blockquote>",
+        "meta": [
+            {
+                "type": "date",
+                "title": "Published",
+                "value": "2020-07-06 12:00:00"
+            }
+        ]
+    }
+}

@@ -1,0 +1,44 @@
+{# Default values were added to this file to prevent twing errors #}
+{% if not adverts is empty %}
+    {% block widget_wrap %}
+        <div class="widget-right-advert">
+
+            {% block widget_content %}
+                {% for advert in adverts %}
+
+                    {% block widget_content_inner %}
+                        <div class="boxed">
+
+                            {% block advert_link %}
+                                <a class="widget__link" href="{{ advert.getUrl()|default(advert.url) }}">
+
+                                    {% block advert_link_inner %}
+
+                                        {% block advert_image %}
+                                            {% if advert.image %}
+                                                {% include 'partials/atoms/image/image.html.twig' with {
+                                                    'url': advert.image.getUrl()|default(advert.image),
+                                                    'alt': advert.image.getAlt()|default(advert.alt)|default(''),
+                                                    'className': 'widget__image'
+                                                    }
+                                                %}
+                                            {% endif %}
+                                        {% endblock %}
+
+                                        {% block advert_heading %}
+                                            <h2 class="widget__subheading">{{ advert.getTitle()|default(advert.title) }}</h2>
+                                        {% endblock %}
+
+                                    {% endblock advert_link_inner %}
+
+                                </a>
+                            {% endblock advert_link %}
+                        </div>
+                    {% endblock widget_content_inner %}
+
+                {% endfor %}
+            {% endblock widget_content %}
+
+        </div>
+    {% endblock widget_wrap %}
+{% endif %}

@@ -1,0 +1,30 @@
+// VARS / CONFIG
+$list-navigation-arrow-visible: false !default;
+
+// Navigation list items with arrows
+%list--navigation,
+.list--navigation {
+    margin-bottom: $slug-large;
+
+    .list__item {
+        position: relative;
+
+        @if $list-navigation-arrow-visible == true {
+            padding-left: $gutter-large;
+
+            &::before {
+                background-position: left;
+                background-size: 60%;
+                content: '';
+                height: $space-hard * 2;
+                left: 0;
+                position: absolute;
+                width: $space;
+            }
+        }
+    }
+
+    .list__link {
+        display: inline;
+    }
+}

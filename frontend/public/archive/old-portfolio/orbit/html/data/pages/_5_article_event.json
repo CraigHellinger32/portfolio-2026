@@ -1,0 +1,35 @@
+{
+    "bodyClass": "event-article",
+    "content": {
+        "title": "Event Article",
+        "image": {
+            "url": "images/alumni.png",
+            "alt": "alt text",
+            "description": "Caption 1"
+        },
+        "summary": "Bookbug sessions for babies and toddlers (0 - 3 years) are held every Thursday and Saturday.",
+        "body": "<p>They are free, fun, informal sessions with trained staff incorporating rhymes, songs, music and stories for children and their parents  and  carers to share and enjoy together.</p>",
+        "meta": [
+            {
+                "type": "default",
+                "title": "Date",
+                "value": "2nd October 2018 - 18th December 2020 Every week"
+            },
+            {
+                "type": "default",
+                "title": "Location",
+                "value": "Municipal Library<br>Library Park<br>Booktown<br>PO5 TC0"
+            },
+            {
+                "type": "default",
+                "title": "Cost",
+                "value": "Free"
+            },
+            {
+                "type": "default",
+                "title": "Time",
+                "value": "11:00 - 11:30"
+            }
+        ]
+    }
+}

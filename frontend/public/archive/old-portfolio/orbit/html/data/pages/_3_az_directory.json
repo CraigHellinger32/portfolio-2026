@@ -1,0 +1,28 @@
+{
+    "bodyClass": "directory-record-list",
+    "content": {
+        "title": "Directory AZ",
+        "lists": [
+            {
+                "type": "record",
+                "items": [
+                    {
+                        "title": "A - TEST: Entry starting with A",
+                        "link": "#"
+                    },
+                    {
+                        "title": "A - TEST: Entry starting with A - I",
+                        "link": "#"
+                    },
+                    {
+                        "title": "Automotive Services",
+                        "link": "#"
+                    }
+                ]
+            }
+        ],
+        "AZLinkList": [
+            {"title":"A","url":"#"},{"title":"B","url":"#"},{"title":"C","active":false},{"title":"D","url":"#"},{"title":"E","url":"#"},{"title":"F","url":"#"},{"title":"G","active":false},{"title":"H","active":false},{"title":"I","active":false},{"title":"J","url":"#"},{"title":"K","url":"#"},{"title":"L","url":"#"},{"title":"M","url":"#"},{"title":"N","active":false},{"title":"O","active":false},{"title":"P","url":"#"},{"title":"Q","active":false},{"title":"R","url":"#"},{"title":"S","url":"#"},{"title":"T","url":"#"},{"title":"U","active":false},{"title":"V","url":"#"},{"title":"W","url":"#"},{"title":"X","url":"#"},{"title":"Y","url":"#"},{"title":"Z","active":false}
+        ]
+    }
+}

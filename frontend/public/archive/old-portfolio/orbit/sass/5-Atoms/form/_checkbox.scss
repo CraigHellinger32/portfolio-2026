@@ -1,0 +1,112 @@
+$radio-checkbox-size: $space-two-thirds !default;
+$radio-checkbox-selected-colour: $color-secondary !default;
+$radio-checkbox-hover-colour: $color-link-hover !default;
+$radio-checkbox-top-offset: $space-sixth !default;
+$form__field--border-width: $border-width-small !default;
+
+%form__label--checkbox,
+.form__label--checkbox {
+    display: inline-block;
+    padding: 0 $space-half 0 $space-and-quarter;
+    position: relative;
+    width: auto;
+
+    &::before {
+        border: $form__field--border-width solid $color-border-input;
+        content: '';
+        display: block;
+        height: $radio-checkbox-size;
+        left: 0;
+        position: absolute;
+        top: $radio-checkbox-top-offset;
+        transition: background-color $transition-speed,
+            border-color $transition-speed,
+            box-shadow $transition-speed;
+        width: $radio-checkbox-size;
+    }
+
+    &::after {
+        background-color: $radio-checkbox-selected-colour;
+        background-position: center;
+        background-size: percentage(3 / 4);
+        border: $form__field--border-width solid $color-border-input;
+        content: '';
+        display: block;
+        height: $radio-checkbox-size;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        top: $radio-checkbox-top-offset;
+        transition: background-color $transition-speed,
+            border-color $transition-speed,
+            opacity $transition-speed;
+        width: $radio-checkbox-size;
+    }
+
+    &:hover {
+        color: $color-link-hover;
+        cursor: pointer;
+        text-decoration: underline;
+
+        &::before {
+            border-color: $radio-checkbox-hover-colour;
+        }
+
+        &::after {
+            background-color: $radio-checkbox-hover-colour;
+            border-color: $radio-checkbox-hover-colour;
+        }
+    }
+
+    .form__control--error & {
+        &::before {
+            background-color: $color-danger;
+        }
+    }
+}
+
+%form__checkbox,
+.form__checkbox {
+    @include visuallyhidden;
+
+    &[checked],
+    &:checked {
+        ~ .form__label {
+            &::after {
+                opacity: 1;
+            }
+        }
+    }
+
+    &:focus {
+        ~ .form__label {
+            &::before {
+                @include focus-outline;
+            }
+
+            &::before,
+            &::after {
+                border-color: $color-border-input;
+            }
+        }
+    }
+
+    &[checked]:not(:checked) {
+        ~ .form__label {
+            &::after {
+                opacity: 0;
+            }
+        }
+    }
+
+    .form__control--error & {
+        &[checked],
+        &:checked {
+            ~ .form__label {
+                &::before {
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+}

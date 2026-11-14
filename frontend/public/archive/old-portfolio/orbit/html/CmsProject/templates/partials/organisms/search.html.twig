@@ -1,0 +1,7 @@
+<section class="site-search is-hidden" id="site-search" tabindex="-1" aria-label="Search form">
+    <button class="button navigation__button" onclick="return $('#site-search').toggle()">
+        {% include 'partials/atoms/image/icon.html.twig' with {'type': 'close' } %}
+    </button>
+    <h2 class="navigation__heading">{{ getTranslatedString('search-button-label') }}</h2>
+    {{ component('search') }}
+</section>

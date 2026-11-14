@@ -1,0 +1,45 @@
+{% extends '@theme:base/pages/publishing_content/download/article.html.twig' %}
+
+{% block download_content_inner %}
+    {% apply spaceless %}
+        {% if file.url == '' %}
+            {% block download_link %}
+                <a class="download__link" href="{{ path('file_download', { fileId: file.id, fileSlug: file.slug } ) }}">
+                    {% block download_link_inner %}
+
+                        {% block download_heading %}
+                            <h2 class="download__heading">
+                                <span class="download__heading-inner">
+                                    <span class="visually-hidden">Download: </span>{{ file.title }}<span class="visually-hidden">: File type: {{ file.filenameExtension }}: File size: {{ file.humanReadableFileSize }}</span>
+                                </span>
+                            </h2>
+                        {% endblock %}
+
+                        {% block download_meta %}
+                            {{ parent() }}
+                        {% endblock %}
+
+                    {% endblock %}
+                </a>
+            {% endblock %}
+        {% else %}
+            {% block download_heading_nominal %}
+                <a class="download__link download__link--singular" href="{{ file.url }}">
+                    <h2 class="download__heading">
+                        <span class="download__heading-inner"><span class="visually-hidden">Download: </span>{{ file.title }}</span>
+                    </h2>
+                </a>
+            {% endblock %}
+        {% endif %}
+    {% endapply %}
+{% endblock %}
+
+{% block download_meta_link_wrap %}
+    <span class="download__cta">
+
+        {% block download_meta_link_inner %}
+            {{ parent() }}
+        {% endblock %}
+
+    </span>
+{% endblock %}

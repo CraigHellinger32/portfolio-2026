@@ -1,0 +1,22 @@
+$button-icon-size: 1.3rem !default;
+
+%button--icon,
+.button--icon {
+    .icon {
+        display: inline-block;
+        height: $button-icon-size;
+        margin-right: $space-half;
+        vertical-align: middle;
+        width: $button-icon-size;
+    }
+}
+
+%button--icon-right,
+.button--icon-right {
+    .icon {
+        display: inline-block;
+        height: $button-icon-size;
+        margin-left: $space-half;
+        vertical-align: middle;
+    }
+}

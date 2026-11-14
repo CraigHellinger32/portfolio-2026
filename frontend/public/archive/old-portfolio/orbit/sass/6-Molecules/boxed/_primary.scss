@@ -1,0 +1,5 @@
+.boxed--primary,
+%boxed--primary {
+    border-color: $color-primary;
+    color: darken($color-primary, 40%);
+}

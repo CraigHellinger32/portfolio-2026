@@ -1,0 +1,11 @@
+%button--rounded,
+.button--rounded {
+    border-radius: 30px;
+    padding: $space-hard $space;
+
+    &:focus,
+    &:active {
+        border: $border-width-mid solid $color-link-focus;
+        outline: none;
+    }
+}

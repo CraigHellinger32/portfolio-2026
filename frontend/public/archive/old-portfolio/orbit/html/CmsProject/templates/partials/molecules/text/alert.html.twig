@@ -1,0 +1,45 @@
+{% block alert %}
+    <aside class="alert alert--{{ type|default('information') }}" id="{{ "flash-message-alert-" ~ type|default('warning') ~ "-" ~ index|default(announcementId)|default(0) }}" aria-label="{{ title }}">
+
+        {% block alert_inner %}
+            {% block alert_heading %}
+                <h2 class="alert__heading">
+                    {{ title }}
+                </h2>
+            {% endblock %}
+
+            {% block alert_summary %}
+                {% if summary is iterable %}
+                    {% for text in summary %}
+                        {% block alert_summary_iterable %}
+                            <p class="alert__text">{{ text }}</p>
+                        {% endblock %}
+                    {% endfor %}
+                {% elseif summary %}
+                    {% block alert_summary_singular %}
+                        <p class="alert__text">{{ summary }}</p>
+                    {% endblock %}
+                {% endif %}
+            {% endblock %}
+
+            {% block alert_link %}
+                {% if url is defined and url|trim is not empty %} {# Extra check needed for prototypes - trim doesn't work the same way in gulp twing #}
+                    <a class="alert__link" href="{{ url }}">
+
+                        {% block alert_link_inner %}
+                            <span class="alert__link-text">
+                                {% if label|trim is not empty %}
+                                    {{ label }}
+                                {% else %}
+                                    {{ url }}
+                                {% endif %}
+                            </span>
+                        {% endblock %}
+
+                    </a>
+                {% endif %}
+            {% endblock %}
+        {% endblock alert_inner %}
+
+    </aside>
+{% endblock %}

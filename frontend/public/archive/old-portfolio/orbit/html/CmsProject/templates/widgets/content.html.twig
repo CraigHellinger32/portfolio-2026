@@ -1,0 +1,23 @@
+{% block widget_wrap %}
+    <div class="widget-content">
+
+        {% block widget_wrap_inner %}
+            {% block widget_heading %}
+                {% if title is not empty %}
+                    {% include 'partials/atoms/text/widget_heading.html.twig' with {
+                        'title': title
+                        }
+                    %}
+                {% endif %}
+            {% endblock %}
+
+            {% block widget_content %}
+                {% include 'partials/atoms/text/editor.html.twig' with {
+                    'content': content
+                    }
+                %}
+            {% endblock %}
+        {% endblock widget_wrap_inner %}
+
+    </div>
+{% endblock widget_wrap %}

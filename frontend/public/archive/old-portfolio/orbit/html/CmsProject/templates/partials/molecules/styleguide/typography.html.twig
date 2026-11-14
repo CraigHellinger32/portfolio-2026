@@ -1,0 +1,49 @@
+<div class="style-guide__section" id="section--type-02">
+    <h2 class="style-guide__heading"><a class="style-guide__anchor-link" href="#section--type-02">Headings</a></h2>
+    <div>
+        <h1>H1 heading level (36px)</h1>
+    </div>
+    <div>
+        <h2>H2 heading level (28px)</h2>
+    </div>
+    <div>
+        <h3>H3 heading level (24px)</h3>
+    </div>
+    <div>
+        <h4>H4 heading level (20px)</h4>
+    </div>
+    <div>
+        <h5>H5 heading level (18px)</h5>
+    </div>
+    <div>
+        <h6>H6 heading level (16px)</h6>
+    </div>
+</div>
+<div class="style-guide__section" id="section--type-03">
+    <h2 class="style-guide__heading"><a class="style-guide__anchor-link" href="#section--type-03">Carriaging headings</a></h2>
+    <h1>H1 heading — with enough text to carriage over multiple lines, lorem ipsum dolor sit amet, consectetur.</h1>
+    <hr>
+    <h2>H2 heading — with enough text to carriage over multiple lines, lorem ipsum dolor sit amet, consectetur.</h2>
+    <hr>
+    <h3>H3 heading — with enough text to carriage over multiple lines, lorem ipsum dolor sit amet, consectetur, lorem ipsum dolor sit amet, consectetur.</h3>
+</div>
+<div class="style-guide__section" id="section--type-04">
+    <h2 class="style-guide__heading"><a class="style-guide__anchor-link" href="#section--type-04">Paired headings</a></h2>
+    {% for i in [2,3,4,5] %}
+        {% set h = 'h' ~ i %}
+        {% set h2 = 'h' ~ (i + 1) %}
+        {{ '<' ~ h ~ '>'|raw }}({{ h }}) {{ h }} and {{ h2 }} pairing{{ '</' ~ h ~ '>'|raw }}
+        {{ '<' ~ h2 ~ '>'|raw }}({{ h2 }}) {{ h }} and {{ h2 }} pairing{{ '</' ~ h2 ~ '>'|raw }}
+        <p>{{ data.dummy.text }}</p>
+        <hr>
+    {% endfor %}
+</div>
+<div class="style-guide__section" id="section--type-05">
+    <h2 class="style-guide__heading"><a class="style-guide__anchor-link" href="#section--type-05">Paragraphs</a></h2>
+    <div class="editor">
+        <p class="summary">Lead paragraph, using the class <code>.summary</code> — {{ data.dummy.text }}</p>
+        <p>Standard paragrpahs, {{ data.dummy.text }} {{ data.dummy.text }}</p>
+        <p>{{ data.dummy.text }} Aenean sit amet <a href="/an/internal/link/i’ve/never/been/to/">text link example</a> aliquet enim, sed interdum hover link.
+            Active text link. Curabitur in <a href="#">visited text link example</a> maximus mi. Mauris laoreet diam sit amet accumsan. </p>
+    </div>
+</div>

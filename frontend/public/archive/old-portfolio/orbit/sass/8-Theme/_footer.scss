@@ -1,0 +1,156 @@
+// ========================================================
+//  Site Footer
+// ==============
+
+$footer-background-color: darken($color-subtle, 2%) !default;
+
+.site-footer {
+    @extend %module;
+
+    background-color: $footer-background-color;
+    margin: $space-double 0 0;
+    padding: $space-double 0 0;
+    text-align: center;
+
+    @include respond-min($mid-width) {
+        flex: 0 0 auto;
+    }
+
+    .container {
+        padding-bottom: $space;
+        position: relative;
+        text-align: left;
+    }
+
+    .container--flex {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding-bottom: 0;
+
+        @include respond-min($mid-width) {
+            flex-wrap: nowrap;
+        }
+    }
+
+    a:visited {
+        color: $color-link-visited;
+    }
+
+    .back-to-top {
+        bottom: 0;
+        padding: $space-two-thirds;
+        position: absolute;
+        right: 0;
+    }
+}
+
+.site-footer__group {
+    flex: 1 1 100%;
+    margin-bottom: $space-and-half;
+    min-width: 0;
+
+    @include respond-min($small-width) {
+        flex: 1 1 50%;
+        padding-right: $gutter;
+        text-align: left;
+    }
+
+    @include respond-min($mid-width) {
+        flex: 1 1 0%;
+    }
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    .list {
+        margin: 0;
+    }
+
+    .list__item {
+        margin: $space-third 0;
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    .list__link {
+        vertical-align: middle;
+    }
+
+    .icon {
+        margin-top: 0;
+    }
+}
+
+.site-footer__group--centered {
+    @include respond-min($mid-width) {
+        align-self: center;
+    }
+
+    .list {
+        text-align: center;
+
+        @include respond-min($small-mid-width) {
+            text-align: left;
+        }
+    }
+
+    .list__item {
+        display: block;
+        margin: 0 0 $space-two-thirds;
+
+        @include respond-min($mid-width) {
+            margin: $space-two-thirds 0;
+        }
+    }
+}
+
+.site-footer__heading,
+.site-footer__group h2 {
+    font-size: $normalis;
+    font-weight: $font-weight-bold;
+    margin: 0 0 $slug-small;
+    text-transform: uppercase;
+
+    @include respond-min($small-mid-width) {
+        margin: 0 0 $slug;
+    }
+}
+
+.site-footer__text,
+.site-footer__links {
+    display: block;
+    font-size: $milli-px;
+    margin: 0 $space-triple 0 0;
+    text-align: left;
+
+    @include respond-min($mid-width) {
+        display: inline;
+        margin-right: $gutter-small;
+    }
+}
+
+.site-footer__text {
+    &:last-of-type {
+        @include respond-min($mid-width) {
+            margin-right: $space-double;
+        }
+    }
+}
+
+.site-footer__text--supplier {
+    font-weight: $font-weight-bold;
+}
+
+.site-footer__link {
+    text-decoration: underline;
+
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none;
+    }
+}

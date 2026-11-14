@@ -1,0 +1,15 @@
+.button--subtle,
+%button--subtle {
+    &,
+    &:visited {
+        background-color: $color-subtle;
+        border-color: $color-subtle;
+        color: $color-text-default;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: lighten($color-subtle, 5%);
+    }
+}

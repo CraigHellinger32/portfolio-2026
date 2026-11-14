@@ -1,0 +1,34 @@
+{% if link_url %}
+
+    {% block image_link %}
+        <a class="image-link" href="{{ link_url }}"{% if link_target is not empty %} target="{{ link_target }}"{% endif %}>
+            {% block image_content %}
+                {% block image %}
+                    {% include 'partials/atoms/image/image.html.twig' with {
+                        'url': url,
+                        'alt': alt,
+                        'className': 'image--with-link'
+                        }
+                    %}
+                {% endblock %}
+
+                {% block caption %}
+                    {% if caption %}
+
+                        {% block caption_inner %}
+                            <p class="image__caption">{{ caption }}</p>
+                        {% endblock %}
+
+                    {% endif %}
+                {% endblock %}
+            {% endblock %}
+        </a>
+    {% endblock image_link %}
+
+{% else %}
+
+    {% block image_no_link %}
+        {{ block('image_content') }}
+    {% endblock %}
+
+{% endif %}

@@ -1,0 +1,129 @@
+{% block form_main %}
+    {% block form_tag %}
+        <form class="form{{ className ? ' ' ~ className }}" {% if form.action is not empty %}action="{{ form.action }}"{% endif %}{% if form.method is not empty %} method="{{ form.method }}"{% endif %} enctype="multipart/form-data">
+    {% endblock %}
+
+        {% block form_error %}
+        {% endblock %}
+
+        {% block form_header %}
+            {% block form_progress %}
+            {% endblock %}
+
+            {% block form_heading %}
+                {% if form.formHeading is not empty %}
+                    {% include 'partials/atoms/text/subheading.html.twig' with {
+                        'title': form.formHeading,
+                        'className': 'form__heading'
+                        }
+                    %}
+                {% endif %}
+            {% endblock %}
+
+            {% block form_instructions %}
+                {% if form.instructions is not empty %}
+                    <div class="form__instructions">
+                        {% include 'partials/atoms/text/editor.html.twig' with {
+                            'content': form.instructions
+                            }
+                        %}
+                    </div>
+                {% endif %}
+            {% endblock %}
+        {% endblock %}
+
+        {% block form_content %}
+            {% block form_questions %}
+                {% for control in form.controls %}
+                    {% if control.type in ['hidden', 'button'] %}
+                        {% include 'partials/molecules/form/unwrapped_field.html.twig' with {
+                            'control': control,
+                            'type': control.type,
+                            'error': control.error,
+                            'help': control.help,
+                            'label': control.label,
+                            'required': control.mandatory,
+                            'name': control.name,
+                            'maxlength': control.maxLength,
+                            'value': control.value,
+                            'options': control.options,
+                            'autocomplete': control.autocomplete,
+                            'id': control.id,
+                            'className': control.className,
+                            'disabled': control.disabled
+                            }
+                        %}
+                    {% elseif control.type in ['checkbox', 'radio'] %}
+                        {% include 'partials/molecules/form/multi_field.html.twig' with {
+                            'control': control,
+                            'type': control.type,
+                            'error': control.error,
+                            'help': control.help,
+                            'label': control.label,
+                            'required': control.mandatory,
+                            'name': control.name,
+                            'maxlength': control.maxLength,
+                            'value': control.value,
+                            'options': control.options,
+                            'autocomplete': control.autocomplete,
+                            'id': control.id,
+                            'className': control.className,
+                            'disabled': control.disabled
+                            }
+                        %}
+                    {% else %}
+                        {% include 'partials/molecules/form/single_field.html.twig' with {
+                            'control': control,
+                            'type': control.type,
+                            'error': control.error,
+                            'help': control.help,
+                            'label': control.label,
+                            'required': control.mandatory,
+                            'name': control.name,
+                            'maxlength': control.maxLength,
+                            'value': control.value,
+                            'options': control.options,
+                            'autocomplete': control.autocomplete,
+                            'id': control.id,
+                            'className': control.className,
+                            'disabled': control.disabled
+                            }
+                        %}
+                    {% endif %}
+                {% endfor %}
+            {% endblock %}
+        {% endblock %}
+
+        {% block form_footer %}
+            <footer class="form__footer">
+                {% block form_actions %}
+                    {% if form.primaryAction is not empty or form.secondaryAction is not empty %}
+                        <div class="form__actions">
+                            {% if form.primaryAction is not empty %}
+                                <div class="form__action form__action--primary">
+                                    {% include 'partials/atoms/form/button.html.twig' with {
+                                        'name': form.primaryAction.name,
+                                        'value': form.primaryAction.label,
+                                        'className': 'button--primary'
+                                        }
+                                    %}
+                                </div>
+                            {% endif %}
+                            {% if form.secondaryAction is not empty %}
+                                <div class="form__action form__action--secondary">
+                                    {% include 'partials/atoms/form/button.html.twig' with {
+                                        'name': form.secondaryAction.name,
+                                        'value': form.secondaryAction.label,
+                                        'className': 'button--secondary'
+                                        }
+                                    %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endblock %}
+            </footer>
+        {% endblock %}
+
+    </form>
+{% endblock %}

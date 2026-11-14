@@ -1,0 +1,146 @@
+{% extends 'layouts/article.html.twig' %}
+
+{% block main %}
+    {% set includeMaps = false %}
+
+    {% block definition_list %}
+        <dl class="list list--definition">
+
+            {% block definition_list_inner %}
+
+                {% for record in entry.entryDetails %}
+                    {% if record.value is not empty and record.field.defaultVisibility == 1 %}
+
+                        {% block record %}
+
+                            {% block record_heading %}
+                                <dt class="list--definition__heading">
+                                    {% block record_heading_inner %}
+                                        {% if record.field.displayTitle == 1 %}
+                                            {{ record.field.title }}
+                                        {% endif %}
+                                    {% endblock %}
+                                </dt>
+                            {% endblock %}
+
+                            {% block record_content %}
+                                <dd class="list--definition__content">
+
+                                    {% block record_content_inner %}
+                                        {% set fieldType =  record.field.fieldType.name %}
+                                        {% if fieldType == "Email" %}
+
+                                            {% block record_email %}
+                                                {% set email = record.value|striptags('<a>') %}
+                                                {% if email starts with '<a' %}
+                                                    {{ email }}
+                                                {% else %}
+                                                    <a href="mailto:{{ record.value }}">{{ record.value }}</a>
+                                                {% endif %}
+                                            {% endblock %}
+
+                                        {% elseif fieldType == "Image" %}
+
+                                            {% block record_image %}
+
+                                                {% set convertedImage = convertToLazyImage(record.value) %}
+                                                {% include 'partials/atoms/image/image.html.twig' with {
+                                                    'url': convertedImage.url,
+                                                    'alt': convertedImage.alt|default(''),
+                                                    'className': 'directory__image'
+                                                    }
+                                                %}
+                                            {% endblock %}
+
+                                        {% elseif fieldType == "Link"%}
+
+                                            {% block record_link %}
+                                                {% set link = record.value|striptags('<a>') %}
+                                                {% if link starts with '<a' %}
+                                                    {{ link|raw }}
+                                                {% else %}
+                                                    {% if not link starts with 'http://' and not link starts with 'https://' %}
+                                                        {% set link = 'http://'~ link %}
+                                                    {% endif %}
+                                                    <a href="{{ link  }}">{{ link }}</a>
+                                                {% endif %}
+                                            {% endblock %}
+
+                                        {% elseif fieldType == "HTML" %}
+
+                                            {% block record_html %}
+                                                <div class="editor list--definition__editor">
+                                                    {{ record.value|process_editor|raw }}
+                                                </div>
+                                            {% endblock %}
+
+                                        {% elseif fieldType == "Google Map" %}
+
+                                            {% block record_google_map %}
+                                                {% set includeMaps = true %}
+                                                {% set markerImage = getSiteRootUrl() ~ '/images/map_markers/red.png' %}
+                                                {% if record.field.getFieldSettingByValueType('MapMarker') is not empty and record.field.getFieldSettingByValueType('MapMarker').value is not empty %}
+                                                    {% set markerImage = getSiteRootUrl() ~ '/images/map_markers/' ~ record.field.getFieldSettingByValueType('MapMarker').value %}
+                                                {% endif %}
+                                                {% set markerLocation = record.value|trim %}
+                                                {% set markerInfo = '' %}
+                                                {% set markerInfoFieldIDs = record.field.getFieldSettingByValueType('MarkerInfo') %}
+                                                {% if markerInfoFieldIDs is not empty %}
+                                                    {% set markerInfoFieldIDs = markerInfoFieldIDs.getUnSerializedValue() %}
+                                                    {% if markerInfoFieldIDs is iterable %}
+                                                        {% for fieldID in markerInfoFieldIDs %}
+                                                            {% set markerInfoText = '' %}
+                                                            {% for record in entry.getEntryDetails() %}
+                                                                {% if record.field.id == fieldID  %}
+                                                                    {% set markerInfoText = record.value %}
+                                                                {% endif %}
+                                                            {% endfor %}
+                                                            {% set markerInfo = markerInfo ~ '%s<br />'|format(markerInfoText) %}
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                {% endif %}
+                                                {% set markerInfo = markerInfo|nl2br %}
+                                                {{'<input type="hidden" id="map_marker_image_%d" value="%s">'| format(record.field.id, markerImage)|raw }}
+                                                {{'<input type="hidden" id="map_marker_info_%d" value="%s">'| format(record.field.id, markerInfo)|raw }}
+                                                {{'<input type="hidden" id="map_marker_location_%d" value="%s">'| format(record.field.id, markerLocation)|raw }}
+                                                {{'<div id="map_%d" class="map"></div>'| format(record.field.id)|raw }}
+                                            {% endblock record_google_map %}
+
+                                        {% elseif fieldType == "ESRI Map" %}
+
+                                            {% block record_esri_map %}
+                                                {{ getESRIMapsHTML(record.entryId,'directory-entry')|raw }}
+                                            {% endblock %}
+
+                                        {% else %}
+
+                                            {% block record_value %}
+                                                {{ record.value|raw|nl2br }} {# Alteration: Raw output forced for Gulp Twing #}
+                                            {% endblock %}
+
+                                        {% endif %}
+                                    {% endblock record_content_inner %}
+
+                                </dd>
+                            {% endblock record_content %}
+
+                        {% endblock record %}
+
+                    {% endif %}
+                {% endfor %}
+
+
+            {% endblock definition_list_inner %}
+
+
+        </dl>
+    {% endblock definition_list %}
+{% endblock main %}
+
+{% block javascript_footer %}
+    {% set includeMaps = false %}
+    {% if hasMapFields %}
+        {% set includeMaps = true %}
+    {% endif %}
+    {{ parent() }}
+{% endblock %}

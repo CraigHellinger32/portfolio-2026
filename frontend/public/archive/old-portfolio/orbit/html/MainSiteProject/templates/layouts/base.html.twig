@@ -1,0 +1,43 @@
+{% extends '@theme:base/layouts/base.html.twig' %}
+
+{% block tag_html %}
+    <!--[if IE 9]>          <html class="lt-ie10{{ block('html_classes') }}"{{ block('html_attributes') }}> <![endif]-->
+    <!--[if gt IE 9]><!-->  <html class="{{ block('html_classes') }}"{{ block('html_attributes') }}><!--<![endif]-->
+{% endblock %}
+
+{% block stylesheet_base %}
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+    {{ parent() }}
+{% endblock %}
+
+{% block favicons %}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('site/dist/images/favicons/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('site/dist/images/favicons/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('site/dist/images/favicons/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('site/dist/images/favicons/site.webmanifest') }}">
+    <link rel="mask-icon" href="{{ asset('site/dist/images/favicons/safari-pinned-tab.svg') }}" color="#6d3465">
+    <link rel="shortcut icon" href="{{ asset('site/dist/images/favicons/favicon.ico') }}">
+    <meta name="msapplication-TileColor" content="#6d3465">
+    <meta name="msapplication-config" content="{{ asset('site/dist/images/favicons/browserconfig.xml') }}">
+    <meta name="theme-color" content="#ffffff">
+{% endblock %}
+
+{% block meta_opengraph_image_src %}
+    {{ absolute_url(page.content.image.url|default(asset('site/dist/images/opengraph/opengraph.jpg'))) }}
+{% endblock %}
+
+{% block body_content %}
+    <div class="{{ bodyContentClass|default('site') }}"{{ bodyContentAttributes ? ' ' ~ bodyContentAttributes }}>
+        {{ parent() }}
+    </div>
+{% endblock %}
+
+{% block site_content %}
+    <section class="site-content" id="content" tabindex="-1" aria-label="Site content area">
+
+        {% block site_content_inner %}
+            {{ parent() }}
+        {% endblock %}
+
+    </section>
+{% endblock %}

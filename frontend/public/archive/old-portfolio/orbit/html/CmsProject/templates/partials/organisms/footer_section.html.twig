@@ -1,0 +1,10 @@
+{% block footer_sections %}
+    <nav class="site-footer__group" aria-label="Footer Navigation">
+        {% include 'partials/molecules/list/list.html.twig' with {
+            'type': 'record',
+            'title': '',
+            'group': links
+            }
+        %}
+    </nav>
+{% endblock footer_sections %}

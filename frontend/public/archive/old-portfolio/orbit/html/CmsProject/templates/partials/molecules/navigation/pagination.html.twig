@@ -1,0 +1,130 @@
+{% if previous_link or next_link %}
+
+    {% block pagination_simple %}
+        <nav class="pagination" aria-label="Pagination">
+
+            {% block pagination_list %}
+                <ul class="pagination__list">
+
+                    {% block pagination_list_inner %}
+                        {% block pagination_previous %}
+                            <li class="pagination__item pagination__item--previous">
+
+                                {% if previous_link %}
+                                    {% block link_previous %}
+                                        <a class="pagination__link" href="{{ previous_link.url }}">
+
+                                            {% block link_previous_inner %}
+
+                                                {% block link_previous_icon %}
+                                                    <span class="pagination__icon icon icon-ui-chevron-left"></span>
+                                                {% endblock %}
+
+                                                {% block link_previous_content %}
+                                                    <span class="pagination__content">
+                                                        <strong class="pagination__label">Previous<span class="visually-hidden"> page</span></strong>
+                                                        {% if previous_link.subtitle %}
+                                                            <span class="pagination__meta">
+                                                                <span class="visually-hidden">: </span>{{ previous_link.subtitle }}
+                                                            </span>
+                                                        {% endif %}
+                                                    </span>
+                                                {% endblock %}
+
+                                            {% endblock link_previous_inner %}
+
+                                        </a>
+                                    {% endblock link_previous %}
+                                {% else %}
+                                    {% block link_previous_disabled %}
+                                        <span class="pagination__link is-disabled">
+
+                                            {% block link_previous_disabled_inner %}
+
+                                                {% block link_previous_disabled_icon %}
+                                                    <span class="pagination__icon icon icon-ui-chevron-left"></span>
+                                                {% endblock %}
+
+                                                {% block link_previous_disabled_content %}
+                                                    <span class="pagination__content">
+                                                        <strong class="pagination__label">Previous<span class="visually-hidden"> page</span></strong>
+                                                        <span class="pagination__meta">
+                                                            <span class="visually-hidden">: </span>You are on the first page
+                                                        </span>
+                                                    </span>
+                                                {% endblock %}
+
+                                            {% endblock link_previous_disabled_inner %}
+
+                                        </span>
+                                    {% endblock link_previous_disabled %}
+                                {% endif %}
+
+                            </li>
+                        {% endblock pagination_previous %}
+
+                        {% block pagination_next %}
+                            <li class="pagination__item pagination__item--next">
+
+                                {% if next_link %}
+                                    {% block link_next %}
+                                        <a class="pagination__link" href="{{ next_link.url }}">
+
+                                            {% block link_next_inner %}
+
+                                                {% block link_next_content %}
+                                                    <span class="pagination__content">
+                                                        <strong class="pagination__label">Next<span class="visually-hidden"> page</span></strong>
+                                                        {% if next_link.subtitle %}
+                                                            <span class="pagination__meta">
+                                                                <span class="visually-hidden">: </span>{{ next_link.subtitle }}
+                                                            </span>
+                                                        {% endif %}
+                                                    </span>
+                                                {% endblock %}
+
+                                                {% block link_next_icon %}
+                                                    <span class="pagination__icon icon icon-ui-chevron-right"></span>
+                                                {% endblock %}
+
+                                            {% endblock link_next_inner %}
+
+                                        </a>
+                                    {% endblock link_next %}
+                                {% else %}
+                                    {% block link_next_disabled %}
+                                        <span class="pagination__link is-disabled">
+
+                                            {% block link_next_disabled_inner %}
+
+                                                {% block link_next_disabled_content %}
+                                                    <span class="pagination__content">
+                                                        <strong class="pagination__label">Next<span class="visually-hidden"> page</span></strong>
+                                                        <span class="pagination__meta">
+                                                            <span class="visually-hidden">: </span>You are on the last page
+                                                        </span>
+                                                    </span>
+                                                {% endblock %}
+
+                                                {% block link_next_disabled_icon %}
+                                                    <span class="pagination__icon icon icon-ui-chevron-right"></span>
+                                                {% endblock %}
+
+                                            {% endblock link_next_disabled_inner %}
+
+                                        </span>
+                                    {% endblock link_next_disabled %}
+                                {% endif %}
+
+                            </li>
+                        {% endblock pagination_next %}
+                    {% endblock pagination_list_inner %}
+
+                </ul>
+
+            {% endblock pagination_list %}
+
+        </nav>
+    {% endblock pagination_simple %}
+
+{% endif %}

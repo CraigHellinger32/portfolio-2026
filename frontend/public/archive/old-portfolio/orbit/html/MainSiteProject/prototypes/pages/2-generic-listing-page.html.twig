@@ -1,0 +1,50 @@
+{% set page = data.pages._2_generic_listing_page %}
+{% extends 'layouts/list.html.twig' %}
+{% set columns = "two-column" %}
+
+{% block page_content %}
+    <div class="style-guide__section" id="section--featured">
+        <h2 class="style-guide__heading"><a class="style-guide__anchor-link" href="#section--featured">Featured item</a></h2>
+        {% include 'partials/molecules/article/featured.html.twig' with {
+            'image': page.content.feature1.image,
+            'title': page.content.feature1.title,
+            'summary': page.content.feature1.summary,
+            'group': page.content.feature1.meta,
+            'content': page.content.feature1.body,
+            'link': page.content.feature1.link
+            }
+        %}
+    </div>
+
+    <div class="style-guide__section" id="section--featured-image">
+        <h2 class="style-guide__heading"><a class="style-guide__anchor-link" href="#section--featured-image">Featured item with image</a></h2>
+        {% include 'partials/molecules/article/featured.html.twig' with {
+            'image': page.content.feature2.image,
+            'title': page.content.feature2.title,
+            'summary': page.content.feature2.summary,
+            'group': page.content.feature2.meta,
+            'content': page.content.feature2.body,
+            'link': page.content.feature2.link
+            }
+        %}
+    </div>
+
+    <div class="style-guide__section" id="section--listing">
+        <h2 class="style-guide__heading"><a class="style-guide__anchor-link" href="#section--listing">Listing</a></h2>
+        {{ parent() }}
+    </div>
+
+    <div class="style-guide__section" id="section--listing-masonry">
+        {% set masonry = true %}
+        <h2 class="style-guide__heading"><a class="style-guide__anchor-link" href="#section--listing-masonry">Listing Masonry</a></h2>
+        {% for list in page.content.listMasonry %}
+            {% include 'partials/molecules/list/list.html.twig' with {
+                'title': list.title,
+                'group': list.items,
+                'type': list.type,
+                'className': 'list--' ~ list.type
+                }
+            %}
+        {% endfor %}
+    </div>
+{% endblock %}

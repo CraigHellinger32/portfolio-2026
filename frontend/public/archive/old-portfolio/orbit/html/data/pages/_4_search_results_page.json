@@ -1,0 +1,125 @@
+{
+    "bodyClass": "search-list",
+    "content": {
+        "title": "Search",
+        "lists": [
+            {
+                "type": "article",
+                "items": [
+                    {
+                        "title": "TEST: Event with image and text",
+                        "summary": "In its original run, Hanna and Barbera produced 114 Tom and Jerry shorts for Metro-Goldwyn-Mayer from 1940 to 1957. During this time, they won seven Academy Awards for Animated Short Film, tying for",
+                        "link": {
+                            "url": "document.html?search-result=1"
+                        }
+                    },
+                    {
+                        "title": "TEST: Event with a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long title",
+                        "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dolor mauris, tempus vel dictum vitae, semper in lacus. Integer vitae cursus metus, at consequat neque. Aenean id tincidunt lacus. Fus",
+                        "link": {
+                            "url": "document.html?search-result=2"
+                        }
+                    },
+                    {
+                        "title": "TEST Event with formatting",
+                        "summary": "Event with minimum field",
+                        "link": {
+                            "url": "document.html?search-result=3"
+                        }
+                    },
+                    {
+                        "title": "TEST: Council budget consultation - public event",
+                        "summary": "Dates have been set for a series of 13 budget events being held by the Council to consult with the public over spending priorities between 2015 and 2019.",
+                        "link": {
+                            "url": "document.html?search-result=4"
+                        }
+                    },
+                    {
+                        "title": "TEST News With An Image",
+                        "summary": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut",
+                        "link": {
+                            "url": "document.html?search-result=5"
+                        }
+                    },
+                    {
+                        "title": "TEST News Without An Image",
+                        "summary": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut",
+                        "link": {
+                            "url": "document.html?search-result=6"
+                        }
+                    },
+                    {
+                        "title": "Web accessibility explained",
+                        "summary": "Jack explains how to test your site for accessibility",
+                        "link": {
+                            "url": "document.html?search-result=7"
+                        }
+                    },
+                    {
+                        "title": "TEST WITH ALL CAPITAL LETTERS",
+                        "summary": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+                        "link": {
+                            "url": "document.html?search-result=8"
+                        }
+                    },
+                    {
+                        "title": "Harold to be knighted by Queen",
+                        "summary": "The new honours list is out and Harold is getting a KBE.",
+                        "link": {
+                            "url": "document.html?search-result=9"
+                        }
+                    },
+                    {
+                        "title": "Heather wins lottery rollover!",
+                        "summary": "Retires from writing nonsense news content.",
+                        "link": {
+                            "url": "document.html?search-result=10"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "summary": "You searched for \"test\". Results 1 - 59 of about 59",
+    "synonymSuggestions": [
+        {
+            "url": "search-results.html?q=testing",
+            "word": "testing"
+        },
+        {
+            "url": "search-results.html?q=toast",
+            "word": "toast"
+        },
+        {
+            "url": "search-results.html?q=sets",
+            "word": "sets"
+        }
+    ],
+    "pagination": [
+        {
+            "number": "1",
+            "currentPage": true,
+            "url": "document.html?search-result=1"
+        },
+        {
+            "number": "2",
+            "url": "document.html?search-result=2"
+        },
+        {
+            "number": "3",
+            "url": "document.html?search-result=3"
+        },
+        {
+            "number": "4",
+            "url": "document.html?search-result=4"
+        },
+        {
+            "number": "5",
+            "url": "document.html?search-result=5"
+        },
+        {
+            "number": "6",
+            "url": "document.html?search-result=6"
+        }
+    ]
+}

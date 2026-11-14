@@ -1,0 +1,7 @@
+{% include ['partials/molecules/list/'~ type ~'.html.twig', 'partials/molecules/list/record.html.twig'] with {
+    'title': title,
+    'group': group,
+    'type': type,
+    'className': className
+    } 
+%}

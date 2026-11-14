@@ -1,0 +1,16 @@
+.form__error-indicator {
+    background-color: $color-danger-text;
+    border-radius: 50%;
+    color: $color-white;
+    display: inline-block;
+    height: $space;
+    margin-right: $space-fifth;
+    text-align: center;
+    width: $space;
+
+    .form__error-indicator-text {
+        &[title] {
+            text-decoration: none;
+        }
+    }
+}

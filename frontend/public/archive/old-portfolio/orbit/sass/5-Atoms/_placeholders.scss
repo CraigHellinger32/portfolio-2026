@@ -1,0 +1,11 @@
+// ========================================================
+//  Input Placeholders
+// ========================================================
+//  Styling for placeholder attributes
+//  Ref: /sass/tools/_mixins.scss
+
+@include placeholder() {
+    color: $color-text-muted;
+}
+
+// ========================================================

@@ -1,0 +1,17 @@
+<input class="form__field{% if className is not empty %} {{ className}}{% endif %}{% if disabled %} form__field--disabled{% endif %}"
+    id="{{ name }}"
+    type="{{ type }}"
+    name="{{ name }}"
+    value="{{ value }}"
+{% if maxlength is not empty %}
+    maxlength="{{ maxlength }}"
+{% elseif type in ['email', 'password', 'search', 'tel', 'text', 'url'] and maxlength is empty %}
+    maxlength="255"
+{% endif %}
+{% if help is not empty %}
+    aria-describedby="help_text_{{ id|default(name) }}"
+{% endif %}
+    {% if not autocomplete %}autocomplete="off" {% endif %}
+    {% if required %}aria-required="true" {% endif %}
+    {% if disabled %}disabled {% endif %}
+    {% if placeholder is not empty %}placeholder="{{ placeholder }}" {% endif %}>

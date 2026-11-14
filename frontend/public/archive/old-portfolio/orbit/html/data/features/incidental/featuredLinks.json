@@ -1,0 +1,21 @@
+{
+    "title": "Featured Links",
+    "description": "Featured Links appear in both the main header navigation and the footer.",
+    "fields": {
+        "applyLink": {
+            "type": "link",
+            "title": "How to Apply",
+            "required": false
+        },
+        "visitLink": {
+            "type": "link",
+            "title": "Visit us",
+            "required": false
+        },
+        "donateLink": {
+            "type": "link",
+            "title": "Donate",
+            "required": false
+        }
+    }
+}

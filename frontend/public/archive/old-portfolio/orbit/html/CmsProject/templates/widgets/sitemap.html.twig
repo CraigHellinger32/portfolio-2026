@@ -1,0 +1,67 @@
+{# Values were changed/added to this file to prevent twing errors #}
+{% block widget_wrap %}
+    <div class="widget-sitemap">
+
+        {% block widget_wrap_inner %}
+
+            {% block widget_heading %}
+                {% include 'partials/atoms/text/widget_heading.html.twig' with {
+                    'title': 'Site map',
+                    'paths': paths
+                    }
+                %}
+            {% endblock %}
+
+            {% block widget_content %}
+                <ul class="list list--grouped">
+
+                    {% block widget_content_inner %}
+                        {% if not rootCategories is empty %}
+                            {% for categories in rootCategories %}
+
+                                {% block sitemap_links %}
+                                    <li class="list__item">
+                                        <a class="list__link" href="{{ path('document_category', {'categoryId': attribute(categories,'category').getId(), 'categorySlug' : getSlug(attribute(categories,'category').getId(), 'category') }) }}">
+                                            {{ attribute(categories,'category').getName()|default(categories.title) }}
+                                        </a>
+
+                                        {% block sitemap_sub_list_wrap %}
+                                            {% if not attribute(categories,'sub-category') is empty %}
+
+                                                {% block sitemap_sub_list %}
+                                                    <ul class="list">
+
+                                                        {% block sitemap_sub_list_inner %}
+                                                            {% for subCategory in attribute(categories,'sub-category') %}
+
+                                                                {% block sitemap_sub_item %}
+                                                                    <li class="list__item">
+                                                                        <a class="list__link" href="{{ path('document_category', {'categoryId': subCategory.getId(), 'categorySlug' : getSlug(subCategory.getId(), 'category') }) }}">
+                                                                            {{ subCategory.getName() }}
+                                                                        </a>
+                                                                    </li>
+                                                                {% endblock %}
+
+                                                            {% endfor %}
+                                                        {% endblock sitemap_sub_list_inner %}
+                                                    </ul>
+
+                                                {% endblock sitemap_sub_list %}
+                                            {% endif %}
+
+                                        {% endblock sitemap_sub_list_wrap %}
+
+                                    </li>
+                                {% endblock sitemap_links %}
+
+                            {% endfor %}
+                        {% endif %}
+                    {% endblock widget_content_inner %}
+
+                </ul>
+            {% endblock widget_content %}
+
+        {% endblock widget_wrap_inner %}
+
+    </div>
+{% endblock widget_wrap %}

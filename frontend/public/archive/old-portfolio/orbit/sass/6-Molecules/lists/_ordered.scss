@@ -1,0 +1,104 @@
+$list-inset-margin: $space-and-sixth !default;
+$list-bullet-color: $color-secondary-dark !default;
+$list-bullet-border-color: $list-bullet-color !default;
+$list-bullet-size: $space-quarter !default;
+$list-bullet-offset: $space-third !default;
+
+%list--ordered-and-unordered {
+    list-style: none;
+    margin: $space-three-quarters 0 $space-three-quarters $space;
+
+    @include respond-max($small-width) {
+        margin-left: $space-third;
+    }
+
+    li {
+        margin: $space-third 0;
+        padding-left: $list-inset-margin;
+        padding-right: $space-third;
+
+        > * {
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        &::before {
+            display: inline-block;
+            float: left;
+            margin-left: -$list-inset-margin;
+            text-align: left;
+            transform: translateX(-50%);
+            width: $list-inset-margin;
+        }
+    }
+
+    + .button {
+        margin-top: $space-third;
+    }
+}
+
+%list--ordered,
+.list--ordered {
+    @extend %list--ordered-and-unordered;
+
+    counter-reset: list_item_count;
+
+    li {
+        counter-increment: list_item_count;
+
+        &::before {
+            color: $list-bullet-color;
+            content: counter(list_item_count) '.';
+            text-align: center;
+            transform: translateX(-($list-inset-margin / 3 + $list-bullet-size / 2));
+            transition: background-color $transition-speed;
+        }
+
+        > ul {
+            counter-reset: list_item_count;
+
+            li {
+                &::before {
+                    border-radius: 50%;
+                    content: '';
+                    display: block;
+                    height: $list-bullet-size;
+                    transform: translate(-50%, $list-bullet-offset);
+                    width: $list-bullet-size;
+                }
+            }
+        }
+
+        > ol {
+            li {
+                &::before {
+                    content: counter(list_item_count, lower-latin) '.';
+                }
+
+                > ol > li {
+                    &::before {
+                        content: counter(list_item_count, lower-roman) '.';
+                    }
+                }
+            }
+        }
+    }
+}
+
+%ordered-and-unordered-reset {
+    margin-left: $space-and-two-thirds - $space-twelfth;
+    margin-top: 0;
+
+    > li {
+        padding-left: $space-third + $space-twelfth;
+
+        &::before {
+            content: none;
+        }
+    }
+}

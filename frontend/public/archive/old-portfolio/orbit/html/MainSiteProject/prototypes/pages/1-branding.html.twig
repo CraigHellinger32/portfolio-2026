@@ -1,0 +1,62 @@
+{% set page = data.pages._1_branding %}
+{% set styleGuide = data.styleGuide %}
+{% extends 'layouts/base.html.twig' %}
+
+{% block skip_links %}
+    {% embed 'partials/organisms/skip_links.html.twig' %}
+        {% block skip_to_nav_link %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block site_header %}
+    {% embed paths.templates ~ 'partials/organisms/header.html.twig' %}
+        {% block header_navigation_primary %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block header_menu %}
+{% endblock %}
+
+{% block header_search %}
+{% endblock %}
+
+{% block page_content %}
+    {% include 'partials/molecules/styleguide/colour_swatch.html.twig' with {
+        'styleGuide': styleGuide
+        }
+    %}
+    {% include 'partials/molecules/styleguide/typeface.html.twig' %}
+    <div class="style-guide__section" id="link-style">
+        <h2 class="style-guide__heading"><a class="style-guide__anchor-link" href="link-style">Link styling</a></h2>
+        <div class="editor">
+            <p>{{ data.dummy.text }} Aenean sit amet <a href="/an/internal/link/i’ve/never/been/to/">text link example</a> aliquet enim, sed interdum hover link.
+                Active text link. Curabitur in <a href="#">visited text link example</a> maximus mi. Mauris laoreet diam sit amet accumsan. </p>
+        </div>
+    </div>
+    {% include 'partials/molecules/styleguide/buttons.html.twig' with {
+        'buttonTypes': styleGuide.buttonTypes,
+        'paths': paths
+        }
+    %}
+    {% include 'partials/molecules/styleguide/image-link.html.twig' with {
+        'imgSrc': page.imagelink.imgSrc,
+        'link_url': page.imagelink.link_url,
+        'caption': page.imagelink.caption
+        }
+    %}
+    {% include 'partials/molecules/styleguide/favicons.html.twig' with {
+        'favicons': page.favicons,
+        'path_url': './dist/images/favicons/'
+        }
+    %}
+    <div class="style-guide__section" id="opengraph-style">
+        <h2 class="style-guide__heading"><a class="style-guide__anchor-link" href="#opengraph-style">Opengraph image</a></h2>
+        <div class="editor">
+            <div class="style-guide__opengraph-wrapper">
+                <img src="{{ asset('site/dist/images/opengraph/opengraph.jpg') }}" alt="Opengraph image">
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% if app.getUser().getId() > 0 %}
+    {% set links = [
+        {
+            'title' : getTranslatedString('account-link-label'),
+            'url': path('user_home')
+        },
+        {
+            'title' : getTranslatedString('sign-out-link-label'),
+            'url': path('logout')}
+        ]
+    %}
+{% else %}
+    {% set links = [] %}
+    {% set links = links|merge([
+        {
+            'title' : getTranslatedString('sign-in-link-label'),
+            'url': path('user_account_signin')
+        }
+    ]) %}
+    {% if not path('user_registration') is empty %}
+        {% set links = links|merge([
+            {
+                'title' : getTranslatedString('register-link-label'),
+                'url': path('user_registration')
+            }
+        ]) %}
+    {% endif %}
+{% endif %}
+
+{% block account_links %}
+    <div class="account-navigation">
+
+        {% block account_links_inner %}
+            {% include 'partials/molecules/list/list.html.twig' with {
+                'type': 'record',
+                'group': links,
+                'className': 'list--inline'
+                }
+            %}
+        {% endblock %}
+
+    </div>
+{% endblock account_links %}

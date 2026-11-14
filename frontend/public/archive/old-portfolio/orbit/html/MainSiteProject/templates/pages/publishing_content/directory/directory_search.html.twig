@@ -1,0 +1,23 @@
+{% extends '@theme:base/pages/publishing_content/directory/directory_search.html.twig' %}
+
+{% block map %}
+    <div class="form">
+        <div class="form__component--google_map">
+
+            {% block a11y_skip_map_button_forwards %}
+                <button class="button visually-hidden js-map-skip-forwards">
+                    Skip embedded map
+                </button>
+            {% endblock %}
+
+            {{ parent() }}
+
+            {% block a11y_skip_map_button_backwards %}
+                <button class="button visually-hidden js-map-skip-backwards">
+                    Return above map
+                </button>
+            {% endblock %}
+
+        </div>
+    </div>
+{% endblock %}

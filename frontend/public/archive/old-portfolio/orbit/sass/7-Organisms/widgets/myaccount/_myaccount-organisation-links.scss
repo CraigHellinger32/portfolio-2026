@@ -1,0 +1,13 @@
+.organisation-links-widget,
+.organisation-account-link-widget {
+    .widget__heading {
+        + a {
+            margin-top: $slug-small;
+        }
+    }
+
+    > a {
+        @extend %button;
+        @extend %button--primary;
+    }
+}

@@ -1,0 +1,282 @@
+$editor-list-start-limit: 50 !default; // <ol start="x"> for custom ordered list styling
+
+// Output of the Xinha document editor
+.editor {
+    max-width: $content-max-width;
+
+    // scss-lint:disable IdSelector,SelectorFormat
+    a:not(.button):not(.link-external) {
+        &,
+        &:visited {
+            text-decoration: underline;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: none;
+        }
+    }
+
+    .button {
+        margin-bottom: $slug;
+        width: 100%;
+
+        @include respond-min($x-small-width) {
+            width: auto;
+        }
+    }
+
+    .text_align_left {
+        text-align: left;
+    }
+
+    .text_align_right {
+        text-align: right;
+    }
+
+    .text_align_center {
+        text-align: center;
+    }
+
+    .indent {
+        margin-left: 20px;
+    }
+
+    .indent2 {
+        margin-left: 40px;
+    }
+
+    strong {
+        font-weight: 700;
+    }
+
+    em {
+        font-style: italic;
+    }
+
+    ul:not([class]):not([type]) {
+        @extend %list--unordered;
+
+        > li {
+            ul[type],
+            ol[type] {
+                @extend %ordered-and-unordered-reset;
+            }
+        }
+    }
+
+    ol:not([class]):not([type]) {
+        @extend %list--ordered;
+
+        > li {
+            ul[type],
+            ol[type] {
+                @extend %ordered-and-unordered-reset;
+            }
+        }
+    }
+
+    @for $i from 2 through $editor-list-start-limit {
+        ol:not([class]):not([type])[start="#{$i}"] {
+            counter-reset: list_item_count #{$i - 1};
+            margin-top: 0;
+        }
+    }
+
+    .snippet,
+    iframe {
+        max-width: 100%;
+    }
+
+    .underline_text {
+        text-decoration: underline;
+    }
+
+    .strikethrough_text {
+        text-decoration: line-through;
+    }
+
+    .underline_and_strikethrough_text,
+    .underline_text.strikethrough_text {
+        text-decoration: line-through underline;
+    }
+
+    sup,
+    .superscript_text {
+        vertical-align: super;
+    }
+
+    sub,
+    .subscript_text {
+        vertical-align: sub;
+    }
+
+    .float_left {
+        @include respond-min($small-width) {
+            float: left;
+            margin-bottom: $space-half;
+            margin-right: $space;
+            max-width: 50%;
+        }
+
+        .float_left {
+            @include respond-min($small-width) {
+                margin-bottom: 0;
+                margin-right: 0;
+                max-width: 100%;
+            }
+        }
+    }
+
+    .float_right {
+        @include respond-min($small-width) {
+            float: right;
+            margin-left: $space;
+            margin-top: $space-half;
+            max-width: 50%;
+        }
+    }
+
+    img:not([class]) {
+        display: inline;
+        margin: $space-half 0 0;
+        vertical-align: baseline;
+    }
+
+    p {
+        img:not([class]) {
+            &:first-child {
+                margin-top: $space-third;
+            }
+        }
+
+        > .button {
+            &:first-child {
+                margin-top: $space-twelfth;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        &:last-child {
+            @extend %cf;
+        }
+    }
+
+    .image_centre {
+        display: block;
+        margin: $space auto;
+
+        img:not([class]) {
+            margin: 0 auto;
+        }
+    }
+
+    td.highlightCell,
+    tr.highlightRow td {
+        background: #cfc;
+    }
+
+    tr.zebra td {
+        background: #ffc;
+    }
+
+    abbr {
+        border-bottom: 1px dotted #ccc;
+        cursor: help;
+    }
+
+    .placeholder {
+        background: #eee;
+        border: 1px solid #ccc;
+        color: #333;
+        padding: 2em;
+    }
+
+    #editable {
+        border: 2px dashed #999;
+        padding: 10px;
+    }
+
+    #editable::after {
+        clear: both;
+        content: '.';
+        display: block;
+        height: 0;
+        visibility: hidden;
+    }
+
+    #toolbar {
+        background-color: #eee;
+        border: 1px solid #ddd;
+        padding: .5em;
+    }
+
+    .imageCaption {
+        @extend .image--caption;
+
+        &.float_left {
+            float: left;
+
+            @include respond-max($x-small-width) {
+                margin: $space auto;
+            }
+
+            @include respond-min($x-small-width) {
+                margin: $space-half $space-and-half $space 0;
+            }
+        }
+
+        &.float_right {
+            @include respond-max($x-small-width) {
+                margin: $space auto;
+            }
+
+            @include respond-min($x-small-width) {
+                margin: $space-half 0 $space $space-and-half;
+            }
+        }
+
+        &.image_centre {
+            border-collapse: collapse;
+            clear: both;
+            display: table;
+            float: none;
+            margin: $space auto;
+
+            p {
+                caption-side: bottom;
+                display: table-caption;
+            }
+        }
+
+        p {
+            @extend %image__caption;
+        }
+
+        &:first-child,
+        &.float_left:first-child,
+        &.float_right:first-child {
+            margin-top: 0;
+        }
+
+        > *:last-child {
+            margin-bottom: 0;
+        }
+
+        img {
+            display: block;
+            width: auto;
+        }
+    }
+    // scss-lint:enable IdSelector,SelectorFormat
+
+    .link-external__orphan {
+        @include textWordbreak();
+
+        display: inline-block;
+    }
+}

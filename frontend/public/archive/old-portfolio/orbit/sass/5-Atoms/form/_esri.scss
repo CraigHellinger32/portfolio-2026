@@ -1,0 +1,48 @@
+$esri-long-lat-breakpoint: $mid-width !default;
+
+.form__component--esri {
+    @include respond-min($esri-long-lat-breakpoint) {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+
+        .map,
+        .form__help {
+            flex: 1 1 100%;
+        }
+    }
+
+    .form__label {
+        @include respond-min($esri-long-lat-breakpoint) {
+            display: inline-block;
+            flex: 0 1 auto;
+            margin: 0 $gutter-small 0 0;
+            width: auto;
+        }
+    }
+
+    input[type="text"] {
+        @extend %form__field;
+        @extend %form__field--bordered;
+
+        @include respond-min($esri-long-lat-breakpoint) {
+            display: inline-block;
+            flex: 1 1 percentage(1 / 3);
+        }
+
+        + label {
+            @include respond-max($esri-long-lat-breakpoint) {
+                margin-top: $slug-small;
+            }
+
+            @include respond-min($esri-long-lat-breakpoint) {
+                margin-left: $gutter;
+            }
+        }
+    }
+
+    .form__help {
+        display: inline-block;
+        margin-top: $slug;
+    }
+}

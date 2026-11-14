@@ -1,0 +1,27 @@
+{% extends '@theme:base/partials/molecules/text/alert.html.twig' %}
+
+{% block alert_link %}
+    {% if url is not empty %}
+        {% if url is iterable %}
+            {% for singleURL in url %}
+                {% block alert_link_iterable %}
+                    {% include 'partials/atoms/button/call_to_action.html.twig' with {
+                        'link': singleURL.url,
+                        'title': singleURL.label,
+                        'className': 'alert__link'
+                        }
+                    %}
+                {% endblock %}
+            {% endfor %}
+        {% else %}
+            {% block alert_link_singular %}
+                {% include 'partials/atoms/button/call_to_action.html.twig' with {
+                    'link': url,
+                    'title': label,
+                    'className': 'alert__link'
+                    }
+                %}
+            {% endblock %}
+        {% endif %}
+    {% endif %}
+{% endblock %}

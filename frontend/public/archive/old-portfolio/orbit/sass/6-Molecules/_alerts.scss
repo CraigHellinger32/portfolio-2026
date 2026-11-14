@@ -1,0 +1,154 @@
+// ========================================================
+//  Alerts
+// ========================================================
+// Alerts should be used to provide the user with action
+// specific feedback, for example form submission errors.
+// The alert block should always contain an alert__heading
+
+// Alert
+//
+// Base alert class with modifiers
+//
+// Markup:
+// <div class="alert {$modifiers}">
+//     <h2 class="alert__heading">Alert Heading</h2>
+//     <p class="alert__text">Some alert information</p>
+// </div>
+//
+// .alert--success     - A success alert, useful for positive feedback such as a form submission
+// .alert--warning     - A warning alert, useful for warning the user but not necessarily a error
+// .alert--danger      - A danger alert, could be used, for example, to list form validation errors
+
+
+// Local variables
+$alertIconSize: $space-double + $space-quarter !default;
+$alertIconSpacing: $space-two-thirds !default;
+
+// 5.375rem
+
+.alert {
+    align-items: flex-start;
+    color: $color-text-default;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 0 $space-double;
+    min-height: $alertIconSize + ($alertIconSpacing * 2);
+    padding: $space $space ($space + $space-twelfth) ($alertIconSize * 1.2);
+    position: relative;
+
+    @include respond-min($small-width) {
+        padding-left: ($alertIconSize * 1.6);
+    }
+
+    //  Icons
+    // ======================
+    &::before {
+        background-size: contain;
+        content: '';
+        display: block;
+        float: none;
+        height: $alertIconSize;
+        left: $space-quarter;
+        margin: ($alertIconSpacing / 1.5) 0;
+        position: absolute;
+        top: 0;
+        width: $alertIconSize;
+
+        @include respond-min($small-width) {
+            left: $space-half;
+            margin: $alertIconSpacing 0;
+        }
+    }
+
+    > *:first-child {
+        margin-top: 0;
+    }
+}
+
+.alert__heading {
+    @extend %epsilon;
+
+    font-weight: $font-weight-heading;
+    margin-bottom: 0;
+    max-width: 100%;
+
+    @include respond-max($small-width) {
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+
+.alert__list {
+    clear: both;
+    margin-bottom: 0;
+    margin-top: $space-half;
+}
+
+.alert__text {
+    display: inline-block;
+    margin-bottom: 0;
+    margin-top: $space-third;
+}
+
+.alert__list,
+.alert__text {
+    max-width: 100%;
+}
+
+.alert__form {
+    clear: both;
+
+    @include respond-max($small-width) {
+        background: $color-white;
+        margin: $space-half ($space-half * -1) 0;
+        padding: $space-half;
+    }
+}
+
+%alert__link,
+.alert__link {
+    color: $color-text-default;
+    display: inline-block;
+    margin-right: $space;
+    position: relative;
+    text-decoration: none;
+
+    .alert__link-text {
+        text-decoration: underline;
+    }
+
+    &::after {
+        content: '>';
+        left: 100%;
+        line-height: 1.6;
+        padding-left: $space-sixth;
+        position: absolute;
+        text-decoration: none;
+        top: 0;
+    }
+
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: inherit;
+        text-decoration: none;
+
+        .alert__link-text {
+            text-decoration: none;
+        }
+    }
+
+    &:visited {
+        color: $color-link-visited;
+
+        &::after {
+            color: $color-link-visited;
+        }
+    }
+}
+
+.alert--site-announcement {
+    @extend %alert--warning;
+}

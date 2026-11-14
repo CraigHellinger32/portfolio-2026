@@ -1,0 +1,70 @@
+$list-indent: remToEm($space-and-half) !default;
+$before-spacing: remToEm($space-third) !default;
+
+/* There are 3 options here for list layout (used for "Pages in" navigation on the document page):
+    1. Default single column layout
+    2. Desktop: List items display in 2 columns alternating left to right using display: inline-block;
+    3. Desktop: List items display in 2 evenly split CSS columns display vertically 1,2,3 etc. in column one and 6,7,8 etc. in column 2.
+*/
+$two-columns-left-to-right: false !default; // Set to true for option 2
+$two-columns-top-to-bottom: false !default; // Set to true for option 3 (ensuring $two-columns-left-to-right is still set to false)
+$two-columns-breakpoint: $small-width !default; // Alter where the list splits to two columns
+
+%list--numbered__item {
+    counter-increment: list_item_count;
+    margin-top: $space-quarter;
+    padding-left: $list-indent;
+    position: relative;
+
+    &::before {
+        content: counter(list_item_count) '.';
+        left: 0;
+        margin-left: 0;
+        margin-right: $before-spacing;
+        min-width: $list-indent;
+        position: absolute;
+        text-align: left;
+        transform: none;
+    }
+
+    @if $two-columns-left-to-right == true {
+        @if $two-columns-top-to-bottom == false {
+            @include respond-min($two-columns-breakpoint) {
+                display: inline-block;
+                vertical-align: top;
+                width: 50%;
+            }
+        }
+    }
+    @else if $two-columns-top-to-bottom == true {
+        @include respond-min($two-columns-breakpoint) {
+            break-inside: avoid;
+            display: block;
+            margin: 0;
+            padding-bottom: $space-third;
+            padding-top: $space-third;
+            page-break-inside: avoid;
+        }
+    }
+}
+
+.list--numbered {
+    @extend %list--ordered;
+
+    > .list__item {
+        @extend %list--numbered__item;
+    }
+
+    &.list {
+        margin-left: 0;
+        margin-top: $space-third;
+    }
+
+    @if $two-columns-top-to-bottom == true {
+        @if $two-columns-left-to-right == false {
+            @include respond-min($two-columns-breakpoint) {
+                columns: 2;
+            }
+        }
+    }
+}

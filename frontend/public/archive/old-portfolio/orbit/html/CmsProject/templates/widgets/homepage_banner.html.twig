@@ -1,0 +1,16 @@
+{% block widget_wrap %}
+    <div class="widget-homepage-banner">
+
+        {% block widget_content %}
+            {% include 'partials/molecules/image/image_link.html.twig' with {
+                'url': imgSrc,
+                'alt': imgSrc|image_property('altText'),
+                'link_url': linkHref,
+                'caption': caption, 
+                'link_target': target
+                }
+            %}
+        {% endblock widget_content %}
+
+    </div>
+{% endblock widget_wrap %}

@@ -1,0 +1,87 @@
+{
+    "bodyClass": "homepage-modular",
+    "content": {
+        "title": "Prototypes",
+        "homepage": {
+            "orderedWidgets": [
+                [
+
+                    {
+                        "widget": {
+                            "title": "navigation"
+                        },
+                        "widgetID": 502,
+                        "title": "Style Guide",
+                        "widthPercentage": 33,
+                        "links": [
+                            {
+                                "title": "Branding",
+                                "link": "./1-branding.html"
+                            },
+                            {
+                                "title": "Typography",
+                                "link": "./1-typography.html"
+                            },
+                            {
+                                "title": "Standard Form Components",
+                                "link": "./1-form-components.html"
+                            },
+                            {
+                                "title": "Standard Components",
+                                "link": "./1-standard-components.html"
+                            },
+                            {
+                                "title": "Supplements",
+                                "link": "./1-supplements.html"
+                            },
+                            {
+                                "title": "Tables",
+                                "link": "./1-tables.html"
+                            }
+                        ]
+                    },
+                    {
+                        "widget": {
+                            "title": "navigation"
+                        },
+                        "widgetID": 502,
+                        "title": "Page Types",
+                        "widthPercentage": 33,
+                        "links": [
+                            {
+                                "title": "Home Page",
+                                "link": "./2-home-page.html"
+                            },
+                            {
+                                "title": "Landing Page",
+                                "link": "./2-landing-page.html"
+                            },
+                            {
+                                "title": "Document Page (1 column)",
+                                "link": "./2-document-one-column.html"
+                            },
+                            {
+                                "title": "Document Page (2 columns)",
+                                "link": "./2-document-two-column.html"
+                            }
+                        ]
+                    },
+                    {
+                        "widget": {
+                            "title": "navigation"
+                        },
+                        "widgetID": 502,
+                        "title": "Development",
+                        "widthPercentage": 33,
+                        "links": [
+                            {
+                                "title": "Full prototype",
+                                "link": "./full-prototype.html"
+                            }
+                        ]
+                    }
+                ]
+            ]
+        }
+    }
+}

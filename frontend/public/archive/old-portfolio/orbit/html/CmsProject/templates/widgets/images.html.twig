@@ -1,0 +1,17 @@
+{% block widget_wrap %}
+    <div class="widget-image">
+
+        {% block widget_content %}
+            {% if imgSrc is not empty %}
+                {% include 'partials/molecules/image/image_link.html.twig' with {
+                    'url': imgSrc,
+                    'alt': imgSrc|image_property('altText')|default(''),
+                    'link_url': linkHref,
+                    'caption': linkText
+                    }
+                %}
+            {% endif %}
+        {% endblock widget_content %}
+
+    </div>
+{% endblock widget_wrap %}

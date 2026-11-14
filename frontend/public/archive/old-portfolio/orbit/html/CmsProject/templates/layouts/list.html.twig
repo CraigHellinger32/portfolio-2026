@@ -1,0 +1,80 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block primary_supplements %}
+    {{ parent() }}
+
+    {% block filter_bar %}
+        {% if page.content.filterBar and page.content.filterBar.controls|length > 0 %}
+            {% set columns = 'two-columns' %}
+            <div class="aside__section">
+                {% include 'partials/organisms/form/filter_bar.html.twig' with {'filterbar': page.content.filterBar} %}
+            </div>
+        {% endif %}
+    {% endblock %}
+{% endblock primary_supplements %}
+
+{% block page_content %}
+    {% block main %}
+
+        {% block page_alert %}
+            {% block alert_base %}
+                {% include 'partials/organisms/alert.html.twig' %}
+            {% endblock %}
+
+            {% block alert_no_entries %}
+                {% if page.content.lists|length == 0 and page.content.feature is empty %}
+                    {% include 'partials/molecules/text/alert.html.twig' with {
+                        'type': 'warning',
+                        'title': getTranslatedString('no-entries')
+                        }
+                    %}
+                {% endif %}
+            {% endblock %}
+        {% endblock page_alert %}
+
+        {% block list_az %}
+            {% include 'partials/molecules/list/list.html.twig' with {
+                'group': page.content.AZLinkList,
+                'type': 'az',
+                'className': 'list--az'
+                }
+            %}
+        {% endblock %}
+
+        {% block listing_featured %}
+            {% include 'partials/molecules/article/featured.html.twig' with {
+                'feature': page.content.feature,
+                'image': page.content.feature.image,
+                'title': page.content.feature.title,
+                'summary': page.content.feature.summary,
+                'group': page.content.feature.meta,
+                'content': page.content.feature.body,
+                'link': page.content.feature.link
+                }
+            %}
+        {% endblock %}
+
+        {% block list %}
+            {% for list in page.content.lists %}
+                {% include 'partials/molecules/list/list.html.twig' with {
+                    'title': list.title,
+                    'group': list.items,
+                    'type': list.type,
+                    'className': 'list--' ~ list.type
+                    }
+                %}
+            {% endfor %}
+        {% endblock %}
+
+    {% endblock main %}
+{% endblock page_content %}
+
+{% block after_page_content %}
+    {% block pagination %}
+        {% include 'partials/molecules/navigation/pagination.html.twig' with {
+            'previous_link': page.content.pagination.previous,
+            'next_link': page.content.pagination.next
+            }
+        %}
+    {% endblock %}
+{% endblock %}

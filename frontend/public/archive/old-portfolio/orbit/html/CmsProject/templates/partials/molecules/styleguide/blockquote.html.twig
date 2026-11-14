@@ -1,0 +1,16 @@
+{% set section = 'Blockquote' %}
+{% set content = "<blockquote class=\"blockquote\">
+    <p class=\"blockquote__text\">Conservation endures as a living discipline because it is inhabited by a magnificent collection of people. Only by working together can we create solutions to the most vexing problems we face.</p>
+    <cite class=\"blockquote__cite\">John Newton</cite>
+</blockquote>" %}
+
+<div class="style-guide__section" id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}">
+    {% include 'partials/atoms/styleguide/text/heading.html.twig' with {
+        'section': section
+        }
+    %}
+    {% include 'partials/atoms/text/editor.html.twig' with {
+        "content": content
+        }
+    %}
+</div>

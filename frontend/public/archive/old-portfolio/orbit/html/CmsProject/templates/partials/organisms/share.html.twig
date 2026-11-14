@@ -1,0 +1,50 @@
+{% block social_share %}
+    <nav class="nav nav--social-links" aria-labelledby="social-links-heading">
+
+        {% block social_share_inner %}
+
+            {% block social_share_heading %}
+                <h2 class="nav__heading" id="social-links-heading">Share on</h2>
+            {% endblock %}
+
+            {% block social_share_list -%}
+                <ul class="nav__list list list--inline">
+
+                    {% block social_share_list_inner %}
+
+                        {% block social_share_facebook %}
+                            <li class="list__item">
+                                <a class="list__link" href="http://www.facebook.com/share.php?u={{ app.request.uri|url_encode }}">
+                                    <span class="icon icon-social-facebook"></span>
+                                    <span class="visually-hidden">Facebook</span>
+                                </a>
+                            </li>
+                        {% endblock %}
+
+                        {% block social_share_linkedin %}
+                            <li class="list__item">
+                                <a class="list__link" href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ app.request.uri|url_encode }}&amp;title={{ page.content.title|url_encode }}">
+                                    <span class="icon icon-social-linkedin"></span>
+                                    <span class="visually-hidden">LinkedIn</span>
+                                </a>
+                            </li>
+                        {% endblock %}
+
+                        {% block social_share_twitter %}
+                            <li class="list__item">
+                                <a class="list__link" href="https://twitter.com/share?text={{ page.content.title|url_encode }}&amp;url={{ app.request.uri|url_encode }}">
+                                    <span class="icon icon-social-twitter"></span>
+                                    <span class="visually-hidden">Twitter</span>
+                                </a>
+                            </li>
+                        {% endblock %}
+
+                    {% endblock social_share_list_inner %}
+
+                </ul>
+            {% endblock social_share_list %}
+
+        {% endblock social_share_inner %}
+
+    </nav>
+{% endblock social_share %}

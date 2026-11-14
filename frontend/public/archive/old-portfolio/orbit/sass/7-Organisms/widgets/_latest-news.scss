@@ -1,0 +1,11 @@
+// Latest news widget
+.widget-latest-news {
+    .listing {
+        @extend %listing--compact;
+    }
+
+    .list__item:first-child {
+        border-top: 0;
+        padding-top: 0;
+    }
+}

@@ -1,0 +1,686 @@
+// ========================================================
+//  CMS accessibility settings
+// ========================================================
+@if ($includeAccessibilitySettings) {
+
+// ========================================================
+//  Accessibility palettes
+// ========================
+
+//  High contrast palette
+// =======================
+    $highcontrast-bg:          $color-black;
+    $highcontrast-text:        #ff0;
+    $highcontrast-link:        #0f0;
+    $highcontrast-border:      $highcontrast-text;
+    $highcontrast-button-bg:   $highcontrast-link;
+    $highcontrast-button-text: $highcontrast-bg;
+
+//  Cream palette
+// ===============
+    $cream-bg:             #fff9d2;
+    $cream-text:           #010066;
+    $cream-link:           #6f6200;
+    $cream-border:         $cream-text;
+    $cream-button-bg:      $cream-link;
+    $cream-button-text:    $cream-bg;
+
+//  Blue palette
+// ==============
+    $blue-bg:              #9fcfff;
+    $blue-text:            #010066;
+    $blue-link:            #f00;
+    $blue-border:          $blue-text;
+    $blue-button-bg:       $blue-link;
+    $blue-button-text:     $blue-text;
+
+// ========================================================
+
+
+// ========================================================
+//  Schemes maps
+// ==============
+//  $schemes: (
+//      $key : (background-color,
+//              text-color,
+//              link-color,
+//              border-color,
+//              button-bg,
+//              button-text)
+//  );
+
+    // scss-lint:disable ColorKeyword
+    $schemes: (
+        high-contrast: ($highcontrast-bg,
+                        $highcontrast-text,
+                        $highcontrast-link,
+                        $highcontrast-border,
+                        $highcontrast-button-bg,
+                        $highcontrast-button-text),
+
+        cream:         ($cream-bg,
+                        $cream-text,
+                        $cream-link,
+                        $cream-border,
+                        $cream-button-bg,
+                        $cream-button-text),
+
+        blue:          ($blue-bg,
+                        $blue-text,
+                        $blue-link,
+                        $blue-border,
+                        $blue-button-bg,
+                        $blue-button-text)
+    );
+    // scss-lint:enable ColorKeyword
+
+// ========================================================
+
+
+
+// ========================================================
+//  Accessibility styles
+// ======================
+//  Loop through the schemes to apply the styles using each
+//  of the accessibility pallets
+
+    @each $key, $colours in $schemes {
+        //  map colours to local variables
+        // ================================
+        $access-bg-color:           #{nth($colours, 1)};
+        $access-text-color:         #{nth($colours, 2)};
+        $access-link-color:         #{nth($colours, 3)};
+        $access-border-color:       #{nth($colours, 4)};
+        $access-button-bg-color:    #{nth($colours, 5)};
+        $access-button-text-color:  #{nth($colours, 6)};
+
+        // scss-lint:disable ImportantRule
+
+        .user-style--scheme-#{$key} {
+            //  Base styles & resets
+            // ======================
+            background-color: $access-bg-color !important;
+            border-color: $access-border-color !important;
+            color: $access-text-color !important;
+
+            * {
+                background-color: $access-bg-color !important;
+                border-color: $access-text-color !important;
+                border-radius: initial !important;
+                box-shadow: none !important;
+                color: $access-text-color !important;
+                text-shadow: none !important;
+                transition: none !important;
+            }
+
+            //  Pseudo elements
+            // =================
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            p,
+            li:not([class]),
+            label,
+            dl,
+            dd,
+            .date {
+                &,
+                &::before,
+                &::after {
+                    background: none !important;
+                    border-color: $access-border-color !important;
+                    color: $access-text-color !important;
+                }
+            }
+
+            //  Links
+            // =======
+            a {
+                &:not(.icon) {
+                    @include linkUnderlineReset();
+                }
+
+                &,
+                * {
+                    color: $access-link-color !important;
+                    text-decoration: underline !important;
+                }
+
+                &[aria-expanded="true"],
+                &:hover,
+                &:focus,
+                &:active {
+                    &,
+                    * {
+                        background-color: transparent !important;
+                        color: $access-border-color !important;
+                    }
+                }
+
+                &:focus,
+                &:active {
+                    outline-color: $access-link-color !important;
+                }
+            }
+
+            // Toggle Buttons
+            // ==============
+            .button--icon {
+                .toggle-icon {
+                    &::before,
+                    &::after {
+                        background-color: $access-button-text-color !important;
+                    }
+                }
+
+                .toggle-icon__line {
+                    background-color: $access-button-text-color !important;
+                }
+
+                &:hover,
+                &:focus,
+                &:active {
+                    .toggle-icon {
+                        &::before,
+                        &::after {
+                            background-color: $access-button-bg-color !important;
+                        }
+                    }
+
+                    .toggle-icon__line {
+                        background-color: $access-button-bg-color !important;
+                    }
+                }
+            }
+
+            //  Buttons
+            // =========
+            .button,
+            a.button,
+            a.calendar__date--link,
+            .list--az a.list__link,
+            .flickity-prev-next-button {
+                background-color: $access-button-bg-color !important;
+                border-color: $access-button-bg-color !important;
+                color: $access-button-text-color !important;
+
+                * {
+                    background-color: transparent !important;
+                    color: $access-button-text-color !important;
+                }
+
+                &.is-active,
+                &.button--disabled,
+                &:hover,
+                &:focus,
+                &:active {
+                    &,
+                    * {
+                        background-color: $access-button-text-color !important;
+                        color: $access-button-bg-color !important;
+                    }
+                }
+
+                &:focus,
+                &:active {
+                    outline-color: $access-text-color !important;
+                }
+            }
+
+            //  Boxed & well styling
+            // ======================
+            .boxed,
+            .callout,
+            .image__caption,
+            .user-services,
+            .listing,
+            .latest-news,
+            .supplement,
+            .sidebar__section,
+            .progress-bar,
+            .supplement,
+            .nav--az,
+            .nav--pages-in,
+            input,
+            textarea,
+            select,
+            th,
+            td,
+            .supplement--contact,
+            .card,
+            .widget-navigation .list__link {
+                background-color: $access-bg-color !important;
+                border: $border-width-mid solid !important;
+                color: $access-text-color !important;
+            }
+
+            //  Global Elements -- header, footer, search, etc
+            // ================================================
+            .site-header,
+            .site-search,
+            .site-announcement,
+            .page-header {
+                background-color: $access-bg-color !important;
+                border-bottom: 2px solid $access-border-color !important;
+            }
+
+            .site-footer {
+                background-color: $access-bg-color !important;
+                border-top: 2px solid $access-text-color !important;
+            }
+
+            .container {
+                background: transparent !important;
+            }
+
+            .site-search {
+                .form__control::after {
+                    content: none !important;
+                }
+
+                .form__field {
+                    border-right: 0 !important;
+                    margin-right: 0 !important;
+                    padding: $space-half !important;
+                }
+
+                .button {
+                    border: $border-width-mid solid;
+                    padding: 0 $space-half;
+                }
+            }
+
+            .site-footer__group {
+                .icon {
+                    display: none !important;
+                }
+            }
+
+            //  Identity
+            // ==========================
+            .identity {
+                margin-right: $space-eighth !important;
+            }
+
+            //  Skip links
+            // ==========================
+            .skip-links {
+                .list__item {
+                    background-color: transparent !important;
+                }
+            }
+
+            //  Turn off visually hidden
+            //  for icon fallback text
+            // ==========================
+            @if ($accessibilityIconFallback) {
+                .icon-fallback {
+                    border: 0 !important;
+                    clip: none !important;
+                    height: auto !important;
+                    margin: 0 !important;
+                    overflow: visible !important;
+                    padding: 0;
+                    position: static !important;
+                    width: auto !important;
+                }
+            }
+
+            .icon-ui-download {
+                display: none !important;
+            }
+
+            //  Pages In
+            // ==========
+            .nav--pages-in {
+                border-left: 0 !important;
+                border-right: 0 !important;
+
+                @include respond-max($mid-width) {
+                    border: 0 !important;
+                }
+
+                .nav__toggle {
+                    margin: 0;
+                }
+
+                .nav__list {
+                    border-left: $border-width-mid solid $access-text-color !important;
+                    border-right: $border-width-mid solid $access-text-color !important;
+
+                    @include respond-min($mid-width) {
+                        border: 0 !important;
+                    }
+                }
+
+                .nav__toggle-icon {
+                    display: none !important;
+                }
+            }
+
+            //  Blockquotes
+            // =============
+            blockquote {
+                &::before {
+                    color: $access-text-color !important;
+                }
+            }
+
+            //  Pagination
+            // ============
+            .pagination__icon {
+                display: none;
+            }
+
+            .pagination__content {
+                margin: 0;
+            }
+
+
+            //  Listings
+            // ==========
+            .listing {
+                border: 0 !important;
+            }
+
+            .listing--featured {
+                border: $border-width-mid solid !important;
+            }
+
+            //  Supplements
+            // =============
+            .supplement {
+                .list__item {
+                    background: none !important;
+                }
+            }
+
+            //  Menu
+            // ======
+            .nav--secondary-navigation {
+                border-bottom: $border-width-small solid;
+            }
+
+            //  Forms
+            // =======
+            .form__field,
+            .form__select,
+            .form__radio,
+            .form__checkbox,
+            .form__textarea {
+                &:focus,
+                &:active {
+                    outline-color: $access-link-color !important;
+                }
+            }
+
+            .form__radio {
+                border-radius: 50% !important;
+
+                &:checked {
+                    background-color: $access-link-color !important;
+                }
+            }
+
+            //  Social Links
+            // ==============
+            .nav--social-links {
+                .list__link {
+                    border: $border-width-mid solid $access-link-color !important;
+
+                    &:hover,
+                    &:focus,
+                    &:active {
+                        border-color: $access-text-color !important;
+                    }
+
+                    &::before {
+                        content: none !important;
+                    }
+                }
+            }
+
+            //  Events calendar
+            // =================
+            span.calendar__date {
+                background: $access-bg-color !important;
+                color: $access-text-color !important;
+            }
+
+            .calendar__date--link span {
+                &,
+                &:hover,
+                &:focus,
+                &:active {
+                    background-color: transparent !important;
+                }
+            }
+
+            .calendar__date {
+                a {
+                    &:hover,
+                    &:focus,
+                    &:active {
+                        background-color: $access-link-color !important;
+                        color: $access-bg-color !important;
+                    }
+                }
+            }
+
+            span.calendar__date--today,
+            a.calendar__date--today {
+                background-color: $access-text-color !important;
+                color: $access-bg-color !important;
+            }
+
+            a.calendar__date--today {
+                &:hover,
+                &:focus,
+                &:active {
+                    background-color: $access-link-color !important;
+                    color: $access-bg-color !important;
+                }
+            }
+
+            //  Carousels
+            // ===========
+            .flickity-prev-next-button {
+                background: $access-bg-color !important;
+                border: 2px solid $access-text-color !important;
+
+                .arrow {
+                    fill: $access-text-color !important;
+                }
+            }
+
+            .flickity-page-dots {
+                .dot.is-selected {
+                    background-color: $access-text-color !important;
+                }
+            }
+
+
+            //  Maps
+            // ======
+            .map {
+                *,
+                a {
+                    background-color: transparent !important;
+                    color: $access-button-text-color !important;
+                }
+
+                a {
+                    background-color: $access-button-bg-color !important;
+                }
+            }
+
+
+            //  Progress bars
+            // ===============
+            .progress-bar {
+                border: 0 !important;
+                box-shadow: inset 0 0 0 2px $access-text-color !important;
+            }
+
+            .progress-bar__indicator {
+                background-color: $access-link-color !important;
+
+                &::before {
+                    border-left-color: $access-link-color !important;
+                }
+            }
+
+
+            //  Alerts
+            // ========
+            .alert {
+                background-color: $access-bg-color !important;
+                border: $border-width-mid solid $access-text-color !important;
+                color: $access-text-color !important;
+            }
+
+            .alert__link {
+                &,
+                &:visited {
+                    &::after {
+                        color: $access-link-color !important;
+                    }
+                }
+            }
+
+            .site-announcement .alert {
+                border: 0 !important;
+            }
+
+            //scss-lint:disable VendorPrefix, PseudoElement
+
+            //  Selected text
+            // ===============
+            ::-moz-selection {
+                background-color: $access-text-color !important;
+                color: $access-bg-color !important;
+            }
+
+            ::selection {
+                background-color: $access-text-color !important;
+                color: $access-bg-color !important;
+            }
+
+
+            //  Placeholders
+            // ==============
+            input::-webkit-input-placeholder {
+                color: $access-text-color;
+            }
+
+            input:-moz-placeholder {
+                color: $access-text-color;
+            }
+
+            input::-moz-placeholder {
+                color: $access-text-color;
+            }
+
+            input:-ms-input-placeholder {
+                color: $access-text-color;
+            }
+
+            input::placeholder {
+                color: $access-text-color;
+            }
+
+            input:placeholder-shown {
+                color: $access-text-color;
+            }
+
+            //scss-lint:enable VendorPrefix, PseudoElement
+
+        }   // CLOSE of `.user-style--scheme-#{$key} {`
+
+        // scss-lint:enable ImportantRule
+
+    }   // CLOSE of `@each $key, $colours in $schemes {`
+
+// ========================================================
+
+
+// ========================================================
+//  Accessibility -- Font sizes
+// =============================
+
+    // scss-lint:disable ImportantRule
+    .user-style--size-small {
+        font-size: 110% !important;
+    }
+
+    .user-style--size-medium {
+        font-size: 120% !important;
+    }
+
+    .user-style--size-large {
+        font-size: 130% !important;
+    }
+
+    .user-style--font-comic-sans * {
+        &,
+        * {
+            font-family: "Comic Sans", "Comic Sans MS", cursive;
+        }
+    }
+
+    .user-style--font-courier * {
+        &,
+        * {
+            font-family: Courier, "Courier New", monospace;
+        }
+    }
+
+    .user-style--font-arial * {
+        &,
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    }
+
+    .user-style--font-times * {
+        &,
+        * {
+            font-family: Times, "Times New Roman", serif;
+        }
+    }
+
+// ========================================================
+
+
+// ========================================================
+//  Accessibility -- Letter Spacing
+// =================================
+    .user-style--spacing-wide,
+    .user-style--spacing-wide input,
+    .user-style--spacing-wide textarea,
+    .user-style--spacing-wide button,
+    .user-style--spacing-wide select {
+        letter-spacing: .15em !important;
+    }
+
+    .user-style--spacing-wider,
+    .user-style--spacing-wider input,
+    .user-style--spacing-wider textarea,
+    .user-style--spacing-wider button,
+    .user-style--spacing-wider select {
+        letter-spacing: .3em !important;
+    }
+
+    .user-style--spacing-widest,
+    .user-style--spacing-widest input,
+    .user-style--spacing-widest textarea,
+    .user-style--spacing-widest button,
+    .user-style--spacing-widest select {
+        letter-spacing: .45em !important;
+    }
+
+// ========================================================
+
+}

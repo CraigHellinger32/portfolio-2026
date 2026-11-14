@@ -1,0 +1,653 @@
+/*
+ * Example HTML markup structure for .carousel
+ *
+
+<div class="carousel carousel--fade js-carousel" data-carousel-title="My Carousel" data-carousel-autoplay="1500" data-carousel-dots="left bottom horizontal" data-carousel-arrows="false">
+    <div class="slide">
+        <p>Your content goes here.</p>
+        <a class="button" href="#">Call to action</a>
+    </div>
+    <div class="slide">
+        <p>More content goes.</p>
+        <a class="button" href="#">Another call to action</a>
+    </div>
+</div>
+
+ *
+ */
+
+// Base styling for carousel
+
+$carousel-slide-width:  70% !default;
+$carousel-slide-width: 100%;
+
+$carousel-color-background: transparent !default;
+$carousel-color-text: $color-text-default !default;
+
+$carousel-dots-hit-area: pxToRem(45px) !default;
+$carousel-dots-position-x: center !default; // options: left, right, center;
+$carousel-dots-position-y: bottom !default; // options: bottom, top, center;
+$carousel-dots-stack: horizontal !default; // options: horizontal, vertical
+$carousel-dots-gutter: $space-sixth !default;
+$carousel-dots-slug: $carousel-dots-gutter !default;
+$carousel-dots-numbers-enabled: false !default;
+$carousel-dots-style: dots !default; // options: dots, bars, pills
+
+$carousel-dot-border-colour: $color-primary !default;
+$carousel-dot-border-width: $border-width-mid !default;
+$carousel-dot-height: $space-two-thirds !default;
+$carousel-dot-width: $space-two-thirds !default;
+$carousel-dot-border-radius: $carousel-dot-height / 2 !default;
+$carousel-dot-colour: $color-grey-mid !default;
+$carousel-selected-dot-colour: $carousel-color-text !default;
+
+$carousel-button-position-x: opposite !default; // options: left, right, opposite
+$carousel-button-position-y: center !default; // options: top, bottom, center
+$carousel-button-color-background: $color-primary-offset !default;
+$carousel-button-color-icon: $color-primary !default;
+
+$carousel-button-size: 4rem !default;
+
+/*
+ * Mixin to position and style flickity dots
+ *
+ * Usage:
+ *
+    .my-carousel {
+        .flickity-page-dots-wrapper {
+            @include flickityDots(right, bottom, vertical); // positions the dots 'center bottom horizontal' (default), 'right top vertical', 'left bottom horizontal'
+        }
+    }
+ *
+*/
+@mixin flickityDotsPosition($position-x: $carousel-dots-position-x, $position-y: $carousel-dots-position-y, $stack: $carousel-dots-stack) {
+    display: block;
+    position: absolute;
+    text-align: center;
+    z-index: 1;
+
+    @if $position-x == 'left' {
+        left: 0;
+        width: auto;
+
+        @if $stack == 'vertical' {
+            align-items: center;
+            bottom: 0;
+            display: flex;
+            height: 100%;
+        }
+        @else {
+            @if $position-y == 'top' {
+                bottom: 100%;
+            }
+            @else if $position-y == 'center' {
+                bottom: 50%;
+            }
+            @else {
+                bottom: -($carousel-dots-hit-area + $carousel-dots-slug);
+            }
+        }
+    }
+    @else if $position-x == 'right' {
+        right: 0;
+        width: auto;
+
+        @if $stack == 'vertical' {
+            align-items: center;
+            bottom: 0;
+            display: flex;
+            height: 100%;
+        }
+        @else {
+            @if $position-y == 'top' {
+                bottom: 100%;
+            }
+            @else if $position-y == 'center' {
+                bottom: 50%;
+            }
+            @else {
+                bottom: -($carousel-dots-hit-area + $carousel-dots-slug);
+            }
+        }
+    }
+    @else {
+        bottom: -($carousel-dots-hit-area + $carousel-dots-slug);
+        width: 100%;
+    }
+
+    .flickity-page-dots {
+        align-items: center;
+        bottom: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 0 auto;
+        position: relative;
+        width: auto;
+
+        @if $stack == 'vertical' {
+            flex: 1 1 auto;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+}
+
+/*
+ * Mixin to position and style flickity previous and next arrow buttons
+ *
+ * Usage:
+ *
+    .flickity-buttons-wrapper {
+        @include flickityButtonsPosition(right, bottom);
+    }
+ *
+*/
+@mixin flickityButtonsPosition($position-x: $carousel-button-position-x, $position-y: $carousel-button-position-y) {
+    display: flex;
+    flex-direction: row-reverse;
+    position: absolute;
+    z-index: 2;
+
+    @if $position-y == 'top' {
+        bottom: auto;
+        height: auto;
+        top: 0;
+    }
+    @else if $position-y == 'bottom' {
+        bottom: 0;
+        height: auto;
+        top: auto;
+    }
+    @else {
+        height: 0;
+        top: 50%;
+    }
+
+    @if $position-x == 'left' {
+        justify-content: flex-start;
+        left: 0;
+    }
+    @else if $position-x == 'right' {
+        justify-content: flex-end;
+        right: 0;
+    }
+    @else {
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .flickity-prev-next-button {
+        position: relative;
+
+        @if $position-x != 'opposite' and $position-y != 'center' {
+            transform: none;
+        }
+
+        &.next {
+            right: 0;
+
+            @if $position-x == 'opposite' and $position-y == 'center' {
+                @include respond-max($small-width) {
+                    right: -$gutter-small;
+                }
+
+                @include respond-min($full-width) {
+                    right: -($carousel-button-size / 3);
+                }
+            }
+        }
+
+        &.previous {
+            left: 0;
+
+            @if $position-x == 'opposite' and $position-y == 'center' {
+                @include respond-max($small-width) {
+                    left: -$gutter-small;
+                }
+
+                @include respond-min($full-width) {
+                    left: -($carousel-button-size / 3);
+                }
+            }
+        }
+
+        .widget-width--small & {
+            @if $position-x == 'opposite' and $position-y == 'center' {
+                &.next {
+                    right: -$gutter-small;
+                }
+
+                &.previous {
+                    left: -$gutter-small;
+                }
+            }
+        }
+    }
+}
+
+// Basic layout
+.carousel {
+    background-color: $carousel-color-background;
+    color: $carousel-color-text;
+    display: block;
+    margin-top: $slug;
+    position: relative;
+
+    &:first-child {
+        margin-top: 0;
+    }
+}
+
+.carousel__aria-live {
+    @include visuallyhidden;
+}
+
+.slide {
+    padding: 0;
+    position: relative;
+    width: $carousel-slide-width;
+
+    &[aria-hidden="true"] {
+        display: block;
+    }
+}
+
+.slide__media,
+.slide__content,
+.slide__video {
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.slide__video {
+    // guess at 16:9 ratio
+    padding-top: 56.25%;
+    position: relative;
+
+    iframe {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+}
+
+// colour and themeing
+.slide__content {
+    padding: $gutter (($carousel-button-size + pxToRem($carousel-dot-border-width)) - $space);
+}
+
+.slide__heading {
+    color: $carousel-color-text;
+    margin: 0;
+}
+
+.slide__summary,
+.slide__link {
+    margin: $space-half 0 0;
+}
+
+.slide__image {
+    margin: 0 auto;
+}
+
+// Animation and states
+.flickity-enabled {
+    .slide {
+        opacity: .5;
+        transition: opacity $transition-speed-slow;
+
+        &.is-selected {
+            opacity: 1;
+        }
+    }
+}
+
+// flickity overrides
+.carousel {
+    .flickity-viewport {
+        @if $carousel-dots-position-y == 'top' or $carousel-button-position-y == 'top' {
+            margin-top: $carousel-dots-hit-area + ($carousel-dots-slug * 2);
+        }
+        @else if $carousel-dots-position-y == 'bottom' or $carousel-button-position-y == 'bottom' {
+            margin-bottom: $carousel-dots-hit-area + ($carousel-dots-slug * 2);
+        }
+    }
+
+    .flickity-buttons-wrapper {
+        @include flickityButtonsPosition();
+    }
+
+    .flickity-page-dots-wrapper {
+        @include flickityDotsPosition();
+    }
+
+    .dot {
+        background-color: transparent;
+        border-radius: 0;
+        flex: 0 0 auto;
+        height: $carousel-dots-hit-area;
+        margin: 0 $carousel-dots-gutter;
+        opacity: 1;
+        position: relative;
+        width: $carousel-dots-hit-area;
+
+        &:hover,
+        &:active {
+            .flickity-page-dots__button {
+                background: $color-link-hover;
+                border-color: $color-link-hover;
+
+                @if $carousel-dots-numbers-enabled {
+                    &::before {
+                        color: $color-link-primary-hover;
+                    }
+                }
+            }
+        }
+
+        &.is-selected {
+            .flickity-page-dots__button {
+                background: $carousel-selected-dot-colour;
+                cursor: default;
+
+                @if $carousel-dots-numbers-enabled {
+                    &::before {
+                        color: $color-link-primary-hover;
+                    }
+                }
+            }
+
+            &:hover {
+                cursor: default;
+            }
+        }
+    }
+
+    .flickity-page-dots__button {
+        background: $carousel-dot-colour;
+        display: block;
+        height: $carousel-dot-height;
+        left: 50%;
+        padding: 0;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition: background-color $transition-speed, border-color $transition-speed;
+
+        @if $carousel-dots-style == 'bars' {
+            width: $carousel-dot-width * 2;
+        }
+        @else if $carousel-dots-style == 'pills' {
+            width: $carousel-dot-width * 2;
+        }
+        @else {
+            width: $carousel-dot-width;
+        }
+
+        @if $carousel-dot-border-width != 0 {
+            border: $carousel-dot-border-width solid $carousel-dot-border-colour;
+        }
+        @else {
+            border: 0;
+        }
+
+        @if $carousel-dot-border-radius != 0 {
+            @if $carousel-dots-style != 'bars' {
+                border-radius: $carousel-dot-border-radius;
+            }
+        }
+
+        &:hover,
+        &:active {
+            cursor: pointer;
+        }
+
+        &:focus {
+            @include focus-outline;
+        }
+    }
+
+    .flickity-prev-next-button {
+        background-color: $carousel-button-color-background;
+        border: $border-width-mid solid $carousel-button-color-icon;
+        border-radius: 0;
+        box-sizing: border-box;
+        color: $carousel-button-color-icon;
+        height: $carousel-button-size;
+        opacity: .9;
+        transition: $transition-speed-slow $bezier;
+        width: $carousel-button-size;
+
+        &:hover {
+            background-color: lighten($carousel-button-color-icon, 10%);
+            border-color: $carousel-button-color-icon;
+            color: $carousel-button-color-background;
+            opacity: 1;
+
+            /* icon color */
+            .flickity-button-icon {
+                fill: $carousel-button-color-background;
+            }
+        }
+
+        &:focus {
+            // box shadow is used so the focus ring can be spherical.
+            box-shadow: 0 0 0 $border-width-large $color-link-focus;
+            z-index: 1;
+        }
+    }
+
+    /* icon color */
+    .flickity-button-icon {
+        fill: $carousel-button-color-icon;
+    }
+
+    .flickity-slider {
+        &.has-focus {
+            // scss-lint:disable ImportantRule
+            transform: translateX(0) !important; // !important needed to override Flickity JS
+
+            .slide {
+                left: 0 !important; // !important needed to override Flickity JS
+                opacity: 0;
+
+                &.is-selected {
+                    opacity: 1;
+                }
+            }
+            // scss-lint:enable ImportantRule
+        }
+    }
+
+    @if $carousel-dots-numbers-enabled {
+        .flickity-page-dots {
+            counter-reset: list_item_count;
+        }
+
+        .dot {
+            counter-increment: list_item_count;
+        }
+
+        .flickity-page-dots__button {
+            &::before {
+                content: counter(list_item_count) '.';
+                font-size: $milli;
+                font-weight: $font-weight-bold;
+                left: 50%;
+                position: absolute;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                transition: color $transition-speed;
+            }
+        }
+    }
+
+    // Data attribute overrides - Arrows
+    &[data-carousel-arrows*='left'] {
+        .flickity-buttons-wrapper {
+            justify-content: flex-end;
+            left: 0;
+        }
+    }
+
+    &[data-carousel-arrows*='right'] {
+        .flickity-buttons-wrapper {
+            justify-content: flex-start;
+            right: 0;
+        }
+    }
+
+    &[data-carousel-arrows*='top'] {
+        .flickity-buttons-wrapper {
+            bottom: auto;
+            height: auto;
+            top: 0;
+        }
+    }
+
+    &[data-carousel-arrows*='bottom'] {
+        .flickity-buttons-wrapper {
+            bottom: 0;
+            height: auto;
+            top: auto;
+        }
+    }
+
+    &[data-carousel-arrows*='left'],
+    &[data-carousel-arrows*='right'],
+    &[data-carousel-arrows*='top'],
+    &[data-carousel-arrows*='bottom'] {
+        .flickity-prev-next-button {
+            transform: none;
+
+            &.previous,
+            &.next {
+                left: auto;
+                right: auto;
+            }
+        }
+
+        .widget-width--small & {
+            .flickity-prev-next-button {
+                &.previous,
+                &.next {
+                    left: auto;
+                    right: auto;
+                }
+            }
+        }
+    }
+
+    // Data attribute overrides - Dots
+    &[data-carousel-dots*='left'] {
+        .flickity-page-dots-wrapper {
+            left: 0;
+            right: auto;
+            width: auto;
+        }
+    }
+
+    &[data-carousel-dots*='right'] {
+        .flickity-page-dots-wrapper {
+            left: auto;
+            right: 0;
+            width: auto;
+        }
+    }
+
+    &[data-carousel-dots*='top'] {
+        .flickity-viewport {
+            margin-top: $carousel-dots-hit-area + ($carousel-dots-slug * 2);
+        }
+
+        .flickity-page-dots-wrapper {
+            bottom: 100%;
+        }
+    }
+
+    &[data-carousel-dots*='center'] {
+        .flickity-viewport {
+            margin: 0;
+        }
+
+        .flickity-page-dots-wrapper {
+            bottom: 50%;
+        }
+    }
+
+    &[data-carousel-dots*='bottom'] {
+        .flickity-page-dots-wrapper {
+            bottom: -($carousel-dots-hit-area + $carousel-dots-slug);
+        }
+    }
+
+    &[data-carousel-dots*='vertical'] {
+        .flickity-page-dots-wrapper {
+            align-items: center;
+            bottom: 0;
+            display: flex;
+            height: 100%;
+        }
+
+        .flickity-page-dots {
+            flex: 1 1 auto;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        &[data-carousel-dots*='top'] {
+            .flickity-page-dots-wrapper {
+                align-items: flex-start;
+            }
+        }
+
+        &[data-carousel-dots*='bottom'] {
+            .flickity-page-dots-wrapper {
+                align-items: flex-end;
+            }
+        }
+    }
+
+    &[data-carousel-adaptive-height='true'] {
+        .flickity-viewport {
+            transition: height $transition-speed-slow $bezier;
+        }
+    }
+}
+
+.flickity-slider {
+    > * {
+        &[aria-hidden="true"] {
+            display: block;
+        }
+    }
+}
+
+// scss-lint:disable ImportantRule
+.carousel--fade.flickity-enabled {
+    .flickity-slider {
+        left: 0 !important;
+        transform: none !important;
+    }
+
+    .slide {
+        left: 0 !important;
+        opacity: 0;
+        z-index: 0;
+
+        &.is-selected {
+            opacity: 1;
+            z-index: 1;
+        }
+    }
+
+    .flickity-prev-next-button {
+        z-index: 2;
+    }
+}
+// scss-lint:enable ImportantRule

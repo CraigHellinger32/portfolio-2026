@@ -1,0 +1,20 @@
+{% set page = data.pages['_1_xfp'] %}
+{% set photonEnabled = true %}
+{% extends '@theme:xfpbase/pages/form_content/form/form_questions.html.twig' %}
+
+{% block page_alert %}
+    {% include 'partials/molecules/text/resume_forms_alert.html.twig' with {
+        'type': 'warning',
+        'title': page.resumeAlert.title,
+        'summary': page.resumeAlert.summary,
+        'url': page.resumeAlert.url
+        }
+    %}
+{% endblock %}
+
+{% block form_content %}
+    {% include '@theme:xfpbase/partials/organisms/form/form.html.twig' with {
+        'form': page.content
+        }
+    %}
+{% endblock %}

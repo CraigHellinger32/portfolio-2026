@@ -1,0 +1,12 @@
+{% set section = 'Pages in' %}
+
+<div class="style-guide__section" id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}">
+    {% include 'partials/atoms/styleguide/text/heading.html.twig' with {
+        'section': section
+        }
+    %}
+    {% include 'partials/molecules/list/page.html.twig' with {
+        'group': page.pagesIn.group
+        }
+    %}
+</div>

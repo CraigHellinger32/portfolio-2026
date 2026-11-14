@@ -1,0 +1,116 @@
+{% set section = 'Editor lists' %}
+
+<div class="style-guide__section" id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}">
+    {% include 'partials/atoms/styleguide/text/heading.html.twig' with {
+        'section': section
+        }
+    %}
+    <div class="editor">
+        <h2>H2 heading — Unordered list — two levels deep</h2>
+        <p class="summary">Paragraph text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec condimentum malesuada suscipit. Duis consectetur urna felis, eu condimentum quam dapibus vel. Quisque et efficitur mauris. Fusce libero risus, dignissim quis eros eget, pulvinar ultrices nisi. Sed congue mauris quam, sed placerat eros tincidunt.</p>
+        <p>Paragraph text Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec condimentum malesuada suscipit. Duis consectetur urna felis, eu condimentum quam dapibus vel. Quisque et efficitur mauris. Fusce libero risus, dignissim quis eros eget, pulvinar ultrices nisi. Sed congue mauris quam, sed placerat eros tincidunt a. Vivamus sit amet sodales magna, quis dignissim tellus. Aenean sit amet <a href="/an/internal/link/i’ve/never/been/to/">text link example</a> aliquet enim, sed interdum hover link.
+            <br>Active text link. Curabitur in <a href="#">visited text link example</a> maximus mi. Mauris laoreet diam sit amet accumsan.</p>
+        <ul>
+            <li>
+                lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            </li>
+            <li>
+                Iusto!
+            </li>
+            <li>
+                Eveniet, itaque iste autem unde veritatis quaerat iure:
+                <ul>
+                    <li>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    </li>
+                    <li>
+                        Inventore, vitae, culpa. Impedit quis corrupti error nisi at laudantium!
+                    </li>
+                    <li>
+                        Cumque vitae, ipsa. Quibusdam reiciendis iste, magni facilis dicta praesentium illo consequatur. Cumque vitae, ipsa. Quibusdam reiciendis iste, magni facilis dicta praesentium illo consequatur.
+                        Cumque vitae, ipsa. Quibusdam reiciendis iste, magni facilis dicta praesentium illo consequatur.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Eveniet, itaque iste autem unde veritatis quaerat iure:
+            </li>
+        </ul>
+        <h3>H3 heading — Ordered list — two levels deep</h3>
+        <ol>
+            <li>
+                lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            </li>
+            <li>
+                Iusto!
+            </li>
+            <li>
+                Eveniet, itaque iste autem unde veritatis quaerat iure:
+                <ol>
+                    <li>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    </li>
+                    <li>
+                        Inventore, vitae, culpa. Impedit quis corrupti error nisi at laudantium!
+                    </li>
+                    <li>
+                        Cumque vitae, ipsa. Quibusdam reiciendis iste, magni facilis dicta praesentium illo consequatur.
+                    </li>
+                    <li>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    </li>
+                </ol>
+            </li>
+            <li>
+                Manually added <strong>type</strong> attribute
+                <ol type="I">
+                    <li>
+                        Inventore, vitae, culpa. Impedit quis corrupti error nisi at laudantium!
+                    </li>
+                    <li>
+                        Cumque vitae, ipsa. Quibusdam reiciendis iste, magni facilis dicta praesentium illo consequatur.
+                    </li>
+                    <li>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    </li>
+                </ol>
+            </li>
+        </ol>
+        <h3>
+            H3 heading — Unordered list within an ordered list
+        </h3>
+        <ol>
+            <li>Curabitur accumsan, elit quis sollicitudin vehicula, turpis ligula varius sapien, in varius orci ipsum non felis.
+                <ul>
+                    <li>Morbi orci diam, euismod ac ante ac, ultrices eleifend erat.&nbsp;</li>
+                    <li>Integer a luctus quam.&nbsp;</li>
+                    <li>Sed faucibus tincidunt fermentum.&nbsp;</li>
+                </ul>
+            </li>
+            <li>Mauris ex est, efficitur at velit eget, suscipit auctor nisi. Nunc rutrum convallis felis, tempus tincidunt tortor lacinia at.</li>
+            <li>Cras ac nulla hendrerit, gravida lacus eu, scelerisque augue. Donec vitae mauris augue. Proin efficitur arcu a eleifend condimentum. Aenean nec lacus in orci tincidunt dapibus. Nam a nunc eu nisi tempor varius sed at nunc. Nullam volutpat tellus
+                et porta mollis. Ut cursus lorem vel nibh sollicitudin vestibulum.</li>
+        </ol>
+        <h3>
+            H3 heading — Ordered list within an unordered list
+        </h3>
+        <ul>
+            <li>Curabitur accumsan, elit quis sollicitudin vehicula, turpis ligula varius sapien, in varius orci ipsum non felis.
+                <ol>
+                    <li>Morbi orci diam, euismod ac ante ac, ultrices eleifend erat.&nbsp;</li>
+                    <li>Integer a luctus quam.&nbsp;</li>
+                    <li>Sed faucibus tincidunt fermentum.&nbsp;</li>
+                </ol>
+            </li>
+            <li>Manually added the <strong>start</strong> attribute.
+                <ol start="19">
+                    <li>Morbi orci diam, euismod ac ante ac, ultrices eleifend erat.&nbsp;</li>
+                    <li>Integer a luctus quam.&nbsp;</li>
+                    <li>Sed faucibus tincidunt fermentum.&nbsp;</li>
+                </ol>
+            </li>
+            <li>Cras ac nulla hendrerit, gravida lacus eu, scelerisque augue. Donec vitae mauris augue. Proin efficitur arcu a eleifend condimentum. Aenean nec lacus in orci tincidunt dapibus. Nam a nunc eu nisi tempor varius sed at nunc. Nullam volutpat tellus
+                et porta mollis. Ut cursus lorem vel nibh sollicitudin vestibulum.</li>
+        </ul>
+    </div>
+</div>

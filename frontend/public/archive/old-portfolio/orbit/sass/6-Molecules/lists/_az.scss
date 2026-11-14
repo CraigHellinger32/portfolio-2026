@@ -1,0 +1,60 @@
+.list--az {
+    @extend %cf;
+
+    display: block;
+    margin-bottom: $slug;
+    margin-left: $space-third * -1;
+
+    .list__item {
+        display: inline-block;
+        padding: 0 $space-sixth 0 $space-third;
+        text-align: center;
+        width: percentage(1 / 4);
+
+        @include respond-min($x-small-width) {
+            width: percentage(1 / 6);
+        }
+
+        @include respond-min($small-width) {
+            width: percentage(1 / 10);
+        }
+
+        @include respond-min($mid-width) {
+            width: percentage(1 / 13);
+        }
+
+        .one-column & {
+            @include respond-min($full-width) {
+                width: percentage(1 / 26);
+            }
+        }
+    }
+
+    .button {
+        display: block;
+        margin: 0;
+        padding: percentage(1 / 3.5) $space-half;
+        text-align: center;
+        width: auto;
+
+        @include respond-min($small-width) {
+            padding: percentage(1 / 5) 0;
+        }
+
+        @include respond-min($mid-width) {
+            padding-bottom: percentage(1 / 4);
+            padding-top: percentage(1 / 4);
+        }
+
+        .one-column & {
+            @include respond-min($full-width) {
+                padding-bottom: percentage(1 / 7);
+                padding-top: percentage(1 / 7);
+            }
+        }
+
+        &.is-active {
+
+        }
+    }
+}

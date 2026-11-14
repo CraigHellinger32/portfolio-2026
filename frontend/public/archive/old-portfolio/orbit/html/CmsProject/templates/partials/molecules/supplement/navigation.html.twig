@@ -1,0 +1,34 @@
+{% block supplement %}
+    <div class="supplement supplement--navigation">
+
+        {% block supplement_inner %}
+            {% block supplement_heading %}
+                {% include 'partials/atoms/text/supplement_heading.html.twig' with {
+                    'title': title
+                    }
+                %}
+            {% endblock %}
+
+            {% block supplement_content %}
+                {% if record.urls %}
+                    {% set links = [] %}
+                    {% for  text, url in record.urls %}
+                        {% set links = links|merge([{'title': text, 'url': url}]) %}
+                    {% endfor %}
+
+                    {% block supplement_list %}
+                        {% include 'partials/molecules/list/list.html.twig' with {
+                            'type': 'record',
+                            'title': '',
+                            'group': links,
+                            'className': 'list--navigation'
+                            }
+                        %}
+                    {% endblock %}
+
+                {% endif %}
+            {% endblock supplement_content %}
+        {% endblock supplement_inner %}
+
+    </div>
+{% endblock supplement %}

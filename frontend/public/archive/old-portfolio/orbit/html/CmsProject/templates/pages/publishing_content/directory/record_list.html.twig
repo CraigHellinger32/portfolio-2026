@@ -1,0 +1,37 @@
+{% extends 'layouts/list.html.twig' %}
+{% set columns = 'two-column'%}
+
+{% block listing_featured %}
+    {% if page.content.feature.body is not empty or page.content.feature.image.url is not empty %}
+    <article class="listing listing--featured">
+        {% if page.content.feature.image.url is not empty %}
+            {% include 'partials/atoms/image/image.html.twig' with {
+                'url': page.content.feature.image.url,
+                'alt': page.content.feature.image.alt,
+                'className': 'listing__image'
+                }
+            %}
+        {% endif %}
+        {% if page.content.feature.body is not empty %}
+            {% include 'partials/atoms/text/editor.html.twig' with {'content': page.content.feature.body } %}
+        {% endif %}
+    </article>
+    {% endif %}
+{% endblock %}
+
+{% block primary_supplements %}
+    {{ parent() }}
+
+    {% block supplement_adverts %}
+        {% for advert in adverts %}
+            {% include 'partials/molecules/supplement/advert.html.twig' with {
+                'title': advert.title,
+                'image': advert.imageFilename,
+                'link': advert.url,
+                'link_title': advert.title
+                }
+            %}
+        {% endfor %}
+    {% endblock %}
+
+{% endblock primary_supplements %}

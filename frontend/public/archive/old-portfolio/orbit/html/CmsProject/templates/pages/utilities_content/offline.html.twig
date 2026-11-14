@@ -1,0 +1,48 @@
+{% extends 'layouts/article.html.twig' %}
+{% set pageTitle = page.content.setTitle(getTranslatedString('offline-page-title')) %}
+
+{% block site_announcement %}
+{% endblock %}
+
+{% block breadcrumb %}
+{% endblock %}
+
+{% block page_heading %}
+    <h1 class="visually-hidden">{{ getTranslatedString('offline-page-title') }}</h1>
+{% endblock %}
+
+{% block site_header %}
+    {% embed 'partials/organisms/header.html.twig' %}
+        {% block header_navigation_primary %}
+        {% endblock %}
+
+        {% block header_search %}
+        {% endblock %}
+
+        {% block header_menu %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block page_content %}
+    {% block skip_links %}
+    {% endblock %}
+    {% block main %}
+        {% include 'partials/molecules/text/alert.html.twig' with {
+            'type': 'warning',
+            'title': getTranslatedString('offline-page-title'),
+            'summary': getTranslatedString('offline-page-statement')
+            }
+        %}
+    {% endblock %}
+{% endblock %}
+
+{% block site_footer %}
+    {% embed 'partials/organisms/footer.html.twig' %}
+        {% block footer_links %}
+        {% endblock %}
+
+        {% block footer_bottom_links %}
+        {% endblock %}
+    {% endembed %}
+{% endblock %}

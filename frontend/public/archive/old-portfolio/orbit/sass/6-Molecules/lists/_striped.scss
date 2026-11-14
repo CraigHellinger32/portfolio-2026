@@ -1,0 +1,14 @@
+.list--striped {
+    > .list__item {
+        border: 0;
+        padding: $space-half;
+
+        &:nth-child(odd) {
+            background: $color-subtle;
+        }
+    }
+
+    .list {
+        margin-top: $space-third;
+    }
+}

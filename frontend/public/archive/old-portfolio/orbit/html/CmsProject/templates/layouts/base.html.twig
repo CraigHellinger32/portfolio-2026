@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+{% block tag_html %}
+    {# IE-conditional class names #}
+    <!--[if lt IE 7]>       <html class="lt-ie10 lt-ie9 lt-ie8 lt-ie7{% block html_classes %} no-js{{ component('accessibility_class') }}{% endblock %}"{% block html_attributes %} lang="en"{% endblock %}> <![endif]-->
+    <!--[if IE 7]>          <html class="lt-ie10 lt-ie9 lt-ie8{{ block('html_classes') }}"{{ block('html_attributes') }}> <![endif]-->
+    <!--[if IE 8]>          <html class="lt-ie10 lt-ie9{{ block('html_classes') }}"{{ block('html_attributes') }}> <![endif]-->
+    <!--[if IE 9]>          <html class="lt-ie10{{ block('html_classes') }}"{{ block('html_attributes') }}> <![endif]-->
+    <!--[if gt IE 9]><!-->  <html class="{{ block('html_classes') }}"{{ block('html_attributes') }}><!--<![endif]-->
+{% endblock %}
+
+    <head>
+    {% block page_head %}
+        {% block meta_charset %}
+            <meta charset="UTF-8">
+        {% endblock %}
+
+        <title>
+            {%- block page_title -%}
+                {{ page.content.title ? page.content.title ~ ' – ' }}{{ getConstantValue('METADATA_GENERIC_NAME') }}
+            {%- endblock -%}
+        </title>
+
+        {% block meta_browser %}
+            <meta http-equiv="x-ua-compatible" content="ie=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% endblock %}
+
+        {% block rss %}
+            <link rel="alternate" type="application/rss+xml" href="{{ path('content_rss', {'contentType': 'news'}) }}">
+        {% endblock %}
+
+        {% block favicons %}
+            <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('site/images/favicons/apple-touch-icon.png') }}">
+            <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('site/images/favicons/favicon-32x32.png') }}">
+            <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('site/images/favicons/favicon-16x16.png') }}">
+            <link rel="manifest" href="{{ asset('site/images/favicons/site.webmanifest') }}">
+            <link rel="mask-icon" href="{{ asset('site/images/favicons/safari-pinned-tab.svg') }}" color="#000000">
+            <link rel="shortcut icon" href="{{ asset('site/images/favicons/favicon.ico') }}">
+            <meta name="msapplication-TileColor" content="#ffffff">
+            <meta name="msapplication-TileImage" content="{{ asset('site/images/favicons/mstile-144x144.png') }}">
+            <meta name="msapplication-config" content="{{ asset('site/images/favicons/browserconfig.xml') }}">
+            <meta name="theme-color" content="#ffffff">
+        {% endblock %}
+
+        {% block stylesheet_base %}
+            <link rel="stylesheet" href="{{ asset('site/dist/orbit.css') }}">
+        {% endblock %}
+
+        {% block stylesheet_cms %}
+            {{ component('page_stylesheet', {
+                siteStylesheet: page_stylesheet,
+                pageSpecificStylesheet: page_specific_stylesheet,
+                previewStylesheet: app.request.get('previewstyle'),
+                categoryId: page_categoryId,
+                contentType: page_contentType
+                }) }}
+        {% endblock %}
+
+        {% block meta_page %}
+            <meta name="revisit-after" content="2 days">
+            <meta name="robots" content="index,follow">
+            <meta name="author" content="{{ page.metadata.publisher }}">
+            <meta name="keywords" content="{{ page.metadata.subject }}">
+            <meta name="description" content="{{ page.metadata.description }}">
+            <meta property="dcterms:creator" content="{{ page.metadata.creator }}">
+            <meta property="dcterms:rightsHolder" content="{{ page.metadata.rights }}">
+            <meta property="dcterms:coverage" content="{{ page.metadata.coverage }}">
+            <meta property="dcterms:identifier" content="{{ app.request.uri }}">
+            <meta property="dcterms:publisher" content="{{ page.metadata.publisher }}">
+            <meta property="dcterms:subject" content="{{ page.metadata.subject }}" >
+            <meta property="dcterms:description" content="{{ page.metadata.description }}" >
+            <meta property="dcterms:title" content="{{ page.content.title }}">
+            <meta property="dcterms:format" content="{{ page.metadata.format|default('text/html') }}">
+            <meta property="dcterms:language" content="{{ page.metadata.language|default('en') }}">
+            {% if page.metadata.created is not empty and page.metadata.created.timestamp > 0 %}
+                <meta property="dcterms:created" content="{{ page.metadata.created.timestamp|date('Y-m-d') }}">
+            {% endif %}
+            {% if page.metadata.modified is not empty and page.metadata.modified.timestamp > 0 %}
+                <meta property="dcterms:modified" content="{{ page.metadata.modified.timestamp|date('Y-m-d') }}">
+            {% endif %}
+            {% if page.metadata.valid is not empty and page.metadata.valid.timestamp > 0 %}
+                <meta property="dcterms:valid" content="{{ page.metadata.valid.timestamp|date('Y-m-d') }}">
+            {% endif %}
+        {% endblock %}
+
+        {% block meta_opengraph %}
+            <meta property="og:title" content="{{ page.content.title ? page.content.title ~ ' – ' }}{{ getConstantValue('METADATA_GENERIC_NAME') }}">
+            <meta property="og:site_name" content="{{ getConstantValue('METADATA_GENERIC_NAME') }}">
+            <meta property="og:type" content="website">
+            <meta property="og:url" content="{{ app.request.uri }}">
+            <meta property="og:image" content="{% block meta_opengraph_image_src %}{{ absolute_url(page.content.image.url|default('site/dist/icons/png/logo.png')) }}{% endblock %}">
+            <meta property="og:image:alt" content="{% block meta_opengraph_image_alt %}{{ page.content.image.alt|default(getConstantValue('METADATA_GENERIC_NAME')) }}{% endblock %}" />
+        {% endblock %}
+
+        {% block javascript_modernizr %}
+            <script src="{{ asset('site/dist/libs/modernizr-custom.js') }}"></script>
+        {% endblock %}
+
+        {% block javascript_header %}{% endblock %}
+        {{ getIntegrationDetails('analytics_code_header')|raw }}
+        {% block javascript_metadata %}{% endblock %}
+    {% endblock page_head %}
+    </head>
+
+    <body class="{% block body_classes %}{{ columns|default('one-column')}} {{ page.bodyClass }}{% endblock %}"{% block body_attributes %}{% endblock %}>
+        {% block body_content %}
+
+            {% block site_opening %}
+                {% block skip_links %}
+                    {% include 'partials/organisms/skip_links.html.twig' %}
+                {% endblock %}
+
+                {% block site_header %}
+                    {% include 'partials/organisms/header.html.twig' %}
+                {% endblock %}
+
+                {% block site_announcement %}
+                    {{ component('announcement') }}
+                {% endblock %}
+
+                {% block breadcrumb %}
+                    {% include 'partials/organisms/breadcrumbs.html.twig' %}
+                {% endblock %}
+            {% endblock site_opening %}
+
+            {% block site_main %}
+                <main class="site-main">
+                    <div class="container">
+
+                        {% block site_main_inner %}
+                            {% block before_site_content %}
+                            {% endblock %}
+
+                            {% block site_content %}
+                                <div class="site-content" id="content" tabindex="-1">
+
+                                    {% block site_content_inner %}
+                                        {% block page_heading %}
+                                            {% include 'partials/atoms/text/heading.html.twig' with {'title': page.content.title } %}
+                                        {% endblock %}
+
+                                        {% block page_content_wrap %}
+                                            <div class="page-content">
+
+                                                {% block page_content_wrap_inner %}
+                                                    {% block before_page_content %}
+                                                    {% endblock %}
+
+                                                    {% block page_content %}
+                                                    {% endblock %}
+
+                                                    {% block after_page_content %}
+                                                    {% endblock %}
+
+                                                    {% block secondary_supplements %}
+                                                    {% endblock %}
+                                                {% endblock page_content_wrap_inner %}
+
+                                            </div>
+                                        {% endblock page_content_wrap %}
+
+                                        {% block aside %}
+                                            <aside class="aside{{ columns == 'two-column' ? ' aside--sidebar' : ' aside--below' }}" aria-label="Aside Navigation">
+
+                                                {% block aside_inner %}
+                                                    {% block before_primary_supplements %}
+                                                    {% endblock %}
+
+                                                    {% block primary_supplements %}
+                                                    {% endblock %}
+
+                                                    {% block after_primary_supplements %}
+                                                    {% endblock %}
+                                                {% endblock aside_inner %}
+
+                                            </aside>
+                                        {% endblock aside %}
+                                    {% endblock site_content_inner %}
+
+                                </div>
+                            {% endblock site_content %}
+
+                            {% block after_site_content %}
+                            {% endblock %}
+                        {% endblock site_main_inner %}
+
+                    </div>
+                </main>
+            {% endblock site_main %}
+
+            {% block site_footer %}
+                {% include 'partials/organisms/footer.html.twig' %}
+            {% endblock %}
+
+        {% endblock body_content %}
+
+        {% block javascript_footer %}
+            <link rel="stylesheet" href="{{ asset('site/dist/icons/icons.data.svg.css') }}">
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script>window.jQuery || document.write('<script src="{{ asset("site/dist/libs/jquery.min.js") }}"><\/script>');</script>
+            <script src="{{ asset('site/dist/orbit.js') }}"></script>
+            {# UNCOMMENT ALL LINES BELOW FOR PRODUCTION
+            <script src="{{ asset('site/js/almond.min.js') }}"></script>
+            <script src="{{ asset('site/js/util.min.js') }}"></script>
+            {% if includeMaps == true %}
+                {% include 'partials/atoms/metadata/maps.html.twig' %}
+            {% endif %}
+            {% if page.getAttribute('includeAccessibilityCheckerJavascript') == true %}
+            <script src="{{ asset('jadu/javascript/tota11y.min.js') }}"></script>
+            {% endif %}
+            {{ component('search_javascript') }} #}
+            {{ getConstantValue('ANALYTICS_INCLUDE')|raw }}
+        {% endblock javascript_footer %}
+    </body>
+</html>

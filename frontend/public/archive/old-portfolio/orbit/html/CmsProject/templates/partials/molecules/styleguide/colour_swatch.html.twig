@@ -1,0 +1,27 @@
+{% set section = "Colour Palettes" %}
+<div class="container">
+    <div class="style-guide__section" id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}">
+        {% include 'partials/atoms/styleguide/text/heading.html.twig' with {
+            'section': section
+            }
+        %}
+        <h3 class="h6">Primary</h3>
+        <ul class="list list--colour-palette colour-palette">
+            {%- for swatch in styleGuide.colourPalette -%}
+                <li class="list__item colour-palette__swatch{% if swatch.whiteText %} colour-palette__swatch--dark{% endif %}" style="background-color: {{ swatch.colour }};" data-colour="{{ swatch.colour }}">
+                    <span class="colour-palette__swatch-value">{{ swatch.colour }}</span>
+                    <span class="colour-palette__swatch-name">{{ swatch.name is not empty ? swatch.name : swatch }}</span>
+                </li>
+            {%- endfor -%}
+        </ul>
+        <h3 class="h6">Secondary</h3>
+        <ul class="list list--colour-palette colour-palette">
+            {%- for swatch in styleGuide.colourPaletteSecondary -%}
+                <li class="list__item colour-palette__swatch{% if swatch.whiteText %} colour-palette__swatch--dark{% endif %}" style="background-color: {{ swatch.colour }};" data-colour="{{ swatch.colour }}">
+                    <span class="colour-palette__swatch-value">{{ swatch.colour }}</span>
+                    <span class="colour-palette__swatch-name">{{ swatch.name is not empty ? swatch.name : swatch }}</span>
+                </li>
+            {%- endfor -%}
+        </ul>
+    </div>
+</div>

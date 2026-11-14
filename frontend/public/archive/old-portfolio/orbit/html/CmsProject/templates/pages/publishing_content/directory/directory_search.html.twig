@@ -1,0 +1,106 @@
+{% extends 'layouts/list.html.twig' %}
+{% set columns = 'two-column' %}
+
+{% block main %}
+    {% block map_container %}
+
+        {% if entries is not empty %}
+
+            {% block map_heading %}
+                {% include 'partials/atoms/text/subheading.html.twig' with {
+                    'title': getTranslatedString('directory-search-page-title')
+                } only %}
+            {% endblock %}
+
+            {% block map_statement %}
+                {% if app.request.get('postcode') %}
+                    <p class="summary">{{ getTranslatedString('directory-search-result-location-statement', [distance, app.request.get('postcode')]) }}</p>
+                {% else %}
+                    <p class="summary">{{ getTranslatedString('directory-search-result-statement') }}</p>
+                {% endif %}
+            {% endblock %}
+
+            {% if showInMap %}
+
+                {% set includeMaps = true %}
+                {% set locationsUsed = [] %}
+
+                {% block map_markers %}
+                    {% for record in entries %}
+                        {% for recordEntity in record.entryDetails %}
+                            {% if recordEntity.field.id in mapFields and not recordEntity.value is empty %}
+                                {% set markerImage = getSiteRootUrl() ~ '/images/map_markers/red.png' %}
+                                {% if recordEntity.field.getFieldSettingByValueType('MapMarker').value is not empty %}
+                                    {% set markerImage = getSiteRootUrl() ~ '/images/map_markers/' ~ recordEntity.field.getFieldSettingByValueType('MapMarker').value %}
+                                {% endif %}
+                                {% set markerLocation = recordEntity.value|trim %}
+                                {% if markerLocation|isLatLong != true %}
+                                    {% set markerLocation = markerLocation|toLatLongFromPostCode %}
+                                {% endif %}
+                                {% set markerInfo = '<a href="' ~ path('directory_record_details', {'recordId': record.id, 'recordSlug': record.slug }) ~ '">' ~ record.title ~ '</a>' %}
+                                <input type="hidden" id="map_marker_image_{{ record.id ~ '_' ~ recordEntity.fieldID ~ '_' ~  recordEntity.fieldID }}" value="{{ markerImage }}">
+                                <input type="hidden" id="map_marker_info_{{ record.id ~ '_' ~ recordEntity.fieldID ~ '_' ~  recordEntity.fieldID }}" value="{{ markerInfo|url_encode }}">
+                                {% if markerLocation not in locationsUsed %}
+                                    {% set locationsUsed = locationsUsed|merge([markerLocation]) %}
+                                    <input type="hidden" id="{{ record.id ~ '_' ~ recordEntity.fieldID ~ '_' ~  recordEntity.fieldID }}" class="mapMarkers" value="{{ markerLocation }}">
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                {% endblock map_markers %}
+
+                {% block map %}
+                    <div class="map" id="map_0"></div>
+                {% endblock %}
+
+            {% endif %}
+
+        {% endif %}
+    {% endblock map_container %}
+
+    {{ parent() }}
+{% endblock main %}
+
+{% block alert_no_entries %}
+    {% if not errors and app.request.get('search') != null %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block before_primary_supplements %}
+    {% block button_directory_az %}
+        {% include 'partials/atoms/button/call_to_action.html.twig' with {
+            'link': path('directory_atoz', { directoryId: app.request.get('directoryID'), startsWith: 'A'} ),
+            'title': getTranslatedString('directory-az-link'),
+            'className': 'button--secondary button--block'
+            }
+        %}
+    {% endblock %}
+
+    {% block button_directory_submit %}
+        {% if directory.allowPublicSubmissions %}
+            {% include 'partials/atoms/button/call_to_action.html.twig' with {
+                'link': path('directory_submit', { directoryId: app.request.get('directoryID'), directorySlug: directory.slug }),
+                'title': getTranslatedString('directory-submission-link'),
+                'className': 'button--secondary button--block'
+                }
+            %}
+        {% endif %}
+    {% endblock %}
+{% endblock before_primary_supplements %}
+
+{% block after_page_content %}
+    {{ parent() }}
+
+    {% block directory_search_form %}
+        {{ component('directory_search_form', {'directoryId': app.request.get('directoryID')}) }}
+    {% endblock %}
+{% endblock %}
+
+{% block javascript_footer %}
+    {% if showInMap %}
+        {% set includeMaps = true %}
+    {% endif %}
+
+    {{ parent() }}
+{% endblock %}

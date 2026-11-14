@@ -1,0 +1,24 @@
+{% set section = 'Buttons' %}
+
+<div class="style-guide__section" id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}">
+    {% include 'partials/atoms/styleguide/text/heading.html.twig' with {
+        'section': section
+        }
+    %}
+    <ul class="list list--style-guide-buttons list--inline">
+        {% for buttonType in buttonTypes %}
+            <li class="list__item">
+                {% include 'partials/atoms/button/call_to_action.html.twig' with {
+                    'link': 'index.html?button=' ~ buttonType.className|url_encode,
+                    'title': buttonType.title,
+                    'className': 'button--' ~ buttonType.className,
+                    'paths': paths
+                    }
+                %}
+            </li>
+        {% endfor %}
+        <li class="list__item">
+            <button class="button" disabled>Button — True disabled button</button>
+        </li>
+    </ul>
+</div>

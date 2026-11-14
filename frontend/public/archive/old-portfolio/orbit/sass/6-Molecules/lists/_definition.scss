@@ -1,0 +1,60 @@
+$definition-list-breakpoint: $mid-width !default;
+
+.definition {
+    @extend %cf;
+}
+
+.definition__heading {
+    border-top: $border-width-small solid $color-border-mid;
+    clear: left;
+    font-weight: bold;
+    padding-top: $space-two-thirds;
+
+    @include respond-min($definition-list-breakpoint) {
+        float: left;
+        padding: $space-two-thirds $space-half;
+        text-align: right;
+        width: 25%;
+    }
+}
+
+.definition__content {
+    margin: 0;
+    padding-bottom: $space-two-thirds;
+    padding-top: $space-sixth;
+
+    @include respond-min($definition-list-breakpoint) {
+        border-top: $border-width-small solid $color-border-mid;
+        float: left;
+        padding: $space-two-thirds $space-half;
+        width: 75%;
+    }
+}
+
+.definition__content--link,
+.definition__content--email {
+    &,
+    a {
+        @include textWordbreak(false);
+    }
+}
+
+.definition__content .map,
+.directory__image {
+    display: block;
+    margin: $space-sixth 0 $space-fifth;
+}
+
+.definition__editor {
+    @extend %module;
+
+    > *:first-child {
+        margin-top: 0;
+    }
+
+    > .table-wrapper table {
+        @include respond-min($definition-list-breakpoint) {
+            margin-top: 0;
+        }
+    }
+}

@@ -1,0 +1,41 @@
+// Right and middle advert widget placeholder class
+//
+// Extended in:
+//     7-Organisms/widgets/_middle-adverts.scss
+//     7-Organisms/widgets/_right-adverts.scss
+
+%advert-widgets {
+    .widget__link {
+        @include linkUnderline('.widget__subheading', $color-link, $color-subtle);
+
+        display: block;
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: none;
+        }
+    }
+
+    .widget__image {
+        margin-bottom: $slug;
+    }
+
+    .widget__subheading {
+        display: inline;
+    }
+
+    .widget__subheading-child,
+    .widget__text {
+        color: $color-text-default;
+    }
+
+    .widget__subheading-child {
+        font-size: $zeta;
+        margin: $slug 0 $space-quarter;
+    }
+
+    .widget__text {
+        margin-top: $space-quarter;
+    }
+}

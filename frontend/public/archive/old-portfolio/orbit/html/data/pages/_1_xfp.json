@@ -1,0 +1,142 @@
+{
+    "breadcrumb": [
+        {
+            "title": "Standard Components",
+            "url": "1-standard-components.html"
+        }
+    ],
+    "resumeAlert": {
+        "title": "Resume form?",
+        "summary": "You have previously started this form, you may continue from a saved version or start a new form.",
+        "url": [
+            {
+                "label": "2nd October 2020 12:50pm",
+                "url": "/s4-intermediate-forms.html?resume=1"
+            },
+            {
+                "label": "2nd October 2020 12:31pm",
+                "url": "/s4-intermediate-forms.html?resume=2"
+            },
+            {
+                "label": "28th September 2020 9:51pm",
+                "url": "/s4-intermediate-forms.html?resume=3"
+            },
+            {
+                "label": "28th September 2020 9:10pm",
+                "url": "/s4-intermediate-forms.html?resume=4"
+            }
+        ]
+    },
+    "content": {
+        "className": "form--block form--form-builder",
+        "action": "s4-intermediate-forms.html",
+        "method": "get",
+        "isFormBuilder": true,
+        "progress": {
+            "percentage": 25,
+            "current": 2,
+            "max": 5
+        },
+        "languagePack": "test",
+        "title": "XFP Form Components",
+        "formHeading": "Form sub-heading goes here",
+        "instructions": "Form instructions go here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+        "primaryAction": {
+            "name": "next",
+            "label": "Save and Continue"
+        },
+        "secondaryAction": {
+            "name": "prev",
+            "label": "Previous"
+        },
+        "page": {
+            "main": {
+                "structure": [
+                    {
+                        "type": "question",
+                        "render": {
+                            "type": "file-upload",
+                            "componentType": "file_upload",
+                            "label": "Upload a file",
+                            "name": "file-upload",
+                            "value": ""
+                        },
+                        "formID": 1
+                    },
+                    {
+                        "type": "question",
+                        "render": {
+                            "type": "integrated-component",
+                            "componentType": "integrated_component",
+                            "label": "Integrated component",
+                            "name": "integrated-component",
+                            "ic": {
+                                "total": 2,
+                                "levels": [
+                                    {
+                                        "template": {
+                                            "label": "Test 1",
+                                            "showLabel": true,
+                                            "name": "ic-1",
+                                            "template": "partials/atoms/form/input.html.twig"
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        "formID": 3
+                    },
+                    {
+                        "type": "question",
+                        "render": {
+                            "type": "location",
+                            "componentType": "map",
+                            "label": "Location component",
+                            "name": "location",
+                            "map_type": "google"
+                        }
+                    },
+                    {
+                        "type": "question",
+                        "render": {
+                            "type": "matrix",
+                            "componentType": "matrix",
+                            "label": "Matrix component",
+                            "name": "matrix",
+                            "hasRows": true,
+                            "hasColumns": true,
+                            "hasSummary": true,
+                            "columns": [
+                                {
+                                    "heading": "Name"
+                                },
+                                {
+                                    "heading": "Place"
+                                },
+                                {
+                                    "heading": "Animal"
+                                },
+                                {
+                                    "heading": "Phone"
+                                }
+                            ],
+                            "rows": [
+                                {
+                                    "heading": "Row 1"
+                                },
+                                {
+                                    "heading": "Row 2"
+                                },
+                                {
+                                    "heading": "Row 3"
+                                }
+                            ],
+                            "summary": "Matrix component summary text goes here"
+                        },
+                        "formID": 2
+                    }
+                ]
+            }
+        }
+    }
+}

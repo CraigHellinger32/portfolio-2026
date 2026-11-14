@@ -1,0 +1,17 @@
+.form--standout {
+    background-color: $color-standout;
+    color: $color-standout-offset;
+
+    .form__heading {
+        color: $color-standout-offset;
+    }
+
+    .form__field {
+        color: $color-black;
+    }
+
+    .button {
+        border-color: $color-standout-offset;
+        color: $color-standout-offset;
+    }
+}

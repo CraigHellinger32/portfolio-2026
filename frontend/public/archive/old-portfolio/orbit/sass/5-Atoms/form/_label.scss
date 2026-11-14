@@ -1,0 +1,12 @@
+%form__label,
+.form__label,
+.form__legend {
+    color: $color-text-default;
+    display: block;
+    float: none;
+    font-weight: $font-weight-bold;
+    margin: 0 0 $slug-small;
+    padding: 0;
+    position: relative;
+    width: 100%;
+}

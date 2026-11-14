@@ -1,0 +1,56 @@
+// ========================================================
+//  Form append group: flex
+// ====================================
+//
+// Markup: templates/base/partials/molecules/form/append_group.html.twig
+//
+// <div class="form__append-group">
+//     <label class="form__label"></label>
+//     <div class="form__component">
+//         <input class="form__field">
+//     </div>
+//     <button class="button"></button>
+// </div>
+//
+.form__append-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    margin-bottom: $slug-small;
+
+    .form__label {
+        flex: 0 0 100%;
+        margin-bottom: $slug-small;
+    }
+
+    .form__component {
+        flex: 1 1 auto;
+        margin: 0 0 $slug-small;
+        width: auto;
+    }
+
+    .button {
+        margin: 0 0 $slug-small;
+    }
+
+    .form__field {
+        margin: 0;
+    }
+}
+
+.integrated-component {
+    @extend .form__append-group;
+
+    .form__field,
+    .form__select {
+        flex: 1 1 auto;
+        margin: 0 0 $slug-small;
+        width: auto;
+    }
+
+    .help-text {
+        color: $color-danger-text;
+        margin: 0;
+        width: 100%;
+    }
+}

@@ -1,0 +1,19 @@
+{% set section = 'Address' %}
+{% set content = "<address>Spacecraft Ltd.
+    Universe House,
+    1 Merus Court,
+    Leicester
+    LE19 1RJ,
+    United Kingdom
+</address>" %}
+
+<div class="style-guide__section" id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}">
+    {% include 'partials/atoms/styleguide/text/heading.html.twig' with {
+        'section': section
+        }
+    %}
+    {% include 'partials/atoms/text/editor.html.twig' with {
+        "content": content|raw|nl2br
+        }
+    %}
+</div>

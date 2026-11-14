@@ -1,0 +1,35 @@
+<div class="style-guide__section" id="section--meta">
+    <h2 class="style-guide__heading"><a class="style-guide__anchor-link" href="#section--meta">Meta</a></h2>
+    {% include 'partials/atoms/text/meta.html.twig' with {
+        'label':'Default',
+        'value': 'Here is some meta text'
+        }
+    %}
+    {% include 'partials/atoms/text/meta.html.twig' with {
+        'type': 'date',
+        'label':'Date',
+        'value': 'now'
+        }
+    %}
+    {% include 'partials/atoms/text/meta.html.twig' with {
+        'type': 'email',
+        'label':'Email',
+        'value': 'test@test.com'
+        }
+    %}
+    {% include 'partials/atoms/text/meta.html.twig' with {
+        'type': 'link',
+        'label':'Link',
+        'value': {
+            'url': 'https://spacecraft.co.uk',
+            'title': 'View the Spacecraft website'
+            }
+        }
+    %}
+    {% include 'partials/atoms/text/meta.html.twig' with {
+        'type': 'telephone',
+        'label':'Telephone',
+        'value': '+44 (0)116 222 7242',
+        }
+    %}
+</div>

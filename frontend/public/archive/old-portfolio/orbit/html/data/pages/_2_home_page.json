@@ -1,0 +1,12 @@
+{
+    "bodyClass": "index-modular",
+    "content": {
+        "title": "Home Page",
+        "homepage": {
+            "orderedWidgets": [
+            ]
+        },
+        "supplements": [
+        ]
+    }
+}

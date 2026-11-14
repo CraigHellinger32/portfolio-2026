@@ -1,0 +1,7 @@
+.form__help {
+    @extend %milli;
+
+    color: $color-text-muted;
+    display: block;
+    margin: $space-third 0 0;
+}

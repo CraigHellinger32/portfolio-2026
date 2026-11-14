@@ -1,0 +1,6 @@
+// Latest news widget
+.widget-feeds {
+    .listing {
+        @extend %listing--compact;
+    }
+}

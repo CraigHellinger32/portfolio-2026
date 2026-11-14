@@ -1,0 +1,86 @@
+{% extends 'layouts/article.html.twig' %}
+
+{% block main %}
+    {{ parent() }}
+
+    {% if page.content.passwordProtected == false %}
+        {% if download_files|length > 0 %}
+
+        {%- block download_list -%}
+            <ul class="list list--downloads">
+
+            {%- block download_list_inner -%}
+                {% for file in download_files %}
+
+                    {%- block download_item -%}
+                        <li class="list__item">
+
+                            {% block download_content %}
+                                <div class="download">
+
+                                    {% block download_content_inner %}
+                                        {% if file.url == '' %}
+
+                                            {%- block download_heading -%}
+                                                <a class="download__heading" href="{{ path('file_download', { fileId: file.id, fileSlug: file.slug } ) }}">
+                                                    {{ file.title }}
+                                                </a>
+                                            {%- endblock -%}
+
+                                            {%- block download_meta -%}
+                                                <ul class="download__meta-list">
+
+                                                    {% block download_meta_inner %}
+                                                        {% block download_meta_type %}
+                                                            <li class="download__meta download__meta--type">{{ file.filenameExtension }}</li>
+                                                        {% endblock %}
+
+                                                        {% block download_meta_size %}
+                                                            <li class="download__meta download__meta--size">{{ file.humanReadableFileSize }}</li>
+                                                        {% endblock %}
+
+                                                        {% block download_meta_link %}
+                                                            <li class="download__meta download__meta--link">
+
+                                                                {% block download_meta_link_wrap %}
+                                                                    <a href="{{ path('file_download', { fileId: file.id, fileSlug: file.slug } ) }}" class="download__cta">
+
+                                                                        {% block download_meta_link_inner %}
+                                                                            <span class="download__cta-text">Download</span>
+                                                                            {% include 'partials/atoms/image/icon.html.twig' with {'type': 'ui-download', 'className': 'download__cta-icon' } %}
+                                                                        {% endblock %}
+
+                                                                    </a>
+                                                                {% endblock download_meta_link_wrap %}
+                                                            </li>
+                                                        {% endblock download_meta_link %}
+                                                    {% endblock download_meta_inner %}
+                                                </ul>
+                                            {%- endblock download_meta -%}
+
+                                        {% else %}
+
+                                            {%- block download_heading_nominal -%}
+                                                <a class="download__heading" href="{{ file.url }}">
+                                                    {{ file.title }}
+                                                </a>
+                                            {%- endblock -%}
+
+                                        {% endif %}
+                                    {% endblock download_content_inner %}
+
+                                </div>
+                            {% endblock download_content %}
+
+                        </li>
+                    {%- endblock download_item -%}
+
+                {% endfor %}
+            {%- endblock download_list_inner -%}
+
+            </ul>
+        {%- endblock download_list -%}
+
+        {% endif %}
+    {% endif %}
+{% endblock main %}

@@ -1,0 +1,58 @@
+// Quotes
+//
+// Base blockquote class.
+// See sass/objects/_blockquotes.scss.
+//
+// Markup:
+// <blockquote class="blockquote {$modifiers}">
+//     For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally.
+// </blockquote>
+//
+// Styleguide 3
+$blockquote-colour: $color-primary !default;
+
+blockquote,
+%blockquote,
+.blockquote {
+    @extend %epsilon;
+
+    border-left: $border-width-small solid $blockquote-colour;
+    font-style: italic;
+    font-weight: normal;
+    margin-bottom: $space-double;
+    padding-left: $space-and-half;
+    position: relative;
+
+    @include respond-min($small-mid-width) {
+        margin-left: $space-triple;
+
+        &::before {
+            color: $blockquote-colour;
+            content: '“';
+            font-family: $font-family-block;
+            font-size: $mega;
+            left: -$space-triple;
+            line-height: 1;
+            position: absolute;
+        }
+    }
+
+    p,
+    %blockquote__text,
+    .blockquote__text {
+        font-size: $delta;
+        line-height: 1.7;
+        margin: 0;
+    }
+
+    cite,
+    .blockquote__cite {
+        @extend %type-reset;
+
+        display: block;
+        font-size: $milli;
+        font-style: normal;
+        margin: 0;
+        padding-top: $slug-small;
+    }
+}

@@ -1,0 +1,24 @@
+{% block widget_wrap %}
+    <div class="widget-documents">
+
+        {% block widget_wrap_inner %}
+            {% set links = [] %}
+            {% for item in group %}
+                {% set links = links|merge([{'title': item.documentHeader.title, 'url': getDocumentUrl(item.id)}]) %}
+            {% endfor %}
+
+            {% block widget_content %}
+                {% if group is not empty %}
+                    {% include 'partials/molecules/list/record.html.twig' with {
+                        'title': getTranslatedString('documents-sub-heading', [categories|combine_words]),
+                        'titleClass': 'widget__heading',
+                        'group': links,
+                        'className': 'list--navigation'
+                        }
+                    %}
+                {% endif %}
+            {% endblock %}
+        {% endblock widget_wrap_inner %}
+
+    </div>
+{% endblock widget_wrap %}

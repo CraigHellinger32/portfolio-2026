@@ -1,0 +1,19 @@
+.button--disabled,
+%button--disabled,
+.button[disabled] {
+    &,
+    &:visited {
+        background-color: lighten($color-disabled, 30%);
+        border-color: $color-disabled;
+        color: $color-text-muted;
+        cursor: not-allowed;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: lighten($color-disabled, 30%);
+        border-color: $color-disabled;
+        color: $color-text-muted;
+    }
+}

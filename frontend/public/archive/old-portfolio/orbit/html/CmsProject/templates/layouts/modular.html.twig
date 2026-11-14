@@ -1,0 +1,41 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block javascript_metadata %}
+    {# <script src="{{ asset('site/js/swfobject.min.js') }}"></script> - purposely leaving swfobject out of orbit #}
+{% endblock %}
+
+{% block primary_supplements %}
+    {% include 'partials/molecules/supplement/supplement.html.twig' with {
+        'supplements': page.content.supplements,
+        'location': 'sidebar',
+        'modifier': 'primary'
+        }
+    %}
+{% endblock %}
+
+{% block page_content %}
+    {% block main %}
+        {% block page_alert %}
+            {% include 'partials/organisms/alert.html.twig' %}
+        {% endblock %}
+
+        {% block page_widgets %}
+            {% if page.content.homepage %}
+                {% include 'partials/molecules/article/homepage.html.twig' with {
+                    'homepage': page.content.homepage,
+                    'rows': page.content.homepage.orderedWidgets
+                } %}
+            {% endif %}
+        {% endblock %}
+
+    {% endblock %}
+{% endblock page_content %}
+
+{% block secondary_supplements %}
+    {% include 'partials/molecules/supplement/supplement.html.twig' with {
+        'supplements': page.content.supplements,
+        'location': 'below content',
+        'modifier': 'secondary'
+        }
+    %}
+{% endblock %}

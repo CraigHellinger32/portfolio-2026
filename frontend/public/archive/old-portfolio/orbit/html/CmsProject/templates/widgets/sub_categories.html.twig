@@ -1,0 +1,30 @@
+{# Values were changed/added to this file to prevent twing errors #}
+{% block widget_wrap %}
+    {% set links = [] %}
+    {% for item in group %}
+        {% set links = links|merge([{'title': item.name, 'url': path('document_category', { 'categoryId': item.id, 'categorySlug': getSlug(item.getId(), 'category') })}]) %} {# Modification: categoryId added for prototypes #}
+    {% endfor %}
+
+    {% block widget_content %}
+        {% if group is not empty %}
+
+            {% block widget_content_inner %}
+                <div class="widget-sub-categories">
+
+                    {% block sub_category_list %}
+                        {% include 'partials/molecules/list/record.html.twig' with {
+                            'title': getTranslatedString('categories-sub-heading', [ categories|combine_words ]),
+                            'titleClass': 'widget__heading',
+                            'group': links,
+                            'className': 'list--navigation'
+                            }
+                        %}
+                    {% endblock %}
+
+                </div>
+            {% endblock widget_content_inner %}
+
+        {% endif %}
+    {% endblock widget_content %}
+
+{% endblock widget_wrap %}

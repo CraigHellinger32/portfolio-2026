@@ -1,0 +1,71 @@
+{% if feed is not empty %}
+    {% block widget_wrap %}
+        <div class="widget-feeds">
+
+            {% block widget_wrap_inner %}
+
+                {% block widget_heading %}
+                    {% include 'partials/atoms/text/widget_heading.html.twig' with {
+                        'title': feed.name
+                        }
+                    %}
+                {% endblock %}
+
+                {% block widget_content %}
+                    <ul class="list list--listing">
+
+                        {% block widget_content_inner %}
+                            {% if isAtomFeed %}
+
+                                {% block feed_atom %}
+                                    {% for item in group %}
+
+                                        {% block feed_atom_items %}
+                                            <li class="list__item">
+                                                {% block feed_atom_listing %}
+                                                    {% include 'partials/molecules/article/summary.html.twig' with {
+                                                        'title': item.title,
+                                                        'summary': item.summary,
+                                                        'link': item.link,
+                                                        'group': item.meta
+                                                    } %}
+                                                {% endblock feed_atom_listing %}
+                                            </li>
+                                        {% endblock feed_atom_items %}
+
+                                    {% endfor %}
+                                {% endblock feed_atom %}
+
+                            {% else %}
+
+                                {% block feed_standard %}
+                                    {% for item in group %}
+
+                                        {% block feed_standard_items %}
+                                            <li class="list__item">
+                                                {% block feed_standard_listing %}
+                                                    {% include 'partials/molecules/article/summary.html.twig' with {
+                                                        'title': item.title,
+                                                        'summary': item.summary,
+                                                        'link': item.link,
+                                                        'group': item.meta
+                                                    } %}
+                                                {% endblock %}
+
+                                            </li>
+                                        {% endblock %}
+
+                                    {% endfor %}
+                                {% endblock feed_standard %}
+                            {% endif %}
+                        {% endblock widget_content_inner %}
+
+                    </ul>
+                {% endblock widget_content %}
+
+            {% endblock widget_wrap_inner %}
+
+        </div>
+    {% endblock widget_wrap %}
+
+{% endif %}

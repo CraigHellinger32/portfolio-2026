@@ -1,0 +1,328 @@
+{
+    "content": {
+        "title": "Generic Listing Page",
+        "feature1": {
+            "title": "Council Swimming Club recognised by the Queen",
+            "summary": "The Phoenix Swimming Club for Disabled People has been awarded the Queen’s Award for Voluntary Service from Her Majesty the Queen",
+            "meta": [
+                {
+                    "type": "date",
+                    "title": "Published",
+                    "value": "2019-12-09 12:00:00"
+                }
+            ],
+            "link": {
+                "url": "5-article-news.html.twig?article=featured1"
+            }
+        },
+        "feature2": {
+            "image": {
+                "url": "images/alumni.png",
+                "alt": "alt text"
+            },
+            "title": "Council Swimming Club recognised by the Queen Again",
+            "summary": "The Phoenix Swimming Club for Disabled People has been awarded the Queen’s Award for Voluntary Service from Her Majesty the Queen",
+            "meta": [
+                {
+                    "type": "date",
+                    "title": "Published",
+                    "value": "2019-12-09 12:00:00"
+                }
+            ],
+            "link": {
+                "url": "5-article-news.html.twig?article=featured2"
+            }
+        },
+        "lists": [
+            {
+                "type": "article",
+                "items": [
+                    {
+                        "title": "News article with inline image",
+                        "summary": "This article will have an inline image. Which should show in the middle of a sentence.",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-news.html.twig?article=1"
+                        }
+                    },
+                    {
+                        "image": {
+                            "url": "images/diagnosis.png",
+                            "alt": "alt text"
+                        },
+                        "title": "TEST With Park Images in the Content",
+                        "summary": "Tiramisu dragee caramels.",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-news.html.twig?article=2"
+                        }
+                    },
+                    {
+                        "title": "TEST News article (:visited link)",
+                        "summary": "News article",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "2-generic-listing-page.html"
+                        }
+                    },
+                    {
+                        "title": "TEST News article minimum length",
+                        "summary": "News article minimum length",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-news.html.twig?article=4"
+                        }
+                    },
+                    {
+                        "title": "TEST News article maximum lengths",
+                        "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dolor mauris, tempus vel dictum vitae, semper in lacus. Integer vitae cursus metus, at consequat neque. Aenean id tincidunt lacus. Fus",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-news.html.twig?article=5"
+                        }
+                    },
+                    {
+                        "title": "TEST News Without An Image",
+                        "summary": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-news.html.twig?article=6"
+                        }
+                    },
+                    {
+                        "image": {
+                            "url": "images/diversity.png",
+                            "alt": "alt text"
+                        },
+                        "title": "Council foster carer wins Pride of Britain Award",
+                        "summary": "A Council super-carer who has fostered more than 1,300 children over 34 years has won a Daily Mirror Pride of Britain Award.",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-news.html.twig?article=7"
+                        }
+                    },
+                    {
+                        "title": "Are you entitled for a free flu vaccination?",
+                        "summary": "Thousands of people are being encouraged to take advantage of a free flu vaccination before the winter season takes hold.",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-news.html.twig?article=8"
+                        }
+                    },
+                    {
+                        "title": "City needs mental health 'champions'",
+                        "summary": "Council urgently needs a mental health ‘champion’ to bridge the gap between vulnerable tenants and housing providers in the city, a new report says.",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-news.html.twig?article=9"
+                        }
+                    }
+                ]
+            }
+        ],
+        "listMasonry": [
+            {
+                "type": "article",
+                "items": [
+                    {
+                        "title": "News article with inline image (masonry)",
+                        "summary": "This article will have an inline image. Which should show in the middle of a sentence.",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-news.html.twig?article=1"
+                        }
+                    },
+                    {
+                        "image": {
+                            "url": "images/diagnosis.png",
+                            "alt": "alt text"
+                        },
+                        "title": "TEST With Park Images in the Content (masonry)",
+                        "summary": "Tiramisu dragee caramels.",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-news.html.twig?article=2"
+                        }
+                    },
+                    {
+                        "title": "TEST News article (:visited link) (masonry)",
+                        "summary": "News article",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "2-generic-listing-page.html"
+                        }
+                    },
+                    {
+                        "title": "TEST News article minimum length (masonry)",
+                        "summary": "News article minimum length",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-news.html.twig?article=4"
+                        }
+                    },
+                    {
+                        "title": "TEST News article maximum lengths (masonry)",
+                        "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dolor mauris, tempus vel dictum vitae, semper in lacus. Integer vitae cursus metus, at consequat neque. Aenean id tincidunt lacus. Fus",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-news.html.twig?article=5"
+                        }
+                    },
+                    {
+                        "title": "TEST News Without An Image (masonry)",
+                        "summary": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-news.html.twig?article=6"
+                        }
+                    },
+                    {
+                        "image": {
+                            "url": "images/diversity.png",
+                            "alt": "alt text"
+                        },
+                        "title": "Council foster carer wins Pride of Britain Award (masonry)",
+                        "summary": "A Council super-carer who has fostered more than 1,300 children over 34 years has won a Daily Mirror Pride of Britain Award.",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-news.html.twig?article=7"
+                        }
+                    },
+                    {
+                        "title": "Are you entitled for a free flu vaccination? (masonry)",
+                        "summary": "Thousands of people are being encouraged to take advantage of a free flu vaccination before the winter season takes hold.",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-news.html.twig?article=8"
+                        }
+                    },
+                    {
+                        "title": "City needs mental health 'champions' (masonry)",
+                        "summary": "Council urgently needs a mental health ‘champion’ to bridge the gap between vulnerable tenants and housing providers in the city, a new report says.",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-news.html.twig?article=9"
+                        }
+                    }
+                ]
+            }
+        ],
+        "filterBar": {
+            "action": "index.html",
+            "method": "get",
+            "controls": [{"type":"select","label":"Filter 1","name": "filter-1","options":[{"value": "1","text":"Option 1"},{"value": "2","text":"Option 2"},{"value": "3","text":"Option 3"}]},{"type":"select","label":"Filter 2","name": "filter-2","options":[{"value": "1","text":"Option 1"},{"value": "2","text":"Option 2"},{"value": "3","text":"Option 3"}]}],
+            "primaryAction": {
+                "name": "go",
+                "label": "Go"
+            }
+        }
+    }
+}

@@ -1,0 +1,51 @@
+$masonry-gutter: $space-half !default;
+
+%list--listing,
+.list--listing {
+    @extend %list--rich;
+
+    &[data-enable-masonry] {
+        @include respond-min($mid-width) {
+            margin: -$space-half;
+        }
+
+        .list__item {
+            background-color: $color-subtle;
+            border: 0;
+            margin-bottom: $space;
+            padding: 0;
+            width: 100%;
+
+            @include respond-min($mid-width) {
+                float: left;
+                margin: $space-half;
+                width: calc(50% - #{$masonry-gutter * 2});
+            }
+        }
+
+        .listing__link {
+            @include linkUnderline('.listing__heading', $color-text-default, $color-subtle);
+
+            flex-direction: column;
+
+            .listing__content {
+                order: 1;
+                padding: $masonry-gutter * 2;
+            }
+
+            .listing__image {
+                margin: 0;
+                max-width: 100%;
+                width: 100%;
+            }
+        }
+
+        .one-column & {
+            .list__item {
+                @include respond-min($x-large-width) {
+                    width: calc(#{percentage(1 / 3)} - #{$masonry-gutter * 2});
+                }
+            }
+        }
+    }
+}

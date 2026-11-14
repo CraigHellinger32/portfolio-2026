@@ -1,0 +1,18 @@
+{% set socialLinksIncidentalContent = data.incidentalContent.socialMediaLinks %}
+
+{% if socialLinksIncidentalContent.links %}
+    {% apply spaceless %}
+        <nav class="nav nav--social-links" aria-label="social links">
+            <ul class="list list--inline">
+                {% for item in socialLinksIncidentalContent.links %}
+                    <li class="list__item">
+                        <a class="list__link" href="{{ item.url }}" title="{{ item.title }}" target="_blank" rel="noopener">
+                            <span class="icon {{ item.icon }}"></span>
+                            <span class="visually-hidden">{{ item.title }}</span>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    {% endapply %}
+{% endif %}

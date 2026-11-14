@@ -1,0 +1,66 @@
+$form-max-width: $mid-width !default;
+
+.form__dropzone {
+    background: $color-grey-light;
+    border: $border-width-mid dashed $color-border-dark;
+    margin-top: $space-half;
+    max-width: $form-max-width;
+    min-height: 0;
+    padding: $gutter;
+    transition: background-color $transition-speed;
+
+    .dz-preview,
+    .dz-message {
+        text-align: center;
+    }
+
+    .dz-preview.dz-image-preview {
+        background: transparent;
+    }
+
+    .dz-error-message {
+        margin-top: $space;
+    }
+
+    .no-js & {
+        .dz-message {
+            display: none;
+        }
+    }
+
+    .file-upload__label {
+        @include visuallyhidden;
+    }
+
+    &:hover {
+        background-color: mix($color-off-white, $color-subtle);
+    }
+}
+
+.form__dropzone-upload-button {
+    @extend %button;
+
+    &.button {
+        margin: 0;
+    }
+
+    .no-js & {
+        display: none;
+    }
+}
+
+.dz-remove {
+    @extend %button;
+    @extend %button--small;
+    @extend %button--danger;
+
+    .dropzone .dz-preview & {
+        margin: $space-third 0 0;
+    }
+}
+
+.dz-upload {
+    .dropzone .dz-preview .dz-progress & {
+        background: linear-gradient(to bottom, $color-secondary, $color-secondary-dark);
+    }
+}

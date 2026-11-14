@@ -1,0 +1,74 @@
+// Aside
+//
+// .aside
+// .aside--below
+// .aside--sidebar
+
+%aside,
+.aside {
+    @extend %cf;
+
+    > *:first-child {
+        margin-top: $slug;
+    }
+}
+
+.aside__section,
+%aside__section {
+    @extend %boxed;
+
+    margin-bottom: $widget-supp-slug;
+
+    > *:first-child {
+        margin-top: 0;
+    }
+}
+
+.aside__heading,
+%aside__heading {
+    @extend %boxed__heading;
+
+    font-size: $epsilon;
+    margin: 0 0 $space-two-thirds;
+}
+
+.aside__list,
+%aside__list {
+    margin-top: $space-half;
+
+    .list__item {
+        margin-top: $space-half;
+    }
+}
+
+.aside__links,
+%aside__links {
+    margin-top: $space-half;
+
+    .list__item {
+        margin-top: $space-half;
+    }
+}
+
+%aside--sidebar,
+.aside--sidebar {
+    @include respond-max($large-width) {
+        float: left;
+        width: 100%;
+
+        > *:first-child {
+            margin-top: 0;
+        }
+    }
+
+    .two-column & {
+        @include respond-min($large-width) {
+            float: left;
+            width: $sidebar-width;
+
+            > *:first-child {
+                margin-top: 0;
+            }
+        }
+    }
+}

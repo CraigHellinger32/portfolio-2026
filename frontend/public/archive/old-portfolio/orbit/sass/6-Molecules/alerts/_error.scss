@@ -1,0 +1,4 @@
+%alert--error,
+.alert--error {
+    @extend %alert--danger;
+}

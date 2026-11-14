@@ -1,0 +1,42 @@
+.sign-in-links {
+    .list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .list__item {
+        flex: 1 1 50%;
+        margin: 0;
+        max-width: 50%;
+        padding: $gutter-small;
+
+        @include respond-max($xx-small-width) {
+            flex: 1 1 100%;
+            max-width: 100%;
+        }
+    }
+
+    .widet-width--small & {
+        .list__item {
+            flex: 1 1 100%;
+            max-width: 100%;
+        }
+    }
+
+    .list__link {
+        @extend %button;
+        @extend %button--primary;
+
+        margin: 0;
+        min-width: 100%;
+
+        &,
+        &:visited,
+        &:hover,
+        &:focus,
+        &:active,
+        &:visited:hover {
+            color: $color-white;
+        }
+    }
+}

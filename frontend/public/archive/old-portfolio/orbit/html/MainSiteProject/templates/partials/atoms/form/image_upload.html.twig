@@ -1,0 +1,13 @@
+{% set previewImageId =  'preview_' ~ random() %}
+{% set image =  convertToLazyImage(value) %}
+<input type="hidden" name="{{ name }}" value="0" data-preview-id="{{ previewImageId }}">
+<input class="form__field form__field--image-upload" type='file' onchange="previewUploadedImage(this);" name="{{ name }}" id="{{ id|default(name) }}" data-preview-id="{{ previewImageId }}"{% if required %} aria-required="true"{% endif %}{% if help is not empty %} aria-describedby="help_text_{{ id|default(name) }}"{% endif %}>
+
+<div class="image-preview">
+    <img class="image image--thumbnail" data-initial-value="{{ image.getUrl() }}" id="{{ previewImageId }}" src="{{ image.getUrl()|default('site/dist/images/preloader.svg') }}" alt="{{ image.getAlt() }}"/>
+    <span class="image__remove-button">
+        <button class="button button--small" type="button"{% if value is empty %} style="display:none"{% endif %} id="remove_button_{{ previewImageId }}" onclick="removeImageUpload(this)" aria-label="Remove {{ label }}" data-preview-id="{{ previewImageId }}">
+            Remove image
+        </button>
+    </span>
+</div>

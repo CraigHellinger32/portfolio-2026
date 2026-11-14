@@ -1,0 +1,85 @@
+// a11y-toggle must be applied to parent of '.toggle-icon'
+%toggle-line {
+    background-color: $color-white;
+    height: 2px;
+    left: 0;
+    position: absolute;
+    transition: transform $transition-speed ease-out;
+    width: 100%;
+}
+
+%toggle-icon,
+.toggle-icon {
+    display: inline-block;
+    position: relative;
+    transform: rotate(0deg);
+    vertical-align: middle;
+
+    &::before,
+    &::after {
+        @extend %toggle-line;
+
+        content: '';
+        transform: translateY(0) rotate(0deg);
+        transition: top $transition-speed ease-out, bottom $transition-speed ease-out, transform $transition-speed ease-out;
+
+        [aria-expanded="true"] & {
+            bottom: auto;
+            height: 3px;
+            top: 50%;
+        }
+    }
+
+    &::before {
+        top: 0;
+
+        [aria-expanded="true"] & {
+            transform: translateY(-50%) rotate(45deg);
+        }
+    }
+
+    &::after {
+        bottom: 0;
+
+        [aria-expanded="true"] & {
+            transform: translateY(-50%) rotate(-45deg);
+        }
+    }
+
+    .toggle-icon__line {
+        @extend %toggle-line;
+
+        opacity: 1;
+        top: 50%;
+        transform: translate(0, -50%);
+        transition: transform $transition-speed ease-out, opacity $transition-speed-fast ease-out;
+
+        [aria-expanded="true"] & {
+            opacity: 0;
+            transform: translate(-100%, -50%);
+        }
+    }
+}
+
+.toggle-icon--search {
+    left: $space-two-thirds;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: opacity $transition-speed ease-out;
+
+    @include respond-max($small-width) {
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .toggle-icon__line {
+        opacity: 0;
+    }
+
+    [aria-expanded="true"] & {
+        opacity: 1;
+        // transition: none;
+    }
+}

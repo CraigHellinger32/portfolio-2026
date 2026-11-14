@@ -1,0 +1,22 @@
+{% if supplements|default([])|length > 0 %}
+    {% for supplement in supplements %}
+        {% if supplement.locationOnPage == location %}
+            {% if supplement.widget.title == 'EGov Contact' %}
+                {{ component('egov_contact', { id: supplement.record.contactID }) }}                
+            {% elseif supplement.widget.title == 'ESRI Map' %}
+                {{ getESRIMapsHTML(-1, '', supplement.record.guid)|raw }}
+            {% else %}
+                {# Update replace filter to prevent twing error #}
+                {% include ['partials/molecules/supplement/'~ supplement.widget.title|lower|replace({' ': '_'}) ~'.html.twig', 'partials/molecules/supplement/further_info.html.twig'] with {
+                    'record': supplement.record,
+                    'title': supplement.record.title,
+                    'summary': supplement.record.description,
+                    'image': supplement.record.imageFilename,
+                    'link': supplement.record.url, 
+                    'link_title': supplement.record.urlText                     
+                    } 
+                %}            
+            {% endif %}
+        {% endif %}            
+    {% endfor %}
+{% endif %}

@@ -1,0 +1,10 @@
+.progress-bar--danger,
+%progress-bar--danger {
+    .progress-bar__indicator {
+        background: $color-danger;
+
+        &::before {
+            border-left-color: $color-danger;
+        }
+    }
+}

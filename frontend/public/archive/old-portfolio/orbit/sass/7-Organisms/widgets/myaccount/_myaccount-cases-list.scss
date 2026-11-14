@@ -1,0 +1,66 @@
+.my-cases__list {
+    @extend %list;
+
+    border-top: $border-width-small solid $color-border-mid;
+    margin: $slug 0;
+}
+
+.my-cases__item {
+    @extend %list__item;
+
+    border-bottom: $border-width-small solid $color-border-mid;
+    padding-bottom: $space-hard;
+}
+
+.my-cases__title {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+}
+
+.my-cases__title-flex-wrapper {
+    flex: 1 1 auto;
+}
+
+.my-cases__title-link {
+    .widget-width--small & {
+        margin-right: $space-quarter;
+    }
+}
+
+.my-cases__metadata {
+    @extend %list;
+
+    margin-top: 0;
+}
+
+.my-cases__metadata-item {
+    display: block;
+    font-size: $milli;
+}
+
+.my-cases__label {
+    color: $color-black;
+    font-size: $milli;
+    margin-left: $space-half;
+    padding: $space-eighth $space-fifth;
+    text-align: right;
+
+    .widget-width--small & {
+        margin-left: 0;
+    }
+}
+
+.my-cases__label--open {
+    background-color: $color-success;
+}
+
+.my-cases__label--closed {
+    background-color: $color-danger;
+}
+
+.my-cases__label--more-information-required {
+    background-color: $color-warning;
+}

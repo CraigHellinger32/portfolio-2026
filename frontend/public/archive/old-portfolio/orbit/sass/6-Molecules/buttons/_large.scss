@@ -1,0 +1,9 @@
+.button--large,
+%button--large {
+    &,
+    &:visited {
+        @extend %epsilon;
+
+        padding: $space $space-double;
+    }
+}

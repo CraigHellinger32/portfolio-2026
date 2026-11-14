@@ -1,0 +1,66 @@
+// ========================================================
+//  Content
+// ========================================================
+//  This file is intentionally sparse and are intended as
+//  placeholder for your content styles that aren’t covered
+//  by the objects in /sass/objects/. Orbit contains the
+//  following content styles as default, feel free to
+//  change as needed.
+
+$sidebar-width: pxToRem(340px);
+
+.site {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    transform: translateY(0);
+    transition: transform $transition-speed-slow ease-out;
+
+    @include if-ie(ie) {
+        display: block;
+    }
+}
+
+.site-main {
+    flex: 1 0 auto;
+    margin: $space-and-quarter 0 $space-double;
+    z-index: zIndex('site-main');
+}
+
+.site-content {
+    @extend %cf;
+
+    .one-column & {
+        margin: 0 auto;
+    }
+}
+
+.page-content {
+    @extend %cf;
+
+    .two-column & {
+        margin-bottom: $slug;
+
+        @include respond-min($large-width) {
+            float: left;
+            margin-bottom: 0;
+            padding-right: $gutter-large;
+            width: calc(100% - #{$sidebar-width});
+        }
+    }
+
+    > *:last-child {
+        margin-bottom: 0;
+    }
+
+    .homepage-modular &,
+    .category-modular & {
+        margin-top: -$widget-supp-slug;
+    }
+}
+
+.page-heading,
+.page-subheading {
+    margin-bottom: $slug;
+}

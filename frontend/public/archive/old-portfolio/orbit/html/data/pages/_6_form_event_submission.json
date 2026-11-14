@@ -1,0 +1,99 @@
+{
+    "bodyClass": "event-submit-form",
+    "breadcrumb": [
+        {
+            "title": "Events",
+            "url": "4-events-listing-page.html"
+        }
+    ],
+    "content": {
+        "title": "Suggest a event",
+        "action": "6-form-event-submission.html",
+        "method": "get",
+        "primaryAction": {
+            "name": "submit",
+            "label": "Submit"
+        },
+        "controls": [
+            {
+                "type": "text",
+                "label": "Event Title",
+                "name": "title",
+                "mandatory": true
+            },
+            {
+                "type": "date",
+                "label": "Start date",
+                "name": "startDate",
+                "mandatory": true,
+                "help": "dd/mm/yyyy"
+            },
+            {
+                "type": "select",
+                "label": "Duration of event",
+                "name": "interval",
+                "options": [
+                    {"value": "1day","text": "Just this day"},{"value": "day","text": "Daily"},{"value": "weekly","text": "Weekly"},{"value": "fortnight","text":"Fortnightly"},{"value": "monthByDay","text":"On this day every month"},{"value": "monthByDate","text":"On this date every month"}
+                ],
+                "mandatory": true
+            },
+            {
+                "type": "date",
+                "label": "End date",
+                "name": "endDate",
+                "help": "dd/mm/yyyy"
+            },
+            {
+                "type": "text",
+                "label": "Event start time",
+                "name": "startTime",
+                "help": "hh:mm"
+            },
+            {
+                "type": "text",
+                "label": "Event end time",
+                "name": "endTime",
+                "help": "hh:mm"
+            },
+            {
+                "type": "text",
+                "label": "Cost",
+                "name": "cost",
+                "mandatory": true
+            },
+            {
+                "type": "select",
+                "label": "Location of event",
+                "name": "location_id",
+                "options": [
+                    {"value": "-1","text": "Choose and existing location"},{"value": "1","text": "Library"},{"value": "2","text": "Leisure Centre"},{"value": "3","text":"Town Hall"},{"value": "4","text":"Local cinema"}
+                ],
+                "mandatory": true
+            },
+            {
+                "type": "text",
+                "label": "Or create a new Location",
+                "name": "location",
+                "mandatory": true
+            },
+            {
+                "type": "textarea",
+                "label": "Summary",
+                "name": "location",
+                "mandatory": true,
+                "help": "Must be maximum of 200 characters in length"
+            },
+            {
+                "type": "textarea",
+                "label": "Description",
+                "name": "description"
+            },
+            {
+                "type": "file",
+                "label": "Supporting image",
+                "name": "image",
+                "help": "JPEG, GIF, PNG only"
+            }
+        ]
+    }
+}

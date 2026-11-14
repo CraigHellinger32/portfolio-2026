@@ -1,0 +1,11 @@
+{% extends '@theme:base/pages/publishing_content/directory/record_list.html.twig' %}
+
+{% block list_az %}
+    {% include 'partials/molecules/list/list.html.twig' with {
+        'group': page.content.AZLinkList,
+        'type': 'az',
+        'className': 'list--az',
+        'area': 'directory records'
+        }
+    %}
+{% endblock %}

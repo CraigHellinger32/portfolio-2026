@@ -1,0 +1,96 @@
+$social-icon-size: $space !default;
+
+%nav--social-links,
+.nav--social-links {
+    margin-bottom: $slug;
+
+    .nav__heading {
+        margin-bottom: 0;
+    }
+
+    .list__item {
+        margin: $space-half $space-half $space-half 0;
+        width: auto;
+    }
+
+    .list__link {
+        background-color: $color-primary;
+        display: block;
+        padding: $space-third;
+        position: relative;
+
+        &::before {
+            background-color: $color-secondary;
+            bottom: 0;
+            content: '';
+            display: block;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transform: scale(0);
+            transform-origin: center;
+            transition: transform $transition-speed-slow ease-out;
+            z-index: 1;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            &::before {
+                transform: scale(1);
+            }
+        }
+    }
+
+    .icon {
+        height: $social-icon-size;
+        position: relative;
+        width: $social-icon-size;
+        z-index: 2;
+    }
+
+    //  Social links in footer
+    // ========================
+    .site-footer & {
+        margin-bottom: $slug;
+        text-align: center;
+
+        @include respond-min($mid-width) {
+            margin-bottom: $space-half;
+            text-align: left;
+        }
+
+        .list__item {
+            margin: 0 $space-quarter;
+            vertical-align: bottom;
+
+            @include respond-min($mid-width) {
+                margin: $space-half $space-half 0 0;
+            }
+        }
+    }
+
+    //  Social links in header
+    // ========================
+    .site-header & {
+        display: none;
+
+        @include respond-min($mid-width) {
+            display: inline-block;
+            margin-bottom: 0;
+            margin-right: $space-third;
+        }
+
+        .list__item {
+            margin-bottom: 0;
+            margin-right: $space-third;
+            margin-top: 0;
+            vertical-align: middle;
+        }
+
+        .list__link {
+            padding: $space-hard $space-third;
+        }
+    }
+}

@@ -1,0 +1,172 @@
+{% block form_matrix_wrap %}
+    {% block form_matrix_anchor %}
+        <span id="{{ question.name }}"></span>
+    {% endblock %}
+
+    {% if hasRows or hasColumns or hasSummary %}
+        {% block form_matrix %}
+            <table class="data-table form__matrix">
+                {% block form_matrix_inner %}
+                    {% block form_matrix_thead %}
+                        {% if hasColumns %}
+                            {% block form_matrix_thead_inner %}
+                                <thead>
+                                    <tr>
+                                        {% if hasRows or hasSummary %}
+                                            <td></td>
+                                        {% endif %}
+
+                                        {% for column in question.columns %}
+                                            <th data-matrix-column-id="{{ loop.index }}">{{ column.heading }}</th>
+                                        {% endfor %}
+                                    </tr>
+                                </thead>
+                            {% endblock %}
+                        {% endif %}
+                    {% endblock %}
+
+                    {% block form_matrix_tbody %}
+                        <tbody>
+                            {% if hasRows %}
+                                {% for rowNumber, row in question.rows %}
+                                    {% block form_matrix_tbody_row %}
+                                        <tr data-matrix-row-id="{{ loop.index }}">
+                                            {% block form_matrix_tbody_row_heading %}
+                                                <td>{{ row.heading }}</td>
+                                            {% endblock %}
+
+                                            {% block form_matrix_tbody_row_columns %}
+                                                {% for column in question.columns %}
+                                                    <td>
+                                                        {% block form_matrix_cell %}
+                                                            <div class="matrix--field" data-secondary="{{ loop.index0 ~ '-' ~ rowNumber }}">
+                                                                {% if column.prepend %}<span class="matrix--prepend">{{ column.prepend ?: '' }}</span>{% endif %}
+
+                                                                {% block form_matrix_cell_input %}
+                                                                    <input
+                                                                        aria-label="{{ column.heading }} {{ row.heading }}"
+                                                                        name="{{ question.name ~ '[columns][' ~ loop.index ~ '][' ~ parent.loop.index ~ ']' }}"
+                                                                        {% if column.type == 'number' and hasSummary %}
+                                                                            class="js-update-summary form__field"
+                                                                            data-col="{{ loop.index }}"
+                                                                            data-uid="{{ question.uid }}"
+                                                                        {% else %}
+                                                                            class="form__field"
+                                                                        {% endif %}
+                                                                        value="{{ question.answers.get(question.name, loop.index0, rowNumber) }}"
+                                                                    />
+                                                                {% endblock %}
+                                                            </div>
+                                                        {% endblock %}
+                                                    </td>
+                                                {% endfor %}
+                                            {% endblock %}
+                                        </tr>
+                                    {% endblock %}
+                                {% endfor %}
+                            {% else %}
+                                {% block form_matrix_tbody_no_rows %}
+                                    <tr>
+                                        {% if hasSummary %}
+                                            <td></td>
+                                        {% endif %}
+
+                                        {% for column in question.columns %}
+                                            <td>{{ column.prepend ?: '' }}</td>
+                                        {% endfor %}
+                                    <tr>
+                                {% endblock %}
+                            {% endif %}
+                        </tbody>
+                    {% endblock %}
+
+                    {% block form_matrix_tfoot_wrap %}
+                        {% if hasSummary %}
+                            {% block form_matrix_tfoot %}
+                                <tfoot class="table__footer table__footer--summary">
+                                    {% block form_matrix_tfoot_inner %}
+                                        <tr>
+                                            {% block form_matrix_tfoot_summary %}
+                                                <td>{{ question.summary }}</td>
+                                            {% endblock %}
+
+                                            {% block form_matrix_tfoot_columns %}
+                                                {% for column in question.columns %}
+                                                    {% if column.type == 'number' %}
+                                                        {% block form_matrix_tfoot_number %}
+                                                            <td data-prepend="{{ column.prepend ?: '' }}" data-col="{{ loop.index }}" data-uid="{{ question.uid }}" class="js-summary-field">
+                                                                {% block form_matrix_tfoot_cell %}
+                                                                    <div class="matrix--field">
+                                                                        {% if column.prepend %}<span class="matrix--prepend">{{ column.prepend ?: '' }}</span>{% endif %}
+                                                                        {{ question.answers.get(question.name, loop.index0, -1) }}
+                                                                    </div>
+                                                                {% endblock %}
+                                                            </td>
+                                                        {% endblock %}
+                                                    {% else %}
+                                                        {% block form_matrix_tfoot_empty %}
+                                                            <td></td>
+                                                        {% endblock %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endblock %}
+                                        </tr>
+                                    {% endblock %}
+                                </tfoot>
+                            {% endblock %}
+                        {% endif %}
+                    {% endblock %}
+
+                {% endblock %}
+            </table>
+        {% endblock %}
+
+        {% block form_matrix_js %}
+            <script>
+                var fields = document.querySelectorAll('.js-update-summary[data-uid="{{ question.uid }}"]');
+
+                for (var i=0; i < fields.length; i++) {
+                    var column = fields[i].getAttribute('data-col'),
+                        uid = fields[i].getAttribute('data-uid');
+
+                    fields[i].onchange = function() {
+                        var column = this.getAttribute('data-col'),
+                            uid = this.getAttribute('data-uid'),
+                            colFields = document.querySelectorAll('.js-update-summary[data-col="'+column+'"][data-uid="'+uid+'"]'),
+                            summaryField = document.querySelector('.js-summary-field[data-col="'+column+'"][data-uid="'+uid+'"]'),
+                            summaryPrepend = summaryField.getAttribute('data-prepend'),
+                            total = 0;
+
+                        for (var j=0; j < colFields.length; j++) {
+                            if (colFields[j].value != '' ) {
+                                var num = parseFloat(colFields[j].value);
+                                if (!isNaN(num)) {
+                                    total += num;
+                                }
+                            }
+                        }
+
+                        summaryField.innerHTML = summaryPrepend + total;
+                    }
+                }
+            </script>
+        {% endblock %}
+
+        {% block form_matrix_calculate_button %}
+            {% if hasSummary %}
+                {% block form_matrix_calculate_button_inner %}
+                    <noscript>
+                        {% include 'partials/atoms/form/button.html.twig' with {
+                            'label': 'Calculate ' ~ question.summary,
+                            'name': 'callback',
+                            'value': {'action':'calculate','element':question.name}|json_encode,
+                            'className': 'button--secondary btn--lookup'
+                            } only
+                        %}
+                        <br />
+                    </noscript>
+                {% endblock %}
+            {% endif %}
+        {% endblock %}
+    {% endif %}
+{% endblock %}

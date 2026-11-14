@@ -1,0 +1,5 @@
+{% extends '@theme:base/partials/molecules/list/az.html.twig' %}
+
+{% block az_list_item_link %}
+    <a class="button button--secondary" href="{{ item.url }}">{{ item.title }}<span class="visually-hidden">: A to Z of {{ area|default('services') }}</span></span></a>
+{% endblock %}

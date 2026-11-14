@@ -1,0 +1,49 @@
+$disable-search-input-browser-enhancements: false !default; // Disable the 'cancel' button etc. in IE11, Edge and Chrome
+
+%form--search,
+.form--search {
+    .form__append-group {
+        flex-wrap: nowrap;
+    }
+
+    .form__field {
+        flex: 1 1 auto;
+        min-height: $space-and-third;
+        min-width: 1px;
+        width: auto;
+
+        @if $disable-search-input-browser-enhancements {
+            &::-ms-clear {
+                display: none;
+            }
+        }
+    }
+
+    .button {
+        margin: 0;
+        min-height: $space-and-third;
+    }
+
+    .icon {
+        display: none;
+    }
+
+    .icon-fallback {
+        @include visuallyhiddenreset;
+    }
+
+    .site-search__focus-button {
+        display: none;
+    }
+}
+
+@if $disable-search-input-browser-enhancements {
+    input[type='search'] {
+        &::-webkit-search-decoration,
+        &::-webkit-search-cancel-button,
+        &::-webkit-search-results-button,
+        &::-webkit-search-results-decoration {
+            display: none;
+        }
+    }
+}

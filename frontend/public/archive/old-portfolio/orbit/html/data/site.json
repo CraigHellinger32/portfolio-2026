@@ -1,0 +1,38 @@
+{
+    "name": "Spacecraft Prototype",
+    "baseUrl": "./index.html",
+    "liveUrl": "https://www.spacecraft.co.uk/",
+    "searchResultsUrl": "./4-search-results.html",
+    "analytics_code_header": "<!-- 3rd party analytics code goes here -->",
+    "announcement": {
+        "visible": false,
+        "title": "Main announcement message title",
+        "summary": "Alert! This message area is used if there’s an urgent message you need to share with your users.",
+        "url": "/404.html?announcement=true",
+        "label": "More about this alert"
+    },
+    "navigationWidget": {
+        "title": "Site-wide navigation widget",
+        "links": [
+            {
+                "title": "Sitemap",
+                "url": "landing.html?nav-widget-link=1"
+            },
+            {
+                "title": "Contact us",
+                "url": "landing.html?nav-widget-link=2"
+            },
+            {
+                "title": "Privacy Policy",
+                "url": "landing.html?nav-widget-link=3"
+            }
+        ]
+    },
+    "constants": {
+        "ANALYTICS_INCLUDE": "<!-- 3rd party analytics code goes here -->",
+        "GOOGLE_MAPS_API_KEY": "",
+        "XFP_MAP_COMPONENT_CENTER_LAT": "52.04",
+        "XFP_MAP_COMPONENT_CENTER_LNG": "-1.66",
+        "XFP_MAP_COMPONENT_ZOOM": "7"
+    }
+}

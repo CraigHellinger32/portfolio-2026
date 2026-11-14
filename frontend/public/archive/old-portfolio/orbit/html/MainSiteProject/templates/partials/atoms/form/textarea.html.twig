@@ -1,0 +1,17 @@
+{% if rows is empty %}
+    {% set rows = 5 %}
+{% endif %}
+{% if cols is empty %}
+    {% set cols = 30 %}
+{% endif %}
+{% spaceless %}
+    <textarea class="form__textarea"
+    name="{{ name }}"
+    id="{{ name }}"
+    rows="{{ rows }}"
+    cols="{{ cols }}"
+    {% if placeholder is not empty %}placeholder="{{ placeholder }}"{% endif %}
+    {% if help is not empty %}aria-describedby="help_text_{{ id|default(name) }}"{% endif %}
+    {% if maxlength %}maxlength="{{ maxlength }}"{% endif %}
+    {% if required %}aria-required="true" {% endif %}>{{ value|raw }}</textarea>
+{% endspaceless %}

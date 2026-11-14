@@ -1,0 +1,303 @@
+{
+    "bodyClass": "homepage-modular",
+    "content": {
+        "title": "Home Page with Standard Widgets",
+        "homepage": {
+            "orderedWidgets": [
+                [
+                    {
+                        "widget": {
+                            "title": "navigation"
+                        },
+                        "widgetID": 23,
+                        "title": "Navigation widget",
+                        "widthPercentage": 100,
+                        "links": [
+                            {
+                                "title": "Branding",
+                                "link": "./1-branding.html"
+                            },
+                            {
+                                "title": "Typography",
+                                "link": "./1-typography.html"
+                            },
+                            {
+                                "title": "Standard Components",
+                                "link": "./1-standard-components.html"
+                            },
+                            {
+                                "title": "Supplements",
+                                "link": "./1-supplements.html"
+                            },
+                            {
+                                "title": "Standard Form Components",
+                                "link": "./1-form-components.html"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "widget": {
+                            "title": "content"
+                        },
+                        "widgetID": 6,
+                        "title": "Content widget",
+                        "widthPercentage": 100,
+                        "content": "<p class='summary'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vehicula accumsan augue, ac pharetra diam. Pellentesque egestas libero sed enim elementum, sit amet accumsan nunc cursus..</p><p>Etiam placerat, ante a pellentesque finibus, dui quam tincidunt ante, eget consectetur justo sem et dolor. Nulla molestie et lacus varius pulvinar. Cras venenatis odio in metus fringilla tempor. Integer in suscipit dui. Pellentesque porttitor eu turpis sed facilisis. Nam mattis quam felis, ut bibendum magna accumsan molestie. Nullam dictum maximus orci, ac auctor ipsum sollicitudin at. Aenean purus elit, lobortis eget arcu egestas, luctus lacinia risus. Vivamus bibendum turpis nec egestas molestie.</p><p><a class='button' href='#'>Apply online now</a></p>"
+                    }
+                ],
+                [
+                    {
+                        "widget": {
+                            "title": "directory_search"
+                        },
+                        "widgetID": 26,
+                        "title": "Directory search widget",
+                        "widthPercentage": 100
+                    }
+                ],
+                [
+                    {
+                        "widget": {
+                            "title": "images"
+                        },
+                        "widgetID": 2,
+                        "widthPercentage": 100,
+                        "imgSrc": "./images/alumni.png",
+                        "linkHref": "#",
+                        "linkText": "Image widget"
+                    }
+                ],
+                [
+                    {
+                        "widget": {
+                            "title": "homepage_banner"
+                        },
+                        "widgetID": 17,
+                        "widthPercentage": 100,
+                        "imgSrc": "./images/media_5.jpg",
+                        "linkHref": "http://google.com",
+                        "linkText": "Homepage Banner Widget",
+                        "caption": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                    }
+                ],
+                [
+                    {
+                        "widget": {
+                            "title": "external_feeds"
+                        },
+                        "widgetID": 29,
+                        "widthPercentage": 100,
+                        "feed": {
+                            "name": "External feed",
+                            "group": [
+                                {
+                                    "title": "Organised crime: NCA says its budget needs to double",
+                                    "summary": "The National Crime Agency says the threat from organised crime in the UK is now \"truly staggering\".",
+                                    "link": "#",
+                                    "meta": [
+                                        {
+                                            "type": "default",
+                                            "title": "Published",
+                                            "value": "May 14th 2019"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "'Growing inequality threatens democracy'",
+                                    "summary": "Inequalities are becoming so extreme they could undermine democracy, the IFS think tank says.",
+                                    "link": "#",
+                                    "meta": [
+                                        {
+                                            "type": "default",
+                                            "title": "Published",
+                                            "value": "May 14th 2019"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "title": "Brexit: PM's negotiator to explore changes to future EU relations",
+                                    "summary": "Olly Robbins is heading to Brussels to discuss the declaration on the UK's future relations with the EU.",
+                                    "link": "#",
+                                    "meta": [
+                                        {
+                                            "type": "default",
+                                            "title": "Published",
+                                            "value": "May 14th 2019"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ],
+                [
+                    {
+                        "widget": {
+                            "title": "gallery"
+                        },
+                        "widgetID": 28,
+                        "widthPercentage": 100,
+                        "title": "Gallery Widget",
+                        "description": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                        "gallery": {
+                            "title": "Gallery widget",
+                            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                            "items": [
+                                {
+                                    "id": 1
+                                },
+                                {
+                                    "id": 2
+                                },
+                                {
+                                    "id": 3
+                                },
+                                {
+                                    "id": 4
+                                }
+                            ]
+                        }
+                    }
+                ],
+                [
+                    {
+                        "widget": {
+                            "title": "latest_news"
+                        },
+                        "widgetID": 14,
+                        "widthPercentage": 100,
+                        "article": {
+                            "title": "Title of news article 1",
+                            "summary": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            "link": "#"
+                        },
+                        "group": [
+                            {
+                                "title": "Title of news article 2",
+                                "summary": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                                "link": "#"
+                            },
+                            {
+                                "title": "Title of news article 3",
+                                "summary": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                                "link": "#"
+                            },
+                            {
+                                "title": "Title of news article 4",
+                                "summary": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                                "link": "#"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "widget": {
+                            "title": "Middle advert"
+                        },
+                        "widgetID": 15,
+                        "widthPercentage": 100,
+                        "adverts": [
+                            {
+                                "image": "./images/media_1.jpg",
+                                "url": "http://spacecraft.co.uk/news",
+                                "alt": "alt text goes here for Advert 1",
+                                "title": "Elit Commodo Sit Egestas",
+                                "subtitle": "Lorem ipsum dolor sit amet",
+                                "content": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                            },
+                            {
+                                "image": "./images/media_2.jpg",
+                                "url": "http://spacecraft.co.uk/events",
+                                "alt": "alt text goes here for Advert 2",
+                                "title": "Vulputate Lorem Inceptos",
+                                "subtitle": "Lorem ipsum dolor sit amet",
+                                "content": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "widget": {
+                            "title": "Right advert"
+                        },
+                        "widgetID": 16,
+                        "widthPercentage": 100,
+                        "adverts": [
+                            {
+                                "image": "./images/media_3.jpg",
+                                "url": "5-article-news.html?right-advert=1",
+                                "alt": "alt text goes here for Advert 1",
+                                "title": "Elit Commodo Sit Egestas"
+                            },
+                            {
+                                "image": "./images/media_4.jpg",
+                                "url": "5-article-news.html?right-advert=2",
+                                "alt": "alt text goes here for Advert 2",
+                                "title": "Vulputate Lorem Inceptos"
+                            }
+                        ]
+                    }
+                ],
+                [
+                    {
+                        "widget": {
+                            "title": "Whats on"
+                        },
+                        "widgetID": 13,
+                        "widthPercentage": 100,
+                        "article": {
+                            "title": "TEST: Event with image and text",
+                            "summary": "In its original run, Hanna and Barbera produced 114 Tom and Jerry shorts for Metro-Goldwyn-Mayer from 1940 to 1957. During this time, they won seven Academy Awards for Animated Short Film, tying for"
+                        }
+                    }
+                ],
+                [
+                    [
+                        {
+                            "widget": {
+                                "title": "content"
+                            },
+                            "title": "Stacked content and navigation widget",
+                            "widthPercentage": 100,
+                            "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce varius felis ut diam ullamcorper vestibulum. In venenatis velit a <a href=\"./nulla\">nulla tristique</a>, eu porta tortor <strong>ornare. <span class=\"text-underline\">Lorem ipsum</span> dolor sit amet</strong>, consectetur adipiscing elit. In sit amet sollicitudin sem, vel lobortis risus. Curabitur nec porttitor tellus, quis elementum orci. Nam pulvinar ut odio a malesuada."
+                        },
+                        {
+                            "widget": {
+                                "title": "navigation"
+                            },
+                            "widgetID": 23,
+                            "title": "Navigation widget",
+                            "widthPercentage": 100,
+                            "links": [
+                                {
+                                    "title": "Branding",
+                                    "link": "./1-branding.html"
+                                },
+                                {
+                                    "title": "Typography",
+                                    "link": "./1-typography.html"
+                                },
+                                {
+                                    "title": "Standard Components",
+                                    "link": "./1-standard-components.html"
+                                },
+                                {
+                                    "title": "Supplements",
+                                    "link": "./1-supplements.html"
+                                },
+                                {
+                                    "title": "Standard Form Components",
+                                    "link": "./1-form-components.html"
+                                }
+                            ]
+                        }
+                    ]
+                ]
+            ]
+        }
+    }
+}

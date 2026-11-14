@@ -1,0 +1,34 @@
+{% extends 'layouts/base.html.twig' %}
+
+{%- block page_title -%}
+    Page not found – {{ getConstantValue('METADATA_GENERIC_NAME') }}
+{%- endblock -%} 
+
+{% block breadcrumb %}
+{% endblock %}
+
+{% block page_heading %}
+    {% include 'partials/atoms/text/heading.html.twig' with {
+        'title': 'Page not found'
+    } %}
+{% endblock %}
+
+{% block page_content %}
+    {% block not_found_box %}
+    <div class="boxed">
+        {% block not_found_box_inner %}
+            <h2 class="boxed__heading">This might be because:</h2>
+            <ol class="boxed__list list list--numbered">
+                <li class="list__item">You have typed the web address incorrectly</li>
+                <li class="list__item">The page you were looking for may have been moved or deleted</li>
+            </ol>
+            {% block not_found_search %}
+            <p class="boxed__text">Try our search to see if it's available elsewhere.</p>
+            {% endblock %}
+        {% endblock %}
+    </div>
+    {% endblock %}
+    {% block not_found_search_results %}
+        {{ component('cludo_404_results') }}
+    {% endblock %}
+{% endblock %}

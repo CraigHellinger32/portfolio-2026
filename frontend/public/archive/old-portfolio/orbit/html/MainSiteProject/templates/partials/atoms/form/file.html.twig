@@ -1,0 +1,9 @@
+<input
+    class="form__field form__field--upload"
+    type="file"
+    name="{{ name }}"
+    id="{{ name }}"
+    {% if help %}
+        aria-describedby="help_text_{{ id|default(name) }}"
+    {% endif %}
+    {% if required %}aria-required="true"{% endif %}>

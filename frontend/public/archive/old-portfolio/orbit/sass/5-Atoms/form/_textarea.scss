@@ -1,0 +1,16 @@
+.form__textarea {
+    @extend %form__field;
+    @extend %form__field--bordered;
+
+    min-height: $space * 5;
+    min-height: ($epsilon * $epsilon-line-height * 5) + $space-half * 2 + $space-twelfth;
+    resize: vertical;
+
+    @include respond-min($mid-width) {
+        min-height: ($zeta * $zeta-line-height * 5) + $space-half * 2 + $space-twelfth;
+    }
+
+    @include respond-min($large-width) {
+        min-height: ($normalis * $line-height-ratio * 5) + $space-half * 2 + $space-twelfth;
+    }
+}

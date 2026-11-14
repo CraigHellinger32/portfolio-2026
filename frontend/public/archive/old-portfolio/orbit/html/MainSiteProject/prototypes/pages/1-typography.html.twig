@@ -1,0 +1,15 @@
+{% set page = data.pages._1_typography %}
+{% extends 'layouts/base.html.twig' %}
+
+{% block page_content %}
+    {% include 'partials/molecules/styleguide/typography.html.twig' %}
+    {% include 'partials/molecules/styleguide/blockquote.html.twig' %}
+    {% include 'partials/molecules/styleguide/address.html.twig' %}
+    {% include 'partials/molecules/styleguide/editor-lists.html.twig' %}
+    {% include 'partials/molecules/styleguide/lists.html.twig' with {
+        'lists': page.lists
+        }
+    %}
+    {% include 'partials/molecules/styleguide/editor-formatting.html.twig' %}
+    {% include 'partials/molecules/styleguide/meta.html.twig' %}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% if itemID is not empty %}
+    {% block widget_wrap %}
+        <div class="widget-multimedia">
+
+            {% block widget_content %}
+                {% if itemID is not empty %}
+                    {% if not preview %}
+
+                        {% block multimedia_component %}
+                            {{ component('multimedia_items', { 'itemID': itemID }) }}
+                        {% endblock %}
+
+                    {% else %}
+
+                        {% block multimedia_preview %}
+                            {% include 'partials/atoms/text/widget_heading.html.twig' with {
+                                'title': 'Multimedia item ' ~ itemID
+                                }
+                            %}
+                        {% endblock %}
+
+                    {% endif %}
+                {% endif %}
+            {% endblock widget_content %}
+
+        </div>
+    {% endblock widget_wrap %}
+{% endif %}

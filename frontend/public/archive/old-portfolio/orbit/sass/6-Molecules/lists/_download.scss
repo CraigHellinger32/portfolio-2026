@@ -1,0 +1,187 @@
+// VARS / CONFIG
+$download_meta-width:   13rem !default;
+$download_break-point:  $small-width !default;
+$download_border-width: $border-width-small !default;
+
+.list--downloads {
+    .list__item {
+        @include respond-max($download_break-point) {
+            margin-bottom: $slug-large;
+        }
+    }
+}
+
+.download {
+    border-bottom: $download_border-width solid $color-disabled;
+    display: block;
+}
+
+.download__link {
+    @include linkUnderlineReset;
+    @include linkUnderline('.download__heading-inner');
+
+    display: block;
+
+    @include respond-min($download_break-point) {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &,
+    &:visited {
+        text-decoration: none;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none;
+
+        .download__heading-inner {
+            color: $color-link-hover;
+        }
+
+        .download__meta-list {
+            text-decoration: none;
+        }
+
+        .download__cta {
+            background-color: lighten($color-secondary, 5%);
+            border-color: $color-link-hover;
+            color: $color-white;
+        }
+    }
+}
+
+.download__link--singular {
+    display: inline-block;
+    margin-bottom: $slug-large;
+    padding: $space-third 0;
+    width: 100%;
+
+    @include respond-min($download_break-point) {
+        margin-bottom: $slug-small;
+    }
+
+    .download__heading {
+        display: block;
+        flex: 1 1 100%;
+        margin: 0;
+        padding-right: 0;
+    }
+}
+
+.download__heading {
+    display: block;
+    flex: 1 1 auto;
+    font-size: $zeta;
+    margin: 0 0 $space-third;
+    min-width: percentage(3 / 5);
+    padding: 0 $space-half 0 $space-sixth;
+
+    @include respond-min($download_break-point) {
+        display: inline-block;
+        flex: 0 1 auto;
+        font-size: $normalis;
+        max-width: 100%;
+        min-width: 0;
+        padding-right: $space;
+        vertical-align: middle;
+
+        .download__link--singular & {
+            flex: 1 1 auto;
+            max-width: calc(100% - #{$download_meta-width});
+            vertical-align: middle;
+            width: auto;
+        }
+    }
+}
+
+.download__heading-inner {
+    display: inline;
+    transition: color $transition-speed;
+    vertical-align: middle;
+}
+
+.download__meta-list {
+    @extend %list;
+
+    align-items: center;
+    display: flex;
+    flex: 1 0 auto;
+    margin: $slug-small 0 0;
+    padding: 0;
+
+    @include respond-min($download_break-point) {
+        flex: 1 1 auto;
+        justify-content: flex-end;
+        margin: 0;
+        text-align: right;
+        width: $download_meta-width;
+    }
+}
+
+.download__meta {
+    background-color: $color-off-white;
+    display: inline-block;
+    margin: $space-half 0 $space-half $space-half;
+    padding: 0 $space-sixth;
+    vertical-align: bottom;
+
+    @include respond-min($download_break-point) {
+        font-size: $milli;
+        margin-top: ($space-half / ($milli)) * 1rem;
+    }
+}
+
+.download__meta--type {
+    @include respond-min($download_break-point) {
+        text-align: center;
+        width: 3.5rem; // the width of "DOCX" with a bit of breathing space
+    }
+}
+
+.download__meta--link {
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+
+    @include respond-max($download_break-point) {
+        order: -1;
+    }
+
+    @include respond-min($download_break-point) {
+        float: none;
+        font-size: $normalis;
+        margin-left: $space-half;
+    }
+}
+
+.download__cta {
+    background-color: $color-secondary;
+    border-bottom: $download_border-width solid mix($color-secondary, $color-black, 80%);
+    display: block;
+    margin: 0 0 $download_border-width * -1;
+    padding: $space-half;
+
+    &,
+    &:visited {
+        color: $color-white;
+    }
+}
+
+.download__cta-text {
+    display: inline-block;
+    margin-right: $gutter-small;
+    vertical-align: middle;
+
+    @include respond-min($download_break-point) {
+        display: none;
+    }
+}
+
+.download__cta-icon {
+    display: inline-block;
+    vertical-align: middle;
+}

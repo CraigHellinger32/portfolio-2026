@@ -1,0 +1,4 @@
+{% if stylesheet is not empty %}
+    {% set stylesheet = asset(stylesheet) %}
+    <link rel="stylesheet" type="text/css" href="{{ stylesheet }}">
+{% endif %}

@@ -1,0 +1,9 @@
+.button--small,
+%button--small {
+    &,
+    &:visited {
+        @extend %micro;
+
+        padding: $space-half;
+    }
+}

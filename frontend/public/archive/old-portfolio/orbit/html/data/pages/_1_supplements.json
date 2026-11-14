@@ -1,0 +1,209 @@
+{
+    "content": {
+        "title": "Supplements",
+        "passwordProtected": false,
+        "restricted": false,
+        "supplements": [
+            {
+                "widget": {
+                    "title": "Navigation"
+                },
+                "locationOnPage": "below content",
+                "record": {
+                    "title": "Navigation",
+                    "urls": {
+                        "Navigation Link 1": "landing.html?nav-link=1",
+                        "Navigation Link 2": "landing.html?nav-link=2",
+                        "Navigation Link 3": "landing.html?nav-link=3"
+                    }
+                }
+            },
+            {
+                "widget": {
+                    "title": "Navigation"
+                },
+                "locationOnPage": "sidebar",
+                "record": {
+                    "title": "Navigation",
+                    "urls": {
+                        "Sidebar Link 1": "landing.html?sidebar-link=1",
+                        "Sidebar Link 2": "landing.html?sidebar-link=2",
+                        "Sidebar Link 3": "landing.html?sidebar-link=3"
+                    }
+                }
+            },
+            {
+                "widget": {
+                    "title": "Further_Info"
+                },
+                "locationOnPage": "sidebar",
+                "record": {
+                    "title": "Futher info",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    "url": "#",
+                    "urlText": "Download"
+                }
+            },
+            {
+                "widget": {
+                    "title": "Further_Info"
+                },
+                "locationOnPage": "below content",
+                "record": {
+                    "title": "Futher info",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    "url": "#",
+                    "urlText": "Download"
+                }
+            },
+            {
+                "widget": {
+                    "title": "Advert"
+                },
+                "locationOnPage": "below content",
+                "record": {
+                    "title": "Advert",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    "url": "#",
+                    "urlText": "Link",
+                    "imageFilename": {
+                        "url": "./images/alumni.png",
+                        "alt": "Advert supplement image"
+                    }
+                }
+            },
+            {
+                "widget": {
+                    "title": "Advert"
+                },
+                "locationOnPage": "sidebar",
+                "record": {
+                    "title": "Advert",
+                    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    "url": "#",
+                    "urlText": "Link",
+                    "imageFilename": {
+                        "url": "./images/alumni.png",
+                        "alt": "Advert supplement image"
+                    }
+                }
+            },
+            {
+                "widget": {
+                    "title": "Image"
+                },
+                "locationOnPage": "below content",
+                "record": {
+                    "description": "Image supplement : Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    "url": "#",
+                    "urlText": "Link",
+                    "imageFilename": {
+                        "url": "./images/alumni.png",
+                        "alt": "Advert supplement image"
+                    }
+                }
+            },
+            {
+                "widget": {
+                    "title": "Image"
+                },
+                "locationOnPage": "sidebar",
+                "record": {
+                    "description": "Image supplement : Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    "url": "#",
+                    "urlText": "Link",
+                    "imageFilename": {
+                        "url": "./images/alumni.png",
+                        "alt": "Advert supplement image"
+                    }
+                }
+            },
+            {
+                "widget": {
+                    "title": "Contact"
+                },
+                "locationOnPage": "below content",
+                "record": {
+                    "title": "Contact",
+                    "description": "Image contact : Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    "imageFilename": {
+                        "url": "./images/alumni.png",
+                        "alt": "Advert supplement image"
+                    },
+                    "address": "Universe House,\n 1 Merus Ct,\n Leicester LE19 1RJ",
+                    "telephone": "+44 (0)116 222 7242",
+                    "fax": "+44 (0)116 222 7242",
+                    "email": "test@test.com",
+                    "urls": {
+                        "Link 1": "landing.html?below-link=1",
+                        "Link 2": "landing.html?below-link=2",
+                        "Link 3": "landing.html?below-link=3"
+                    }
+                }
+            },
+            {
+                "widget": {
+                    "title": "Contact"
+                },
+                "locationOnPage": "sidebar",
+                "record": {
+                    "title": "Contact",
+                    "description": "Image contact : Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    "imageFilename": {
+                        "url": "./images/alumni.png",
+                        "alt": "Advert supplement image"
+                    },
+                    "address": "Universe House,\n 1 Merus Ct,\n Leicester LE19 1RJ",
+                    "telephone": "+44 (0)116 222 7242",
+                    "fax": "+44 (0)116 222 7242",
+                    "email": "super.longname@testingwordbreaks.com",
+                    "urls": {
+                        "Contact Link 1": "landing.html?contact-link=1",
+                        "Contact Link 2": "landing.html?contact-link=2",
+                        "Contact Link 3": "landing.html?contact-link=3"
+                    }
+                }
+            },
+            {
+                "widget": {
+                    "title": "EGov Contact"
+                },
+                "locationOnPage": "below content",
+                "record": {
+                    "contact": {
+                        "name": "EGov Contact",
+                        "department": "UX",
+                        "telephone": "+44 (0)116 222 7242",
+                        "mobile": "+44 (0)116 222 7242",
+                        "fax": "+44 (0)116 222 7242",
+                        "formattedAddress": "Universe House,\n 1 Merus Ct,\n Leicester LE19 1RJ",
+                        "url": "landing.html?egov-contact"
+                    },
+                    "email": {
+                        "url": "test@test.com"
+                    }
+                }
+            },
+            {
+                "widget": {
+                    "title": "EGov Contact"
+                },
+                "locationOnPage": "sidebar",
+                "record": {
+                    "contact": {
+                        "name": "EGov Contact",
+                        "department": "UX",
+                        "telephone": "+44 (0)116 222 7242",
+                        "mobile": "+44 (0)116 222 7242",
+                        "fax": "+44 (0)116 222 7242",
+                        "formattedAddress": "Universe House,\n 1 Merus Ct,\n Leicester LE19 1RJ",
+                        "url": "landing.html?egov-contact"
+                    },
+                    "email": {
+                        "url": "test@test.com"
+                    }
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,12 @@
+.form__label--radio {
+    @extend %form__label--checkbox;
+
+    &::before,
+    &::after {
+        border-radius: 50%;
+    }
+}
+
+.form__radio {
+    @extend %form__checkbox;
+}

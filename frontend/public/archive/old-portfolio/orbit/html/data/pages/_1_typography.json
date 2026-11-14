@@ -1,0 +1,79 @@
+{
+    "content": {
+        "title": "Typography"
+    },
+    "lists": {
+        "record": {
+            "title": "Default record list",
+            "type": "record",
+            "group": [
+                {
+                    "title": "lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+                    "url": "landing.html?record-list=1"
+                },
+                {
+                    "title": "This is a disabled link",
+                    "disabled": true
+                },
+                {
+                    "title": "Cumque vitae, ipsa. Quibusdam reiciendis iste, magni facilis dicta praesentium illo consequatur. Cumque vitae, ipsa. Quibusdam reiciendis iste, magni facilis dicta praesentium illo consequatur. Cumque vitae, ipsa. Quibusdam reiciendis iste, magni facilis dicta praesentium illo consequatur.",
+                    "url": "landing.html?record-list=3"
+                },
+                {
+                    "title": "Eveniet, itaque iste autem unde veritatis quaerat iure:",
+                    "url": "landing.html?record-list=4"
+                }
+            ]
+        },
+        "numbered": {
+            "title": "Numbered list",
+            "type": "record",
+            "group": [
+                {
+                    "title": "This list style is used for pages-in navigation on the document page",
+                    "url": "landing.html?record-list=1"
+                },
+                {
+                    "title": "This is a disabled link",
+                    "disabled": true
+                },
+                {
+                    "title": "Eveniet, itaque iste autem unde veritatis quaerat iure:",
+                    "url": "landing.html?record-list=3"
+                },
+                {
+                    "title": "Eveniet, itaque iste autem unde veritatis quaerat iure:",
+                    "url": "landing.html?record-list=4"
+                },
+                {
+                    "title": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+                    "url": "landing.html?record-list=5"
+                },
+                {
+                    "title": "Inventore, vitae, culpa. Impedit quis corrupti error nisi at laudantium!",
+                    "url": "landing.html?record-list=6"
+                },
+                {
+                    "title": "Cumque vitae, ipsa. Quibusdam reiciendis iste, magni facilis dicta praesentium illo consequatur. Cumque vitae, ipsa. Quibusdam reiciendis iste, magni facilis dicta praesentium illo consequatur. Cumque vitae, ipsa. Quibusdam reiciendis iste, magni facilis dicta praesentium illo consequatur.",
+                    "url": "landing.html?record-list=7"
+                },
+                {
+                    "title": "Eveniet, itaque iste autem unde veritatis quaerat iure:",
+                    "url": "landing.html?record-list=8"
+                },
+                {
+                    "title": "Eveniet, itaque iste autem unde veritatis quaerat iure:",
+                    "url": "landing.html?record-list=9"
+                },
+                {
+                    "title": "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+                    "url": "landing.html?record-list=10"
+                },
+                {
+                    "title": "Inventore, vitae, culpa. Impedit quis corrupti error nisi at laudantium!",
+                    "url": "landing.html?record-list=11"
+                }
+            ]
+        }
+    }
+}

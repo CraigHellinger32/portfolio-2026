@@ -1,0 +1,14 @@
+// Navigation widget
+.widget-navigation {
+    .list__link {
+        @extend %card;
+        @extend %card--small;
+
+        margin-bottom: $slug-small;
+    }
+
+    .list__heading {
+        @extend %card__heading;
+        @extend %card__heading--small;
+    }
+}

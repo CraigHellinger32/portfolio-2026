@@ -1,0 +1,132 @@
+{
+    "bodyClass": "directory-record-article",
+    "content": {
+        "title": "Directory Record",
+        "passwordProtected": false,
+        "restricted": false
+    },
+    "breadcrumb": [
+        {
+            "title": "Directory category",
+            "url": "3-directory-article.html"
+        }
+    ],
+    "entry": {
+        "entryDetails": [
+            {
+                "field": {
+                    "defaultVisibility": 1,
+                    "displayTitle": 1,
+                    "title": "Title",
+                    "fieldType": {
+                        "name": "Radio Buttons"
+                    }
+                },
+                "value": "Mrs"
+            },
+            {
+                "field": {
+                    "defaultVisibility": 1,
+                    "displayTitle": 1,
+                    "title": "Name",
+                    "fieldType": {
+                        "name": "Text Box"
+                    }
+                },
+                "value": "Hanna Holm"
+            },
+            {
+                "field": {
+                    "defaultVisibility": 1,
+                    "displayTitle": 1,
+                    "title": "Address",
+                    "fieldType": {
+                        "name": "Text Area"
+                    }
+                },
+                "value": "123 Main Lane<br>Earlsdon<br>Coventry<br>CV4 7AL"
+            },
+            {
+                "field": {
+                    "defaultVisibility": 1,
+                    "displayTitle": 1,
+                    "title": "Favourite Things",
+                    "fieldType": {
+                        "name": "Select Box"
+                    }
+                },
+                "value": "Films"
+            },
+            {
+                "field": {
+                    "defaultVisibility": 1,
+                    "displayTitle": 1,
+                    "title": "Photograph",
+                    "fieldType": {
+                        "name": "Image"
+                    }
+                },
+                "value": {
+                    "url": "./images/media_4.jpg",
+                    "alt": "Directory record image"
+                }
+            },
+            {
+                "field": {
+                    "defaultVisibility": 1,
+                    "displayTitle": 1,
+                    "title": "Location",
+                    "fieldType": {
+                        "name": "Google Map"
+                    },
+                    "id": 0
+                },
+                "value": "52.3793131,-1.5604252"
+            },
+            {
+                "field": {
+                    "defaultVisibility": 1,
+                    "displayTitle": 1,
+                    "title": "Website",
+                    "fieldType": {
+                        "name": "Link"
+                    }
+                },
+                "value": "http://www.google.co.uk"
+            },
+            {
+                "field": {
+                    "defaultVisibility": 1,
+                    "displayTitle": 1,
+                    "title": "Email",
+                    "fieldType": {
+                        "name": "Email"
+                    }
+                },
+                "value": "hello.everybody@spacecraft.co.uk"
+            },
+            {
+                "field": {
+                    "defaultVisibility": 1,
+                    "displayTitle": 1,
+                    "title": "Description",
+                    "fieldType": {
+                        "name": "HTML"
+                    }
+                },
+                "value": "<p>Editor text goes here. <strong><span class=\"underline_text\">Bold and underine nteger placerat sapien tellus. Phasellus mollis erat ac dui lacinia posuere. Morbi nec imperdiet nisi</span>.</strong> <em><span class=\"underline_text\">IItalics and underline Vivamus eget imperdiet purus, ut interdum nulla. Ut at tincidunt risus, a ullamcorper tortor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas</span></em>. <span class=\"underline_text\">Sed sollicitudin ligula orci, quis hendrerit ligula semper eget. Maecenas vitae justo nec sapien tempor rhoncusi</span>. <span class=\"strikethrough_text\"><strong>Bold and strike Suspendisse aliquam eu nisi ut vestibulum. Vestibulum id vehicula est</strong></span>. <em><strong>Bold and italics Bhasellus consequat massa magna, a volutpat erat pretium ut. Nullam at tempor nunc. Praesent et viverra orci, lobortis luctus sapien</strong></em>. Normal Nullam metus odio, dignissim id nisi et, imperdiet lobortis diam.</p>"
+            },
+            {
+                "field": {
+                    "defaultVisibility": 1,
+                    "displayTitle": 1,
+                    "title": "Description",
+                    "fieldType": {
+                        "name": "HTML"
+                    }
+                },
+                "value": "<table><thead><tr><th>Cakes&nbsp;&nbsp;</th><th>Price for 1 cupcake&nbsp;&nbsp;</th><th>Price for Large Cakes&nbsp;</th><th>Child 11 years or younger&nbsp;&nbsp;</th></tr></thead><tbody><tr><td><p>Strawberry And Cream</p></td><td><p>£2</p></td><td><p>£4</p></td><td><p>No charge</p></td></tr><tr><td><p>Chocolate Sprinkles</p></td><td><p>£3</p></td><td><p>£1.75</p></td><td><p>No charge</p></td></tr><tr><td><p>Vanilla</p></td><td><p>£1</p></td><td><p>£2.75</p></td><td><p>No charge</p></td></tr><tr><td><p>Blueberry</p></td><td><p>£4</p></td><td><p>£5</p></td><td><p>No charge</p></td></tr></tbody></table>"
+            }
+        ]
+    }
+}

@@ -1,0 +1,19 @@
+{% extends '@theme:base/partials/atoms/form/select.html.twig' %}
+
+{% block form_select_inner %}
+    {% for option in options %}
+        {% if not option.internal or internal %}
+            <option
+                {% block form_select_attributes %}
+                    value="{{ option.value }}"
+                    {% if value == option.value %} selected="selected"{% endif %}
+                    {% if option.data is not empty %} data-xfp="{{ option.data }}"{% endif %}
+                {% endblock %}
+            >
+                {% block form_select_text %}
+                    {{ option.text }}
+                {% endblock %}
+            </option>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

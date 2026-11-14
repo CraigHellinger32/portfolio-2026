@@ -1,0 +1,77 @@
+{
+    "headerNavigationLinks": {
+        "links": [
+            {
+                "title": "Council Tax",
+                "url": "landing.html?council-tax"
+            },
+            {
+                "title": "Roads, travel and parking",
+                "url": "landing.html?roads"
+            },
+            {
+                "title": "Council and democracy",
+                "url": "landing.html?council-democracy"
+            },
+            {
+                "title": "Bins and recycling",
+                "url": "landing.html?bins"
+            },
+            {
+                "title": "Schools and learning",
+                "url": "landing.html?schools"
+            },
+            {
+                "title": "Libraries and archives",
+                "url": "landing.html?libraries"
+            },
+            {
+                "title": "Planning and building",
+                "url": "landing.html?planning"
+            },
+            {
+                "title": "Business",
+                "url": "landing.html?business"
+            },
+            {
+                "title": "Jobs, training and volunteering",
+                "url": "landing.html?jobs"
+            }
+        ]
+    },
+    "footer": {
+        "sections": [
+            {
+                "heading": "Section 1",
+                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu arcu interdum sem dictum faucibus. Quisque consectetur purus in leo condimentum, at sollicitudin lorem interdum. Nullam elit felis, aliquam quis dolor fermentum, pretium molestie nunc. Donec consectetur nisl lectus, at semper ligula faucibus non."
+            },
+            {
+                "heading": "Section 2",
+                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu arcu interdum sem dictum faucibus. Quisque consectetur purus in leo condimentum, at sollicitudin lorem interdum. Nullam elit felis, aliquam quis dolor fermentum, pretium molestie nunc. Donec consectetur nisl lectus, at semper ligula faucibus non."
+            },
+            {
+                "heading": "Section 3",
+                "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu arcu interdum sem dictum faucibus. Quisque consectetur purus in leo condimentum, at sollicitudin lorem interdum. Nullam elit felis, aliquam quis dolor fermentum, pretium molestie nunc. Donec consectetur nisl lectus, at semper ligula faucibus non."
+            }
+        ]
+    },
+    "socialMediaLinks": {
+        "links": [
+            {
+                "title": "Find us on Facebook",
+                "url": "http://www.facebook.com",
+                "icon": "icon-social-facebook"
+            },
+            {
+                "title": "Follow us on Twitter",
+                "url": "http://www.twitter.com",
+                "icon": "icon-social-twitter"
+            },
+            {
+                "title": "Find us on LinkedIn",
+                "url": "http://www.linkedin.com",
+                "icon": "icon-social-linkedin"
+            }
+        ]
+    }
+}

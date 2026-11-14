@@ -1,0 +1,17 @@
+{% extends '@theme:paybridgebase/partials/organisms/payment/basket_summary.html.twig' %}
+
+{% block basket_summary_header %}
+    <tr>
+        <th>Service</th>
+        <th>Cost</th>
+        <td class="th"></td>
+    </tr>
+{% endblock %}
+
+{% block basket_item_button %}
+    <td>
+        <a class="button button--danger" href="{{ path('paybridge_payment_item_check', {remove: 'true', itemID: item.id}) }}">
+            Remove<span class="visually-hidden"> {{ item.product.title }}</span><span class="hidden"> {{ item.id }}</span>
+        </a>
+    </td>
+{% endblock %}

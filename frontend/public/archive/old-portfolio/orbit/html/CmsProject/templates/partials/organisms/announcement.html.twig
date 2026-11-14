@@ -1,0 +1,18 @@
+{% extends 'partials/molecules/text/alert.html.twig' %}
+
+{% set type = 'warning' %}
+{% set announcementId = 'announcement' %}
+
+{% block alert_heading %}
+    <span class="alert__heading">
+        {{ title }}
+    </span>
+{% endblock %}
+
+{% block alert %}
+    <div class="site-announcement">
+        <div class="container">
+            {{ parent() }}
+        </div>
+    </div>
+{% endblock %}

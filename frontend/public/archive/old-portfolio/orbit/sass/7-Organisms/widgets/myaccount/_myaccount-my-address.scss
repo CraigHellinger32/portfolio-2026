@@ -1,0 +1,11 @@
+.widget--myaccount-my-address {
+    .item-list {
+        @extend %list;
+    }
+
+    .button {
+        @extend %button--primary;
+
+        margin-top: $space;
+    }
+}

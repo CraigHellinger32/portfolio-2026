@@ -1,0 +1,11 @@
+{% extends 'layouts/article.html.twig' %}
+
+{% if page_structure is not empty and page_structure != 'One column' %}
+    {% set columns = 'two-column'%}
+{% endif %}
+
+{% block before_primary_supplements %}
+    {{ component('related_articles', { 'type': 'downloads', 'categoryId': page_categoryId}) }}
+    {{ component('related_articles', { 'type': 'directories', 'categoryId': page_categoryId}) }}
+    {{ parent() }}
+{% endblock %}

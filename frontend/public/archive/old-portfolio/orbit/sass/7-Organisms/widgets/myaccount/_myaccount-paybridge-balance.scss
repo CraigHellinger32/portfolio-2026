@@ -1,0 +1,23 @@
+.widget--myaccount-paybridge-balance-lookup {
+    p:last-of-type {
+        margin-bottom: $space-half;
+    }
+
+    .button,
+    .button--secondary {
+        @extend %button--primary;
+
+        margin: $space-half $space-half 0 0;
+
+        + .button {
+            margin-right: 0;
+        }
+    }
+
+    .form__append-group {
+        .form__component,
+        .button {
+            margin: 0;
+        }
+    }
+}

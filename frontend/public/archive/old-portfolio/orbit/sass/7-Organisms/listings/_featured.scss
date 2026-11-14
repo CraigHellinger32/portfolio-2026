@@ -1,0 +1,33 @@
+$featured-listing-image-size: pxToRem(300px) !default;
+
+.listing--featured {
+    @extend %boxed;
+    @extend %boxed--standout;
+
+    .listing__link {
+        flex-direction: column;
+
+        @include respond-min-and-max($small-width, $mid-width) {
+            flex-direction: row;
+        }
+
+        @include respond-min($large-width) {
+            flex-direction: row;
+        }
+    }
+
+    .listing__image {
+        margin: $slug 0 0;
+        width: 100%;
+
+        @include respond-min-and-max($small-width, $mid-width) {
+            margin: 0 0 0 $gutter-large;
+            width: $featured-listing-image-size;
+        }
+
+        @include respond-min($large-width) {
+            margin: 0 0 0 $gutter-large;
+            width: $featured-listing-image-size;
+        }
+    }
+}

@@ -1,0 +1,5 @@
+.boxed--secondary,
+%boxed--secondary {
+    border-color: $color-secondary;
+    color: darken($color-secondary, 40%);
+}

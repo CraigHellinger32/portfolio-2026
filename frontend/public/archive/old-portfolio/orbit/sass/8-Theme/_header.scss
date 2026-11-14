@@ -1,0 +1,89 @@
+// Header
+//
+// This file is intentially sparse and are intended as placeholder for your header styles
+// See sass/layout/_header.scss.
+//
+// Styleguide 18.2
+
+.site-header {
+    margin-top: 0;
+    padding: 0;
+    position: relative;
+    z-index: zIndex('site-header');
+
+    @include respond-min($small-width) {
+        padding: $space-half 0;
+    }
+
+    @include respond-min($mid-width) {
+        flex: 0 0 auto;
+    }
+
+    @include respond-min($large-width) {
+        padding: $space 0;
+    }
+
+    .no-js & {
+        padding-bottom: 0;
+    }
+
+    .home.one-column & {
+        margin-bottom: 0;
+    }
+
+    > .container {
+        display: flex;
+        height: 100%;
+        justify-content: space-between;
+        position: relative;
+        z-index: 1;
+
+        @include respond-max($small-width) {
+            padding: 0;
+        }
+
+        &::after {
+            content: none;
+        }
+    }
+
+    .button {
+        @include respond-max($small-width) {
+            padding: $space-two-thirds;
+        }
+
+        @include respond-max($x-small-width) {
+            padding: $space-two-thirds $space-half;
+        }
+    }
+
+    .button--icon .icon {
+        @include respond-max($small-width) {
+            margin-right: 0;
+        }
+    }
+}
+
+.site-header__links {
+    margin-bottom: $space;
+    text-align: center;
+    width: 100%;
+
+    @include respond-min($small-width) {
+        float: right;
+        padding-left: $space-half;
+        text-align: right;
+        width: percentage(2 / 3);
+    }
+
+    .list__item {
+        margin-bottom: 0;
+        margin-right: 0;
+
+        &:not(:first-child) {
+            @include respond-min($x-small-width) {
+                margin-left: $space;
+            }
+        }
+    }
+}

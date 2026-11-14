@@ -1,0 +1,10 @@
+{% extends 'partials/organisms/form/form.html.twig' %}
+
+{% set form = page.content %}
+{% set className = 'boxed__form' %}
+
+{% block form_main %}
+    <div class="boxed">
+        {{ parent() }}
+    </div>
+{% endblock %}

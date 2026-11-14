@@ -1,0 +1,15 @@
+.button--secondary,
+%button--secondary {
+    &,
+    &:visited {
+        background-color: $color-secondary;
+        border-color: $color-secondary;
+        color: $color-white;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: lighten($color-secondary, 5%);
+    }
+}

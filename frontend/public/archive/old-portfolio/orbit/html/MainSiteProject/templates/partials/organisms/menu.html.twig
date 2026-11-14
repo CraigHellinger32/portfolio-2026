@@ -1,0 +1,19 @@
+{% extends '@theme:base/partials/organisms/menu.html.twig' %}
+
+{% block menu_links %}
+    {% set headerIncidentalContent = incidental_content('headerNavigationLinks') %}
+
+    {% if headerIncidentalContent is not empty %}
+        {% include '@theme:base/partials/molecules/list/list.html.twig' with {
+            'type': 'record',
+            'title': headerIncidentalContent.heading,
+            'titleClass': 'nav__heading menu-navigation__heading',
+            'group': headerIncidentalContent.links,
+            'url': headerIncidentalContent.links.url,
+            'className': 'list--3up'
+            }
+        %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,250 @@
+body {
+	margin: 0px 0px 0px 0px;
+	font-family: arial, sans-serif;
+	font-size: 62.5%;
+}
+
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,label,select,textarea,p,blockquote,th,td {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-size:1em;
+	font-weight: normal;
+	font-style: normal;
+}
+
+input, textarea, select {
+	font-family: arial, sans-serif;
+	font-size: 1em;
+}
+
+img {
+	border: 0;
+}
+
+a, input {
+	outline: none;
+}
+
+.clearfix { clear: both; }
+
+.central {
+	width: 100%;
+	margin: 0 auto;
+	display:block;
+}
+@media only screen and (min-width : 960px) {
+	.central {
+		width: 960px;
+	}
+}
+
+header, #message {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+}
+
+header {
+	z-index: 20;
+}
+
+#message {
+	background: #E5E5E5;
+	padding: 10px 0px;
+	font-size: 1.3em;
+	color: #1d1d1d;
+	font-weight: bold;
+	z-index: 9;
+	display: none;
+}
+
+.error {
+	color: #ffffff !important;
+	background: #c10000 !important;
+}
+
+header #logo {
+	background: #1d1d1d;
+	padding: 5px 0px 5px 0px;
+}
+
+header #headerLinks {
+	background: #555555;
+	padding: 5px 0px 5px 20px;
+}
+
+header #headerLinks h1 {
+	font-size: 1.3em;
+	color: #ffffff;
+	display: inline;
+	width: 460px;
+	padding: 7px 0px 0px 0px;
+}
+
+header #headerLinks h1 span {
+	font-size: 1.4em;
+	font-weight: bold;
+}
+
+header #headerLinks ul {
+	position: absolute;
+	right: 10px;
+	top: 30px;
+	display: inline;
+	width: auto;
+	list-style-type: none;
+	overflow: auto;
+}
+@media only screen and (min-width : 600px) {
+	header #headerLinks ul { top: 64px; right: 30px; }
+}
+
+header #headerLinks ul li {
+	font-size: 1.3em;
+	margin: 0px 0px 0px 5px;
+	float: left;
+	display: inline;
+}
+
+header #headerLinks ul li a {
+	color: #FFFFFF;
+	background: url("../images/icons.png") no-repeat;
+	text-decoration: none;
+	padding: 10px 37px 12px 0px;
+	display: block;
+}
+
+header #headerLinks ul li a:hover {
+	text-decoration: underline;
+}
+
+header #headerLinks ul li.flag a { background-position: -45px center; }
+header #headerLinks ul li.litmus a { background-position: -180px center; }
+header #headerLinks ul li.gmail a { background-position: -307px center; }
+
+header #formBar {
+	background: #00acde;
+	padding: 5px 0px 5px 20px;
+}
+
+header #formBar h2 {
+	font-size: 1.3em;
+	color: #ffffff;
+	float: left;
+	display: none;
+	width: auto;
+	margin: 3px 0px 0px 0px;
+}
+@media only screen and (min-width : 600px) {
+	header #formBar h2 {
+		display: inline;
+	}
+}
+
+header #formBar #formWrapper {
+	width: 100%;
+}
+
+header #formBar #search_m {
+	display: inline;
+	width: auto;
+	clear: both;
+}
+
+header #formBar #search_i {
+	float: right;
+	display: inline;
+	width: auto;
+}
+
+header #formBar #formWrapper .field {
+	float: left;
+	display: inline;
+	width: auto;
+	padding: 0px 0px 0px 10px;
+}
+
+header #formBar #formWrapper .field label {
+	display: none;
+}
+
+header #formBar #formWrapper .inputfield label {
+	display: inline;
+	color: #ffffff;
+	font-size: 1.3em;
+	margin: 0px 10px 0px 10px;
+}
+
+header #formBar #formWrapper .field select {
+	font-size: 1.3em;
+	color: #1d1d1d;
+}
+
+header #formBar #formWrapper .field input {
+	font-size: 1.3em;
+	color: #1d1d1d;
+	width: 150px;
+	padding: 0px 2px;
+}
+
+header #formBar #formWrapper .field input.btnsubmit {
+	width: auto;
+	padding: 0px;
+	text-indent: -999em;
+	font-size: 0;
+	line-height: 0;
+	display: inline-block;
+	background: url("../images/icons.png") no-repeat -502px center;
+	width: 25px;
+	height: 21px;
+	border: none;
+	cursor: pointer;
+}
+
+header #formBar #formWrapper .field input.loader {
+	background: url("../images/loader.gif") no-repeat center center;
+}
+
+#email {
+	padding-top: 146px;
+}
+@media only screen and (max-width : 1200px) {
+
+}
+
+#email #prev,
+#email #next {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	text-indent: -999em;
+	font-size: 0;
+	line-height: 0;
+	display: block;
+	width: 25px;
+	height: 21px;
+	cursor: pointer;
+}
+
+#email #prev {
+	margin-left: -375px;
+	background: url("../images/icons.png") no-repeat -572px center;
+}
+
+#email #next {
+	margin-left: 348px;
+	background: url("../images/icons.png") no-repeat -502px center;
+}
+
+#code {
+	background: #555;
+	color: #FFF;
+	padding: 20px;
+	font-size: 14px;
+	margin: 40px 0 0 0;
+	white-space: pre-wrap;
+}

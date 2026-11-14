@@ -1,0 +1,9 @@
+{% block form_error_indicator %}
+    <strong class="form__error-indicator">
+
+        {% block form_error_indicator_inner %}
+            <abbr class="form__error-indicator-text" title="{{ getTranslatedString('form-error-marker') }}">!</abbr>
+        {% endblock %}
+
+    </strong>
+{% endblock %}

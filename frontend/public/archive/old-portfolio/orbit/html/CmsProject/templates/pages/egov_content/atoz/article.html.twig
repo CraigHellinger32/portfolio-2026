@@ -1,0 +1,47 @@
+{% extends 'layouts/article.html.twig' %}
+{% set columns = 'two-column'%}
+
+{% block primary_supplements %}
+    {{ parent() }}
+
+    {% block supplements_az %}
+        {% block supplement_contacts %}
+            {% if contacts|length > 0 %}
+                {% for contact in contacts %}
+                    {{ component('egov_contact', { id: contact.id }) }}
+                {% endfor %}
+            {% endif %}
+        {% endblock %}
+
+        {% block supplement_eligibility %}
+            {% if eligibility is not empty %}
+                {% include 'partials/molecules/supplement/further_info.html.twig' with {
+                    'title': getTranslatedString('eligibility-label'),
+                    'summary': eligibility
+                    }
+                %}
+            {% endif %}
+        {% endblock %}
+
+        {% block supplement_availability %}
+            {% if availability is not empty %}
+                {% include 'partials/molecules/supplement/further_info.html.twig' with {
+                    'title': getTranslatedString('availability-label'),
+                    'summary': availability
+                    }
+                %}
+            {% endif %}
+        {% endblock %}
+
+        {% block supplement_accessibility %}
+            {% if accessibility is not empty %}
+                {% include 'partials/molecules/supplement/further_info.html.twig' with {
+                    'title': getTranslatedString('accessibility-label'),
+                    'summary': accessibility
+                    }
+                %}
+            {% endif %}
+        {% endblock %}
+    {% endblock supplements_az %}
+
+{% endblock primary_supplements %}

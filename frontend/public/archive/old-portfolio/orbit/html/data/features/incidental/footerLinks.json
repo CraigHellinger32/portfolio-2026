@@ -1,0 +1,64 @@
+{
+    "title": "Footer Links",
+    "description": "",
+    "fields": {
+        "footerLinksPrimary": {
+            "type": "array",
+            "max": 6,
+            "sortable": true,
+            "vocab": {
+                "item": "footer navigation link (primary)"
+            },
+            "fields": {
+                "link": "link"
+            }
+        },
+        "footerLinksSecondary": {
+            "type": "array",
+            "max": 6,
+            "sortable": true,
+            "vocab": {
+                "item": "footer navigation link (secondary)"
+            },
+            "fields": {
+                "link": "link"
+            }
+        },
+        "footerLinkSocial": {
+            "type": "array",
+            "max": 8,
+            "sortable": true,
+            "vocab": {
+                "item": "Social media link"
+            },
+            "fields": {
+                "link": "link",
+                "icon": {
+                    "type": "icon",
+                    "fontStylesheet": "/site/dist/icons/services/icons.data.png.css",
+                    "iconClassPrefix": "social-",
+                    "styles": {
+                        "icon": {
+                            "background-color": "#4c45ae!important",
+                            "background-size": "90%!important"
+                        },
+                        "icon:hover": {
+                            "background-color": "#6141a!important"
+                        },
+                        "icon:checked": {
+                            "background-color": "#000!important"
+                        }
+                    }
+                }
+            }
+        },
+        "targetBlank": {
+            "type": "option",
+            "title": "Open social media links in a new tab / window?",
+            "notes": "<strong>Caution:</strong> Setting this to yes will disable the use of the browsers' back button.",
+            "required": false,
+            "noneLabel": "No",
+            "options": "Yes"
+        }
+    }
+}

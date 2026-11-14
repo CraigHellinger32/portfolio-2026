@@ -1,0 +1,8 @@
+{% block identity %}
+    <div class="identity">
+        <a class="identity__link" href="{{ path('index') }}">
+            <span class="icon {% block identity_icon %}icon-logo{% endblock %} identity__logo"></span>
+            <span class="visually-hidden">{{ getConstantValue('METADATA_GENERIC_NAME') }}</span>
+        </a>
+    </div>
+{% endblock identity %}

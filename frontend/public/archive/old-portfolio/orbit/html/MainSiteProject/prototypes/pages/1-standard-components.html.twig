@@ -1,0 +1,211 @@
+{% set page = data.pages['_1_standard_components'] %}
+{% set styleGuide = data.styleGuide %}
+{% set columns = 'two-column' %}
+{% extends 'layouts/base.html.twig' %}
+
+{% block site_announcement %}
+    {% include 'partials/molecules/text/announcement.html.twig' with {
+        'announcement': true,
+        'title': data.site.announcement.title,
+        'summary': data.site.announcement.summary,
+        'url': data.site.announcement.url,
+        'label': data.site.announcement.label
+    } %}
+{% endblock %}
+
+{% block before_primary_supplements %}
+    {{ parent() }}
+    {# ========== #}
+    {# Related Links #}
+    {# ========== #}
+    {% set section = 'Related links' %}
+    <div class="style-guide__section" id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}">
+        {% include 'partials/atoms/styleguide/text/heading.html.twig' with {
+            'section': section
+            }
+        %}
+        {% include 'partials/organisms/related_menu.html.twig' with {
+            'title': 'Related Links',
+            'group': page.relatedPages.group
+            }
+        %}
+    </div>
+    {# ========== #}
+    {# Filter Bar #}
+    {# ========== #}
+    {% set section = 'Filter Bar' %}
+    <div class="style-guide__section" id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}">
+        {% include 'partials/atoms/styleguide/text/heading.html.twig' with {
+            'section': section
+            }
+        %}
+        <div class="aside__section">
+            {% include 'partials/organisms/form/filter_bar.html.twig' with {
+                'filterbar': styleGuide.filterBarForm,
+                'paths': paths
+            } %}
+        </div>
+    </div>
+    {# ========== #}
+    {# Social Share Links #}
+    {# ========== #}
+    {% block share_links %}
+        {% set section = 'Social Share' %}
+        <div class="style-guide__section" id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}">
+            {% include 'partials/atoms/styleguide/text/heading.html.twig' with {
+                'section': section
+                }
+            %}
+            {% include 'partials/organisms/share.html.twig' %}
+        </div>
+    {% endblock %}
+{% endblock %}
+
+
+{% block page_content %}
+    {# =============== #}
+    {# Standard Alerts #}
+    {# =============== #}
+    {% set section = 'Standard Alerts' %}
+
+    <div class="style-guide__section" id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}">
+        {% include 'partials/atoms/styleguide/text/heading.html.twig' with {
+            'section': section
+            }
+        %}
+
+        {# Standard alerts in data/styleGuide.json #}
+        {% for alert in styleGuide.alerts %}
+            {% include 'partials/molecules/text/alert.html.twig' with {
+                'type': alert.type,
+                'index': loop.index,
+                'title': alert.heading,
+                'summary': alert.text|default(data.dummy.text ~ data.dummy.text),
+                'url': alert.url,
+                'label': alert.label
+                }
+            %}
+        {% endfor %}
+
+    </div>
+
+    {# ========== #}
+    {# XFP Alerts #}
+    {# ========== #}
+    {% if xfp or paybridge %}
+        {% set section = 'Form Builder Alerts' %}
+
+        <div class="style-guide__section" id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}">
+            {% include 'partials/atoms/styleguide/text/heading.html.twig' with {
+                'section': section
+                }
+            %}
+
+            {# Resume Form Alert #}
+            {% include 'partials/molecules/text/resume_forms_alert.html.twig' with {
+                'type': styleGuide.resumeFormAlert.type,
+                'title': styleGuide.resumeFormAlert.heading,
+                'summary': styleGuide.resumeFormAlert.text,
+                'group': styleGuide.resumeFormAlert.group,
+                'paths': paths
+            } %}
+
+            {# Form builder alert with buttons #}
+            {% include 'partials/molecules/text/alert.html.twig' with {
+                'type': styleGuide.xfpAlert.type,
+                'title': styleGuide.xfpAlert.heading,
+                'summary': styleGuide.xfpAlert.text,
+                'url': styleGuide.xfpAlert.url
+            } %}
+        </div>
+    {% endif %}
+
+
+
+
+    {# ======= #}
+    {# AZ List #}
+    {# ======= #}
+    {% set section = 'A to Z List' %}
+    <div class="style-guide__section" id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}">
+        {% include 'partials/atoms/styleguide/text/heading.html.twig' with {
+            'section': section
+            }
+        %}
+        {% include 'partials/molecules/list/list.html.twig' with {
+            'type': 'az',
+            'group': styleGuide.azList,
+            'className': 'list--az'
+        } %}
+    </div>
+
+
+    {# ============= #}
+    {# Pages In List #}
+    {# ============= #}
+    {% set section = 'Pages In List' %}
+    <div class="style-guide__section" id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}">
+        {% include 'partials/atoms/styleguide/text/heading.html.twig' with {
+            'section': section
+            }
+        %}
+        {% include 'partials/molecules/list/list.html.twig' with {
+            'type': 'page',
+            'group': styleGuide.pagesIn
+        } %}
+    </div>
+
+
+
+    {# =================== #}
+    {# Pagination - Simple #}
+    {# =================== #}
+    {% set section = 'Pagination - Simple' %}
+    <div class="style-guide__section" id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}">
+        {% include 'partials/atoms/styleguide/text/heading.html.twig' with {
+            'section': section
+            }
+        %}
+        {% for item in styleGuide.pagination.simple %}
+            {% embed 'partials/molecules/navigation/pagination.html.twig' with item %}
+                {% block pagination_simple %}
+                    <nav class="pagination" aria-label="Pagination{{ loop.index ? ' ' ~ loop.index }}">
+
+                        {% block pagination_list %}
+                            {{ parent() }}
+                        {% endblock %}
+
+                    </nav>
+                {% endblock %}
+            {% endembed %}
+        {% endfor %}
+    </div>
+
+
+    {# =================== #}
+    {# Pagination - Simple #}
+    {# =================== #}
+    {% set section = 'Pagination - Complex' %}
+    <div class="style-guide__section" id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}">
+        {% include 'partials/atoms/styleguide/text/heading.html.twig' with {
+            'section': section
+            }
+        %}
+        {% include 'partials/molecules/navigation/pagination_complex.html.twig' with {
+            'group': styleGuide.pagination.complex
+        } %}
+    </div>
+
+    {# =================== #}
+    {# Password form #}
+    {# =================== #}
+    {% set section = 'Password form' %}
+    <div class="style-guide__section" id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}">
+        {% include 'partials/atoms/styleguide/text/heading.html.twig' with {
+            'section': section
+            }
+        %}
+        {% include 'partials/organisms/form/password_form.html.twig' %}
+    </div>
+
+{% endblock %}

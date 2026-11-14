@@ -1,0 +1,21 @@
+{% extends '@theme:base/partials/organisms/footer.html.twig' %}
+
+{% block footer_suppliers %}
+    <p class="site-footer__text site-footer__text--supplier">
+        Designed and powered by <a class="site-footer__link" href="http://www.jadu.net" title="Visit the Jadu website">Jadu</a>.
+    </p>
+{% endblock %}
+
+{% block footer_bottom %}
+    <div class="container">
+
+        {% block footer_social_media_links %}
+            {% include 'partials/organisms/social_media_links.html.twig' %}
+        {% endblock %}
+
+        {% block footer_bottom_content %}
+            {{ parent() }}
+        {% endblock %}
+
+    </div>
+{% endblock %}

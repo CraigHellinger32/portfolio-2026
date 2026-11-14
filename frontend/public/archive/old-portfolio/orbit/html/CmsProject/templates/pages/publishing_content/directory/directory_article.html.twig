@@ -1,0 +1,47 @@
+{% extends 'layouts/article.html.twig' %}
+{% set columns = 'two-column' %}
+
+{% block before_primary_supplements %}
+    {% block button_directory_az %}
+        {% include 'partials/atoms/button/call_to_action.html.twig' with {
+            'link': path('directory_atoz', { directoryId: directory.id, startsWith: 'A'} ),
+            'title': getTranslatedString('directory-az-link'),
+            'className': 'button--secondary button--block'
+            }
+        %}
+    {% endblock %}
+
+    {% block button_directory_submit %}
+        {% if directory.allowPublicSubmissions %}
+            {% include 'partials/atoms/button/call_to_action.html.twig' with {
+                'link': path('directory_submit', { directoryId: directory.id, directorySlug: directory.slug }),
+                'title': getTranslatedString('directory-submission-link'),
+                'className': 'button--secondary button--block'
+                }
+            %}
+        {% endif %}
+    {% endblock %}
+{% endblock before_primary_supplements %}
+
+{% block main %}
+    {{ parent() }}
+
+    {% block list %}
+        {% include 'partials/molecules/list/list.html.twig' with {
+            'type': 'record',
+            'title': directory_categories.title,
+            'titleClass': 'page-subheading',
+            'group': directory_categories.items,
+            'className': 'list--navigation list--2up'
+            }
+        %}
+    {% endblock %}
+{% endblock main %}
+
+{% block after_page_content %}
+    {{ parent() }}
+
+    {% block directory_search_form %}
+        {{ component('directory_search_form', { 'directoryId': directory.id }) }}
+    {% endblock %}
+{% endblock %}

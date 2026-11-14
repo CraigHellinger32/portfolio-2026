@@ -1,0 +1,15 @@
+{% extends '@theme:base/partials/organisms/related_menu.html.twig' %}
+
+{% block related_menu_content %}
+    <nav class="aside__section boxed boxed--subtle" aria-labelledby="related-pages-heading-{{ title|lower|escape('classname') }}">
+        {% block related_menu_content_inner %}
+            {{ parent() }}
+        {% endblock %}
+    </nav>
+{% endblock %}
+
+{% block related_menu_heading %}
+    <h2 class="aside__heading" id="related-pages-heading-{{ title|lower|escape('classname') }}">
+        {{ title }}
+    </h2>
+{% endblock %}

@@ -1,0 +1,180 @@
+{# Values changed to prevent twing errors #}
+{% block widget_wrap %}
+
+    {% set suffix = random() %}
+
+    <div class="widget-whats-new">
+
+        {% block widget_wrap_inner %}
+
+            {% block widget_heading %}
+                {% include 'partials/atoms/text/widget_heading.html.twig' with {
+                    'title': 'Recently published'
+                    }
+                %}
+            {% endblock %}
+
+            {% block widget_content %}
+                {% block widget_content_inner %}
+
+                    {% block news_items_wrap %}
+                        {% if newsArticles is not empty %}
+
+                            {% block news_items %}
+                                <nav class="nav" aria-labelledby="news-type-title-{{ suffix }}">
+                                    <div class="boxed">
+
+                                        {% block news_items_inner %}
+                                            {% block news_heading %}
+                                                <h2 class="nav__heading" id="news-type-title-{{ suffix }}">{{ getTranslatedString('news-type-title') }}</h2>
+                                            {% endblock %}
+
+                                            {% block news_list %}
+                                                <ul class="list list--with-date">
+
+                                                    {% block news_list_inner %}
+                                                        {% for news in newsArticles %}
+
+                                                            {% block news_list_item %}
+                                                                <li class="list__item">
+                                                                    <a class="list__link" href="{{ path('news_article', {'articleId' : news.id, 'articleSlug': news.slug }) }}">{{ news.title }}</a><time datetime="{{ news.date.timestamp|date('Y-m-d') }}">{{ news.date.timestamp|date('jS F Y') }}</time>
+                                                                </li>
+                                                            {% endblock news_list_item %}
+
+                                                        {% endfor %}
+                                                    {% endblock news_list_inner %}
+
+                                                </ul>
+                                            {% endblock news_list %}
+                                        {% endblock news_items_inner %}
+
+                                    </div>
+                                </nav>
+                            {% endblock news_items %}
+
+                        {% endif %}
+                    {% endblock news_items_wrap %}
+
+                    {% block document_items_wrap %}
+                        {% if documents is not empty %}
+
+                            {% block document_items %}
+                                <nav class="nav" aria-labelledby="documents-type-title-{{ suffix }}">
+                                    <div class="boxed">
+
+                                        {% block document_items_inner %}
+                                            {% block documents_heading %}
+                                                <h2 class="nav__heading" id="documents-type-title-{{ suffix }}">{{ getTranslatedString('documents-type-title') }}</h2>
+                                            {% endblock %}
+
+                                            {% block documents_list %}
+                                                <ul class="list list--with-date">
+
+                                                    {% block documents_list_inner %}
+                                                        {% for document in documents %}
+
+                                                            {% block documents_list_item %}
+                                                                <li class="list__item">
+                                                                    <a class="list__link" href="{{ getDocumentUrl(document.id) }}">{{ document.documentHeader.title }}</a><time datetime="{{ document.enterDate.timestamp|date('Y-m-d') }}">{{ document.enterDate.timestamp|date('jS F Y') }}</time>
+                                                                </li>
+                                                            {% endblock documents_list_item %}
+
+                                                        {% endfor %}
+                                                    {% endblock documents_list_inner %}
+
+                                                </ul>
+                                            {% endblock documents_list %}
+                                        {% endblock document_items_inner %}
+
+                                    </div>
+                                </nav>
+                            {% endblock document_items %}
+
+                        {% endif %}
+                    {% endblock document_items_wrap %}
+
+                    {% block download_items_wrap %}
+                        {% if downloadFiles is not empty %}
+
+                            {% block download_items %}
+
+                                <nav class="nav" aria-labelledby="downloads-type-title-{{ suffix }}">
+                                    <div class="boxed">
+
+                                        {% block download_items_inner %}
+                                            {% block downloads_heading %}
+                                                <h2 class="nav__heading" id="downloads-type-title-{{ suffix }}">{{ getTranslatedString('downloads-type-title') }}</h2>
+                                            {% endblock %}
+
+                                            {% block downloads_list %}
+                                                <ul class="list list--with-date">
+
+                                                    {% block downloads_list_inner %}
+                                                        {% for file in downloadFiles %}
+
+                                                            {% block downloads_list_item %}
+                                                                <li class="list__item">
+                                                                    <a class="list__link" href="{{ path('file_download', {'fileId' : file.id, 'fileSlug': file.slug }) }}">{{ file.title }}</a><time datetime="{{ file.creationDate.timestamp|date('Y-m-d') }}">{{ file.creationDate.timestamp|date('jS F Y') }}</time>
+                                                                </li>
+                                                            {% endblock downloads_list_item %}
+
+                                                        {% endfor %}
+                                                    {% endblock downloads_list_inner %}
+
+                                                </ul>
+                                            {% endblock downloads_list %}
+                                        {% endblock download_items_inner %}
+
+                                    </div>
+                                </nav>
+
+                            {% endblock download_items %}
+
+                        {% endif %}
+                    {% endblock download_items_wrap %}
+
+                    {% block event_items_wrap %}
+                        {% if events is not empty %}
+
+                            {% block event_items %}
+                                <nav class="nav" aria-labelledby="events-type-title-{{ suffix }}">
+                                    <div class="boxed">
+
+                                        {% block event_items_inner %}
+                                            {% block events_heading %}
+                                                <h2 class="nav__heading" id="events-type-title-{{ suffix }}">{{ getTranslatedString('events-type-title') }}</h2>
+                                            {% endblock %}
+
+                                            {% block events_list %}
+                                                <ul class="list list--with-date">
+
+                                                    {% block events_list_inner %}
+                                                        {% for event in events %}
+
+                                                            {% block events_list_item %}
+                                                                <li class="list__item">
+                                                                    <a class="list__link" href="{{ path('event_article', {'eventId' : event.id, 'eventSlug': event.slug }) }}">{{ event.title }}</a><time datetime="{{ event.dateCreated.timestamp|date('Y-m-d') }}">{{ event.dateCreated.timestamp|date('jS F Y') }}</time>
+                                                                </li>
+                                                            {% endblock %}
+
+                                                        {% endfor %}
+                                                    {% endblock events_list_inner %}
+
+                                                </ul>
+                                            {% endblock events_list %}
+                                        {% endblock event_items_inner %}
+
+                                    </div>
+                                </nav>
+                            {% endblock event_items %}
+
+                        {% endif %}
+                    {% endblock event_items_wrap %}
+
+                {% endblock widget_content_inner %}
+            {% endblock widget_content %}
+
+        {% endblock widget_wrap_inner %}
+
+    </div>
+{% endblock widget_wrap %}

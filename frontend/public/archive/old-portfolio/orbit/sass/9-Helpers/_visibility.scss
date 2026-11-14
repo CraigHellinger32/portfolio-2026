@@ -1,0 +1,92 @@
+// Visibility helpers
+//
+// Classes and a mixin to assist with hiding elements
+// See sass/helpers/_visibility.scss
+//
+// Styleguide 19.5
+
+/**
+ * Hide from screenreaders & browsers
+ */
+.hidden {
+    // scss-lint:disable ImportantRule
+    display: none !important;
+    // scss-lint:enable ImportantRule
+}
+
+
+/**
+ * Hide visually and from screenreaders, but maintain layout
+ */
+.invisible {
+    visibility: hidden;
+}
+
+
+/**
+ * Hide only visually, but have it available for screenreaders
+ * as per: http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+*/
+.visually-hidden,
+%visually-hidden {
+    @include visuallyhidden;
+}
+
+.visually-hidden-reset,
+%visually-hidden-reset {
+    @include visuallyhiddenreset;
+}
+
+.visually-hidden-x-small {
+    @include respond-max($x-small-width) {
+        @include visuallyhidden;
+    }
+}
+
+.visually-hidden-small {
+    @include respond-max($small-width) {
+        @include visuallyhidden;
+    }
+}
+
+.visually-hidden-mid {
+    @include respond-max($mid-width) {
+        @include visuallyhidden;
+    }
+}
+
+.visually-hidden-large {
+    @include respond-max($large-width) {
+        @include visuallyhidden;
+    }
+}
+
+.visually-hidden-x-large {
+    @include respond-max($x-large-width) {
+        @include visuallyhidden;
+    }
+}
+
+.visually-hidden-full {
+    @include respond-max($full-width) {
+        @include visuallyhidden;
+    }
+}
+
+.mobile-hidden {
+    @include respond-max($mid-width) {
+        display: none;
+    }
+}
+
+.desktop-hidden {
+    @include respond-min($mid-width) {
+        display: none;
+    }
+}
+
+.tablet-hidden {
+    @include respond-min($small-width) {
+        display: none;
+    }
+}

@@ -1,0 +1,64 @@
+// =======
+//  ICONS
+// =======
+
+// Local vars
+$icon-size:             $space-and-third !default;
+$icon-size--inline:     $space !default;
+$icon-size--small:      $space-three-quarters !default;
+$icon-inline-margin:    1em !default;
+
+%icon,
+.icon {
+    background-position: center center;
+    background-size: contain;
+    display: block;
+    height: $icon-size;
+    width: $icon-size;
+
+    svg {
+        max-height: 100%;
+        max-width: 100%;
+    }
+}
+
+%icon--small,
+.icon--small {
+    height: $icon-size--small;
+    width: $icon-size--small;
+}
+
+.icon-fallback {
+    @extend %visually-hidden;
+}
+
+%icon--inline,
+.icon--inline {
+    display: inline-block;
+    height: $icon-size--inline;
+    margin-top: remToEm(-$space-twelfth); // -$space-eighth but as EM
+    vertical-align: middle;
+    width: $icon-size--inline;
+
+    &:last-child {
+        margin-left: $icon-inline-margin;
+    }
+
+    &:first-child {
+        margin-right: $icon-inline-margin;
+    }
+
+    &.icon--large {
+        height: $icon-size;
+        width: $icon-size;
+    }
+}
+
+.js .icon--embeded {
+    width: auto;
+}
+
+.icon--full {
+    height: 100%;
+    width: 100%;
+}

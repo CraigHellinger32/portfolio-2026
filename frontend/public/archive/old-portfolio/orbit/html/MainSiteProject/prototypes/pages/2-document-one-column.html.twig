@@ -1,0 +1,6 @@
+{% set page = data.pages['_2_document_pages'] %}
+{% extends 'pages/publishing_content/document/article.html.twig' %}
+
+{% block page_heading %}
+    {% include 'partials/atoms/text/heading.html.twig' with {'title': page.content.title ~ ' (1 column)' } %}
+{% endblock %}

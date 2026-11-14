@@ -1,0 +1,13 @@
+{% extends 'partials/molecules/form/single_field.html.twig' %}
+
+{% block form_control_inner -%}
+    <fieldset class="form__fieldset">{{ parent() }}</fieldset>
+{%- endblock form_control_inner %}
+
+{% block form_question -%}
+    <legend class="form__label form__label--legend">
+        {% block form_question_inner %}
+            {{ parent() }}
+        {% endblock form_question_inner %}
+    </legend>
+{%- endblock form_question %}

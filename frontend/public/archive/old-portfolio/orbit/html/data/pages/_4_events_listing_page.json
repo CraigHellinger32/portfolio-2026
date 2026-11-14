@@ -1,0 +1,212 @@
+
+{
+    "bodyClass": "event-list",
+    "content": {
+        "title": "Events Listing Page",
+        "feature": {
+            "image": {
+                "url": "images/alumni.png",
+                "alt": "alt text"
+            },
+            "title": "TEST: Event with image and text",
+            "summary": "In its original run, Hanna and Barbera produced 114 Tom and Jerry shorts for Metro-Goldwyn-Mayer from 1940 to 1957. During this time, they won seven Academy Awards for Animated Short Film, tying for",
+            "meta": [
+                {
+                    "type": "string",
+                    "title": "Date",
+                    "value": "12th August 2019 - 14th August 2019"
+                }
+            ],
+            "link": {
+                "url": "5-article-event.html.twig?article=featured"
+            }
+        },
+        "lists": [
+            {
+                "type": "article",
+                "items": [
+                    {
+                        "title": "TEST: Event with a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long title",
+                        "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dolor mauris, tempus vel dictum vitae, semper in lacus. Integer vitae cursus metus, at consequat neque. Aenean id tincidunt lacus. Fus",
+                        "meta": [
+                            {
+                                "type": "string",
+                                "title": "Date",
+                                "value": "13th August 2019 - 27th November 2019"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-event.html.twig?article=1"
+                        }
+                    },
+                    {
+                        "image": {
+                            "url": "images/diagnosis.png",
+                            "alt": "alt text"
+                        },
+                        "title": "TEST: Event listing with image",
+                        "summary": "Event with an image to display",
+                        "meta": [
+                            {
+                                "type": "string",
+                                "title": "Date",
+                                "value": "2nd September 2016 - 11th September 2019"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-event.html.twig?article=2"
+                        }
+                    },
+                    {
+                        "title": "TEST Event",
+                        "summary": "Event article minimum length",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-10-14 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-event.html.twig?article=3"
+                        }
+                    },
+                    {
+                        "title": "Event 2019",
+                        "summary": "Event 2019",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-10-14 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-event.html.twig?article=4"
+                        }
+                    },
+                    {
+                        "title": "Event 2020",
+                        "summary": "Event 2020",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2020-10-15 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-event.html.twig?article=5"
+                        }
+                    },
+                    {
+                        "title": "Event 2021",
+                        "summary": "Event 2021",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2021-10-16 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-event.html.twig?article=6"
+                        }
+                    },
+                    {
+                        "image": {
+                            "url": "images/diversity.png",
+                            "alt": "alt text"
+                        },
+                        "title": "Event 2022",
+                        "summary": "Event 2022",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2022-10-16 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-event.html.twig?article=7"
+                        }
+                    },
+                    {
+                        "title": "Event 2023",
+                        "summary": "Event 2023",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2023-10-16 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-event.html.twig?article=8"
+                        }
+                    },
+                    {
+                        "title": "TEST: School Holidays Club'",
+                        "summary": "Our holiday club provides children with the opportunity to take part in a vast range of activities all under one roof.",
+                        "meta": [
+                            {
+                                "type": "string",
+                                "title": "Date",
+                                "value": "24th October 2016 - 24th October 2019"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-event.html.twig?article=9"
+                        }
+                    },
+                    {
+                        "title": "TEST: Council budget consultation - public event",
+                        "summary": "Dates have been set for a series of 13 budget events being held by The Highland Council to consult with the public over spending priorities between 2015 and 2019.",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-11-09 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-event.html.twig?article=10"
+                        }
+                    }
+                ]
+            }
+        ],
+        "filterBar": {
+            "action": "4-events-listing-page.html?filter=true",
+            "method": "get",
+            "controls": [
+                {
+                    "type":"select",
+                    "label":"Filter by location",
+                    "name": "location",
+                    "options":[{"value": "-1","text":"Any"}]
+                },
+                {
+                    "type": "select",
+                    "label": "Filter by period",
+                    "name": "period",
+                    "options":[{"value": "full","text":"Full list"},{"value": "next-month","text":"Next Month"},{"value": "this-month","text":"This Month"},{"value": "next-week","text":"Next Week"},{"value": "this-week","text":"This Week"},{"value": "today","text":"Today"}]
+                }
+            ],
+            "primaryAction": {
+                "name": "go",
+                "label": "Go"
+            }
+        },
+        "pagination": {
+            "previous": {
+                "url": "4-events-listing-page.html?page=previous",
+                "subtitle": "Page Title Goes Here"
+            },
+            "next": {
+                "url": "4-events-listing-page.html?page=next",
+                "subtitle": "Page Title Goes Here"
+            }
+        }
+    }
+}

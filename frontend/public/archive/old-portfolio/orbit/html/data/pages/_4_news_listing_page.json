@@ -1,0 +1,198 @@
+
+{
+    "bodyClass": "news-list",
+    "content": {
+        "title": "News Listing Page",
+        "feature": {
+            "image": {
+                "url": "images/alumni.png",
+                "alt": "alt text"
+            },
+            "title": "News article with inline image",
+            "summary": "This article will have an inline image. Which should show in the middle of a sentence.",
+            "meta": [
+                {
+                    "type": "date",
+                    "title": "Published",
+                    "value": "2019-03-26 12:00:00"
+                }
+            ],
+            "link": {
+                "url": "5-article-news.html?article=featured"
+            }
+        },
+        "lists": [
+            {
+                "type": "article",
+                "items": [
+                    {
+                        "title": "Another news article with inline image",
+                        "summary": "This article will have an inline image. Which should show in the middle of a sentence.",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-news.html?article=1"
+                        }
+                    },
+                    {
+                        "image": {
+                            "url": "images/diagnosis.png",
+                            "alt": "alt text"
+                        },
+                        "title": "TEST With Park Images in the Content",
+                        "summary": "Tiramisu dragee caramels.",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-news.html?article=2"
+                        }
+                    },
+                    {
+                        "title": "TEST News article 2015",
+                        "summary": "News article 2015",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-news.html?article=3"
+                        }
+                    },
+                    {
+                        "title": "TEST News article minimum length",
+                        "summary": "News article minimum length",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-news.html?article=4"
+                        }
+                    },
+                    {
+                        "title": "TEST News article maximum lengths",
+                        "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dolor mauris, tempus vel dictum vitae, semper in lacus. Integer vitae cursus metus, at consequat neque. Aenean id tincidunt lacus. Fus",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-news.html?article=5"
+                        }
+                    },
+                    {
+                        "title": "TEST News Without An Image",
+                        "summary": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-news.html?article=6"
+                        }
+                    },
+                    {
+                        "image": {
+                            "url": "images/diversity.png",
+                            "alt": "alt text"
+                        },
+                        "title": "Council foster carer wins Pride of Britain Award",
+                        "summary": "A Council super-carer who has fostered more than 1,300 children over 34 years has won a Daily Mirror Pride of Britain Award.",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-news.html?article=7"
+                        }
+                    },
+                    {
+                        "title": "Are you entitled for a free flu vaccination?",
+                        "summary": "Thousands of people are being encouraged to take advantage of a free flu vaccination before the winter season takes hold.",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-news.html?article=8"
+                        }
+                    },
+                    {
+                        "title": "City needs mental health 'champions'",
+                        "summary": "Council urgently needs a mental health ‘champion’ to bridge the gap between vulnerable tenants and housing providers in the city, a new report says.",
+                        "meta": [
+                            {
+                                "type": "date",
+                                "title": "Published",
+                                "value": "2019-03-26 12:00:00"
+                            }
+                        ],
+                        "link": {
+                            "url": "5-article-news.html?article=9"
+                        }
+                    }
+                ]
+            }
+        ],
+        "filterBar": {
+            "action": "4-news-listing-page.html?filter=true",
+            "method": "get",
+            "controls": [
+                {
+                    "type":"select",
+                    "label":"Filter by year",
+                    "name": "by-year",
+                    "options":[{"value": "-1","text":"Any"},{"value": "2017","text":"2017"},{"value": "2018","text":"2018"},{"value": "2019","text":"2019"}]
+                },
+                {
+                    "type": "select",
+                    "label": "Filter by month",
+                    "name": "by-month",
+                    "options":[{"value": "-1","text":"Any"},{"value": "1","text":"January"},{"value": "2","text":"February"},{"value": "3","text":"March"},{"value": "4","text":"April"},{"value": "5","text":"May"},{"value": "6","text":"June"},{"value": "7","text":"July"},{"value": "8","text":"August"},{"value": "9","text":"September"},{"value": "10","text":"October"},{"value": "11","text":"November"},{"value": "12","text":"December"}]
+                }
+            ],
+            "primaryAction": {
+                "name": "go",
+                "label": "Go"
+            }
+        },
+        "pagination": {
+            "previous": {
+                "url": "4-news-listing-page.html?page=previous",
+                "subtitle": "Page Title Goes Here"
+            },
+            "next": {
+                "url": "4-news-listing-page.html?page=next",
+                "subtitle": "Page Title Goes Here"
+            }
+        }
+    }
+}

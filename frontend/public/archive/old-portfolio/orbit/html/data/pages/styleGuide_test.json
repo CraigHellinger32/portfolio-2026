@@ -1,0 +1,375 @@
+{
+    "title": "Style Guide",
+    "content": {
+        "title": "Style Guide",
+        "feature": {
+            "image": {
+                "url": "./images/diagnosis.png",
+                "alt": "Free Flu Vaccinations"
+            },
+            "title": "Are you entitled to a free flu vaccination?",
+            "summary": "Thousands of people across the county are being encouraged to take advantage of a free flu vaccination before the winter season takes hold.",
+            "meta": [
+                {
+                    "type": "date",
+                    "title": "Date",
+                    "value": "2018-10-06 12:00:00"
+                }
+            ],
+            "body": "Around one in three people across the city are entitled to a free flu vaccination but many do not take up the offer.\n\nPeople aged 65 and over, carers, any adult or child with health conditions such as diabetes, chronic heart and lung diseases such as asthma or  bronchitis, liver or kidney diseases and  neurological conditions like Parkinson's or Multiple Sclerosis are eligible.\n\nPregnant women in particular are being encouraged to take the flu jab, with only 43 per cent of those eligible in Coventry and Rugby taking up the offer last year.",
+            "link": {
+                "url": "/news/article/41/are-you-entitled-for-a-free-flu-vaccination-"
+            }
+        }
+    },
+    "breadcrumb": [
+        {
+            "title": "The homepage",
+            "url": "home.html"
+        },
+        {
+            "title": "Landing page",
+            "url": "landing.html"
+        },
+        {
+            "title": "Document page",
+            "url": "document.html"
+        }
+    ],
+    "pagesIn": {
+        "heading": "In this section:",
+        "group": [
+            {
+                "number": 1,
+                "title": "Page link 1",
+                "url": "./document.html?page=1"
+            },
+            {
+                "number": 2,
+                "title": "Page link 2",
+                "url": "./document.html?page=2",
+                "currentPage": true,
+                "active": true
+            },
+            {
+                "number": 3,
+                "title": "Page link 3",
+                "url": "./document.html?page=3"
+            },
+            {
+                "number": 4,
+                "title": "Page link 4 with a really, really, really long title",
+                "url": "./document.html?page=4"
+            },
+            {
+                "number": 5,
+                "title": "Page link 5",
+                "url": "./document.html?page=5"
+            },
+            {
+                "number": 6,
+                "title": "Page link 6",
+                "url": "./document.html?page=6"
+            }
+        ],
+        "previous_link": {
+            "subtitle": "Previous page title",
+            "url": "./document.html?page=prev"
+        },
+        "next_link": {
+            "subtitle": "Next page title",
+            "url": "./document.html?page=next"
+        }
+    },
+    "list": {
+        "title": "List title",
+        "group": [
+            {
+                "title": "Study with us",
+                "url": "/study"
+            },
+            {
+                "title": "Our courses",
+                "url": "/courses"
+            },
+            {
+                "title": "Why study with us?",
+                "url": "/benefits"
+            },
+            {
+                "title": "Student experience",
+                "url": "/student-experience"
+            },
+            {
+                "title": "International students",
+                "url": "/international-students"
+            },
+            {
+                "title": "Visiting us",
+                "url": "/visiting"
+            }
+        ]
+    },
+    "AZlist": {
+        "title": "A–Z Navigation",
+        "group": [
+            {"title":"a","url":"/a"},{"title":"b","url":"/b"},{"title":"c","url":"/c"},{"title":"d","url":"/d","active":false},{"title":"e","url":"/e","active":false},{"title":"f","url":"/f","active":false},{"title":"g","url":"/g","active":false},{"title":"h","url":"/h"},{"title":"i","url":"/i"},{"title":"j","url":"/j"},{"title":"k","url":"/k"},{"title":"l","url":"/l"},{"title":"m","url":"/m"},{"title":"n","url":"/n"},{"title":"o","url":"/o"},{"title":"p","url":"/p"},{"title":"q","url":"/q"},{"title":"r","url":"/r"},{"title":"s","url":"/s"},{"title":"t","url":"/t"},{"title":"u","url":"/u"},{"title":"v","url":"/v"},{"title":"w","url":"/w","active":false},{"title":"x","url":"/x","active":false},{"title":"y","url":"/y","active":false},{"title":"z","url":"/z","active":false}
+        ]
+    },
+    "newslist": {
+        "title": "Latest News",
+        "group": [
+            {
+                "title": "Jadu releases Photon template engine",
+                "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce massa dui, accumsan ac ex at, suscipit interdum orci. Morbi gravida rhoncus gravida. Ut quis dolor nec nisi mattis bibendum. Aenean nisl diam, eleifend id ante eu, dapibus pretium nibh. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nunc venenatis quis leo ut pellentesque.",
+                "link": {
+                    "url": "/photon"
+                },
+                "meta": [
+                    {
+                        "type": "date",
+                        "title": "Date",
+                        "value": "2019-08-01 12:00:00"
+                    }
+                ],
+                "image": {
+                    "url": "./images/research.png",
+                    "alt": "Photon template engine"
+                }
+            },
+            {
+                "title": "Municipal swimming club recognised by the Queen",
+                "summary": "The Phoenix Swimming Club for Disabled People has been awarded the Queen’s Award for Voluntary Service from Her Majesty the Queen",
+                "link": {
+                    "url": "/news/article/40/coventry-swimming-club-recognised-by-the-queen"
+                },
+                "meta": [
+                    {
+                        "type": "date",
+                        "title": "Date",
+                        "value": "2018-07-11 12:00:00"
+                    }
+                ]
+            },
+            {
+                "title": "Local foster carer wins Pride of Britain Award",
+                "summary": "A super-carer who has fostered more than 1,300 children over 34 years has won a Daily Mirror Pride of Britain Award.",
+                "link": {
+                    "url": "/news/article/42/coventry-foster-carer-wins-pride-of-britain-award"
+                },
+                "meta": [
+                    {
+                        "type": "date",
+                        "title": "Date",
+                        "value": "2018-07-10 12:00:00"
+                    }
+                ],
+                "image": {
+                    "url": "./images/news-listing-1.png",
+                    "alt": "Local foster carer"
+                }
+            },
+            {
+                "title": "City needs mental health 'champions'",
+                "summary": "Our city urgently needs a mental health 'champion' to bridge the gap between vulnerable tenants and housing providers in the city, a new report says.",
+                "link": {
+                    "url": "/news/article/39/city-needs-mental-health-champions-"
+                },
+                "meta": [
+                    {
+                        "type": "date",
+                        "title": "Date",
+                        "value": "2018-06-09 12:00:00"
+                    }
+                ]
+            }
+        ]
+    },
+    "eventslist": {
+        "title": "Events",
+        "group": [
+            {
+                "title": "Making the modern world: England's first civic university (Heritage Tour)",
+                "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sollicitudin pretium leo, quis posuere tortor tincidunt ac.",
+                "link": {
+                    "url": "/events/event/1"
+                },
+                "meta": [
+                    {
+                        "type": "string",
+                        "title": "Date",
+                        "value": "2nd October 2014 - 18th December 2019"
+                    }
+                ],
+                "image": {
+                    "url": "./images/civic-university.png",
+                    "alt": "England's first civic university"
+                }
+            },
+            {
+                "title": "Specialist Garden History Tour of Goldney Garden",
+                "summary": "Phasellus feugiat nisl ut varius suscipit. Aliquam erat volutpat.",
+                "link": {
+                    "url": "/events/event/2"
+                },
+                "meta": [
+                    {
+                        "type": "date",
+                        "title": "Date",
+                        "value": "2019-09-12 12:00:00"
+                    }
+                ],
+                "image": {
+                    "url": "./images/goldney-garden.png",
+                    "alt": "Goldney Garden"
+                }
+            },
+            {
+                "title": "The Diversity Bargain and other dilemmas of race",
+                "summary": "Sed mollis nec felis at pellentesque. Vestibulum nec erat ac libero blandit venenatis.",
+                "link": {
+                    "url": "/events/event/3"
+                },
+                "meta": [
+                    {
+                        "type": "string",
+                        "title": "Date",
+                        "value": " 2nd September 2016 - 11th September 2019"
+                    }
+                ],
+                "image": {
+                    "url": "./images/diversity.png",
+                    "alt": "Diversity dilemma"
+                }
+            }
+        ]
+    },
+    "searchlist": {
+        "group": [
+            {
+                "title": "TEST: Event with image and text",
+                "summary": "In its original run, Hanna and Barbera produced 114 Tom and Jerry shorts for Metro-Goldwyn-Mayer from 1940 to 1957. During this time, they won seven Academy Awards for Animated Short Film, tying for",
+                "link": {
+                    "url": "document.html?search-result=1"
+                }
+            },
+            {
+                "title": "TEST: Event with a very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long title",
+                "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dolor mauris, tempus vel dictum vitae, semper in lacus. Integer vitae cursus metus, at consequat neque. Aenean id tincidunt lacus. Fus",
+                "link": {
+                    "url": "document.html?search-result=2"
+                }
+            },
+            {
+                "title": "TEST Event with formatting",
+                "summary": "Event with minimum field",
+                "link": {
+                    "url": "document.html?search-result=3"
+                }
+            },
+            {
+                "title": "TEST: Council budget consultation - public event",
+                "summary": "Dates have been set for a series of 13 budget events being held by the Council to consult with the public over spending priorities between 2015 and 2019.",
+                "link": {
+                    "url": "document.html?search-result=4"
+                }
+            },
+            {
+                "title": "TEST News With An Image",
+                "summary": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut",
+                "link": {
+                    "url": "document.html?search-result=5"
+                }
+            },
+            {
+                "title": "TEST News Without An Image",
+                "summary": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut",
+                "link": {
+                    "url": "document.html?search-result=6"
+                }
+            }
+        ]
+    },
+    "form": {
+        "className": "form--block",
+        "action": "/forms.html",
+        "method": "get",
+        "formHeading": "Form Heading",
+        "instructions": "<p>This is some <strong>descriptive text</strong> about the form. It will provide context to the user for the following steps.</p>",
+        "controls": [
+            {
+                "type": "text",
+                "label": "Forname",
+                "name": "forname-1"
+            },
+            {
+                "type": "text",
+                "label": "Surname",
+                "name": "surname-1",
+                "required": true
+            }
+        ],
+        "primaryAction": {
+            "name": "submit",
+            "label": "Save and Continue"
+        },
+        "secondaryAction": {
+            "name": "back",
+            "label": "Previous"
+        }
+    },
+    "alerts": [
+        {
+            "type": "information",
+            "heading": "Please Note:",
+            "text": "All poll results are indicative and may not reflect public opinion."
+        },
+        {
+            "type": "success",
+            "heading": "Thank you",
+            "text": "Your event will now be checked by the events moderator. Once approved, your event will be available to view on this site."
+        },
+        {
+            "type": "warning",
+            "heading": "Sorry, this download is password protected",
+            "text": "To view or download this file, you must first",
+            "link": {
+                "text": "authenticate yourself",
+                "url": "404.html"
+            }
+        },
+        {
+            "type": "danger",
+            "heading": "Sorry, your session expired and your changes were not saved",
+            "text": "Please try again."
+        },
+        {
+            "type": "warning",
+            "heading": "You have arrived at this page due to one or more of the following reasons:",
+            "text": "Please activate cookies in your browser’s preferences before continuing.",
+            "list": [
+                "Your browser has cookies turned off;",
+                "Your cookie has expired;",
+                "Your session has timed out;",
+                "You are not authorised to view this page."
+            ]
+        },
+        {
+            "type": "success",
+            "heading": "Your account has now been set up",
+            "text": [
+                "You will notice that a new link has appeared at the top of the page, allowing you to access your account from anywhere on the website.",
+                "From this page you can access or change your registration details, change your password or view your interactions with this website at all times."
+            ],
+            "link": {
+                "text": "View your account",
+                "url": "404.html"
+            }
+        }
+    ],
+    "imagelink": {
+        "imgSrc": "./images/research.png",
+        "link_url": "./index.html?image-link",
+        "caption": "A really, really, really really, really, really long image link caption goes here"
+    }
+}

@@ -1,0 +1,60 @@
+{% block article %}
+    {% block article_subtitle %}
+        {% if article.subTitle is not empty and not (page.title == article.subTitle)  %}
+            {% include 'partials/atoms/text/subheading.html.twig' with {'title': article.subTitle } %}
+        {% endif %}
+    {% endblock %}
+
+    {% block article_image %}
+        {% if article.image %}
+
+            {% if article.image.description is not empty %}
+                {% block article_image_with_caption %}
+                    {% include 'partials/molecules/image/figure.html.twig' with {
+                        'url': article.image.url,
+                        'alt': article.image.alt,
+                        'caption': article.image.description
+                        }
+                    %}
+                {% endblock %}
+            {% else %}
+                {% block article_image_no_caption %}
+                    {% include 'partials/atoms/image/image.html.twig' with {
+                        'url': article.image.url,
+                        'alt': article.image.alt
+                        }
+                    %}
+                {% endblock %}
+            {% endif %}
+
+        {% endif %}
+    {% endblock article_image %}
+
+    {% block article_summary %}
+        {% if article.summary and not (article.title == article.summary) %}
+            {% include 'partials/atoms/text/summary.html.twig' with {'summary': article.summary } %}
+        {% endif %}
+    {% endblock %}
+
+    {% block article_body %}
+        {% if article.body %}
+            {% include 'partials/atoms/text/editor.html.twig' with {'content': article.body } %}
+        {% endif %}
+    {% endblock %}
+
+    {% block article_meta %}
+        {% if article.meta %}
+            <div class="page-meta">
+            {% for item in article.meta %}
+                {% include 'partials/atoms/text/meta.html.twig' with {
+                    'type': item.type,
+                    'label': item.title,
+                    'value': item.value
+                    }
+                %}
+            {% endfor %}
+            </div>
+        {% endif %}
+    {% endblock article_meta %}
+
+{% endblock article %}

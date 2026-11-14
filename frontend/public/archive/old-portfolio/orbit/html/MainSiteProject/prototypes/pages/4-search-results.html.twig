@@ -1,0 +1,7 @@
+{% set page = data.pages._4_search_results_page %}
+{% set summary = page.summary %}
+{% set synonymSuggestions = page.synonymSuggestions %}
+{% set spellingSuggestions = page.spellingSuggestions %}
+{% set refinements = page.refinements %}
+{% set pageNavigation = page.pagination %}
+{% extends 'pages/utilities_content/search/list.html.twig' %}

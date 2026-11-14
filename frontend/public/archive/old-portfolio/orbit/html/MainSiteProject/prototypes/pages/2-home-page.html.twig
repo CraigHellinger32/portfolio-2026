@@ -1,0 +1,25 @@
+{% set page = data.pages['_2_home_page'] %}
+{% extends 'pages/publishing_content/homepage/index.html.twig' %}
+
+{% block page_alert %}
+    {% if data.site.announcement.visible %}
+
+        {% block alert_container_opening %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% include 'partials/molecules/text/alert.html.twig' with {
+            'type': 'success',
+            'title' : getTranslatedString('user-awaiting-approval-message'),
+            'summary': ''
+            } only
+        %}
+
+        {% block alert_container_closing %}
+            {{ parent() }}
+        {% endblock %}
+
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

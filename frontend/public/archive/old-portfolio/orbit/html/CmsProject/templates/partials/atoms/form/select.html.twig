@@ -1,0 +1,14 @@
+{% block form_select %}
+    <select class="form__select" id="{{ name }}" name="{{ name }}" {% if required %}aria-required="true"{% endif %}>
+
+        {% block form_select_inner %}
+            {% for option in options %}
+                <option
+                    value="{{ option.value }}"
+                    {% if option.value == value %}selected{% endif %}>
+                    {{ option.text }}</option>
+            {% endfor %}
+        {% endblock %}
+
+    </select>
+{% endblock form_select %}

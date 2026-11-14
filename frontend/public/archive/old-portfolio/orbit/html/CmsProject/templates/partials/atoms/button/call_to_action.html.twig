@@ -1,0 +1,13 @@
+<a class="button{{ className ? ' ' ~ className }}"
+    href="{{ link }}">
+    {% if icon is not empty and iconPosition == 'left' %}
+        {% include 'partials/atoms/image/icon.html.twig' with {'type': icon } only %}
+    {% endif %}
+    {{ title }}
+    {% if buttonHiddenText %}
+        <span class="visually-hidden">{{ buttonHiddenText }}</span>
+    {% endif %}
+    {% if icon is not empty and iconPosition != 'left' %}
+        {% include 'partials/atoms/image/icon.html.twig' with {'type': icon } only %}
+    {% endif %}
+</a>

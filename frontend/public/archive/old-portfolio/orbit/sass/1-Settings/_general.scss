@@ -1,0 +1,285 @@
+// ========================================================
+//  General Settings
+// ========================================================
+//  Contains settings for Typography, Spacing, Breakpoints
+//  and some helpers for debugging.
+
+// ========================================================
+//  Typography
+// ============
+
+//  Base Type Size
+// ================
+$base-font-size:                16px;
+$base-line-height:              24px;
+$line-height-ratio:             $base-line-height / $base-font-size;
+
+//  Oversized Type Range
+// ======================
+$giga-px:                       96px;
+$giga:                          $giga-px / $base-font-size * 1rem;
+
+$mega-px:                       72px;
+$mega:                          $mega-px / $base-font-size * 1rem;
+
+$kilo-px:                       48px;
+$kilo:                          $kilo-px / $base-font-size * 1rem;
+
+//  Standard Type Range
+// =====================
+$alpha-px:                      36px;
+$alpha:                         $alpha-px / $base-font-size * 1rem;
+$alpha-line-height:             1.1;
+
+$beta-px:                       28px;
+$beta:                          $beta-px / $base-font-size * 1rem;
+$beta-line-height:              1.2;
+
+$gamma-px:                      26px;
+$gamma:                         $gamma-px / $base-font-size * 1rem;
+$gamma-line-height:             1.26;
+
+$delta-px:                      24px;
+$delta:                         $delta-px / $base-font-size * 1rem;
+$delta-line-height:             1.3;
+
+$epsilon-px:                    20px;
+$epsilon:                       $epsilon-px / $base-font-size * 1rem;
+$epsilon-line-height:           1.3;
+
+$zeta-px:                       18px;
+$zeta:                          $zeta-px / $base-font-size * 1rem;
+$zeta-line-height:              1.4;
+
+$normalis-px:                   $base-font-size;
+$normalis:                      $normalis-px / $base-font-size * 1rem;
+
+//  Small Type Range
+// ==================
+$milli-px:                      14px;
+$milli:                         $milli-px / $base-font-size * 1rem;
+
+$micro-px:                      12px;
+$micro:                         $micro-px / $base-font-size * 1rem;
+
+$font-family:                   'Open Sans', sans-serif;
+$font-family-block:             'Trebuchet MS';
+
+
+//  Weights
+// =========
+$font-weight-normal:            400;
+$font-weight-semibold:          600;
+$font-weight-bold:              700;
+$font-weight-heading:           $font-weight-semibold;
+
+//  Measure
+// =========
+$content-max-width:             44em;
+
+// ========================================================
+
+
+
+
+// ========================================================
+//  Breakpoints
+// =============
+
+//  Variables
+// ===========
+$full-width:                    1280px;
+$x-large-width:                 1020px;
+$large-width:                   960px;
+$mid-width:                     760px;
+$small-width:                   600px;
+$small-mid-width:               500px;
+$x-small-width:                 400px;
+$xx-small-width:                375px;
+$smallest-width:                320px;
+
+
+//  Widget Snaps
+// ==============
+$widget-snap-small:             $small-mid-width;
+$widget-snap-medium:            $mid-width;
+$widget-snap-large:             $large-width;
+
+
+//  Map
+// =====
+$breakpoints: (
+    'x-small-width'   '(min-width: #{$x-small-width})',
+    'small-width'     '(min-width: #{$small-width})',
+    'mid-width'       '(min-width: #{$mid-width})',
+    'large-width'     '(min-width: #{$large-width})',
+    'x-large-width'   '(min-width: #{$x-large-width})',
+    'full-width'      '(min-width: #{$full-width})'
+);
+
+// ========================================================
+
+
+
+
+// ========================================================
+//  Layout
+// ========
+
+//  Spacing
+// =========
+$space:                         $line-height-ratio * 1rem;       // 24px   -- 1.5rem
+$space-half:                    $space / 2;                      // 12px   -- 0.75rem
+$space-hard:                    $space / 12 * 5;                 // 10px   -- 0.625rem
+$space-third:                   $space / 3;                      //  8px   -- 0.5rem
+$space-quarter:                 $space / 4;                      //  6px   -- 0.375rem
+$space-fifth:                   $space / 5;                      //  4.8px -- 0.3rem
+$space-sixth:                   $space-third / 2;                //  4px   -- 0.25rem
+$space-eighth:                  $space / 8;                      //  3px   -- 0.1875rem
+$space-twelfth:                 $space-sixth / 2;                //  2px   -- 0.125rem
+$space-two-thirds:              $space-third * 2;                // 16px   -- 1 rem
+$space-three-quarters:          $space - $space-quarter;         // 18px   -- 1.125rem
+$space-and-eighth:              $space + $space-eighth;          // 27px   -- 1.6875rem
+$space-and-sixth:               $space + $space-sixth;           // 28px   -- 1.75rem
+$space-and-fifth:               $space + $space-fifth;           // 28.8px -- 1.8rem
+$space-and-quarter:             $space + $space-quarter;         // 30px   -- 1.875rem
+$space-and-third:               $space + $space-third;           // 32px   -- 2 rem
+$space-and-half:                $space + $space-half;            // 36px   -- 2.25rem
+$space-and-two-thirds:          $space + $space-two-thirds;      // 40px   -- 2.5rem
+$space-and-three-quarters:      $space + $space-three-quarters;  // 42px   -- 2.625rem
+$space-double:                  $space * 2;                      // 48px   -- 3 rem
+$space-triple:                  $space * 3;                      // 72px   -- 4.5rem
+$space-quadruple:               $space * 4;                      // 96px   -- 6 rem
+
+//  Gutters
+// =========
+//  Space between columns
+$gutter:                        $space;
+$gutter-small:                  $space-two-thirds;
+$gutter-large:                  $space-and-third;
+
+//  Leading
+// =========
+//  Space between rows
+$slug:                          $gutter;
+$slug-small:                    $slug / 2;
+$slug-smaller:                  $slug / 3;
+$slug-large:                    $gutter-large;
+
+//  Space between widgets & supplements
+$widget-supp-slug: $slug-large;
+
+//  Containers
+// ============
+$container-narrow:              900px;
+$container-standard:            $full-width;
+$container-wide:                1600px;
+
+//  Widget grid
+// =============
+//  Used to normalise the widget widths applied in
+//  the `Homepage Editor`.
+//  Convert
+//  |   33%   |   33%   |   33%   |  |
+//  into
+//  | 33.3333% | 33.3333% | 33.3333% |
+$widget-grid: (
+    (1, 12),
+    (13, 21),
+    (22, 29),
+    (30, 36),
+    (37, 45),
+    (46, 54),
+    (55, 62),
+    (63, 71),
+    (72, 78),
+    (79, 83),
+    (84, 90)
+);
+
+// ========================================================
+
+
+
+
+// ========================================================
+//  Styling
+// =========
+
+//  Borders
+// =========
+$border-width-small:            1px;
+$border-width-mid:              2px;
+$border-width-large:            3px;
+
+//  Shadows
+// =====================
+// $shadow: 0 1px 2px rgba($color-black, .4);
+
+// ========================================================
+
+
+
+
+// ========================================================
+//  Interactions
+// ==============
+
+//  Transitions
+// =============
+$transition-speed-fast:         .1s;
+$transition-speed:              .2s;
+$transition-speed-slow:         .3s;
+
+$bezier: cubic-bezier(.23, .34, .24, 1.06);
+// ========================================================
+
+
+
+
+// ========================================================
+//  Output settings
+// =================
+$old-ie: false !default;
+$includeAccessibilitySettings: true !default;
+$accessibilityIconFallback: false !default;
+
+// ========================================================
+
+
+
+
+// ========================================================
+//  Debugging options
+// ===================
+
+//  Show baseline grid
+// ====================
+$show-baseline:                 false;
+
+//  Show media queries
+// ====================
+$show-mq:                       false;
+
+//  Enable debug mode
+// ===================
+//  Highlight possible mark-up / accessibility quirks
+//  in your code.
+//  Debug styles can be found in `helpers/_debug.scss`
+$debug-mode:                    false;
+
+//  Relative paths to folders
+// ====================
+$imageContentFolderPath:        '../images/';
+$imageThemeFolderPath:          'images/';
+
+/**
+ * Global z-index control
+ */
+$global-z-index-control: (
+    'modal':                    999,
+    'modal-background':         998,
+    'tooltip':                  997,
+    'site-header':              996,
+    'site-main':                995
+);

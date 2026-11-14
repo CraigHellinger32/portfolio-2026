@@ -1,0 +1,30 @@
+{% block form_esri %}
+    {% set latitude = '' %}
+    {% set longitude = '' %}
+    {% if value is not empty %}
+        {% set latLong = value|split(',') %}
+        {% set latitude = latLong[0] %}
+        {% set longitude = latLong[1] %}
+    {% endif %}
+    {{ getESRIMapsHTML(-1,'','',true, {'latitude': latitude|default(''), 'longitude': longitude|default(''), 'mapID': name, 'lat_field': 'map_' ~ name ~ '_lat', 'lng_field': 'map_' ~ name ~ '_long', 'latlng_field': name, 'id': name })|raw }}
+
+    {% block form_esri_inner %}
+        {% block form_esri_label_lat %}
+            <label for="map_{{ name }}_lat">Latitude: </label>
+        {% endblock %}
+
+        {% block form_esri_input_lat %}
+            <input type="text" id="map_{{ name }}_lat" name="map_{{ name }}_lat" value="{{ latitude }}" onkeyup="document.getElementById('{{ name }}').value = document.getElementById('map_{{ name }}_lat').value+','+document.getElementById('map_{{ name }}_long').value;" />
+        {% endblock %}
+
+        {% block form_esri_label_long %}
+            <label for="map_{{ name }}_long">Longitude: </label>
+        {% endblock %}
+
+        {% block form_esri_input_long %}
+            <input type="text" id="map_{{ name }}_long" name="map_{{ name }}_long" value="{{ longitude }}" onkeyup="document.getElementById('{{ name }}').value = document.getElementById('map_{{ name }}_lat').value+','+document.getElementById('map_{{ name }}_long').value;" />
+        {% endblock %}
+    {% endblock form_esri_inner %}
+
+    <input type="hidden" id="{{ name }}" name="{{ name }}" value="{{ value }}" />
+{% endblock form_esri %}

@@ -1,0 +1,8 @@
+// Required indicator
+.form__required-note {
+    color: $color-text-muted;
+    display: inline-block;
+    font-size: $milli;
+    font-weight: $font-weight-normal;
+    margin-left: $space-third;
+}

@@ -1,0 +1,81 @@
+{# Date function changed to prevent twing errors #}
+{% block widget_wrap %}
+    <div class="widget-website-statistics">
+
+        {% block widget_wrap_inner %}
+
+            {% block widget_heading %}
+                {% include 'partials/atoms/text/widget_heading.html.twig' with {
+                    'title': 'Statistics overview'
+                    }
+                %}
+            {% endblock %}
+
+            {% block widget_content %}
+
+                {% block widget_content_inner %}
+
+                    {% block widget_summary %}
+                        <p class="widget__text">Reliable performance is important in order to encourage and maintain the usage of quality web-based services. Our aim is to have the {{ getConstantValue('METADATA_GENERIC_NAME') }} website available for use at all times throughout the year.</p>
+
+                        <p class="widget__text">This is not always possible due to essential maintenance, but we are committed to keeping our site available and online as consistently as we can.</p>
+                    {% endblock %}
+
+                    {% block statistics_table %}
+                        <table>
+
+                            {% block statistics_table_inner %}
+                                {% block statistics_table_header %}
+                                    <tr>
+                                        <th>Month</th>
+                                        <th>Pages viewed</th>
+                                        <th>Unique visitors</th>
+                                    </tr>
+                                {% endblock %}
+
+                                {% block statistics_table_data %}
+                                    {% for timestamp, data in stats %}
+
+                                        {% block statistics_table_data_inner %}
+                                            <tr>
+                                                <td>{{ now|date_modify("-" ~ loop.index ~ " month")|date('F') }}</td>
+                                                <td>{{ data.pages }}</td>
+                                                <td>{{ data.visitors }}</td>
+                                            </tr>
+                                        {% endblock %}
+
+                                    {% endfor %}
+                                {% endblock statistics_table_data %}
+                            {% endblock statistics_table_inner %}
+
+                        </table>
+                    {% endblock statistics_table %}
+
+                    {% block statistics_content %}
+                        <div class="boxed">
+
+                            {% block statistics_content_inner %}
+                                {% block statistics_heading %}
+                                    <h3 class="boxed__heading">Statistics explained</h3>
+                                {% endblock %}
+
+                                {% block statistics_pages_viewed %}
+                                    <p class="boxed__text"><strong>Pages viewed:</strong> This figure represents the total number of pages requested from the website. If a visitor visits a page more than once during the same session or in the relevant period, it is re-counted.</p>
+                                {% endblock %}
+
+                                {% block statistics_unique_visitors %}
+                                    <p class="boxed__text"><strong>Unique visitors:</strong> This figure represents the number of unique visitors during the relevant period. This means that any visitor who has already been to the site during this period is not counted again.</p>
+                                {% endblock %}
+                            {% endblock statistics_content_inner %}
+
+                        </div>
+                    {% endblock statistics_content %}
+
+                {% endblock widget_content_inner %}
+
+            {% endblock widget_content %}
+
+        {% endblock widget_wrap_inner %}
+
+    </div>
+{% endblock widget_wrap %}

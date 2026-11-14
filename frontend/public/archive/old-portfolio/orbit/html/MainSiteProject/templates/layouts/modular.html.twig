@@ -1,0 +1,99 @@
+{% extends '@theme:base/layouts/modular.html.twig' %}
+
+{% block page_heading %}
+    <div class="container">
+        {{ parent() }}
+    </div>
+{% endblock %}
+
+{% block site_main %}
+    <main class="site-main">
+
+        {% if columns == 'two-column' %}
+            <div class="container">
+        {% endif %}
+
+            {% block site_main_inner %}
+                {{ parent() }}
+            {% endblock %}
+
+        {% if columns == 'two-column' %}
+            </div>
+        {% endif %}
+
+    </main>
+{% endblock %}
+
+{% block page_alert %}
+
+    {% block alert_container_opening %}
+        {% if columns != 'two-column' %}
+            <div class="container">
+        {% endif %}
+    {% endblock %}
+
+    {{ parent() }}
+
+    {% block alert_container_closing %}
+        {% if columns != 'two-column' %}
+            </div>
+        {% endif %}
+    {% endblock %}
+
+{% endblock %}
+
+{# This block adds a container around the aside on a one column homepage #}
+{% block aside_inner %}
+
+    {% block aside_inner_container_opening %}
+        {% if columns != 'two-column' %}
+            <div class="container">
+        {% endif %}
+    {% endblock %}
+
+    {{ parent() }}
+
+    {% block aside_inner_container_closing %}
+        {% if columns != 'two-column' %}
+            </div>
+        {% endif %}
+    {% endblock %}
+
+{% endblock %}
+
+{# This block adds a container around the after page content and secondary supplements on a one column homepage #}
+{% block page_content_wrap_inner %}
+    {% apply spaceless %}
+        {% if columns != 'two-column' and (block('after_page_content', 'layouts/modular.html.twig')|trim is not empty or block('secondary_supplements', 'layouts/modular.html.twig')|trim is not empty) %}
+            {% set addExtraContainer = true %}
+        {% endif %}
+
+        {% block before_page_content %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% block page_content %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% block after_page_content_container_opening %}
+            {% if addExtraContainer %}
+                <div class="container">
+            {% endif %}
+        {% endblock %}
+
+        {% block after_page_content %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% block secondary_supplements %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% block after_page_content_container_closing %}
+            {% if addExtraContainer %}
+                </div>
+            {% endif %}
+        {% endblock %}
+    {% endapply %}
+{% endblock %}

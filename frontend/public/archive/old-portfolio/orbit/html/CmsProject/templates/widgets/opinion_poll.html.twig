@@ -1,0 +1,48 @@
+{# 'paths' added to prevent Twing error #}
+{% if poll is not empty %}
+    {% block widget_wrap %}
+        <div class="widget-poll">
+
+            {% block widget_wrap_inner %}
+                {% block widget_heading %}
+                    {% include 'partials/atoms/text/widget_heading.html.twig' with {
+                        'title': getTranslatedString('opinion-poll-title'),
+                        'paths': paths
+                        }
+                    %}
+                {% endblock %}
+
+                {% block widget_content %}
+                    <div class="boxed">
+
+                        {% block widget_content_inner %}
+                            {% if not hasVoted %}
+
+                                {% block widget_form %}
+                                    {% include 'partials/organisms/form/form.html.twig' with {
+                                        'form': form,
+                                        'className': 'boxed__form',
+                                        'paths': paths
+                                        }
+                                    %}
+                                {% endblock %}
+
+                            {% else %}
+
+                                {% block widget_summary %}
+                                    <p class="summary">{{ poll.question }}</p>
+                                    {% for answer in poll.answers %}
+                                        <p>{{ answer.answer }} : {{ answerPercentage[answer.id] }}%</p>
+                                    {% endfor %}
+                                {% endblock %}
+
+                            {% endif %}
+                        {% endblock widget_content_inner %}
+
+                    </div>
+                {% endblock widget_content %}
+            {% endblock widget_wrap_inner %}
+
+        </div>
+    {% endblock widget_wrap %}
+{% endif %}

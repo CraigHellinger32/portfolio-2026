@@ -1,0 +1,130 @@
+{% extends 'layouts/list.html.twig' %}
+
+{% block page_alert %}
+    {% if page.content.lists|length == 0 and page.content.feature is empty %}
+        {% include 'partials/molecules/text/alert.html.twig' with {
+            'type': 'warning',
+            'title': getTranslatedString('no-entries')
+            } only
+        %}
+    {% endif %}
+{% endblock page_alert %}
+
+{% block main %}
+    {% block search_content %}
+
+        {% block search_synonyms %}
+            {% if synonymSuggestions %}
+
+                {% block search_synonyms_wrap %}
+                    <div class="boxed">
+
+                        {% block search_synonyms_inner %}
+                            <h2 class="boxed__heading">You could also try:
+                                {% for synonym in synonymSuggestions %}
+                                    <a href="{{ synonym.url }}">{{ synonym.word }}</a>
+                                    {% if loop.index < synonymSuggestions|length %}, {% endif %}
+                                {% endfor %}
+                            </h2>
+                        {% endblock %}
+
+                    </div>
+                {% endblock search_synonyms_wrap %}
+
+            {% endif %}
+        {% endblock search_synonyms %}
+
+        {% block search_summary %}
+            {% include 'partials/atoms/text/summary.html.twig' with {
+                'summary': summary|raw
+                }
+            %} {# Raw filter added for correct rendering on prototypes only #}
+        {% endblock %}
+
+        {% block search_spelling %}
+            {% if spellingSuggestions %}
+
+                {% block search_spelling_wrap %}
+                    <div class="boxed">
+
+                        {% block search_spelling_inner %}
+                            <h2 class="boxed__heading">
+                                Did you mean
+                                {% for suggestion in spellingSuggestions %}
+                                    <a href="{{ suggestion.url }}">{{ suggestion.word }}</a>
+                                    {% if loop.index < spellingSuggestions|length %}, {% endif %}
+                                {% endfor %}
+                                ?
+                            </h2>
+                        {% endblock %}
+
+                    </div>
+                {% endblock search_spelling_wrap %}
+
+            {% endif %}
+        {% endblock search_spelling %}
+
+        {% block search_refinement %}
+            {% if refinements %}
+
+                {% block search_refinement_wrap %}
+                    <div class="boxed">
+                        {% block search_refinement_inner %}
+                            {% block search_refinement_heading %}
+                                <h2 class="boxed__heading">Refine by:</h2>
+                            {% endblock %}
+
+                            {% block search_refinement_list %}
+                                <ul class="list list--navigation boxed__list">
+
+                                    {% block search_refinement_list_inner %}
+                                        {% for refinement in refinements %}
+
+                                            {% block search_refinement_item %}
+                                                <li class="list__item">
+                                                    {% block search_refinement_link %}
+                                                        <a class="list__link" href="{{ refinement.url }}">
+                                                            {% if refinement.image %}<img src="{{ refinement.image }}" alt="" />{% endif %}
+                                                            {{ refinement.name }}
+                                                        </a>
+                                                    {% endblock %}
+                                                </li>
+                                            {% endblock %}
+
+                                        {% endfor %}
+                                    {% endblock search_refinement_list_inner %}
+
+                                </ul>
+                            {% endblock search_refinement_list %}
+                        {% endblock search_refinement_inner %}
+                    </div>
+                {% endblock search_refinement_wrap %}
+
+            {% endif %}
+        {% endblock search_refinement %}
+
+        {% block search_omitted %}
+            {% if omittedResults %}
+
+                {% block search_omitted_inner %}
+                    <p>In order to show you the most relevant results, we have omitted some entries very similar to the {{ currentResult.endNumber }} already displayed. If you like, you can <a href="{{ omittedResultsURL }}">repeat the search with the omitted results included</a>.</p>
+                {% endblock %}
+
+            {% endif %}
+        {% endblock search_omitted %}
+
+    {% endblock search_content %}
+
+    {{ parent() }}
+{% endblock main %}
+
+{% block after_page_content %}
+    {% block pagination %}
+        {% if pageNavigation %}
+            {% include 'partials/molecules/navigation/pagination_complex.html.twig' with {
+                'group': pageNavigation
+                } only
+            %}
+        {% endif %}
+    {% endblock %}
+{% endblock %}

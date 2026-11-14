@@ -1,0 +1,44 @@
+{
+    "bodyClass": "meeting-article",
+    "content": {
+        "title": "Meeting Article"
+    },
+    "attachments": [
+        {
+            "attachment": {
+                "type": {
+                    "type": "Agenda"
+                },
+                "id": 1,
+                "contentType": "manual",
+                "title": "Read the Agenda",
+                "content": "<p dir='ltr'>MEETING: Local Schools Forum</p><p dir='ltr'>Date and Time: Thursday 2 October 2019 at 4.30pm</p><p dir='ltr'>Venue: A Local School, Education Road, ED1 4BU</p><br><p dir='ltr'>AGENDA</p><ol><li dir='ltr'><p dir='ltr'>Apologies and Welcomes</p></li><li dir='ltr'><p dir='ltr'>Election of Chair/Vice Chair</p></li><li dir='ltr'><p dir='ltr'>Confirmation of Minutes DOCUMENT 1</p></li><li dir='ltr'><p dir='ltr'>To confirm the minutes of the meeting held on 12 June 2019 for publication.</p></li><li dir='ltr'><p dir='ltr'>Matters Arising and Review Of Action Log</p></li><li dir='ltr'><p dir='ltr'>Membership DOCUMENT 2</p></li><li dir='ltr'><p dir='ltr'>Feedback from Schools Forum Sub Group DOCUMENT 3</p></li><li dir='ltr'><p dir='ltr'>Fair Funding Consultation – Response DOCUMENT 4</p></li><li dir='ltr'><p dir='ltr'>Financial Update</p></li><li dir='ltr'><p dir='ltr'>Any Other Business</p></li></ol>"
+            }
+        },
+        {
+            "attachment": {
+                "type": {
+                    "type": "Minutes"
+                },
+                "id": 2,
+                "title": "Download the Minutes"
+            }
+        },
+        {
+            "attachment": {
+                "type": {
+                    "type": "Briefing Note"
+                },
+                "id": 3,
+                "title": "Download the Briefing Note"
+            }
+        }
+    ],
+    "meta": [
+        {
+            "type": "default",
+            "title": "Time",
+            "value": "08:45"
+        }
+    ]
+}

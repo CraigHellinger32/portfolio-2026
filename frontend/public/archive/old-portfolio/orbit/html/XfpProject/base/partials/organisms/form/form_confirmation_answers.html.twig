@@ -1,0 +1,40 @@
+{% block confirmation_answers %}
+    {% if answers is not empty %}
+        {% block confirmation_summary %}
+            <div class="form-summary">
+                {% block confirmation_summary_inner %}
+                    {% for pageData in answers %}
+                        {% if pageData.answers and pageData.answers|length > 0 %}
+                            {% block confirmation_summary_page %}
+                                <section class="form-summary__page" aria-label="Answers for: {{ pageData.title }}">
+                                    {% block confirmation_summary_page_inner %}
+                                        {% block confirmation_summary_page_heading %}
+                                            <h2 class="form-summary__page-heading">
+                                                <span class="form-summary__pre-heading">Page: </span>
+                                                {{ pageData.title }}
+                                            </h2>
+                                        {% endblock %}
+
+                                        {% block confirmation_summary_page_list %}
+                                            <ul class="list list--form-summary">
+                                                {% include 'partials/organisms/form/form_confirmation_section.html.twig' with {
+                                                    'element': {
+                                                        'structure': pageData.answers
+                                                    }
+                                                } %}
+                                            </ul>
+                                        {% endblock %}
+                                    {% endblock %}
+                                </section>
+                            {% endblock %}
+                        {% endif %}
+                    {% endfor %}
+                {% endblock %}
+            </div>
+        {% endblock %}
+    {% else %}
+        {% block confirmation_answers_no_answers %}
+            <p class="form__text">You have not answered any questions on this form.</p>
+        {% endblock %}
+    {% endif %}
+{% endblock %}

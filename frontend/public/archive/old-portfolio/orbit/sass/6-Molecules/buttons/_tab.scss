@@ -1,0 +1,77 @@
+.tabs {
+    padding-bottom: $slug;
+    position: relative;
+}
+
+.tab-list {
+    border-bottom: $border-width-small solid $color-link-hover;
+    overflow: auto;
+    padding: $border-width-large $gutter-small 0;
+    position: relative;
+    text-align: left;
+    white-space: nowrap;
+    width: auto;
+
+    @include respond-min($mid-width) {
+        padding-left: $border-width-large;
+        padding-right: $border-width-large;
+    }
+
+    .two-column .container & {
+        @include respond-max($mid-width) {
+            margin-left: 0 - $gutter-small;
+            margin-right: 0 - $gutter-small;
+        }
+    }
+}
+
+.tabs {
+    &::before {
+        background: $color-link-hover;
+        bottom: 0;
+        content: '';
+        height: $border-width-small;
+        left: 0;
+        position: absolute;
+        right: 0;
+
+        .one-column .container & {
+            left: 0 - $gutter-small;
+            right: 0 - $gutter-small;
+        }
+
+        .two-column .container & {
+            @include respond-max($mid-width) {
+                left: 0 - $gutter-small;
+                right: 0 - $gutter-small;
+            }
+        }
+    }
+}
+
+.button--tab {
+    border-bottom-width: 0;
+    margin: 0 0 - $border-width-small 0 0;
+    position: relative;
+    vertical-align: bottom;
+    z-index: 0;
+
+    &:hover,
+    &:focus,
+    &:active {
+        padding: $space-hard $space $space-half;
+    }
+
+    &.is-active {
+        background-color: $color-link-hover;
+        color: $color-white;
+        padding: $space-half $space;
+        text-decoration: none;
+        z-index: 1;
+    }
+
+    &:focus,
+    &:active {
+        z-index: 2;
+    }
+}

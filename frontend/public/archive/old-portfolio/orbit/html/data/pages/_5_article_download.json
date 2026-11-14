@@ -1,0 +1,65 @@
+{
+    "bodyClass": "download-article",
+    "content": {
+        "title": "Download Article",
+        "passwordProtected": false,
+        "body": "<p>This is a download with a lot of different file types attached</p>"
+    },
+    "download_files": [
+        {
+            "title": "Markets Compaints Form Rich Text File with a long long long long long long long title",
+            "url": "",
+            "id": 1,
+            "filenameExtension": "RTF",
+            "humanReadableFileSize": "3kB"
+        },
+        {
+            "title": "Indoor Market Terms and Conditions Text File",
+            "url": "",
+            "id": 2,
+            "filenameExtension": "TXT",
+            "humanReadableFileSize": "2kB"
+        },
+        {
+            "title": "Outdoor Market Terms and Conditions PDF",
+            "url": "",
+            "id": 3,
+            "filenameExtension": "PDF",
+            "humanReadableFileSize": "22kB"
+        },
+        {
+            "title": "Bank Reference Form JPG",
+            "url": "",
+            "id": 4,
+            "filenameExtension": "JPG",
+            "humanReadableFileSize": "38kB"
+        },
+        {
+            "title": "Example redirect to PDF",
+            "url": "https://en.wikipedia.org/wiki/PDF",
+            "id": 5,
+            "filenameExtension": "PDF"
+        },
+        {
+            "title": "Improving the Energy Efficiency of Your Home Excel",
+            "url": "",
+            "id": 6,
+            "filenameExtension": "XLSX",
+            "humanReadableFileSize": "26kB"
+        },
+        {
+            "title": "Replacement Local Plan Powerpoint",
+            "url": "",
+            "id": 7,
+            "filenameExtension": "PPTX",
+            "humanReadableFileSize": "34kB"
+        },
+        {
+            "title": "Framework Issue 34 Word",
+            "url": "",
+            "id": 8,
+            "filenameExtension": "DOCX",
+            "humanReadableFileSize": "80kB"
+        }
+    ]
+}

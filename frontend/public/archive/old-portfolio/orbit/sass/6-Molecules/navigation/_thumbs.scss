@@ -1,0 +1,16 @@
+.nav--thumbs,
+%nav--thumbs {
+    .nav__item {
+        &__first {
+        }
+
+        &__last {
+        }
+    }
+
+    .nav__link {
+        display: inline-block;
+        text-align: center;
+        width: 49%;
+    }
+}

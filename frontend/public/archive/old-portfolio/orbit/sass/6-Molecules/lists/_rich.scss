@@ -1,0 +1,25 @@
+%list--rich,
+.list--rich {
+    .list__item {
+        @extend %cf;
+
+        border-bottom: $border-width-small solid $color-border-mid;
+        margin: 0;
+        padding: $space 0;
+
+        &:first-child {
+            border-top: $border-width-small solid $color-border-mid;
+        }
+    }
+
+    .list {
+        margin-top: $space;
+
+        .list__item {
+            &:last-child {
+                border-bottom: 0;
+                padding-bottom: 0;
+            }
+        }
+    }
+}

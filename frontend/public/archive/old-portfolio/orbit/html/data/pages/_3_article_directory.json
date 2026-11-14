@@ -1,0 +1,61 @@
+{
+    "bodyClass": "directory-article",
+    "content": {
+        "title": "Directory Article",
+        "directory_categories": {
+            "title": "Information on What goes in which bin?",
+            "items": [
+                {
+                    "title": "Black bin",
+                    "url": "#"
+                },
+                {
+                    "title": "Blue-lid bin",
+                    "url": "#"
+                },
+                {
+                    "title": "Green bin",
+                    "url": "#"
+                },
+                {
+                    "title": "Household waste recycling centre (tip)",
+                    "url": "#"
+                }
+            ]
+        },
+        "formHeading": "Search the directory",
+        "action": "index.html",
+        "method": "get",
+        "passwordProtected": false,
+        "restricted": false,
+        "controls": [
+            {
+                "type": "text",
+                "label": "Keywords",
+                "name": "keywords"
+            },
+            {
+                "type": "select",
+                "label": "Category",
+                "name": "category",
+                "options": [
+                    {
+                        "text": "All Categories"
+                    },
+                    {
+                        "value": 1,
+                        "text": "Black Bin"
+                    },
+                    {
+                        "value": 2,
+                        "text":"Blue-lid Bin"
+                    }
+                ]
+            }
+        ],
+        "primaryAction": {
+            "name": "search",
+            "label": "Search"
+        }
+    }
+}

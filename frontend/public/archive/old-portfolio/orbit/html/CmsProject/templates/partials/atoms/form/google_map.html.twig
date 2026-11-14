@@ -1,0 +1,31 @@
+{% block form_map %}
+    {% set map_config = getDefaultMapConfig() %}
+    {% block form_map_hidden_input %}
+        <input type="text" class="form__field" id="latlong_{{ id }}" name="{{ name }}" value="{{ value|default(map_config.default_view[map.locale]|raw) }}">
+    {% endblock %}
+
+    {% block form_map_wrap %}
+        <div class="map" id="map_{{ id }}"></div>
+
+        {% block form_map_inner %}
+            <div class="form__append-group">
+
+                {% block form_map_label %}
+                    <label class="form__label" for="lookup_{{ id }}">Postcode search</label>
+                {% endblock %}
+
+                {% block form_map_input %}
+                    <div class="form__component">
+                        <input class="form__field" type="text" placeholder="Postcode search" id="lookup_{{ id }}">
+                    </div>
+                {% endblock %}
+
+                {% block form_map_button %}
+                    <button class="button button--primary" type="button" id="geocode_{{ id }}">Search</button>
+                {% endblock %}
+
+            </div>
+        {% endblock form_map_inner %}
+    {% endblock form_map_wrap %}
+
+{% endblock form_map %}

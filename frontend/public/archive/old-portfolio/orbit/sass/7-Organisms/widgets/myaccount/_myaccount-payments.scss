@@ -1,0 +1,5 @@
+.widget--myaccount-payments {
+    h3 {
+        @extend %boxed__subheading !optional;
+    }
+}

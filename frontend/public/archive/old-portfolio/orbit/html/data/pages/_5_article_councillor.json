@@ -1,0 +1,44 @@
+{
+    "bodyClass": "councillor-article",
+    "content": {
+        "title": "Councillor Article",
+        "image": {
+            "url": "./images/student.png",
+            "alt": "alt text",
+            "description": "Name of Councillor"
+        },
+        "body": "<p>Sed posuere consectetur est at lobortis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas faucibus mollis interdum.</p><ul><li>This is an unordered list within editor content</li><li>And this is a <a href=\"http://www.google.com\">link to Google</a> within that list.</li><li>And this right here is a <a href=\"http://www.gov.uk\">really, really long bit of text in a link that will undoubtedly drop onto two lines and has a ensuing full stop</a>.</li></ul><p>Vestibulum id ligula porta felis euismod semper. Maecenas faucibus mollis interdum. Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p><p><a class=\"button\" href=\"https://www.spacecraft.co.uk/\">Visit Spacecraft</a></p><p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Curabitur blandit tempus porttitor. Cras mattis consectetur purus sit amet fermentum. Vestibulum id ligula porta felis euismod semper. Donec id elit non mi porta gravida at eget metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>",
+        "meta": [
+            {
+                "type": "default",
+                "title": "Ward",
+                "value": "Name of Ward / District goes here"
+            },
+            {
+                "type": "default",
+                "title": "Party",
+                "value": "Independant"
+            },
+            {
+                "type": "default",
+                "title": "Position",
+                "value": "Deputy Leader"
+            },
+            {
+                "type": "default",
+                "title": "Address",
+                "value": "C/O Member Services<br>The Council House<br>Town Street<br>Suburbia<br>SB1 1SB"
+            },
+            {
+                "type": "telephone",
+                "title": "Telephone",
+                "value": "012 2345 6789"
+            },
+            {
+                "type": "email",
+                "title": "Email",
+                "value": "my-councillor@jadu.gov.uk"
+            }
+        ]
+    }
+}

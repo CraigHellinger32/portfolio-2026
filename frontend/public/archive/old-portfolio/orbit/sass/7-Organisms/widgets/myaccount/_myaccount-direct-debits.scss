@@ -1,0 +1,11 @@
+.widget--my-account-direct-debits {
+    @extend %boxed;
+
+    > h2 {
+        @extend %boxed__heading;
+    }
+
+    > p:last-of-type {
+        margin-bottom: 0;
+    }
+}

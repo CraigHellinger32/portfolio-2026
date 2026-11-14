@@ -1,0 +1,19 @@
+{% extends '@theme:base/widgets/website_statistics.html.twig' %}
+
+{% block statistics_table_inner %}
+    {% block statistics_table_header_outer %}
+        <thead>
+            {% block statistics_table_header %}
+                {{ parent() }}
+            {% endblock %}
+        </thead>
+    {% endblock %}
+
+    {% block statistics_table_data_outer %}
+        <tbody>
+            {% block statistics_table_data %}
+                {{ parent() }}
+            {% endblock %}
+        </tbody>
+    {% endblock %}
+{% endblock %}

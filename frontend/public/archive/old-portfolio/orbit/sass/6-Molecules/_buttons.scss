@@ -1,0 +1,62 @@
+// Buttons
+//
+// Button styles can be applied to anything by using the .btn class applied. However, typically you'll want to apply these to only `<a>` and `<button>` elements for the best rendering.
+// See sass/objects/_buttons.scss.
+//
+// Styleguide 5
+
+
+// Button styles and states
+//
+// Markup:
+// <a class="button {$modifiers}" href="#">Link Button</a>
+// <button class="button {$modifiers}">Button Element</button>
+// <input class="button {$modifiers}" type="submit" value="input[type='submit']">
+//
+// .button--primary     - Indicate that the button is the primary feature of it's parent, for exmaple a form.
+// .button--standout    - A non specific standout button
+// .button--success     - A success button, useful for a positive micro-transaction
+// .button--warning     - A warning button, to express caution
+// .button--danger      - Dangerious things will happen when this is used
+// .button--disabled    - Make the button appear as though it's disabled
+//
+// Styleguide 5.1
+.button,
+%button {
+    &,
+    &:visited {
+        @extend %normalis;
+
+        background-color: $color-white;
+        border: $border-width-small solid $color-link;
+        color: $color-link;
+        cursor: pointer;
+        display: inline-block;
+        font-family: $font-family;
+        margin: 0 0 $slug-small;
+        padding: $space-hard $space;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: background-color $transition-speed-fast ease-out, border-color $transition-speed-fast ease-out, color $transition-speed-fast ease-out;
+        vertical-align: middle;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: $color-link;
+        color: $color-white;
+        text-decoration: none;
+    }
+
+    &:focus,
+    &:active {
+        @include focus-outline;
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+    }
+}
+

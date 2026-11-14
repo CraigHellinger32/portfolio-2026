@@ -1,0 +1,30 @@
+{% extends '@theme:base/partials/atoms/form/esri.html.twig' %}
+
+{% block form_esri %}
+
+    {% block a11y_skip_map_button %}
+        <button class="button visually-hidden js-map-skip-forwards">
+            Skip embedded map
+        </button>
+    {% endblock %}
+
+    {{ parent() }}
+{% endblock %}
+
+{% block form_esri_inner %}
+    {% block a11y_skip_map_button_backwards %}
+        <button class="button visually-hidden js-map-skip-backwards">
+            Return above map
+        </button>
+    {% endblock %}
+
+    {{ parent() }}
+{% endblock %}
+
+{% block form_esri_label_lat %}
+    <label class="form__label" for="map_{{ name }}_lat">Latitude: </label>
+{% endblock %}
+
+{% block form_esri_label_long %}
+    <label class="form__label" for="map_{{ name }}_long">Longitude: </label>
+{% endblock %}

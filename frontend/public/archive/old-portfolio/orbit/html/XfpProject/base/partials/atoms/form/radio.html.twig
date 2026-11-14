@@ -1,0 +1,25 @@
+{% extends '@theme:base/partials/atoms/form/radio.html.twig' %}
+
+{% block form_radio_input %}
+    <input
+        {% block form_radio_attributes %}
+            class="form__radio"
+            id="{{ name ~ loop.index }}"
+            type="radio"
+            name="{{ name }}"
+            value="{{ option.value }}"
+            {% if option.value == value %} checked{% endif %}
+            {% if option.data is not empty %} data-xfp="{{ option.data }}"{% endif %}
+        {% endblock %}
+    >
+{% endblock %}
+
+{% block form_radio %}
+    {% if (not option.internal or option.internal is same as("false")) or internal %}
+        <div class="form__control-group">
+            {% block form_radio_inner %}
+                {{ parent() }}
+            {% endblock %}
+        </div>
+    {% endif %}
+{% endblock %}

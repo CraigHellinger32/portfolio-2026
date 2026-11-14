@@ -1,0 +1,174 @@
+{% set adding = formPage.repeatableAction is defined and formPage.repeatableAction.name == section.object.getName() and formPage.repeatableAction.action == 'new' and (formPage.repeatableAction.data is not defined or formPage.repeatableAction.data > section.repeatableData.answers|length) %}
+
+{% set editingRow = formPage.repeatableAction is defined and formPage.repeatableAction.name == section.object.getName() and (formPage.repeatableAction.action == 'edit' or (formPage.repeatableAction.action == 'new' and formPage.repeatableAction.data is defined)) ? formPage.repeatableAction.data : -1 %}
+
+{% block form_repeatable_wrap %}
+    {% set form_repeatable_classes = 'form__control' ~ (section.errorMsg is defined ? ' form__control--danger') ~ (form_repeatable_classes ? ' ' ~ form_repeatable_classes) %}
+
+    {% block form_repeatable %}
+        <div
+            {% block form_repeatable_attributes %}
+                class="{{ form_repeatable_classes }}"
+                id="{% if section.firstError is defined %}error_1{% else %}{{ section.object.getName() }}{% endif %}"
+                data-section-name="{{ section.object.getName() }}"
+            {% endblock %}
+        >
+
+        {% block form_repeatable_inner %}
+            {% block form_repeatable_title %}
+                <span class="form__label">{{ section.object.getTitle() }}</span>
+            {% endblock %}
+
+            {% block form_repeatable_help %}
+                {% if section.repeatableData.settings.help is defined and section.repeatableData.settings.help != '' %}
+                    {% include 'partials/atoms/form/help_text.html.twig' with {
+                        'help': section.repeatableData.settings.help
+                        }
+                    %}
+                {% endif %}
+            {% endblock %}
+
+            {% block form_repeatable_details_wrap %}
+                <div class="table-details">
+                    {% block form_repeatable_details %}
+                        <table class="data-table">
+                            {% block form_repeatable_details_inner %}
+                                {% block form_repeatable_details_thead %}
+                                    <thead>
+                                        <tr>
+                                        {% for question, label in section.repeatableData.details %}
+                                            <th>{{ label }}</th>
+                                        {% endfor %}
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                {% endblock %}
+
+                                {% block form_repeatable_details_tbody %}
+                                    <tbody>
+                                        {% for row in section.repeatableData.answers %}
+                                            <tr>
+                                                {% for question, label in section.repeatableData.details %}
+                                                    <td>{{ row[question] }}</td>
+                                                {% endfor %}
+                                                <td>
+                                                {% if loop.index == editingRow %}
+                                                    {% block form_repeatable_details_editing_label %}
+                                                        <span class="label">Editing</span>
+                                                    {% endblock %}
+                                                {% elseif not adding and editingRow < 0 %}
+                                                    {% block form_repeatable_details_button_edit %}
+                                                        {% include 'partials/atoms/form/button.html.twig' with {
+                                                            'name': 'callback',
+                                                            'value': { 'action':'repeatable-edit-row', 'element':section.object.getName(), 'data':loop.index }|json_encode,
+                                                            'label': 'Edit'
+                                                            }
+                                                        %}
+                                                    {% endblock %}
+
+                                                    {% block form_repeatable_details_button_remove %}
+                                                        {% include 'partials/atoms/form/button.html.twig' with {
+                                                            'name': 'callback',
+                                                            'value': { 'action':'repeatable-remove-row', 'element':section.object.getName(), 'data':loop.index }|json_encode,
+                                                            'label': 'Remove'
+                                                            }
+                                                        %}
+                                                    {% endblock %}
+                                                {% endif %}
+                                                </td>
+                                            </tr>
+                                        {% else %}
+                                            <tr>
+                                                {% block form_repeatable_details_description %}
+                                                    <td colspan="{{ section.repeatableData.details|length + 1 }}">{% if adding %}Editing this row{% else %}Click '{{ section.object.getRepeatableQuestionSetting('button_label') ? section.object.getRepeatableQuestionSetting('button_label').settingValue : 'Add Row' }}' to start completing this question{% endif %}</td>
+                                                {% endblock %}
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                {% endblock %}
+                            {% endblock %}
+                        </table>
+                    {% endblock %}
+
+                    {% block form_repeatable_details_button_add %}
+                        {% if not adding and editingRow < 0 %}
+                            {% block form_repeatable_details_button_add_inner %}
+                                {% include 'partials/atoms/form/button.html.twig' with {
+                                    'name': 'repeatable_row_new',
+                                    'value': section.object.getName(),
+                                    'label': section.object.getRepeatableQuestionSetting('button_label') ? section.object.getRepeatableQuestionSetting('button_label').settingValue : 'Add Row',
+                                    'disabled': section.isFull
+                                    }
+                                %}
+                            {% endblock %}
+                        {% endif %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+
+            {% block form_repeatable_content_wrap %}
+                {% if adding or editingRow > 0 %}
+                    {% block form_repeatable_content %}
+                        <div class="table-content">
+                            {% block form_repeatable_content_inner %}
+                                {% block form_repeatable_content_question %}
+                                    {% for item in section.structure %}
+                                        {% if not item.object.getSetting('internal_only') %}
+                                            {{
+                                                render_inline(controller('xfp_core.form_logic.question_view_transformer', {
+                                                    question: item.render,
+                                                    internal: false,
+                                                    formID: formID,
+                                                    pageURL: pageURL,
+                                                    languagePack: languagePack,
+                                                    templatePath: 'partials/molecules/form/'
+                                                }))
+                                            }}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endblock %}
+
+                                {% block form_repeatable_content_buttons %}
+                                    {% set buttonLabel = 'Update' %}
+                                    {% if adding %}
+                                        {% set buttonLabel = 'Add' %}
+                                    {% endif %}
+
+                                    {% block form_repeatable_content_button_add_update %}
+                                        {% include 'partials/atoms/form/button.html.twig' with {
+                                            'name': 'callback',
+                                            'value': { 'action':'repeatable-new-row', 'element':section.object.getName(), 'data':adding ? section.repeatableData.answers|length + 1 : editingRow }|json_encode,
+                                            'label': buttonLabel
+                                            }
+                                        %}
+                                    {% endblock %}
+
+                                    {% block form_repeatable_content_button_cancel %}
+                                        {% include 'partials/atoms/form/button.html.twig' with {
+                                            'name': 'repeatable_row_cancel',
+                                            'value': section.object.getName(),
+                                            'label': 'Cancel'
+                                            }
+                                        %}
+                                    {% endblock %}
+                                {% endblock %}
+                            {% endblock %}
+                        </div>
+                    {% endblock %}
+                {% endif %}
+            {% endblock %}
+
+            {% block form_repeatable_error %}
+                {% if section.errorMsg is defined and section.errorMsg != '' %}
+                    {% block form_repeatable_error_inner %}
+                        {% include 'partials/atoms/form/inline_error.html.twig' with {
+                            'error': section.errorMsg
+                            }
+                        %}
+                    {% endblock %}
+                {% endif %}
+            {% endblock %}
+        {% endblock %}
+        </div>
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,122 @@
+// ========================================================
+//  Progress bars
+// ========================================================
+//  Provide feedback on the progress of a workflow or
+//  action a simple progress bar. A progress bar should
+//  always contain an `.progress-bar__indicator`.
+//  The `.progress-bar` class includes 2 modifiers to
+//  change the progress bar indicator to represent success
+//  or failure.
+
+//  Settings
+// ========================================================
+//  Options
+// =========
+$progressbarShowArrow: false !default;
+//  if this option is set to true,
+//  it recommended that the arrow and bar are the same size
+//  eg: `$progressbarArrowSize: $progressbarHeight;`
+$progressbarShowLeftNotch: false !default;
+$progressbarRounded: true !default;
+
+//  Colours
+// =========
+$progressbarColor: $color-primary !default;
+$progressbarBackgroundColor: $color-subtle !default;
+
+//  Size
+// ======
+$progressbarHeight: $space-two-thirds !default;
+$progressbarHeightHalf: ($progressbarHeight / 2) !default;
+$progressbarArrowSize: ($progressbarHeightHalf + $space-sixth) !default;
+$progressbarBorderRadius: $progressbarHeightHalf !default;
+
+// ========================================================
+
+.progress-bar {
+    display: block;
+    margin: $space-quarter 0 $space-three-quarters;
+    padding: 0;
+    position: relative;
+}
+
+.progress-bar__track {
+    background: $progressbarBackgroundColor;
+    border: $border-width-small solid $color-black;
+    color: $progressbarColor; // IE support
+    display: block;
+    position: relative;
+
+    @if($progressbarRounded) {
+        border-radius: $progressbarBorderRadius;
+    }
+
+    @if($progressbarShowArrow) {
+        // add padding to the background accommodate the arrow
+        padding-right: $progressbarArrowSize;
+
+        // background notch on right
+        &::after {
+            border: $progressbarHeightHalf solid $color-white;
+            border-left-color: $progressbarBackgroundColor;
+            border-right-width: 0;
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 0;
+        }
+    }
+
+    @if($progressbarShowLeftNotch) {
+        // background notch on left
+        &::before {
+            border: $progressbarHeightHalf solid transparent;
+            border-left-color: $color-white;
+            border-right-width: 0;
+            content: '';
+            left: 0;
+            position: absolute;
+            top: 0;
+            z-index: 2;
+        }
+    }
+}
+
+.progress-bar__indicator {
+    background: $progressbarColor;
+    height: $progressbarHeight;
+    padding: $progressbarHeightHalf 0 $progressbarHeightHalf $space-half;
+    position: relative;
+    z-index: 1;
+
+    @if($progressbarRounded) {
+        border-radius: $progressbarBorderRadius;
+    }
+
+    @if($progressbarShowArrow) {
+        // left arrow
+        &::before {
+            border: $progressbarArrowSize solid transparent;
+            border-left-color: $progressbarColor;
+            border-right-width: 0;
+            content: '';
+            left: 100%;
+            position: absolute;
+            top: $progressbarHeightHalf - $progressbarArrowSize;
+        }
+    }
+}
+
+.progress-bar__info {
+    @extend %milli;
+
+    color: $color-text-muted;
+    display: block;
+    font-weight: $font-weight-normal;
+    margin: ($progressbarArrowSize - $progressbarHeightHalf) + $space-sixth 0 $space;
+
+    strong {
+        font-weight: $font-weight-normal;
+    }
+}

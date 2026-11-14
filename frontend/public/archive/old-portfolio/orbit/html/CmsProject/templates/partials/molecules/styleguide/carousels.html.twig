@@ -1,0 +1,261 @@
+{% block example_carousels_mixin %}
+    {% set snippet = '
+.style-guide-carousel--example-1 {
+    .flickity-page-dots-wrapper {
+        @include flickityDotsPosition(right, center, vertical);
+    }
+
+    .flickity-buttons-wrapper {
+        @include flickityButtonsPosition(left, bottom);
+    }
+}' %}
+    <div class="container">
+        {% set section = 'Customising using Mixins' %}
+        <div class="style-guide__section" id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}">
+            <div class="widget-row">
+
+                <div class="widget-width widget-width--100 widget-width--large">
+                    <div class="widget style-guide-carousel style-guide-carousel--example-1" data-widget-id="5000" data-widget-name="twitter integration">
+                        {% include 'partials/atoms/styleguide/text/heading.html.twig' with {
+                            'section': section
+                            }
+                        %}
+
+                        <div class="latest-tweets">
+                            <div class="latest-tweets__inner">
+
+                                {% block latest_tweets_icon %}
+                                    {% include 'partials/atoms/image/icon.html.twig' with {
+                                        'type': 'social-twitter-black',
+                                        'className': 'icon--large float--left'
+                                        }
+                                    %}
+                                {% endblock %}
+
+                                {% block latest_tweets_heading %}
+                                    {% include 'partials/atoms/text/widget_heading.html.twig' with {
+                                        'title': heading|default('From Twitter')
+                                        }
+                                    %}
+                                {% endblock %}
+
+                                <div class="carousel carousel--fade latest-tweets__carousel js-carousel" data-carousel-title="Latest Tweets">
+                                    {% for post in latestTweets %}
+                                        <div class="carousel__slide slide">
+                                            <div>{{ post.getTweetTextAsHTML|raw }}</div>
+
+                                            {% block tweet_created_date %}
+                                                {% include 'partials/atoms/text/meta.html.twig' with {
+                                                    'label': 'posted',
+                                                    'value': post.getRelativeCreatedDateString
+                                                    }
+                                                %}
+                                            {% endblock %}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <p>The expected syntax for the <code>FlickityDotsPosition()</code> and <code>FlickityButtonsPosition()</code> SASS mixins can be found in <em>sass/7-Organisms/_carousel.scss</em>. The example above has used the code below to override the default positioning and move the dots to the right and the buttons to the bottom left corner of the carousel container. The available options here should be enough to provide a base for quickly styling the majority of carousel designs. Don't forget, you can always customise this further by writing your own CSS as well.</p>
+                        {% include 'partials/atoms/styleguide/text/preformatted-text.html.twig' with {
+                            'code': snippet,
+                            'language': 'css'
+                            }
+                        %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block example_carousels_data_attributes %}
+    {% apply spaceless %}
+        <div class="container">
+            {% set section = 'Customising using Data attributes' %}
+            <div class="style-guide__section" id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}">
+                {% include 'partials/atoms/styleguide/text/heading.html.twig' with {
+                    'section': section
+                    }
+                %}
+                <div class="widget-row">
+                    <div class="widget-width widget-width--33 widget-width--small">
+                        <div class="widget style-guide-carousel style-guide-carousel--example-2" data-widget-name="Example Carousel 2">
+                            <h2 class="widget__heading">data-carousel-title</h2>
+                            <div class="carousel js-carousel" data-carousel-title="My Carousel">
+                                {% for i in 1..4 %}
+                                    <div class="slide">
+                                        <img src="./images/media_{{ i }}.jpg" alt="multimedia_items {{ i }}">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <p><strong>Default:</strong> Leaving this field empty will default to either the closest <code>h2</code> or element with the <code>.widget__heading</code> class, <em>or</em> the <code>h1</code> of the page.</p>
+                        <p>By adding <code>data-carousel-title="My Carousel"</code> to the carousel, now when we navigate using a screenreader, the aria-live dialog will read <em>'Now viewing slide X of X: My Carousel'</em> and previous and next buttons will read <em>'Next slide: My Carousel'</em>.</p>
+{% set snippet = '
+&lt;div class="carousel js-carousel"
+    data-carousel-title="My Carousel">
+    &lt;div class="slide">Slide 1 content&lt;/div>
+    &lt;div class="slide">Slide 2 content&lt;/div>
+&lt;/div>' %}
+                        {% include 'partials/atoms/styleguide/text/preformatted-text.html.twig' with {
+                            'code': snippet,
+                            'language': 'html'
+                            }
+                        %}
+                    </div>
+                    <div class="widget-width widget-width--33 widget-width--small">
+                        <div class="widget style-guide-carousel style-guide-carousel--example-3" data-widget-name="Example Carousel 3">
+                            <h2 class="widget__heading">data-carousel-autoplay</h2>
+                            <div class="carousel js-carousel" data-carousel-autoplay="1000">
+                                {% for i in 1..4 %}
+                                    <div class="slide">
+                                        <img src="./images/media_{{ i }}.jpg" alt="multimedia_items {{ i }}">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <p><strong>Default value:</strong> false</p>
+                        <p>Adding <code>data-carousel-autoplay="true"</code> will cause the carousel slides to advance every 3 seconds. The option to <strong>pause on hover</strong> is enabled by default, but an autoplaying carousel is something we would generally <a href="http://shouldiuseacarousel.com/">advise against</a>, due to the accessibility and usability issues that poses.</p><p>For accessibility reasons, you would also need to create a custom <a href="https://flickity.metafizzy.co/api.html#pauseplayer">pause button</a> if you decided to enable this feature.</p>
+                        <p>If you want to manually adjust the interval time, you can also specify a time in milliseconds i.e. <code>data-carousel-autoplay="5000"</code> (would increase the wait time to 5 seconds per slide).</p>
+{% set snippet = '
+&lt;div class="carousel js-carousel"
+    data-carousel-autoplay="1000">
+    &lt;div class="slide">Slide 1 content&lt;/div>
+    &lt;div class="slide">Slide 2 content&lt;/div>
+&lt;/div>&lt;button class="button">Pause&lt;span class="visually-hidden"> this carousel&lt;/span>&lt;/button>' %}
+                        {% include 'partials/atoms/styleguide/text/preformatted-text.html.twig' with {
+                            'code': snippet,
+                            'language': 'html'
+                            }
+                        %}
+                    </div>
+                    <div class="widget-width widget-width--33 widget-width--small">
+                        <div class="widget style-guide-carousel style-guide-carousel--example-4" data-widget-name="Example Carousel 4">
+                            <h2 class="widget__heading">data-carousel-draggable</h2>
+                            <div class="carousel js-carousel" data-carousel-draggable="false">
+                                {% for i in 1..4 %}
+                                    <div class="slide">
+                                        <img src="./images/media_{{ i }}.jpg" alt="multimedia_items {{ i }}">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <p><strong>Default value:</strong> true</p>
+                        <p>Adding <code>data-carousel-draggable="false"</code> will force the user to use the arrow buttons or dots to navigate the carousel. Despite the ability to swipe being a useful feature, particularly on devices, you might decide to do this when the entire slide is also a link to avoid false positives.</p>
+                    </div>
+                </div>
+                <div class="widget-row">
+                    <div class="widget-width widget-width--33 widget-width--small">
+                        <div class="widget style-guide-carousel style-guide-carousel--example-5" data-widget-name="Example Carousel 5">
+                            <h2 class="widget__heading">data-carousel-dots</h2>
+                            <p>This attribute can be used to either remove or reposition the dots on a particular carousel.</p>
+                            <p><strong>Syntax:</strong>&nbsp; <code>data-carousel-dots="$x $y $stack"</code></p>
+                            <p><strong>Or:</strong>&nbsp; <code>data-carousel-dots="false"</code></p>
+                            <p><code>$x</code> value can be either <strong>left</strong>, <strong>center</strong> or <strong>right</strong>. The CSS for that is already available and can be edited in <em>sass/7-Organisms/_carousel.scss</em></p>
+                            <p><code>$y</code> value can be either <strong>top</strong>, <strong>center</strong> or <strong>bottom</strong>.</p>
+                            <p><code>$stack</code> value can be either <strong>horizontal</strong>, or <strong>vertical</strong>.</p>
+                            <p><strong>Default value:</strong>&nbsp; <code>center bottom horizontal</code></p>
+                            {% set snippet = '
+&lt;div class="carousel js-carousel"
+    data-carousel-dots="false">
+    &lt;div class="slide">Slide 1 content&lt;/div>
+    &lt;div class="slide">Slide 2 content&lt;/div>
+&lt;/div>' %}
+                            {% include 'partials/atoms/styleguide/text/preformatted-text.html.twig' with {
+                                'code': snippet,
+                                'language': 'html'
+                                }
+                            %}
+                            <div class="carousel js-carousel" data-carousel-dots="false">
+                                {% for i in 1..4 %}
+                                    <div class="slide">
+                                        <img src="./images/media_{{ i }}.jpg" alt="multimedia_items {{ i }}">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            {% set snippet = '
+&lt;div class="carousel js-carousel"
+    data-carousel-dots="top right vertical"
+    data-carousel-arrows="false">
+    &lt;div class="slide">Slide 1 content&lt;/div>
+    &lt;div class="slide">Slide 2 content&lt;/div>
+&lt;/div>' %}
+                            {% include 'partials/atoms/styleguide/text/preformatted-text.html.twig' with {
+                                'code': snippet,
+                                'language': 'html'
+                                }
+                            %}
+                            <div class="carousel js-carousel" data-carousel-dots="top right vertical" data-carousel-arrows="false">
+                                {% for i in 1..4 %}
+                                    <div class="slide">
+                                        <img src="./images/media_{{ i }}.jpg" alt="multimedia_items {{ i }}">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-width widget-width--33 widget-width--small">
+                        <div class="widget style-guide-carousel style-guide-carousel--example-6" data-widget-name="Example Carousel 6">
+                            <h2 class="widget__heading">data-carousel-arrows</h2>
+                            <p>This attribute can be used to either remove or reposition the previous and next arrow buttons on a particular carousel.</p>
+                            <p><strong>Syntax:</strong>&nbsp; <code>data-carousel-arrows="$x $y"</code></p>
+                            <p><strong>Or:</strong>&nbsp; <code>data-carousel-arrows="false"</code></p>
+                            <p><code>$x</code> value can be either <strong>left</strong>, <strong>right</strong> or <strong>opposite</strong>. The CSS for that is already available and can be edited in <em>sass/7-Organisms/_carousel.scss</em></p>
+                            <p><code>$y</code> value can be either <strong>top</strong>, <strong>center</strong> or <strong>bottom</strong>.</p>
+                            <p><strong>Default value:</strong>&nbsp; <code>opposite center</code></p>
+                            {% set snippet = '
+&lt;div class="carousel js-carousel"
+    data-carousel-arrows="bottom right"
+    data-carousel-dots="top left horizontal">
+    &lt;div class="slide">Slide 1 content&lt;/div>
+    &lt;div class="slide">Slide 2 content&lt;/div>
+&lt;/div>' %}
+                            {% include 'partials/atoms/styleguide/text/preformatted-text.html.twig' with {
+                                'code': snippet,
+                                'language': 'html'
+                                }
+                            %}
+                            <div class="carousel js-carousel"
+                                data-carousel-arrows="bottom right"
+                                data-carousel-dots="top left horizontal">
+                                {% for i in 1..4 %}
+                                    <div class="slide">
+                                        <img src="./images/media_{{ i }}.jpg" alt="multimedia_items {{ i }}">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget-width widget-width--33 widget-width--small">
+                        <div class="widget style-guide-carousel style-guide-carousel--example-7" data-widget-name="Example Carousel 7">
+                            <h2 class="widget__heading">data-carousel-adaptive-height</h2>
+                            <p><strong>Default value:</strong> false</p>
+                            {% set snippet = '
+&lt;div class="carousel js-carousel"
+    data-carousel-adaptive-height="true">
+    &lt;div class="slide">Slide 1 content&lt;/div>
+    &lt;div class="slide">Slide 2 content&lt;/div>
+&lt;/div>' %}
+                            {% include 'partials/atoms/styleguide/text/preformatted-text.html.twig' with {
+                                'code': snippet,
+                                'language': 'html'
+                                }
+                            %}
+                            <div class="carousel js-carousel" data-carousel-adaptive-height="true">
+                                <div class="slide">
+                                    <img class="slide__image" src="./images/diagnosis.png" alt="taller image">
+                                </div>
+                                {% for i in 1..2 %}
+                                    <div class="slide">
+                                        <img class="slide__image" src="./images/media_{{ i }}.jpg" alt="multimedia_items {{ i }}">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endapply %}
+{% endblock %}

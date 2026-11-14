@@ -1,0 +1,555 @@
+/**
+ * fontface($font-family, $file-path, $weight: normal, $style: normal)
+ * Mixin - Provides @fontface shorthand
+ * $font-family - name of the font family
+ * $file-path - path to the font files
+ * $weight (normal) - font weight
+ * $style (normal) - font-style
+*/
+@mixin fontface($font-family, $file-path, $weight: normal, $style: normal) {
+    @font-face {
+        font-family: $font-family;
+        font-weight: $weight;
+        font-style: $style;
+        src: url('#{$file-path}.eot');
+        src: url('#{$file-path}.eot?#iefix')    format('embedded-opentype'),
+             url('#{$file-path}.woff')          format('woff'),
+             url('#{$file-path}.ttf')           format('truetype');
+    }
+}
+
+/**
+ * container()
+ * Mixin - Provides container layout to replace susy
+*/
+@mixin container {
+    max-width: $container-standard;
+    margin-left: auto;
+    margin-right: auto;
+
+    &::after {
+        clear: both;
+        content: '';
+        display: table;
+    }
+}
+
+/**
+ * font-size($fs, $line-height: true, $multiplier: 1)
+ * Mixin - Calculates font, rem font size & line height
+ * $fs - The font size
+ * $file-path - path to the font files
+ * $line-height (true) - Include line height or not. The line height parameter can also be used as the multiplier
+ * $multiplier (1) - Multiplies line height by the given value
+*/
+@mixin font-size($fs, $line-height: true, $multiplier: 1) {
+    font-size: $fs / 1rem;
+
+    $use-line-height: false;
+
+
+
+    @if type-of($line-height) == bool {
+
+        @if $line-height == true {
+            $use-line-height: true;
+        }
+    }
+
+    @else if type-of($line-height) == number {
+        $use-line-height: true;
+        $multiplier: $line-height;
+    }
+
+    @if $use-line-height == true {
+        @if $use-vertical-rhythm == true {
+            line-height: (ceil($fs / $base-line-height) * $line-height-ratio) * $multiplier;
+        }
+
+        @else {
+            line-height: $line-height-ratio * $multiplier;
+        }
+    }
+}
+
+
+/**
+ * truncate($truncation-boundary)
+ * Mixin - Truncate long strings
+*/
+@mixin truncate($truncation-boundary) {
+    max-width: $truncation-boundary;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/**
+ * Force line-breaks
+ * you can also @extend the global helper class %text--wordbreak for this which will wrap this mixin in a media query
+*/
+@mixin textWordbreak($hyphenate: true) {
+    overflow-wrap: break-word;
+    word-break: break-word;
+    word-wrap: break-word;
+
+    @if $hyphenate == true {
+        hyphens: auto;
+    }
+}
+
+/**
+ * linearGradient($top, $bottom, $fallback: false)
+ * Mixin - Easily create background linear gradients, provides a fallback for older browsers.
+ * $top - The colour to start with, at the top of the element
+ * $bottom - The colour to fade to, at the botton of the element
+ * $fallback (default: false) - provide a fallback image for older browsers
+*/
+@mixin linearGradient($top, $bottom, $fallback: false) {
+    background-color: $top; /* Old browsers */
+    @if $fallback {
+        background-image: url($fallback); /* fallback image */
+    }
+    background-image: linear-gradient(to bottom, $top 0%, $bottom 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$top}', endColorstr='#{$bottom}',GradientType=0); /* IE6-9 */
+}
+
+
+/**
+ * respond-min($width)
+ * Mixin - An inline min-width media query generator with an old IE fallback, (sass wrapped in the mixin gets added to the old IE stylesheet)
+ * $width - the width you wish to use for the media query
+*/
+@mixin respond-min($width) {
+    @if $old-ie {
+        @content;
+    }
+
+    @else {
+        @media screen and (min-width: $width) {
+            @content;
+        }
+    }
+}
+
+/**
+ * respond-max($width)
+ * Mixin - An inline max-width (use with caution, stick to mobile first min-widths
+ * where possible) media query generator with an old IE fallback (sass wrapped in
+ * the mixin gets added to the old IE stylesheet)
+ * $width - the width you wish to use for the media query
+*/
+@mixin respond-max($width) {
+    @if $old-ie {
+        @if $width >= $full-width {
+            @content;
+        }
+    }
+
+    @else {
+        @media screen and (max-width: $width - 1) {
+            @content;
+        }
+    }
+}
+
+/**
+ * respond-min-and-max($min-width, $max-width)
+ * Mixin - An inline min-width and max-width (use with caution, stick to mobile first min-widths
+ * where possible) media query generator with an old IE fallback (sass wrapped in
+ * the mixin gets added to the old IE stylesheet)
+ * $min-width - the min width you wish to use for the media query
+ * $max-width - the max width you wish to use for the media query
+*/
+@mixin respond-min-and-max($min-width, $max-width) {
+    @if $old-ie {
+        @if $max-width >= $full-width {
+            @content;
+        }
+    }
+
+    @else {
+        @media screen and (min-width: $min-width) and (max-width: $max-width - 1) {
+            @content;
+        }
+    }
+}
+
+/**
+ * if-ie()
+ * Mixin to be used for css specific to IE and Edge
+ * $version - Options: ie = IE11 + IE10, edge = Edge, empty = Both $version ie and edge, defaults to both.
+*/
+@mixin if-ie($version: empty) {
+    @if ($version) == 'ie' {
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+            @content;
+        }
+    }
+    @else if ($version) == 'edge' {
+        @supports (-ms-ime-align: auto) {
+            @content;
+        }
+    }
+    @else {
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+            @content;
+        }
+
+        @supports (-ms-ime-align: auto) {
+            @content;
+        }
+    }
+}
+
+/**
+ * css-arrow($size, $position, $color: inherit)
+ * Mixin - Adds a CSS arrow to an element
+ * $size - size and unit of measurement (20px for example)
+ * $position - left, right, top, bottom
+ * $color - colour of arrow (white, #000000, default: inherit)
+*/
+@mixin css-arrow($size, $position, $color: inherit) {
+    position: relative;
+
+    &::before,
+    &::after {
+        border: solid transparent;
+        content: '';
+        height: 0;
+        pointer-events: none;
+        position: absolute;
+        width: 0;
+    }
+
+    &::after {
+        border-width: $size;
+    }
+
+    &::before {
+        border-width: $size + 2;
+    }
+
+    @if ($position) == 'top' {
+        &::before,
+        &::after {
+            bottom: 100%;
+            left: 50%;
+        }
+
+        &::after {
+            border-bottom-color: inherit;
+            border-width: $size;
+            margin-left: -$size;
+            padding-bottom: -1px;
+        }
+
+        &::before {
+            border-bottom-color: inherit;
+            margin-left: -($size + 2);
+        }
+    }
+
+    @if ($position) == 'right' {
+        &::before,
+        &::after {
+            left: 100%;
+            top: 50%;
+        }
+
+        &::after {
+            border-left-color: inherit;
+            margin-top: -$size;
+            padding-left: -1px;
+        }
+
+        &::before {
+            border-left-color: inherit;
+            margin-top: -($size + 2);
+        }
+    }
+
+    @if ($position) == 'bottom' {
+        &::before,
+        &::after {
+            left: 50%;
+            top: 100%;
+        }
+
+        &::after {
+            border-top-color: inherit;
+            margin-left: -$size;
+            padding-top: -1px;
+        }
+
+        &::before {
+            border-top-color: inherit;
+            margin-left: -($size + 2);
+        }
+    }
+
+    @if ($position) == 'left' {
+        &::before,
+        &::after {
+            right: 100%;
+            top: 50%;
+        }
+
+        &::after {
+            border-right-color: inherit;
+            margin-top: -$size;
+            padding-right: -1px;
+        }
+
+        &::before {
+            border-right-color: inherit;
+            margin-top: -($size + 2);
+        }
+    }
+}
+
+/**
+ * widget-width()
+ * Mixin - Create a grid for widgets so their widths snap to a sensible grid.
+ * pulls snap points from sass-map var `$widget-grid`
+*/
+@mixin widget-width {
+    @each $points in $widget-grid {
+        $snap: index($widget-grid, $points);
+        $selector: '';
+
+        @for $i from nth($points, 1) through nth($points, 2) {
+            $selector: '.widget-width--#{$i}, #{$selector}';
+        }
+
+        #{$selector} {
+            width: percentage($snap / 12);
+        }
+    }
+}
+
+/**
+ * Hide only visually, but have it available for screenreaders
+ * as per: http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+*/
+@mixin visuallyhidden {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+@mixin visuallyhiddenreset {
+    clip: auto;
+    height: auto;
+    margin: auto;
+    overflow: visible;
+    padding: 0;
+    position: static;
+    width: auto;
+}
+
+
+@mixin font-smoothing($smooth: true) {
+    @if ($smooth == true) {
+        -moz-osx-font-smoothing: grayscale;
+         -webkit-font-smoothing: antialiased;
+    }
+
+    @else {
+        -moz-osx-font-smoothing: auto;
+         -webkit-font-smoothing: subpixel-antialiased;
+    }
+}
+
+/**
+ * placeholder()
+ * Mixin - Applies styles placeholder input text for each browser
+*/
+@mixin placeholder() {
+    // scss-lint:disable VendorPrefix
+    &::-webkit-input-placeholder {
+        /* Webkit */
+        @content;
+    }
+
+    &::-moz-placeholder {
+        /* FF 4-18 */
+        opacity: 1;
+        @content;
+    }
+
+    &::-moz-placeholder {
+        /* FF 19+ */
+        opacity: 1;
+        @content;
+    }
+
+    &:-ms-input-placeholder {
+        /* IE 10+ */
+        @content;
+    }
+
+    .placeholdr {
+        /* Placeholdr jQuery plug-in */
+        @content;
+    }
+    // scss-lint:enable VendorPrefix
+}
+
+/**
+ * Underline animation on links
+*/
+
+// Usage:
+// @include linkUnderline();
+
+// If underline animation is only needed for a child of a link, add the child selector as a parameter:
+// @include linkUnderline('.nav__link-heading', $text-color, $background-colour, true);
+
+
+// Silent mixins
+// -------------
+@mixin linkUnderlineStyling($color, $bg-color, $reverse) {
+    background-image: linear-gradient(to top, $color 0, $color 1px, transparent 1px, transparent 100%);
+    background-position: 0 -2px;
+    background-repeat: no-repeat;
+    background-size: 0 100%;
+    color: $color;
+    text-shadow: 1px 0 0 $bg-color, -1px 0 0 $bg-color, 0 -1px 0 $bg-color, 0 1px 0 $bg-color;
+
+    @if $reverse == true {
+        background-position: left;
+        background-size: 100% 100%;
+    }
+}
+
+@mixin linkUnderlineHover($reverse) {
+    background-size: 100% 100%;
+    text-decoration: none;
+    transition: background-size $transition-speed-fast ease-out;
+
+    @if $reverse == true {
+        background-position: left;
+        background-size: 0 100%;
+    }
+}
+// -------------
+
+// @param $childSelector    - null          - child selector
+// @param $color            - $color-link   - text colour
+// @param $bg-color         - $color-white  - text shadow colour
+// @param $reverse          - false         - reverse the affect
+
+@mixin linkUnderline($childSelector: null, $color: $color-link, $bg-color: $color-white, $reverse: false) {
+    @if $childSelector {
+        #{$childSelector} {
+            @include linkUnderlineStyling($color, $bg-color, $reverse);
+        }
+
+        &:hover,
+        &:focus {
+            #{$childSelector} {
+                @include linkUnderlineHover($reverse);
+            }
+        }
+
+        &:visited {
+            #{$childSelector} {
+                color: $color-link-visited;
+            }
+        }
+    }
+    @else {
+        @include linkUnderlineStyling($color, $bg-color, $reverse);
+
+        &:hover,
+        &:focus {
+            @include linkUnderlineHover($reverse);
+        }
+
+        &:visited {
+            color: $color-link-visited;
+        }
+    }
+}
+
+
+/**
+ * Link Underline Reset
+ * Override for linkUnderline mixin
+*/
+
+// scss-lint:disable ImportantRule
+@mixin linkUnderlineReset() {
+    background-image: none !important;
+    text-shadow: none !important;
+}
+// scss-lint:enable ImportantRule
+
+
+/**
+ * Toggle Fade
+ *
+ * Apply this to the element being
+ * toggled by a11y-toggle
+*/
+@mixin toggleFade($speed: $transition-speed) {
+    display: none;
+    position: absolute;
+    transform: translateY(-$space-third);
+    transition: opacity $speed ease-out, transform $speed ease-out;
+    z-index: 5;
+
+    &[aria-hidden='false'],
+    &.is-open[aria-hidden='true'] {
+        display: block;
+        opacity: 0;
+        transform: translateY(-$space-third);
+    }
+
+    &.is-open {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/**
+ * Focus outline
+ *
+ * Mixin for creating custom focus effects on links / form elements etc.
+*/
+@mixin focus-outline($oversized: true, $inset: false) {
+    @if ($inset) {
+        outline: none;
+
+        @if ($oversized) {
+            box-shadow: inset 0 0 0 $border-width-large $color-link-focus;
+        }
+        @else {
+            box-shadow: inset 0 0 0 $border-width $color-link-focus;
+        }
+    }
+    @else {
+        @if ($oversized) {
+            outline: $border-width-large solid $color-link-focus;
+        }
+        @else {
+            outline: $border-width solid $color-link-focus;
+        }
+    }
+}
+
+/**
+ * z-index helper function
+ * Saves us having to write the more verbose way of writing map-get();
+ * In the code this would be written:
+ * z-index: zIndex('site-main'); // for example
+*/
+@function zIndex($key) {
+    @return map-get($global-z-index-control, $key);
+}

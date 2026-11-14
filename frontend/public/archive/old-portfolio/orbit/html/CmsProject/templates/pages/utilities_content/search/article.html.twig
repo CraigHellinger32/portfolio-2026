@@ -1,0 +1,6 @@
+{% extends 'layouts/article.html.twig' %}
+
+{% block main %}
+    {{ parent() }}
+    {{ searchResults|raw }}
+{% endblock %}

@@ -1,0 +1,47 @@
+{# REMEMBER to change the path to @theme:xfpbase if you have XFP installed #}
+{% extends '@theme:base/partials/molecules/form/single_field.html.twig' %}
+
+{%- block form_question -%}
+    {# Core issue raised for this fix here: https://jadultd.atlassian.net/browse/PHOT-251 #}
+    {% if type in [
+        'google_map',
+        'esri'
+        ] %}
+        <span class="form__label">
+            {{ label }}
+            {%- if required -%}
+                {% include 'partials/atoms/form/required_indicator.html.twig' with {
+                    'required': languagePack.getText('LANG_XFORMS_REQUIRED')
+                    }
+                %}
+            {%- endif -%}
+        </span>
+    {% elseif label is not empty %}
+        <label class="form__label" for="{{ name }}">
+        {%- block form_question_inner -%}
+            {{ parent() }}
+        {%- endblock form_question_inner -%}
+        </label>
+    {% endif %}
+{%- endblock form_question -%}
+
+{%- block form_component -%}
+    <div class="form__component form__component--{{ type|replace({'_': '-'})|escape('classname') }}">
+        {%- block form_component_inner -%}
+            {{ parent() }}
+        {%- endblock form_component_inner -%}
+        {%- if errorMsg is not empty and integratedComponent is empty %}
+            {% include 'partials/atoms/form/inline_error.html.twig' with {
+                'error': errorMsg
+                }
+            %}
+        {% endif -%}
+        {%- if help is not empty %}
+            {% include 'partials/atoms/form/help_text.html.twig' with {
+                'help': help,
+                'id': id|default(name)
+                }
+            %}
+        {% endif -%}
+    </div>
+{%- endblock -%}

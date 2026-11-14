@@ -1,0 +1,11 @@
+{% extends '@theme:base/partials/molecules/navigation/pagination.html.twig' %}
+
+{% block pagination_list_inner %}
+    {% block pagination_next %}
+        {{ parent() }}
+    {% endblock %}
+
+    {% block pagination_previous %}
+        {{ parent() }}
+    {% endblock %}
+{% endblock %}

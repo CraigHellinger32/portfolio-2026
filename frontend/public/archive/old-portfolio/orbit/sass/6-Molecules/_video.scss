@@ -1,0 +1,46 @@
+// ========================================================
+//  Videos
+// ========================================================
+//  Dynamic videos loaded from providers, namely Youtube
+//  and Vimeo. The structure is a `div` used as a
+//  placeholder for a dynamically loaded `iframe`
+
+//  Settings
+// ========================================================
+//  Options
+// =========
+$videoRatio: percentage(9 / 16) !default;
+//  Set as a 16:9 ratio by default.
+//  This value is overridden by JavaScript once the oembed
+//  data is loaded.
+
+// ========================================================
+
+.video-block {
+    display: block;
+    margin: 0;
+    padding: $videoRatio 0 0;
+    position: relative;
+    width: 100%;
+
+    .video-block__iframe {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+}
+
+//  Before a video is loaded and `.video-block` is an empty `div`
+.video-block--placeholder {
+    .no-js & {
+        display: none;
+    }
+}
+
+//  A video from a source that doesn’t match our
+//  predetermined list (currently not Vimeo or Youtube).
+.video-block--unknown {
+
+}

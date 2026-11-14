@@ -1,0 +1,68 @@
+// Images
+
+$featured-image-max:    pxToRem(350px);
+$featured-image-min:    pxToRem(150px);
+$avatar-image-max:      pxToRem(60px);
+$thumbnail-image-max:   pxToRem(150px);
+
+img {
+    display: block; // remove weird invisible bottom margin
+}
+
+.image--feature,
+.image--caption {
+    float: left;
+    margin: 0 0 $slug;
+    width: 100%;
+
+    @include respond-min($small-mid-width) {
+        float: right;
+        margin: 0 0 $space $space;
+        max-width: $featured-image-max;
+        min-width: $featured-image-min;
+        width: percentage(1 / 3);
+    }
+}
+
+.image--caption {
+    img {
+        width: 100%;
+    }
+
+    .image--feature {
+        margin: 0;
+    }
+}
+
+.image--avatar {
+    max-width: $avatar-image-max;
+
+    img {
+        border: $border-width-mid solid $color-black;
+        height: auto;
+    }
+}
+
+.image--gallery {
+    display: block;
+}
+
+%image__caption,
+.image__caption {
+    background-color: $color-subtle;
+    clear: both;
+    font-size: $milli;
+    margin-top: 0;
+    padding: $space-quarter;
+    text-align: center;
+}
+
+.image--thumbnail {
+    height: auto;
+    max-width: $thumbnail-image-max;
+    width: 20%;
+}
+
+.image-link {
+    max-width: 100%;
+}

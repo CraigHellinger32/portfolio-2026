@@ -1,0 +1,28 @@
+.form__field--image-upload {
+    @extend %form__field--upload;
+}
+
+.form__label--image-upload {
+    @extend %form__label--upload;
+
+    .form__component--image-upload & {
+        margin: $slug-small 0;
+        padding-right: $space-double + $space-half;
+
+        @include respond-min($small-width) {
+            width: auto;
+        }
+
+        &::after {
+            background-size: cover;
+            height: $space-and-third;
+            width: $space-and-third;
+        }
+    }
+}
+
+.image__remove-button {
+    .button {
+        margin: $space-third 0 0;
+    }
+}

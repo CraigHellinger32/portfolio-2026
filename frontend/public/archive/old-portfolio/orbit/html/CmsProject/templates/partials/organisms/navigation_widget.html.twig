@@ -1,0 +1,9 @@
+{% for widget in widgets %}
+    {% include 'partials/molecules/list/list.html.twig' with {
+        'type': 'record',
+        'title': widget.title,
+        'group': widget.links,
+        'className': 'list--navigation'
+        } 
+    %}
+{% endfor %}

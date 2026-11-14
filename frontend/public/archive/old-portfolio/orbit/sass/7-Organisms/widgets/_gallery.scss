@@ -1,0 +1,12 @@
+.widget-gallery {
+    .image {
+        float: none;
+        margin: auto;
+        max-width: none;
+        width: 100%;
+    }
+
+    .image__caption:empty {
+        display: none;
+    }
+}

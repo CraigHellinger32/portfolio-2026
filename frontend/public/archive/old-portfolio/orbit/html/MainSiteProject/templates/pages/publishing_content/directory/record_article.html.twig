@@ -1,0 +1,48 @@
+{% extends '@theme:base/pages/publishing_content/directory/record_article.html.twig' %}
+
+{% block definition_list %}
+    <dl class="list list--definition definition">
+        {% block definition_list_inner %}
+            {{ parent() }}
+        {% endblock definition_list_inner %}
+    </dl>
+{% endblock %}
+
+{% block record_heading %}
+    <dt class="definition__heading">
+        {% block record_heading_inner %}
+            {{ parent() }}
+        {% endblock %}
+    </dt>
+{% endblock %}
+
+{% block record_html %}
+    <div class="editor definition__editor">
+        {{ record.value|process_editor|raw }}
+    </div>
+{% endblock %}
+
+{% block record_content %}
+    <dd class="definition__content definition__content--{{ record.field.fieldType.name|escape('classname') }}">
+        {% block record_content_inner %}
+            {{ parent() }}
+        {% endblock %}
+    </dd>
+{% endblock %}
+
+{% block record_google_map %}
+
+    {% block a11y_skip_map_button_forwards %}
+        <button class="button visually-hidden js-map-skip-forwards">
+            Skip embedded map
+        </button>
+    {% endblock %}
+
+    {{ parent() }}
+
+    {% block a11y_skip_map_button_backwards %}
+        <button class="button visually-hidden js-map-skip-backwards">
+            Return above map
+        </button>
+    {% endblock %}
+{% endblock %}

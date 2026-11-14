@@ -1,0 +1,47 @@
+{%
+    set app = {
+        request : {
+            uri: data.site.liveUrl
+        }
+    }
+%}
+<div class="style-guide__section" id="section--list-navigation">
+    <h2 class="style-guide__heading"><a class="style-guide__anchor-link" href="#section--list-navigation">List — Navigation</a></h2>
+    <div class="measure">
+        {% include 'partials/molecules/list/list.html.twig' with {
+            'title': 'Navigation List',
+            'group': group
+            }
+        %}
+    </div>
+</div>
+<div class="style-guide__section" id="section--list-rich">
+    <h2 class="style-guide__heading"><a class="style-guide__anchor-link" href="#section--list-rich">List — Rich</a></h2>
+    <div class="measure">
+        {% include 'partials/molecules/list/list.html.twig' with {
+            'title': 'Rich List',
+            'group': group,
+            'className': 'list--rich'
+            }
+        %}
+    </div>
+</div>
+<div class="style-guide__section" id="section--list-a-to-z">
+    <h2 class="style-guide__heading"><a class="style-guide__anchor-link" href="#section--list-a-to-z">List — A–Z</a></h2>
+    <div class="measure">
+        {% include 'partials/molecules/list/list.html.twig' with {
+            'type': 'az',
+            'title': 'A–Z List',
+            'group': AZgroup,
+            'className': 'list--az'
+            }
+        %}
+    </div>
+</div>
+<div class="style-guide__section" id="section--list-share">
+    <h2 class="style-guide__heading"><a class="style-guide__anchor-link" href="#section--list-share">List — Share</a></h2>
+    {% include 'partials/organisms/share.html.twig' with {
+            'app': app
+        }
+    %}
+</div>

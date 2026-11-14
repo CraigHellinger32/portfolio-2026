@@ -1,0 +1,74 @@
+{% block form_section_wrap %}
+    {% set form_section_classes = 'form__section' ~ (section.object.getHideInitially() ? ' js-branch-section') ~ (section.object.getShowTitle() ? ' form__section--with-heading') ~ (form_section_classes ? ' ' ~ form_section_classes) %}
+
+    {% block form_section %}
+        <section
+            {% block form_section_attributes %}
+                class="{{ form_section_classes }}"
+                aria-labelledby="section-title_{{ section.object.getName() }}"
+                id="section_{{ section.object.getName() }}"
+                data-section-name="{{ section.object.getName() }}"
+                {% if section.branching is defined %}
+                    data-branching="{{ section.branching }}"
+                {% endif %}
+                {{ section.object.getHideInitially() ? ' style="display:none;"' }}
+            {% endblock %}
+        >
+
+            {% block form_section_inner %}
+                {% block form_section_title %}
+                    <h2 id="section-title_{{ section.object.getName() }}" class="form__section-heading{{ section.object.getShowTitle() ? '' : ' visually-hidden' }}">{{ section.object.getTitle() }}</h2>
+                {% endblock %}
+
+                {% block form_section_content %}
+                    <div class="form__section-content">
+                        {% block form_section_content_inner %}
+                            {% for item in section.structure %}
+                                {% if item.type == 'question' %}
+                                    {% if not item.object.getSetting('internal_only') %}
+                                        {% block form_section_content_question %}
+                                            {{
+                                                render_inline(controller('xfp_core.form_logic.question_view_transformer', {
+                                                    question: item.render,
+                                                    internal: false,
+                                                    formID: formID,
+                                                    pageURL: pageURL,
+                                                    languagePack: languagePack,
+                                                    templatePath: 'partials/molecules/form/'
+                                                }))
+                                            }}
+                                        {% endblock %}
+                                    {% endif %}
+                                {% elseif item.repeatableData is defined %}
+                                    {% if not item.object.getRepeatableQuestionSetting('internal_only') %}
+                                        {% block form_section_content_repeatable %}
+                                            {% include 'partials/organisms/form/form_repeatable_question.html.twig' with {
+                                                'section': item,
+                                                'formPage': formPage,
+                                                'languagePack': languagePack,
+                                                'formID': formID,
+                                                'pageURL': pageURL
+                                                } only
+                                            %}
+                                        {% endblock %}
+                                    {% endif %}
+                                {% else %}
+                                    {% block form_section_content_section %}
+                                        {% include 'partials/organisms/form/form_section.html.twig' with {
+                                            'section': item,
+                                            'formPage': formPage,
+                                            'languagePack': languagePack,
+                                            'formID': formID,
+                                            'pageURL': pageURL
+                                            } only
+                                        %}
+                                    {% endblock %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+            {% endblock %}
+        </section>
+    {% endblock %}
+{% endblock %}

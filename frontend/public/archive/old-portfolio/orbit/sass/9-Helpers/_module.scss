@@ -1,0 +1,16 @@
+// Module helper
+//
+// Removes the `margin-bottom` of a modules last-childs
+// As per: http://css-tricks.com/spacing-the-bottom-of-modules/
+// See sass/helpers/_module.scss.
+//
+// Styleguide 19.2
+.module,
+%module {
+    > *:last-child,
+    > *:last-child > *:last-child,
+    > *:last-child > *:last-child > *:last-child,
+    > *:last-child > *:last-child > *:last-child > *:last-child {
+        margin-bottom: 0;
+    }
+}

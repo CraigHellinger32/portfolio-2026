@@ -1,0 +1,32 @@
+{
+    "content": {
+        "title": "Branding"
+    },
+    "imagelink": {
+        "imgSrc": "./images/research.png",
+        "link_url": "./index.html?image-link",
+        "caption": "A really, really, really really, really, really long image link caption goes here"
+    },
+    "favicons": [
+        {
+            "url": "apple-touch-icon.png",
+            "alt": "Apple Touch Icon"
+        },
+        {
+            "url": "favicon-32x32.png",
+            "alt": "Favicon: 32px x 32px"
+        },
+        {
+            "url": "favicon-16x16.png",
+            "alt": "Favicon: 16px x 16px"
+        },
+        {
+            "url": "safari-pinned-tab.svg",
+            "alt": "Safari favicon"
+        },
+        {
+            "url": "favicon.ico",
+            "alt": "Default favicon .ico file"
+        }
+    ]
+}

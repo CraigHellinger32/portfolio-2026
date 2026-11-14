@@ -1,0 +1,87 @@
+{
+    "type": "home",
+    "bodyClass": "homepage-modular",
+    "breadcrumb": [
+        {
+            "title": "Section Heading",
+            "url": "landing.html"
+        },
+        {
+            "title": "Sub-Section Heading",
+            "url": "landing.html"
+        },
+        {
+            "title": "Inner Heading",
+            "url": "landing.html"
+        }
+    ],
+    "content": {
+        "title": "Two column home page",
+        "homepage": {
+            "orderedWidgets": [
+                [
+                    {
+                        "widget": {
+                            "title": "navigation"
+                        },
+                        "widgetID": 23,
+                        "title": "Navigation widget",
+                        "widthPercentage": 100,
+                        "links": [
+                            {
+                                "title": "Branding",
+                                "link": "./1-branding.html"
+                            },
+                            {
+                                "title": "Typography",
+                                "link": "./1-typography.html"
+                            },
+                            {
+                                "title": "Standard Components",
+                                "link": "./1-standard-components.html"
+                            },
+                            {
+                                "title": "Supplements",
+                                "link": "./1-supplements.html"
+                            },
+                            {
+                                "title": "Standard Form Components",
+                                "link": "./1-form-components.html"
+                            }
+                        ]
+                    }
+                ]
+            ]
+        },
+        "supplements": [
+            {
+                "widget": {
+                    "title": "Navigation"
+                },
+                "locationOnPage": "sidebar",
+                "record": {
+                    "title": "Navigation",
+                    "urls": {
+                        "Link 1": "2-document-two-column.html?sidebar-link=1",
+                        "Link 2": "2-document-two-column.html?sidebar-link=2",
+                        "Link 3": "2-document-two-column.html?sidebar-link=3"
+                    }
+                }
+            },
+            {
+                "widget": {
+                    "title": "Navigation"
+                },
+                "locationOnPage": "below content",
+                "record": {
+                    "title": "Navigation",
+                    "urls": {
+                        "Link 1": "2-document-two-column.html?sidebar-link=1",
+                        "Link 2": "2-document-two-column.html?sidebar-link=2",
+                        "Link 3": "2-document-two-column.html?sidebar-link=3"
+                    }
+                }
+            }
+        ]
+    }
+}

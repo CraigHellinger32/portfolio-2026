@@ -1,0 +1,11 @@
+{% block identity %}
+    <div class="identity{{ className ? ' ' ~ className }}">
+        <a href="{{ path('index') }}" class="identity__link" title="{{ getConstantValue('METADATA_GENERIC_NAME') }} Home Page">
+            <picture>
+                <source srcset="{{ asset(assetUrlSVG|default('site/dist/images/site-logo.svg')) }}" type="image/svg+xml">
+                <img src="{{ asset(assetUrlPNG|default('site/dist/images/site-logo.png')) }}" class="identity__logo" alt="Logo: Visit the {{ getConstantValue('METADATA_GENERIC_NAME') }} home page" aria-labelledby="site-identity-description-{{ location|default('header') }}" />
+            </picture>
+            <span class="visually-hidden" id="site-identity-description-{{ location|default('header') }}">Logo: Visit the {{ getConstantValue('METADATA_GENERIC_NAME') }} home page</span>
+        </a>
+    </div>
+{% endblock %}

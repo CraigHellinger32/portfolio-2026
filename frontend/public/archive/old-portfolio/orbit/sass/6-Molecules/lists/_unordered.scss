@@ -1,0 +1,59 @@
+%list--unordered,
+.list--unordered {
+    @extend %list--ordered-and-unordered;
+
+    li,
+    .list__item {
+        &::before {
+            background-color: $list-bullet-color;
+            border: $border-width-small solid $list-bullet-border-color;
+            border-radius: 50%;
+            content: '';
+            display: block;
+            height: $list-bullet-size;
+            transform: translate(-50%, $list-bullet-offset);
+            width: $list-bullet-size;
+        }
+
+        > ol,
+        .list--ordered {
+            li,
+            .list__item {
+                &::before {
+                    background: transparent;
+                    border: 0;
+                    border-radius: 0;
+                    content: counter(list_item_count) '.';
+                    height: auto;
+                    line-height: 1;
+                    position: relative;
+                    top: -($list-bullet-offset / 2);
+                    width: auto;
+                }
+            }
+        }
+    }
+
+    .list__link {
+        display: inline;
+    }
+
+    ul:not([class]),
+    .list--unordered {
+        li,
+        .list__item {
+            > ul:not([class]) {
+                li,
+                .list__item {
+                    &::before {
+                        background-color: $list-bullet-color;
+                        border-radius: 0;
+                        height: $list-bullet-size / 2;
+                        transform: translateY($space-third);
+                        width: $list-bullet-size / 1.25;
+                    }
+                }
+            }
+        }
+    }
+}

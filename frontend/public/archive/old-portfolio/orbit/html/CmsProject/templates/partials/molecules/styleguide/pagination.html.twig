@@ -1,0 +1,28 @@
+{% set section = 'Pagination' %}
+
+<div class="style-guide__section" id="section--{{ section|lower|replace({' ':'-', '_':'-'}) }}">
+    {% include 'partials/atoms/styleguide/text/heading.html.twig' with {
+        'section': section
+        }
+    %}
+    {% include 'partials/molecules/navigation/pagination.html.twig' with {
+        'previous_link': page.pagesIn.previous_link,
+        'next_link': page.pagesIn.next_link
+        }
+    %}
+    {% embed 'base/partials/molecules/navigation/pagination_complex.html.twig' with {
+        'group': page.pagesIn.group,
+        'paths': paths
+        }
+    %}
+        {% block pagination_complex %}
+            <nav class="pagination pagination--complex" aria-label="Pagination (Complex)">
+
+                {% block pagination_list %}
+                    {{ parent() }}
+                {% endblock %}
+
+            </nav>
+        {% endblock %}
+    {% endembed %}
+</div>

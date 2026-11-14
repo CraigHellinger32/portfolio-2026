@@ -1,0 +1,189 @@
+// Misc helpers
+//
+// A series of generic helper classess for things link display, text-align, floating, capitalising, font-weight and a clearfix
+// (sass/helpers/_misc.scss)
+// See sass/helpers/_misc.scss.
+//
+// Styleguide 19.6
+
+// Display helpers
+//
+// Change the display property of an element
+// See sass/helpers/_misc.scss.
+//
+// Markup:
+// <a class="button {$modifiers}"> Example element</a>
+//
+// .display--block          - Sets display to block
+// .display--inline-block   - Sets display to inline-block
+// .display--inline         - Sets display to inline
+//
+// Styleguide 19.6.1
+.display--block {
+    display: block !important;
+}
+
+.display--inline-block {
+    display: inline-block !important;
+}
+
+.display--inline {
+    display: inline !important;
+}
+
+
+// Add/remove floats
+//
+// Add and remove floats to/from elements
+//
+// Markup:
+// <p class="{$modifiers}">
+// Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus varius ante enim, ut venenatis orci posuere ut. In suscipit, sapien id vehicula condimentum, dolor eros gravida justo, in semper arcu arcu vel augue. Nam facilisis erat turpis, sed facilisis lacus pulvinar pharetra.
+// </p>
+//
+// .float--right  - Float element right
+// .float--left   - Float element left
+// .float--none   - Removes float from element
+//
+// Styleguide 19.6.2
+.float--right {
+    float: right !important;
+}
+
+.float--left {
+    float: left !important;
+}
+
+.float--none {
+    float: none !important;
+}
+
+
+// Text helpers
+//
+// Orbit includes various classes for text modification, see /sass/base/_misc.scss and below.
+//
+// Styleguide 1.6
+
+// Text alignment
+//
+// Easily realign text with text alignment helper classes.
+//
+// Markup:
+// <p class="{$modifiers}">
+// Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus varius ante enim, ut venenatis orci posuere ut. In suscipit, sapien id vehicula condimentum, dolor eros gravida justo, in semper arcu arcu vel augue. Nam facilisis erat turpis, sed facilisis lacus pulvinar pharetra.
+// </p>
+//
+// .text--left    - Aligns text left
+// .text--center  - Centers text
+// .text--right   - Aligns text right
+//
+// Styleguide 1.6.1
+.text--left {
+    text-align: left !important;
+}
+
+.text--center {
+    text-align: center !important;
+}
+
+.text--right {
+    text-align: right !important;
+}
+
+
+// Font weight
+//
+// Easily change font-weight with these helper classes.
+//
+// Markup:
+// <p class="{$modifiers}">
+// Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus varius ante enim, ut venenatis orci posuere ut. In suscipit, sapien id vehicula condimentum, dolor eros gravida justo, in semper arcu arcu vel augue. Nam facilisis erat turpis, sed facilisis lacus pulvinar pharetra.
+// </p>
+//
+// .text--light     - font-weight: 300 !important;
+// .text--normal    - font-weight: 400 !important;
+// .text--semibold  - font-weight: 600 !important;
+//
+$font-weight-light:    300 !default;
+$font-weight-semibold: 600 !default;
+
+.text--light {
+    font-weight: $font-weight-light !important;
+}
+
+.text--normal {
+    font-weight: $font-weight-normal !important;
+}
+
+.text--semibold {
+    font-weight: $font-weight-semibold !important;
+}
+
+
+// Capitals/lowercase
+//
+// Easily change text-transform with these helper classes.
+//
+// Markup:
+// <p class="{$modifiers}">
+// Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus varius ante enim, ut venenatis orci posuere ut. In suscipit, sapien id vehicula condimentum, dolor eros gravida justo, in semper arcu arcu vel augue. Nam facilisis erat turpis, sed facilisis lacus pulvinar pharetra.
+// </p>
+//
+// .text--caps         - make text uppercase
+// .text--lowercase    - make text lowercase
+// .text--firstcap     - capitalize text
+//
+// Styleguide 1.6.3
+.text--caps {
+    text-transform: uppercase !important;
+}
+
+.text--lowercase {
+    text-transform: lowercase !important;
+}
+
+.text--firstcap {
+    text-transform: capitalize !important;
+}
+
+
+// Clearfix
+//
+// Micro clearfix, as per As per: http://nicolasgallagher.com/micro-clearfix-hack/
+// Add to the parent element needing a clear fix. Can be used as a class or extends from
+// the sass placeholder '%cf'.
+//
+// Markup:
+// <div class="cf" style="outline: 1px solid red">
+//   Element needing a clear fix
+//   <a class="button float--right">Floated button</a>
+// </p>
+//
+// Styleguide 1.6.4
+.cf,
+%cf {
+    &::after {
+        clear: both;
+        content: '';
+        display: table;
+    }
+}
+
+
+// Help text
+.help {
+    @extend %normalis;
+
+    color: $color-text-muted;
+    font-weight: normal;
+    margin-bottom: -($space);
+    margin-top: $space-and-half;
+}
+
+%text--wordbreak,
+.text--wordbreak {
+    @include respond-max($small-width) {
+        @include textWordbreak;
+    }
+}

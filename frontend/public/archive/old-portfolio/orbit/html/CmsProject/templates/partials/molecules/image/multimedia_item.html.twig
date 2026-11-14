@@ -1,0 +1,36 @@
+{% block multimedia %}
+    {% if id is not empty %}
+        {% set nonce = random(5) %}
+
+        {% block multimedia_wrap %}
+            <div id="multimedia_player_{{ id }}_{{ nonce }}" >
+
+                {% block multimedia_inner %}
+                    <p>Unable to load the multimedia item</p>
+                {% endblock %}
+
+            </div>
+        {% endblock %}
+
+        <script>
+            {% if type == 2 %}
+                {% set height = item_height|number_format + 20 %}
+                {% set width = item_width|number_format %}
+                flashvars = {
+                    file: "{{ siteURL }}/multimedia/{{ id }}/{{ id }}.flv",
+                    image: "{{ siteURL }}/multimedia/{{ id }}/{{ id }}.jpg",
+                    autostart: '{{ autoStart|default('false') }}'
+                };
+            {% endif %}
+            {% if type == 3 %}
+                {% set height = 20 %}
+                {% set width = 320 %}
+                flashvars = {
+                    file: "http://{{ siteURL }}/multimedia/{{ id }}/{{ id }}.mp3",
+                    autostart: '{{ autoStart|default('false') }}'
+                };
+            {% endif %}
+            swfobject.embedSWF('/site/js/mediaplayer/player.swf', 'multimedia_player_{{ id }}_{{ nonce }}', {{ width }}, {{ height }}, '9.0.0', '', flashvars, false, false);
+        </script>
+    {% endif %}
+{% endblock multimedia %}
