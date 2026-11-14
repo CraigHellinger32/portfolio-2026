@@ -1,0 +1,39 @@
+{
+    "name": "craighellinger32/portfolio-2026",
+    "description": "Reproducible third-party WordPress plugins for the portfolio.",
+    "type": "project",
+    "license": "MPL-2.0",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://composer.advancedcustomfields.com",
+            "only": ["wpengine/advanced-custom-fields"]
+        },
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org",
+            "only": ["wpackagist-plugin/*"]
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "composer/installers": "^2.3",
+        "wpackagist-plugin/ewww-image-optimizer": "8.9.1",
+        "wpackagist-plugin/faustwp": "1.9.1",
+        "wpackagist-plugin/safe-svg": "2.5.2",
+        "wpackagist-plugin/wp-graphql": "2.25.0",
+        "wpackagist-plugin/wpgraphql-acf": "3.0.0",
+        "wpengine/advanced-custom-fields": "6.8.10"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "installer-paths": {
+            "app/public/wp-content/plugins/{$name}/": ["type:wordpress-plugin"]
+        }
+    }
+}

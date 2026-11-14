@@ -47,11 +47,11 @@ app/.envrc
 # Local debug info file
 app/public/local-xdebuginfo.php
 
-# All plugins
-#
-# Note: If you wish to whitelist plugins,
-# uncomment the next line
-#app/public/wp-content/plugins
+# Composer-managed third-party plugins; keep our custom plugin in Git.
+/app/public/wp-content/plugins/*
+!/app/public/wp-content/plugins/pf2026-content/
+/vendor/
+/auth.json
 
 # All themes
 #
