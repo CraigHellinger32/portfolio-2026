@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { FaustProvider } from "@faustwp/core";
 import { getTheme, subscribeTheme } from "../hooks/useDarkMode";
+import ImageUnlockProvider from "../components/ImageUnlock/ImageUnlockProvider";
 import "../faust.config";
 import "../styles/globals.css";
 
@@ -18,7 +19,9 @@ export default function App({ Component, pageProps }) {
 
 	return (
 		<FaustProvider pageProps={pageProps}>
-			<Component {...pageProps} key={pageProps.__SEED_NODE__?.uri || router.pathname} />
+			<ImageUnlockProvider>
+				<Component {...pageProps} key={pageProps.__SEED_NODE__?.uri || router.pathname} />
+			</ImageUnlockProvider>
 		</FaustProvider>
 	);
 }

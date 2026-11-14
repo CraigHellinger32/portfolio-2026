@@ -50,8 +50,24 @@ can be found. If a preview is missing or an image is not registered, it is not
 displayed and the WordPress error log identifies its source. Import any missing
 images through WordPress, generate the preview, and refresh the frontend cache.
 Redacted panel images render through a reusable button with the Figma lock
-icon. It is marked unavailable until a future password flow supplies `onUnlock`
-to `ContentPanel`; no password modal is implemented yet.
+icon. Selecting one opens the site-wide password modal. Successful entry
+unlocks all redacted panel images, which use Next Image for responsive sizing
+and WebP delivery. The browser remembers access for 30 days through a signed,
+HttpOnly, SameSite=Lax cookie (also Secure in production). Reloading restores
+access through `/api/image-unlock`; expiry restores the previews.
+
+Configure these server-only variables in `.env.local` locally and in your
+hosting environment for deployment (never prefix them with `NEXT_PUBLIC_`):
+
+- `IMAGE_UNLOCK_PASSWORD`: the shared portfolio password.
+- `IMAGE_UNLOCK_COOKIE_SECRET`: an independently generated random secret of at
+  least 32 characters, for example generated with `openssl rand -hex 32`.
+
+Do not commit either value. Changing either invalidates existing unlock cookies.
+Deploy production over HTTPS. Failed password attempts are limited to five per
+15 minutes per socket address in each Node process. For multi-instance hosting,
+use a shared rate limiter at the hosting layer; this in-memory limiter is not
+a distributed brute-force protection mechanism.
 
 The blur is only a visual redaction, not access control. Full-size source URLs
 remain in WordPress and are included in image markup for a future unlock flow;

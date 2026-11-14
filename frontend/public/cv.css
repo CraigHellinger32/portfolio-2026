@@ -135,6 +135,17 @@ article ul {
 	margin-block: 0;
 }
 
+.portfolio-password {
+	display: block;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.print-only {
+	display: none;
+}
+
 .education {
 	display: flex;
 	flex-direction: column;
@@ -195,6 +206,8 @@ a:hover {
 	}
 
 	.no-print { display: none; }
+
+	li.print-only { display: list-item; }
 
 	#experience {
 		break-before: page;
