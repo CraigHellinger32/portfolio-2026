@@ -319,10 +319,69 @@ The workflow does not modify production configuration.
 ### Failures, rollback and retention
 
 Failures before maintenance leave the live code untouched. Failures after it
-starts intentionally do not reopen a potentially mixed plugin installation.
+starts but before the schema check succeeds intentionally do not reopen a
+potentially mixed plugin installation. A failure in the final HTTP check happens
+**after maintenance is deactivated**: the new code is already live, but public
+availability has not been verified. This is not an automatic rollback.
 WordPress normally expires native maintenance after ten minutes, so investigate
 promptly and use a server maintenance rule for a prolonged incident. Do not
 blindly rerun over a partial deployment.
+
+#### Public API routes return 404
+
+If the WP-CLI schema check passes but the public REST check returns 404, compare
+the rewritten routes with WordPress's query-string route:
+
+```sh
+curl -i --max-time 30 'https://cms.craighellinger.co.uk/wp-json/'
+curl -i --max-time 30 'https://cms.craighellinger.co.uk/?rest_route=/'
+curl -i --max-time 30 --get 'https://cms.craighellinger.co.uk/graphql' \
+  --data-urlencode 'query={__typename}'
+```
+
+An Apache HTML 404 for `/wp-json/` and `/graphql`, but WordPress JSON for
+`/?rest_route=/`, points to permalink/web-server routing rather than broken
+plugin installation. Do not replace the health check with the query-string URL:
+that would hide the broken `/graphql` endpoint used by the frontend.
+
+On the production server, inspect the current configuration:
+
+```sh
+wp --path=/var/www/html option get permalink_structure
+sudo apache2ctl -M
+sudo apache2ctl -S
+ls -la /var/www/html/.htaccess
+```
+
+For Debian Apache, verify `rewrite_module` is enabled and identify the active
+HTTPS virtual host and its document root. If the permalink structure is empty,
+enable a non-Plain structure through **Settings > Permalinks** (for example
+**Post name**). Preserve an existing nonempty structure.
+
+Back up any existing `.htaccess` and active Apache configuration before editing.
+If the rewrite module is absent, enable it with `sudo a2enmod rewrite`.
+In the active site's configuration, the `<Directory /var/www/html>` block must
+allow WordPress rewrite directives, for example with `AllowOverride FileInfo`
+(or an existing broader setting). Check for more-specific directory overrides
+that disable them. Use the actual document root if it differs; do not overwrite
+the virtual host or remove existing access restrictions.
+
+Once Apache permits the rules, regenerate WordPress's `.htaccess` rules:
+
+```sh
+wp --path=/var/www/html rewrite flush --hard
+sudo apache2ctl configtest && sudo systemctl reload apache2
+```
+
+Resolve any WP-CLI warning about being unable to write `.htaccess`; a soft rewrite
+flush only updates database rules and cannot repair Apache routing by itself.
+Do not grant world-write permissions. If the server manages rewrites directly
+in its virtual host rather than `.htaccess`, update that configuration instead.
+
+Repeat all three HTTP checks above. REST should return JSON and GraphQL should
+return `data.__typename` as `RootQuery` without `errors`, not HTML or redirects.
+Then rerun the workflow after publishing any script changes. The workflow does
+not change Apache configuration or permalink settings automatically.
 
 Backups are at `/var/www/portfolio/backups/RUN-ATTEMPT/`. To roll back, keep
 maintenance active, move the affected live plugin folders into a separate private

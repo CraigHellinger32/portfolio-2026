@@ -51,7 +51,11 @@ function fixture(t, failure = "") {
   const command = (name, body) => write(join(bin, name), `#!/bin/bash\nset -eu\n${body}\n`, 0o755);
   command("composer", '[[ "$FAILURE" != composer ]]');
   command("flock", "exit 0");
-  command("curl", '[[ "$FAILURE" != http ]]');
+  command("curl", `
+if [[ "$FAILURE" == http ]]; then
+  printf 'curl: (22) The requested URL returned error: 404\\n' >&2
+  exit 22
+fi`);
   command("wp", `
 printf '%s\\n' "$*" >> "$TEST_DIR/wp.log"
 case "$*" in
@@ -118,6 +122,19 @@ test("schema failure does not reopen a broken deployment", (t) => {
   assert.ok(existsSync(join(f.plugins, "example/plugin.php")));
   assert.ok(existsSync(join(f.dir, "maintenance")));
   assert.match(result.stderr, /Maintenance was NOT deactivated/);
+});
+
+test("HTTP failure reports that code is live and points to rewrite diagnostics", (t) => {
+  const f = fixture(t, "http");
+  const result = f.run();
+  assert.notEqual(result.status, 0);
+  assert.ok(existsSync(join(f.plugins, "example/plugin.php")));
+  assert.equal(existsSync(join(f.dir, "maintenance")), false);
+  assert.match(result.stderr, /Public REST check failed after maintenance was deactivated/);
+  assert.match(result.stderr, /deployed code is already live/);
+  assert.match(result.stderr, /web-server rewrite configuration/);
+  assert.doesNotMatch(result.stderr, /Maintenance was NOT deactivated/);
+  assert.doesNotMatch(result.stdout, /Backend deployment complete/);
 });
 
 test("rejects unexpected release paths before touching WordPress", (t) => {

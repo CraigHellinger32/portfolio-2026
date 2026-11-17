@@ -131,6 +131,8 @@ PHP
   '
   wp_live --skip-plugins --skip-themes maintenance-mode deactivate
   maintenance_started=false
-  curl --fail --silent --show-error --max-time 60 \
-    'https://cms.craighellinger.co.uk/wp-json/' --output /dev/null
+  if ! curl --fail --silent --show-error --max-time 60 \
+    'https://cms.craighellinger.co.uk/wp-json/' --output /dev/null; then
+    fail "Public REST check failed after maintenance was deactivated; deployed code is already live. If /?rest_route=/ works but /wp-json/ returns 404, check WordPress permalinks and web-server rewrite configuration. See docs/deployment.md (Public API routes return 404)."
+  fi
   printf 'Backend deployment complete. Backup: %s\n' "$backup"
