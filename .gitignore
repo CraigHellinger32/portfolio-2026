@@ -63,3 +63,5 @@ app/public/local-xdebuginfo.php
 frontend/node_modules/
 frontend/.next/
 frontend/.env.local
+# Local by Flywheel diagnostics
+app/public/local-*.php

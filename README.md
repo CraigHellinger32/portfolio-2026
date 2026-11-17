@@ -1,6 +1,13 @@
 # portfolio-2026
 Portfolio website
 
+## Production deployment
+
+The WordPress CMS runs on Lightsail at `https://cms.craighellinger.co.uk`;
+the Next.js frontend deploys separately to Vercel. Local development continues
+to use Local. See [production setup and one-time migration](docs/deployment.md)
+before enabling the backend GitHub Actions workflow.
+
 ## WordPress plugins
 
 Third-party plugins are installed with Composer; their files are not tracked in
