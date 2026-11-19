@@ -126,6 +126,12 @@
 	padding-inline-end: 30px;
 }
 
+@media (max-width: 767px) {
+	.titleBlock[data-years-wrapped] {
+		border-inline-end-color: transparent;
+	}
+}
+
 .heading h1,
 .years {
 	margin: 0;

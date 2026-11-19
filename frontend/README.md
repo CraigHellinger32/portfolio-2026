@@ -50,6 +50,8 @@ the order of the visible case-study cards and stop at either end of the list.
 On mobile, selecting a card or paginating scrolls to the panel only if its
 heading is out of view after the layout settles. Reduced motion skips the
 scroll animation.
+On mobile, the panel title separator is hidden when a year range wraps onto
+its own row, without changing the wrap.
 
 Panel images must be registered in the WordPress Media Library so their previews
 can be found. If a preview is missing or an image is not registered, it is not

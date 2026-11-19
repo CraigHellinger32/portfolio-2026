@@ -8,12 +8,15 @@ import styles from "./ContentPanel.module.css";
 export default function ContentPanel({ entry, accent, open, id, retainWhenClosed = false, loading = false, error, onRetry, onUnlock, pagination }) {
 	const panelRef = useRef(null);
 	const contentRef = useRef(null);
+	const titleBlockRef = useRef(null);
+	const yearsRef = useRef(null);
 	const [displayed, setDisplayed] = useState(() => open ? { entry, accent } : null);
 	const updateContent = !retainWhenClosed || open;
 	const currentEntry = displayed?.entry || entry;
 	const sidebar = displayed?.entry?.caseStudies?.pageSidebar || "";
 	const startYear = currentEntry?.caseStudies?.startYear;
 	const endYear = currentEntry?.caseStudies?.endYear;
+	const hasYearRange = Boolean(startYear && endYear && endYear !== startYear);
 	const renderContent = open || displayed !== null;
 
 	useEffect(() => {
@@ -54,13 +57,22 @@ export default function ContentPanel({ entry, accent, open, id, retainWhenClosed
 		const content = contentRef.current;
 		if (!content) return;
 		const updateHeight = () => {
+			const titleBlock = titleBlockRef.current;
+			const years = yearsRef.current;
+			if (titleBlock) {
+				const yearsWrapped = hasYearRange && years &&
+					years.getBoundingClientRect().top >= titleBlock.getBoundingClientRect().bottom;
+				titleBlock.toggleAttribute("data-years-wrapped", Boolean(yearsWrapped));
+			}
 			panelRef.current.style.setProperty("--panel-height", `${content.getBoundingClientRect().height}px`);
 		};
 		updateHeight();
 		const observer = new ResizeObserver(updateHeight);
 		observer.observe(content);
+		if (titleBlockRef.current) observer.observe(titleBlockRef.current);
+		if (yearsRef.current) observer.observe(yearsRef.current);
 		return () => observer.disconnect();
-	}, [displayed, open, loading, error]);
+	}, [displayed, open, loading, error, hasYearRange]);
 
 	return (
 		<section
@@ -76,16 +88,16 @@ export default function ContentPanel({ entry, accent, open, id, retainWhenClosed
 				{renderContent && (
 				<div ref={contentRef} className={styles.inner}>
 					<header className={styles.heading}>
-						<div className={styles.titleBlock} data-has-year={!!startYear}>
+						<div ref={titleBlockRef} className={styles.titleBlock} data-has-year={!!startYear}>
 							<h1 id={`${id}-title`} tabIndex={pagination ? -1 : undefined}>{currentEntry?.title}</h1>
 							{currentEntry?.caseStudies?.subtitle && (
 								<p className={styles.subtitle}>{currentEntry.caseStudies.subtitle}</p>
 							)}
 						</div>
 						{startYear && (
-							<p className={styles.years}>
+							<p ref={yearsRef} className={styles.years}>
 								<time dateTime={String(startYear)}>{startYear}</time>
-								{endYear && endYear !== startYear && (
+								{hasYearRange && (
 									<> &ndash; <time dateTime={String(endYear)}>{endYear}</time></>
 								)}
 							</p>
