@@ -1,0 +1,54 @@
+.pagination {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	gap: 20px 15px;
+	margin-top: 30px;
+}
+
+.pagination button {
+	display: inline-flex;
+	align-items: center;
+	gap: 3px;
+	padding-inline-end: 5px;
+	color: inherit;
+	font: 700 13px / normal var(--font-share);
+	white-space: nowrap;
+}
+
+.pagination button + button {
+	padding-inline-start: 5px;
+}
+
+.pagination button:enabled {
+	cursor: pointer;
+}
+
+.pagination button:enabled:hover {
+	text-decoration: underline;
+}
+
+.pagination button:focus-visible {
+	outline: 2px solid currentColor;
+	outline-offset: 3px;
+}
+
+.pagination button:disabled {
+	opacity: 0.5;
+}
+
+.paginationIcon {
+	flex: none;
+	width: 24px;
+	height: 24px;
+	background: currentColor;
+	mask: var(--pagination-icon) center no-repeat;
+}
+
+.previousIcon {
+	--pagination-icon: url("/case-study-pagination/previous.svg");
+}
+
+.nextIcon {
+	--pagination-icon: url("/case-study-pagination/next.svg");
+}

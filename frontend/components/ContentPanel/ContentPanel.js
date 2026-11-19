@@ -1,10 +1,11 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import CaseStudyPagination from "../CaseStudyPagination/CaseStudyPagination";
 import PageSidebar from "../PageSidebar/PageSidebar";
 import RedactedContent from "../RedactedImageButton/RedactedContent";
 import LoadingStatus from "./LoadingStatus";
 import styles from "./ContentPanel.module.css";
 
-export default function ContentPanel({ entry, accent, open, id, retainWhenClosed = false, loading = false, error, onRetry, onUnlock }) {
+export default function ContentPanel({ entry, accent, open, id, retainWhenClosed = false, loading = false, error, onRetry, onUnlock, pagination }) {
 	const panelRef = useRef(null);
 	const contentRef = useRef(null);
 	const [displayed, setDisplayed] = useState(() => open ? { entry, accent } : null);
@@ -76,7 +77,7 @@ export default function ContentPanel({ entry, accent, open, id, retainWhenClosed
 				<div ref={contentRef} className={styles.inner}>
 					<header className={styles.heading}>
 						<div className={styles.titleBlock} data-has-year={!!startYear}>
-							<h1 id={`${id}-title`}>{currentEntry?.title}</h1>
+							<h1 id={`${id}-title`} tabIndex={pagination ? -1 : undefined}>{currentEntry?.title}</h1>
 							{currentEntry?.caseStudies?.subtitle && (
 								<p className={styles.subtitle}>{currentEntry.caseStudies.subtitle}</p>
 							)}
@@ -106,6 +107,7 @@ export default function ContentPanel({ entry, accent, open, id, retainWhenClosed
 						<PageSidebar content={sidebar} onUnlock={onUnlock} />
 					</div>
 					)}
+					{pagination && <CaseStudyPagination previous={pagination.previous} next={pagination.next} />}
 				</div>
 				)}
 			</div>

@@ -38,6 +38,7 @@ export default function FrontPageTemplate(props) {
 	const router = useRouter();
 	const clientSectionRef = useRef(null);
 	const skillSectionRef = useRef(null);
+	const detailRequestRef = useRef(null);
 	const clientColumns = useCompactColumns(clientSectionRef);
 	const skillColumns = useCompactColumns(skillSectionRef);
 	const [lastIndex, setLastIndex] = useState(0);
@@ -65,10 +66,42 @@ export default function FrontPageTemplate(props) {
 	const panelOpen = selectedIndex !== -1;
 	const activeIndex = panelOpen ? selectedIndex : lastIndex;
 	const activeEntry = visibleCaseStudies[activeIndex];
+
+	function paginateCaseStudy(index) {
+		const target = visibleCaseStudies[index];
+		if (!target?.uri) return;
+
+		setLastIndex(index);
+		void router.push(
+			{ pathname: router.pathname, query: router.query },
+			target.uri,
+			{ shallow: true, scroll: false }
+		).then((navigated) => {
+			if (!navigated) return;
+			requestAnimationFrame(() => {
+				const heading = [
+					document.getElementById("case-study-panel-title"),
+					document.getElementById(`case-study-panel-row-${Math.floor(index / 2)}-title`),
+				].find((element) => element?.getClientRects().length && !element.closest("[inert]"));
+				heading?.focus({ preventScroll: true });
+				heading?.scrollIntoView({ block: "start" });
+			});
+		}).catch((error) => {
+			console.error("Could not navigate to the case study.", error);
+		});
+	}
+
+	const caseStudyPagination = {
+		previous: visibleCaseStudies[activeIndex - 1]?.uri ? () => paginateCaseStudy(activeIndex - 1) : undefined,
+		next: visibleCaseStudies[activeIndex + 1]?.uri ? () => paginateCaseStudy(activeIndex + 1) : undefined,
+	};
 	
 	// Helper function to fetch detail data
 	const fetchDetailData = () => {
 		if (!activeEntry) return;
+		detailRequestRef.current?.abort();
+		const request = new AbortController();
+		detailRequestRef.current = request;
 		
 		setDetailLoading(true);
 		setDetailError(null);
@@ -89,13 +122,15 @@ export default function FrontPageTemplate(props) {
 			variables: { uri: activeEntry.uri }
 		});
 		
-		fetch(`${process.env.NEXT_PUBLIC_WORDPRESS_URL || "http://pf2026.local"}/graphql`, {
+		return fetch(`${process.env.NEXT_PUBLIC_WORDPRESS_URL || "http://pf2026.local"}/graphql`, {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
-			body: query
+			body: query,
+			signal: request.signal,
 		})
 			.then(r => r.json())
 			.then(result => {
+				if (request.signal.aborted) return;
 				if (result.errors) {
 					setDetailError(new Error(result.errors[0].message));
 					setDetailData(null);
@@ -106,6 +141,7 @@ export default function FrontPageTemplate(props) {
 				setDetailLoading(false);
 			})
 			.catch(err => {
+				if (request.signal.aborted) return;
 				setDetailError(err);
 				setDetailData(null);
 				setDetailLoading(false);
@@ -124,6 +160,7 @@ export default function FrontPageTemplate(props) {
 		}
 		
 		fetchDetailData();
+		return () => detailRequestRef.current?.abort();
 	}, [panelOpen, activeEntry]);
 	const detailEntry = detailData?.caseStudy?.id === activeEntry?.id ? detailData.caseStudy : null;
 	const panelEntry = detailEntry || activeEntry;
@@ -333,6 +370,7 @@ export default function FrontPageTemplate(props) {
 				loading={detailLoading && !detailEntry}
 				error={detailError}
 				onRetry={() => void refetch().catch(() => {})}
+				pagination={caseStudyPagination}
 			/>
 			</div>
 			{[0, 1].map((row) => {
@@ -353,6 +391,7 @@ export default function FrontPageTemplate(props) {
 							loading={detailLoading && !detailEntry}
 							error={detailError}
 							onRetry={() => void refetch().catch(() => {})}
+							pagination={caseStudyPagination}
 						/>
 					</div>
 				);

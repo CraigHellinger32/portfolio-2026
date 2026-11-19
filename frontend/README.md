@@ -44,6 +44,9 @@ sources with a raster fallback through its `eio_parse_page_html` integration.
 Other WordPress content retains its existing responsive image behavior.
 Case-study details are fetched when the panel opens rather than reused from
 session storage, so reopening a panel picks up changes to the redaction toggle.
+The [case-study pagination component](components/CaseStudyPagination/CaseStudyPagination.js)
+renders Previous and Next case study buttons in the panel footer. They follow
+the order of the visible case-study cards and stop at either end of the list.
 
 Panel images must be registered in the WordPress Media Library so their previews
 can be found. If a preview is missing or an image is not registered, it is not
