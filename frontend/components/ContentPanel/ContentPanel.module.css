@@ -23,10 +23,14 @@
 
 .cyan {
 	background-color: var(--brand-cyan);
+	--loader-first: var(--brand-magenta);
+	--loader-second: var(--brand-yellow);
+	--loader-third: #fff;
 }
 
 .magenta {
 	background-color: var(--brand-magenta);
+	--loader-second: var(--brand-yellow);
 }
 
 .yellow {
@@ -37,6 +41,11 @@
 .monochrome {
 	background-color: var(--accent-monochrome-background);
 	color: var(--accent-monochrome-text);
+	--loader-third: var(--brand-yellow);
+}
+
+[data-theme="dark"] .monochrome {
+	--loader-third: #231f20;
 }
 
 .clip {
@@ -58,6 +67,50 @@
 	align-items: center;
 	gap: 20px 30px;
 	margin: 0 0 30px;
+}
+
+.loadingStatus {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.loader {
+	box-sizing: content-box;
+	flex: none;
+	padding-block: 2px;
+}
+
+.loaderFirst {
+	color: var(--loader-first, var(--brand-cyan));
+}
+
+.loaderSecond {
+	color: var(--loader-second, var(--brand-magenta));
+}
+
+.loaderThird {
+	color: var(--loader-third, #231f20);
+}
+
+.loader rect {
+	fill: currentColor;
+	stroke: currentColor;
+	stroke-width: 15;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.loader rect {
+		animation: loaderFade 2s cubic-bezier(.5, 0, .5, 1) infinite;
+	}
+
+	.loader .loaderFirst { animation-delay: -.4s; }
+	.loader .loaderSecond { animation-delay: -.2s; }
+}
+
+@keyframes loaderFade {
+	0%, 100% { opacity: 1; }
+	50% { opacity: 0; }
 }
 
 .titleBlock {

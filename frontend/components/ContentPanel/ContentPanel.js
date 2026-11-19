@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import PageSidebar from "../PageSidebar/PageSidebar";
 import RedactedContent from "../RedactedImageButton/RedactedContent";
+import LoadingStatus from "./LoadingStatus";
 import styles from "./ContentPanel.module.css";
 
 export default function ContentPanel({ entry, accent, open, id, retainWhenClosed = false, loading = false, error, onRetry, onUnlock }) {
@@ -90,7 +91,7 @@ export default function ContentPanel({ entry, accent, open, id, retainWhenClosed
 						)}
 					</header>
 					{!error && (loading || displayed?.entry?.content === undefined) && !displayed?.entry?.content && (
-						<p role="status">Loading content...</p>
+						<LoadingStatus />
 					)}
 					{error ? (
 						<div role="alert">
