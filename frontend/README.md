@@ -47,6 +47,9 @@ session storage, so reopening a panel picks up changes to the redaction toggle.
 The [case-study pagination component](components/CaseStudyPagination/CaseStudyPagination.js)
 renders Previous and Next case study buttons in the panel footer. They follow
 the order of the visible case-study cards and stop at either end of the list.
+On mobile, selecting a card or paginating scrolls to the panel only if its
+heading is out of view after the layout settles. Reduced motion skips the
+scroll animation.
 
 Panel images must be registered in the WordPress Media Library so their previews
 can be found. If a preview is missing or an image is not registered, it is not

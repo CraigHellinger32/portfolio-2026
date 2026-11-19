@@ -5,6 +5,7 @@ import ContentCard from "../components/ContentCard/ContentCard";
 import ContentPanel from "../components/ContentPanel/ContentPanel";
 import PageFooter from "../components/PageFooter/PageFooter";
 import PageHeader from "../components/PageHeader/PageHeader";
+import useMobilePanelScroll from "../hooks/useMobilePanelScroll";
 import styles from "../components/ContentCard/ContentCard.module.css";
 
 function useCompactColumns(sectionRef) {
@@ -36,6 +37,7 @@ function useCompactColumns(sectionRef) {
 
 export default function FrontPageTemplate(props) {
 	const router = useRouter();
+	const preparePanelScroll = useMobilePanelScroll();
 	const clientSectionRef = useRef(null);
 	const skillSectionRef = useRef(null);
 	const detailRequestRef = useRef(null);
@@ -67,17 +69,29 @@ export default function FrontPageTemplate(props) {
 	const activeIndex = panelOpen ? selectedIndex : lastIndex;
 	const activeEntry = visibleCaseStudies[activeIndex];
 
+	function navigatePanel(path, panelId, focusHeading = false) {
+		const finishScroll = preparePanelScroll(panelId, focusHeading);
+		return router.push(
+			{ pathname: router.pathname, query: router.query },
+			path,
+			{ shallow: true, scroll: false }
+		).then((navigated) => {
+			finishScroll?.(navigated);
+			return navigated && !finishScroll;
+		}, (error) => {
+			finishScroll?.(false);
+			console.error("Could not navigate to the content panel.", error);
+			return false;
+		});
+	}
+
 	function paginateCaseStudy(index) {
 		const target = visibleCaseStudies[index];
 		if (!target?.uri) return;
 
 		setLastIndex(index);
-		void router.push(
-			{ pathname: router.pathname, query: router.query },
-			target.uri,
-			{ shallow: true, scroll: false }
-		).then((navigated) => {
-			if (!navigated) return;
+		void navigatePanel(target.uri, "case-study-panel", true).then((useDesktopScroll) => {
+			if (!useDesktopScroll) return;
 			requestAnimationFrame(() => {
 				const heading = [
 					document.getElementById("case-study-panel-title"),
@@ -351,11 +365,7 @@ export default function FrontPageTemplate(props) {
 								onClick={() => {
 									setLastIndex(index);
 									const path = panelOpen && activeIndex === index ? "/" : entry.uri;
-									void router.push(
-										{ pathname: router.pathname, query: router.query },
-										path,
-										{ shallow: true, scroll: false }
-									);
+									void navigatePanel(path, path !== "/" ? "case-study-panel" : null);
 								}}
 							/>
 						</li>
@@ -427,11 +437,7 @@ export default function FrontPageTemplate(props) {
 								onClick={() => {
 									setLastClientIndex(index);
 									const path = clientPanelOpen && activeClientIndex === index ? "/" : entry.uri;
-									void router.push(
-										{ pathname: router.pathname, query: router.query },
-										path,
-										{ shallow: true, scroll: false }
-									);
+									void navigatePanel(path, path !== "/" ? "client-content-panel" : null);
 								}}
 								brandLogo={entry.featuredImage?.node?.sourceUrl}
 								brandLogoAlt={entry.featuredImage?.node?.altText || ""}
@@ -505,11 +511,7 @@ export default function FrontPageTemplate(props) {
 									onClick={() => {
 										setLastSkillIndex(index);
 										const path = skillPanelOpen && activeSkillIndex === index ? "/" : entry.uri;
-										void router.push(
-											{ pathname: router.pathname, query: router.query },
-											path,
-											{ shallow: true, scroll: false }
-										);
+										void navigatePanel(path, path !== "/" ? "skill-content-panel" : null);
 									}}
 								/>
 							</li>
