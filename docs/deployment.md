@@ -8,13 +8,14 @@
 | Production | `https://cms.craighellinger.co.uk` | Vercel, using the production CMS |
 
 Next.js talks to WordPress over GraphQL, not directly to its database.
-Local and production have independent databases. Migration is a one-time copy;
-subsequent code deployments never import a database or sync uploads.
+Local and production have independent databases. The one-time migration copies
+portfolio content and media, not the database. Code deployments never import
+content or sync uploads.
 
 The repo has no custom theme. Backend application code is the tracked
 `pf2026-content` plugin. The local database currently selects the standard
 `twentytwentyfive` theme, and local WordPress is 7.1.3. Install a compatible
-WordPress version and that theme on production before importing the database.
+WordPress version and that theme on production before migrating content.
 WordPress core and standard themes are not deployed by this workflow.
 
 ## 1. One-time server prerequisites
@@ -112,136 +113,37 @@ For ongoing deployments, Composer builds in an isolated incoming directory,
 then the script synchronizes the installed plugin code into WordPress. This avoids
 Composer's unmanaged-directory problem and keeps the existing symlink layout.
 
-## 3. One-time database and media migration
+## 3. One-time content migration (completed)
 
-**This replaces the production database, including users, passwords and settings.**
-It has deliberately not been automated or executed. Local remains unchanged.
-Schedule a quiet window: stop content editing, scheduled jobs and external writes
-on the target until verification is complete.
+The one-time migration from Local to Lightsail imported 5 published case
+studies, 8 published clients, 15 published skills, and 49 Media Library
+attachments. It preserved production users, passwords, site URLs, permalinks,
+the active theme, and plugin settings. The CV selector (`pf2026_cv_attachment_id`)
+was left unchanged.
 
-### Export from Local
+The importer was specific to that export and is not needed for routine
+deployments. Manage content in production WordPress; GitHub Actions deploys
+code only. For recovery, use production backups rather than replaying the Local
+migration. Keep SQL dumps, content exports, and import logs out of Git and
+outside the web root.
 
-Open Local's **Site shell** for this site so PHP, WP-CLI and MySQL use Local's
-runtime. Store the dump in a private directory outside the repo and web root:
+### Public CMS checks
 
-```sh
-umask 077
-mkdir -p "$HOME/pf2026-migration"
-wp db check
-wp db export "$HOME/pf2026-migration/local.sql" --single-transaction
-wp db prefix
-wp option get home
-wp option get siteurl
-```
-
-The current local prefix is `wp_`; verify it at export time. Confirm production's
-`$table_prefix` matches **before import**, otherwise WordPress will query the
-wrong tables. Adjust production configuration manually if needed; retain its
-database credentials, salts, HTTPS settings, and other host-specific values.
-
-From your Mac, securely transfer the dump and all media, including generated
-thumbnails, WebP siblings, SVGs and the CV PDF:
+After a deployment or restore, verify the public REST and GraphQL routes:
 
 ```sh
-scp "$HOME/pf2026-migration/local.sql" admin@YOUR_STATIC_IP:/var/www/portfolio/backups/local-import.sql
-rsync -av app/public/wp-content/uploads/ admin@YOUR_STATIC_IP:/var/www/html/wp-content/uploads/
-```
-
-Do not sync `wp-content/ewww` from macOS: its executables may be incompatible
-with Linux. Let the server's EWWW installation provision compatible tools.
-
-### Back up and import on Lightsail
-
-Choose a unique backup filename; do not overwrite an earlier recovery point.
-If the site is already in maintenance mode, investigate before proceeding.
-
-```sh
-umask 077
-wp --path=/var/www/html maintenance-mode activate
-wp --path=/var/www/html db export /var/www/portfolio/backups/before-import.sql --single-transaction
-wp --path=/var/www/html --skip-plugins --skip-themes db import /var/www/portfolio/backups/local-import.sql
-```
-
-Keep maintenance active through verification (WordPress's native maintenance
-marker expires after about ten minutes; renew it if needed). In a lengthy
-migration, use a web-server maintenance rule to reliably block public access.
-
-WP-CLI's serialized-data-aware replacement is essential for ACF/options.
-Run a dry run, review counts/tables, then the actual command:
-
-```sh
-wp --path=/var/www/html --skip-plugins --skip-themes search-replace \
-  'http://pf2026.local' 'https://cms.craighellinger.co.uk' \
-  --all-tables-with-prefix --skip-columns=guid --precise --dry-run
-wp --path=/var/www/html --skip-plugins --skip-themes search-replace \
-  'http://pf2026.local' 'https://cms.craighellinger.co.uk' \
-  --all-tables-with-prefix --skip-columns=guid --precise
-wp --path=/var/www/html --skip-plugins --skip-themes option update home 'https://cms.craighellinger.co.uk'
-wp --path=/var/www/html --skip-plugins --skip-themes option update siteurl 'https://cms.craighellinger.co.uk'
-```
-
-Check for `https://pf2026.local` and protocol-relative `//pf2026.local` values as
-well; dry-run and replace those separately if present. Do not globally replace
-the bare hostname or use SQL text replacement on serialized data. GUIDs are
-identifiers, not public media URLs, and intentionally remain unchanged.
-
-The import restores local users/password hashes. Use a known authorized local
-admin account, or reset the intended production admin password securely via
-WP-CLI's `--prompt=user_pass` rather than putting it in shell history. Remove
-unneeded development users/application passwords, and rotate production-only
-secrets in the appropriate settings after import.
-
-### Restore production-specific settings and verify
-
-- Check `WP_HOME`/`WP_SITEURL` overrides in production configuration if option
-  updates don't affect the reported URLs. Keep HTTPS correct behind Lightsail's
-  proxy/load balancer; do not disable certificate checks.
-- Ensure `twentytwentyfive` exists. Import preserves the selected theme.
-- Activate the six Composer plugins before `pf2026-content` if necessary:
-
-  ```sh
-  wp --path=/var/www/html plugin activate advanced-custom-fields ewww-image-optimizer faustwp safe-svg wp-graphql wpgraphql-acf
-  wp --path=/var/www/html plugin activate pf2026-content
-  wp --path=/var/www/html db check
-  wp --path=/var/www/html cache flush
-  wp --path=/var/www/html rewrite flush
-  ```
-
-- In Faust settings, replace the local frontend URL with the production Vercel
-  frontend URL/custom domain. Use the production Faust secret in Vercel.
-- Review upload-path options and EWWW settings for absolute macOS paths. Preserve
-  Media Library attachment IDs and `pf2026_cv_attachment_id`.
-- Verify media read permissions and EWWW's Linux tools. Follow the
-  [media configuration guide](../frontend/README.md#image-delivery) if previews
-  or WebP copies are missing; back up before bulk regeneration.
-- Disable development/debug output and unwanted outbound mail/integrations.
-- List plugins and compare all seven versions with the
-  [audited baseline](../README.md#audited-baseline).
-- Query GraphQL using WP-CLI while public HTTP is in maintenance:
-
-  ```sh
-  wp --path=/var/www/html eval '$r = graphql(["query" => "{ caseStudies(first: 1) { nodes { databaseId title content caseStudies { pageSidebar redactPanelImages } } } cvUrl }"]); echo wp_json_encode($r, JSON_PRETTY_PRINT);'
-  ```
-
-  Confirm there are no `errors`, content/sidebar values are present, upload/CV
-  URLs use the CMS hostname, and corresponding files exist.
-
-Only after these checks:
-
-```sh
-wp --path=/var/www/html maintenance-mode deactivate
 curl -fsS 'https://cms.craighellinger.co.uk/wp-json/' -o /dev/null
 curl -fsS 'https://cms.craighellinger.co.uk/graphql' \
   -H 'Content-Type: application/json' \
   --data '{"query":"{ caseStudies(first: 1) { nodes { databaseId title } } cvUrl }"}'
 ```
 
-HTTP 200 alone isn't sufficient: check GraphQL's `errors` and returned URLs.
-Then check the Vercel site manually: case-study cards, both expanded columns,
-blurred/unlocked images, password flow, SVGs and CV download. Do not send real
-visitor traffic until both halves work. Delete only the named transferred import
-dump after success; retain encrypted/access-controlled backups under your chosen
-retention policy. Dumps contain user data and secrets; never commit them.
+HTTP 200 alone isn't sufficient: check GraphQL's `errors`, that expected
+published case studies are returned, and that media and any configured CV point
+to production. On Vercel, verify case-study cards, both expanded columns,
+blurred/unlocked images, password flow, SVGs, and CV download. See the
+[media configuration guide](../frontend/README.md#image-delivery) if previews or
+WebP copies are missing.
 
 ## 4. Enable GitHub Actions backend deployment
 
@@ -273,9 +175,11 @@ Allow port 22 from the chosen GitHub runner network; standard hosted runner IPs
 change. For restricted firewalls, use a runner with fixed egress or an appropriate
 private connection rather than assuming Lightsail browser-SSH access suffices.
 
-Run **Deploy WordPress backend** manually on `main` for the first deployment,
-after bootstrap and migration. Later pushes to `main` trigger it only when
-Composer files, the custom plugin, deployment script or workflow change.
+Run **Deploy WordPress backend** manually on `main` for the first deployment
+after bootstrap. It can run before the content migration: it checks the schema,
+not whether the database contains portfolio content. Later pushes to `main`
+trigger it only when Composer files, the custom plugin, deployment script, its
+tests, or the workflow change.
 Frontend-only changes don't deploy the backend.
 
 The workflow runs isolated deployment tests before opening SSH. To run them
