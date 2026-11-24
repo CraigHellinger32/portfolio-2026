@@ -5,9 +5,10 @@ import DarkModeButton from "./DarkModeButton";
 import BurgerMenuButton from "./BurgerMenuButton";
 import styles from "./PageHeader.module.css";
 
-export default function PageHeader({ title, description }) {
+export default function PageHeader({ title, description, roleTitle }) {
 	const dark = useDarkMode();
 	const [menuOpen, setMenuOpen] = useState(false);
+	const homeHref = roleTitle ? `/?title=${encodeURIComponent(roleTitle)}` : "/";
 
 	function toggleTheme() {
 		document.documentElement.dataset.theme = dark ? "light" : "dark";
@@ -23,9 +24,9 @@ export default function PageHeader({ title, description }) {
 			<div className={styles.themeControl}>
 				<DarkModeButton dark={dark} onToggle={toggleTheme} />
 			</div>
-			<Link href="/" className={styles.brand}>
+			<Link href={homeHref} className={styles.brand}>
 				<h1 className={styles.title}>{title}</h1>
-				<p className={styles.description}>{description}</p>
+				<p className={styles.description}>{roleTitle ?? description}</p>
 			</Link>
 			{/* <div className={styles.menuControl}>
 				<BurgerMenuButton open={menuOpen} onToggle={() => setMenuOpen(!menuOpen)} />

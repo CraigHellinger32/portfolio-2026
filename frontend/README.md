@@ -122,6 +122,15 @@ and bracketed content prompts before sharing it. The CV card links to this HTML
 page, which includes a print-hidden download link to `public/Craig-Hellinger-CV.pdf`.
 Replace that file when updating the downloadable CV.
 
+The portfolio and HTML CV accept a `title` query parameter to customize the
+displayed role; it defaults to `Design engineer`. The CV card carries the
+selected title through to the HTML CV. Add the configured portfolio password
+as a `pw` query parameter (for example, `?title=Product%20designer&pw=<password>`)
+to exchange it for the existing signed access cookie; the browser removes `pw`
+from the address after loading. Treat such a URL as a credential: the initial
+request may still be recorded in server or proxy logs. The downloadable PDF is
+a static file and is not changed by query parameters.
+
 WordPress also retains a PDF copy. WPGraphQL's `cvUrl` field, registered by the
 content plugin, resolves the Media Library attachment selected by
 `pf2026_cv_attachment_id` using `wp_get_attachment_url()`.

@@ -11,18 +11,57 @@ export default function ImageUnlockProvider({ children }) {
 	const [expiresAt, setExpiresAt] = useState(null);
 	const [open, setOpen] = useState(false);
 	const triggerRef = useRef(null);
+	const accessParameterRef = useRef(null);
 	const unlocked = expiresAt !== null;
 
 	useEffect(() => {
 		const controller = new AbortController();
-		fetch("/api/image-unlock", { cache: "no-store", signal: controller.signal })
+		if (accessParameterRef.current === null) {
+			const url = new URL(window.location.href);
+			const hasPassword = url.searchParams.has("pw");
+			accessParameterRef.current = {
+				hasPassword,
+				password: url.searchParams.get("pw"),
+			};
+			if (hasPassword) {
+				url.searchParams.delete("pw");
+				window.history.replaceState(
+					window.history.state,
+					"",
+					`${url.pathname}${url.search}${url.hash}`
+				);
+			}
+		}
+		const { hasPassword, password } = accessParameterRef.current;
+
+		fetch("/api/image-unlock", {
+			...(hasPassword
+				? {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ password }),
+				}
+				: {}),
+			cache: "no-store",
+			signal: controller.signal,
+		})
 			.then(async (response) => {
 				const result = await response.json();
 				if (!response.ok) throw new Error(result.error || "Unable to check image access.");
-				if (result.unlocked) setExpiresAt(result.expiresAt);
+				if (result.unlocked) {
+					if (!Number.isFinite(result.expiresAt)) throw new Error("Unable to confirm image access.");
+					setExpiresAt(result.expiresAt);
+				} else if (hasPassword) {
+					throw new Error("Unable to confirm image access.");
+				}
 			})
 			.catch((error) => {
-				if (error.name !== "AbortError") console.error("Unable to restore image access:", error);
+				if (error.name !== "AbortError") {
+					console.error(
+						hasPassword ? "Unable to unlock image access:" : "Unable to restore image access:",
+						error
+					);
+				}
 			});
 		return () => controller.abort();
 	}, []);
