@@ -19,6 +19,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 Development output is written to `.next-dev`, while production builds use
 `.next`, so running a build does not overwrite the active dev server's assets.
 
+Run `npm run analyze` to build with Webpack Bundle Analyzer. The browser,
+Node.js and Edge reports are written under `.next/analyze/`; they do not open
+automatically. The build requires the same environment and WordPress access as
+`npm run build`.
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
@@ -121,6 +126,15 @@ typography is defined separately in `public/cv.css`. Update its portfolio URL
 and bracketed content prompts before sharing it. The CV card links to this HTML
 page, which includes a print-hidden download link to `public/Craig-Hellinger-CV.pdf`.
 Replace that file when updating the downloadable CV.
+
+The portfolio and HTML CV accept a `title` query parameter to customize the
+displayed role; it defaults to `Design engineer`. The CV card carries the
+selected title through to the HTML CV. Add the configured portfolio password
+as a `pw` query parameter (for example, `?title=Product%20designer&pw=<password>`)
+to exchange it for the existing signed access cookie; the browser removes `pw`
+from the address after loading. Treat such a URL as a credential: the initial
+request may still be recorded in server or proxy logs. The downloadable PDF is
+a static file and is not changed by query parameters.
 
 WordPress also retains a PDF copy. WPGraphQL's `cvUrl` field, registered by the
 content plugin, resolves the Media Library attachment selected by

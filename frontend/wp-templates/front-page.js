@@ -6,6 +6,7 @@ import ContentPanel from "../components/ContentPanel/ContentPanel";
 import PageFooter from "../components/PageFooter/PageFooter";
 import PageHeader from "../components/PageHeader/PageHeader";
 import useMobilePanelScroll from "../hooks/useMobilePanelScroll";
+import { DEFAULT_JOB_TITLE, getJobTitleOverride } from "../lib/jobTitle.mjs";
 import styles from "../components/ContentCard/ContentCard.module.css";
 
 function useCompactColumns(sectionRef) {
@@ -59,6 +60,8 @@ export default function FrontPageTemplate(props) {
 	const accents = ["cyan", "magenta", "yellow"];
 	const cmykAccents = [...accents, "monochrome"];
 	const { title, description } = props.data.generalSettings;
+	const roleTitle = getJobTitleOverride(router.query.title);
+	const jobTitle = roleTitle || DEFAULT_JOB_TITLE;
 	const caseStudies = props.data.caseStudies.nodes;
 	const visibleCaseStudies = caseStudies.slice(0, 4);
 	const selectedPath = router.asPath.split(/[?#]/)[0].replace(/\/$/, "");
@@ -329,7 +332,7 @@ export default function FrontPageTemplate(props) {
 
 	return (
 		<>
-			<PageHeader title={title} description={description} />
+			<PageHeader title={title} description={description} roleTitle={roleTitle} />
 			<main className={styles.page}>
 
 			<div
@@ -554,7 +557,7 @@ export default function FrontPageTemplate(props) {
 			</div>
 			<section className={styles.cvSection} aria-label="Curriculum Vitae">
 				<ContentCard
-					entry={{ title: "Curriculum Vitae", uri: "/cv.html" }}
+					entry={{ title: "Curriculum Vitae", uri: `/cv.html?title=${encodeURIComponent(jobTitle)}` }}
 					number={skillNumberStart + skills.length}
 					symbol="Cv"
 					size="medium"

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Craig Hellinger | Curriculum Vitae</title>
+	<title>Craig Hellinger | Design engineer | Curriculum Vitae</title>
 	<link rel="stylesheet" href="cv.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
 		<header>
 			<div class="identity">
 				<h1>Craig Hellinger</h1>
-				<p>Design Engineer | UX, <span class="no-wrap">Front-End</span> and Design&nbsp;Systems</p>
+				<p><span data-job-title>Design engineer</span> | UX, <span class="no-wrap">Front-End</span> and Design&nbsp;Systems</p>
 			</div>
 			<address class="contact">
 				<p>Swannington, Leicestershire, UK</p>
@@ -24,7 +24,7 @@
 
 		<section class="summary" aria-labelledby="summary">
 			<h2 id="summary">Summary</h2>
-			<p>Design engineer with 15+ years across UX design and <span class="no-wrap">front-end</span> development. I design in Figma and ship production code in TypeScript. At Mortgage Advice Bureau I built and maintained a design system supporting a product used by about 35,000 people a month, with 50 million+ documents uploaded. I helped grow the design team from one to eight and I mentor designers and developers. I ship early and iterate on real user feedback. I use AI tools combined with MCP to speed up my workflow and get prototyped code into the hands of users fast.</p>
+			<p><span data-job-title>Design engineer</span> with 15+ years across UX design and <span class="no-wrap">front-end</span> development. I design in Figma and ship production code in TypeScript. At Mortgage Advice Bureau I built and maintained a design system supporting a product used by about 35,000 people a month, with 50 million+ documents uploaded. I helped grow the design team from one to eight and I mentor designers and developers. I ship early and iterate on real user feedback. I use AI tools combined with MCP to speed up my workflow and get prototyped code into the hands of users fast.</p>
 		</section>
 
 		<section class="skills" aria-labelledby="skills">
@@ -113,5 +113,43 @@
 		</section>
 		<p class="no-print"><a href="Craig-Hellinger-CV.pdf" download>Download CV as PDF</a></p>
 	</main>
+	<script>
+		(() => {
+			const params = new URLSearchParams(window.location.search);
+			const requestedTitle = params.get("title");
+			const normalizedTitle = requestedTitle?.trim().replace(/\s+/g, " ");
+			const jobTitle = normalizedTitle && normalizedTitle.length <= 80
+				? normalizedTitle
+				: "Design engineer";
+
+			document.title = `Craig Hellinger | ${jobTitle} | Curriculum Vitae`;
+			document.querySelectorAll("[data-job-title]").forEach((element) => {
+				element.textContent = jobTitle;
+			});
+
+			if (!params.has("pw")) return;
+			const password = params.get("pw");
+			params.delete("pw");
+			const query = params.toString();
+			window.history.replaceState(
+				window.history.state,
+				"",
+				`${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`
+			);
+
+			fetch("/api/image-unlock", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ password }),
+			})
+				.then(async (response) => {
+					const result = await response.json();
+					if (!response.ok || result.unlocked !== true) {
+						throw new Error(result.error || "Unable to unlock portfolio images.");
+					}
+				})
+				.catch((error) => console.error("Unable to unlock portfolio images:", error));
+		})();
+	</script>
 </body>
 </html>
