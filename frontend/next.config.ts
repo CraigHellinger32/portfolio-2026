@@ -3,7 +3,8 @@ import { PHASE_DEVELOPMENT_SERVER } from "next/constants";
 
 const wordpressUrl = new URL(process.env.NEXT_PUBLIC_WORDPRESS_URL || "http://pf2026.local");
 
-const nextConfig = (phase: string): NextConfig => ({
+const nextConfig = async (phase: string): Promise<NextConfig> => {
+  const config: NextConfig = {
   distDir: phase === PHASE_DEVELOPMENT_SERVER ? ".next-dev" : ".next",
   images: {
     remotePatterns: [
@@ -26,6 +27,11 @@ const nextConfig = (phase: string): NextConfig => ({
       },
     },
   },
-});
+  };
+
+  if (process.env.ANALYZE !== "true") return config;
+  const { default: bundleAnalyzer } = await import("@next/bundle-analyzer");
+  return bundleAnalyzer({ enabled: true, openAnalyzer: false })(config);
+};
 
 export default nextConfig;

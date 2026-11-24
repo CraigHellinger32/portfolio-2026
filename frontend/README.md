@@ -19,6 +19,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 Development output is written to `.next-dev`, while production builds use
 `.next`, so running a build does not overwrite the active dev server's assets.
 
+Run `npm run analyze` to build with Webpack Bundle Analyzer. The browser,
+Node.js and Edge reports are written under `.next/analyze/`; they do not open
+automatically. The build requires the same environment and WordPress access as
+`npm run build`.
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.

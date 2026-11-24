@@ -1,5 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
-import ImageUnlockModal from "./ImageUnlockModal";
+import dynamic from "next/dynamic";
+
+const ImageUnlockModal = dynamic(() => import("./ImageUnlockModal"));
 
 const ImageUnlockContext = createContext({ unlocked: false, requestUnlock: undefined });
 

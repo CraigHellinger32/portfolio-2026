@@ -1,9 +1,13 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import CaseStudyPagination from "../CaseStudyPagination/CaseStudyPagination";
 import PageSidebar from "../PageSidebar/PageSidebar";
-import RedactedContent from "../RedactedImageButton/RedactedContent";
 import LoadingStatus from "./LoadingStatus";
 import styles from "./ContentPanel.module.css";
+
+const RedactedContent = dynamic(() => import("../RedactedImageButton/RedactedContent"), {
+	loading: LoadingStatus,
+});
 
 export default function ContentPanel({ entry, accent, open, id, retainWhenClosed = false, loading = false, error, onRetry, onUnlock, pagination }) {
 	const panelRef = useRef(null);
@@ -114,7 +118,9 @@ export default function ContentPanel({ entry, accent, open, id, retainWhenClosed
 					) : (
 					<div className={sidebar.trim() ? styles.columns : undefined}>
 						<div className={styles.mainContent}>
-							<RedactedContent html={displayed?.entry?.content} onUnlock={onUnlock} />
+							{displayed?.entry?.content && (
+								<RedactedContent html={displayed.entry.content} onUnlock={onUnlock} />
+							)}
 						</div>
 						<PageSidebar content={sidebar} onUnlock={onUnlock} />
 					</div>
